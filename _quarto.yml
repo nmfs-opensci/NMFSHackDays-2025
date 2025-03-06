@@ -84,7 +84,7 @@ website:
         - text: "HackHour 2025 Topics"
         - text: "---"
         - section: "Python - NASA Earth Data"
-          href: topics-2025/2025-02-14-earthdata/index.md
+          href: topics-2025/2025-02-14-earthdata/index.html
           contents:
             - text: Earth Data catalog
               href: topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html
@@ -97,7 +97,7 @@ website:
             - text: Data cubes and aggregating
               href: topics-2025/2025-02-14-earthdata/4-data-cubes.html
         - section: "R - NASA Earth Data"
-          href: topics-2025/2025-02-21-earthdata/index.md
+          href: topics-2025/2025-02-21-earthdata/index.html
           contents:
             - text: Earth Data catalog
               href: topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html
@@ -109,6 +109,13 @@ website:
               href: topics-2025/2025-02-21-earthdata/3-extract-satellite-data-within-boundary.html
             - text: Data cubes and aggregating
               href: topics-2025/2025-02-21-earthdata/4-data-cubes.html
+        - section: "Python - ERDDAP"
+          href: topics-2025/2025-02-28-earthdata/index.html
+          contents:
+            - text: Earth Data catalog
+              href: topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html
+            - text: earthaccess package
+              href: topics-2025/2025-02-21-earthdata/1-earthdatalogin.html
         - text: "---"
         - href: content/reuse.md
           text: Reuse Statement
