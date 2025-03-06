@@ -1,1 +1,1 @@
-Sitemap: https://nmfs-opensci.github.io/NOAAHackDays/sitemap.xml
+Sitemap: https://nmfs-opensci.github.io/NMFSHackDays-2025/sitemap.xml

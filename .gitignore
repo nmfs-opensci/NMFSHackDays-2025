@@ -4,5 +4,5 @@
 .Ruserdata
 .ipynb_checkpoints
 /.quarto/
-NOAAHackDays.Rproj
-NOAAHackDays.Rproj
+*.Rproj
+.DS_Store
