@@ -1,0 +1,194 @@
+project: 
+  type: website
+  output-dir: docs
+  render:
+    - "*.*"
+    - "!topics-2023/2023-12-09-earthdataaccess-intro/*_Harmony.ipynb"
+    - "!topics-2023/2023-12-19-earthdatalogin-intro/Earthdata/*_Harmony.qmd"
+    - "!topics-2023/2023-12-19-earthdatalogin-intro/Earthdata_*"
+    - "!topics-2023/2023-12-19-earthdatalogin-intro/earthdatalogin_sst.qmd"
+    - "!topics-2025/2025-cefi/*"
+    - "!topics-2025/2025-echopype/*"
+    - "!topics-2025/2025-PACE/*"
+    - "!topics-2025/2025-02-21-earthdata/gdalcubes.qmd"
+
+execute:
+  freeze: auto
+  
+website:
+  page-navigation: true  
+  title: "NOAA HackHours"
+  favicon: "images/favicon-16x16.png"
+  site-url: https://nmfs-opensci.github.io/NOAAHackDays
+  repo-url: https://github.com/nmfs-opensci/NOAAHackDays
+  repo-actions: [edit, issue, source]
+  
+  page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science (2023)
+
+  navbar:
+    background: primary
+    search: true
+    right: 
+      - icon: server
+        href: https://nmfs-openscapes.2i2c.cloud/
+        text: "JupyterHub"
+      - icon: wechat
+        href: https://github.com/nmfs-opensci/NOAAHackDays/discussions
+        text: "Discussions"
+      - icon: github
+        href: https://github.com/nmfs-opensci/NOAAHackDays
+        text: "repo"
+      - icon: globe
+        href: https://github.com/nmfs-opensci
+        text: "GH org"
+  sidebar:
+    - id: home
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - href: content/hackhours.md
+          text: Hackhours
+        - href: content/workshops.md
+          text: Workshops
+        - text: "---"
+        - text: JupyterHub
+          href: topics-skills/index.md
+        - text: "---"
+        - text: HackHours 2023
+          href: topics-2023/index.md
+        - text: HackHours 2024
+          href: topics-2024/index.md
+        - text: HackHours 2025
+          href: topics-2025/index.md
+        - text: "---"
+        - href: content/reuse.md
+          text: Reuse Statement
+        - href: coc.md
+          text: Code of Conduct
+    - id: topics-skills
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: JupyterHub Skills
+          href: topics-skills/index.md
+        - text: back
+          href: index.md
+        - text: "---"
+        - href: content/jhub.md
+          text: About the Hub
+        - href: content/setup.md
+          text: Quick Start
+        - text: Intro to JupyterHubs
+          href: topics-skills/01-intro-to-jupyterhub.qmd
+        - text: JupyterLab
+          href: topics-skills/02-intro-to-lab.md
+        - text: Intro to Git
+          href: topics-skills/02-git.md
+        - text: Git Authentication
+          href: topics-skills/02-git-authentication.md
+        - text: Git in JupyterLab
+          href: topics-skills/02-git-jupyter.md
+        - text: RStudio
+          href: topics-skills/02-rstudio.qmd
+        - text: Git in RStudio
+          href: topics-skills/02-git-rstudio.md
+        - text: Git in the terminal
+          href: topics-skills/02-git-terminal.md
+        - text: Other images
+          href: topics-skills/04-other-images.md
+        - text: Earthdata login
+          href: topics-skills/03-earthdata.md
+        - text: S3 Scratch Bucket
+          href: topics-skills/03-ScratchBucket.ipynb
+        - text: AWS S3 Bucket
+          href: topics-skills/03-AWS_S3_bucket.ipynb
+        - text: Learning resources
+          href: topics-skills/04-learning.md
+    - id: topics-2023
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: HackHours 2023
+          href: topics-2023/index.md
+        - text: back
+          href: index.md
+        - text: "---"
+        - text: Earth Data Access in Python
+          href: topics-2023/2023-12-09-earthdataaccess-intro/index.qmd
+        - text: Earth Data Login in R
+          href: topics-2023/2023-12-19-earthdatalogin-intro/index.qmd
+    - id: topics-2024
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: HackHours 2024
+          href: topics-2024/index.md
+        - text: back
+          href: index.md
+        - text: "---"
+        - text: R - CoastWatch tutorials
+          href: topics-2024/2024-03-22-Coastwatch-R/index.qmd
+        - text: Python - CoastWatch tutorials
+          href: topics-2024/2024-03-15-Coastwatch-Py/index.qmd
+        - text: Python - ArcGIS
+          href: topics-2024/2024-04-05-ArcGIS/index.qmd
+        - text: Python - CMIP6 climate forecasts
+          href: topics-2024/2024-04-12-cmip6/index.qmd
+        - text: Python - Parallel Computing
+          href: topics-2024/2024-04-19-dask/index.qmd
+        - text: R - VAST
+          href: topics-2024/2024-04-25-vast/index.qmd
+        - text: Python - echopype 2
+          href: topics-2024/2024-04-26-echopype/index.qmd
+        - text: Python - PACE Ocean Color
+          href: topics-2024/2024-05-17-ocean-color/index.qmd
+        - text: R - sits R package
+          href: topics-2024/2024-05-24-sits/index.qmd
+        - text: Python - CEFI Portal
+          href: topics-2024/2024-06-14-cefi/index.qmd
+    - id: topics-2025
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: HackHours 2025
+          href: topics-2025/index.md
+        - text: back
+          href: index.md
+        - text: "---"
+        - text: Python - NASA Earth Data
+          href: topics-2025/2025-02-14-earthdata/index.qmd
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+    code-background: true
+    code-copy: true
+    css: styles.css
+    toc: true
+    toc-depth: 2
+    include-before-body: translate.html
+
+#filters:
+#  - include-files.lua
+#  - quarto
