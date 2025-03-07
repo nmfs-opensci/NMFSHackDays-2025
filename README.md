@@ -1,6 +1,8 @@
-# NOAAHackHours
+# NMFSHackHours 2025
 
-## How to Sign Up
+[Spring 2025 topics](https://nmfs-opensci.github.io/NMFSHackDays-2025/)
+
+## How to Join
 
 ### NOAA staff (any line office)
 
@@ -8,7 +10,7 @@
 
 ### Non-NOAA
 
-Recording of the sessions will be posted to this website and all content is open source in the [NOAAHackDays 2025](https://github.com/nmfs-opensci/NOAAHackDays/tree/main/topics-2025) repo.
+All content is open source in the [NMFSHackDays 2025](https://github.com/nmfs-opensci/nmfshackdays-2025) repo.
 
 ## Overview
 
@@ -19,10 +21,7 @@ The the era of big data in the earth sciences is here and learning how to effect
 * Learn how to discover and use ocean data, esp 'big data' (remote-sensing, acoustics, image, sensor)
 * Familiarize participants with using ocean data in R and Python with code. 
 * Obtain hands-on experience in using ocean data for various science applications.
-* Learn by working together and going through . 
-
-
-
+* Learn by working together and going through content together.
 
 <hr>
 
@@ -36,8 +35,5 @@ This content was created by U.S. Government employees as part of their official 
 
 ### Content attribution and reuse statement
 
-Currently most of the content is from the NASA Openscapes AGU 2023 workshop
-https://github.com/NASA-Openscapes/2023-Cloud-Workshop-AGU
-
-**Permissive Re-Mix/No Attribution Needed**: You may reuse the content in this repository---excluding the NMFS Open Science logo and any NOAA logos---in any way you like. You do not need permission. You do not need to give attribution, but if you use large parts of tutorials or content it is polite to give acknowledgement of the source. Please check each NMFS Open Science repository for its reuse statement.
+**Permissive Re-Mix/No Attribution Needed**: You may reuse the content created by NMFS Open Science in this repository---excluding the NMFS Open Science logo and any NOAA logos---in any way you like. You do not need permission. You do not need to give attribution, but if you use large parts of tutorials or content it is polite to give acknowledgement of the source. For content not created by NMFS Open Science, look for a reuse statement in the folder or on the file.
 

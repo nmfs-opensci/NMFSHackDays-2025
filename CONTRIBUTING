@@ -1,15 +1,30 @@
 # Info for Contributors
 
-## Set and rebuilding GH Pages
+## Rebuilding GitHub Pages
+
+Pages are served from main branch on docs folder.
 
 ```
 remotes::install_deps(dependencies=TRUE, upgrade="always")
 ```
-Then Render Website from the Build Tab or run in a terminal
+Then Render in a terminal **from RStudio server** with
 
 ```
 quarto render
 ````
+Don't run this in Jupyter Lab terminal because any R code that gets rerun (is not cached) will fail because it will try to use GDAL installed in conda environment and that is incompatible with the R spatial packages. The Jupyter notebooks are pre-run in Jupyter Lab so are not ever re-run.
+
+## Adding download links
+
+This is used https://github.com/shafayetShafee/downloadthis
+
+Format is `{{< downloadthis 0-earthdata-catalog.ipynb dname=“0-earthdata-catalog.ipynb” >}}`
+
+## Images
+
+So that external images appear if the user downloads the notebooks, use full links to images like
+`
+
 
 ## Notice
 
