@@ -22,21 +22,21 @@ How can we find the `shortname`, `concept_id`, and `doi` for collections not in 
 
 Let's head to <https://search.earthdata.nasa.gov/search>. Here is the front page. On the top left, you can type in text to search and below you can filter on specific criteria, like sensor. On the right are lists of data collections. Let's look at the information for a data collection.
 
-![](../images/search-earthdata.png)
+![](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/images/search-earthdata.png)
 
 ### Data collection details
 
 Here I did a search for "MUR-JPL-L4-GLOB-v4.1" and the GHRSST Level 4 dataset is at the top. In the far right, you see 3 dots (in the red box). Click on that to go to the collection details page.
 
-![](../images/search-collection.png)
+![](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025//images/search-collection.png)
 
 The collection details page has some keywords that can be used to specify a collection. In the red box, is the `shortname`, `version` and `doi`.
 
-![](../images/search-collection-details.png)
+![](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025//images/search-collection-details.png)
 
 Click on the View More Info to find the collection `concept_id`.
 
-![](../images/search-collection-id.png)
+![](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025//images/search-collection-id.png)
 
 ### Example of some collection identifiers
 
