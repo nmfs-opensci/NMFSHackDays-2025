@@ -1,6 +1,6 @@
 ---
-title: NASA Earthdata Catalog
-author: Eli Holmes
+title: "NASA Earthdata Catalog {{< downloadthis 0-earthdata-catalog.qmd dname='0-earthdata-catalog.qmd' >}}"
+author: Eli Holmes (NOAA Fisheries)
 ---
 
 >📘 Learning Objectives

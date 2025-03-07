@@ -1,6 +1,6 @@
 ---
-title: Subset and Plot
-author: Eli Holmes
+title: "Subset and Plot {{< downloadthis 2-subset-and-plot.qmd dname='2-subset-and-plot.qmd' >}}"
+author: Eli Holmes (NOAA Fisheries)
 ---
 
 ::: {.callout-note title="Learning Objectives"}

@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Eli Holmes">
+<meta name="author" content="Eli Holmes (NOAA Fisheries)">
 
-<title>Working with terra data cubes – NMFS HackHours 2025</title>
+<title>Working with terra data cubes  – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,18 +64,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" rel="next">
+<link href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -152,10 +155,284 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/index.html">R - NASA Earth Data</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html">Data cubes and aggregating</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hackhours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-skills/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub Skills</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/jhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Hub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quick Start</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to JupyterHubs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git Authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthdata login</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3 Scratch Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AWS S3 Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+ <span class="menu-text">HackHour 2025 Topics</span>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/1-earthaccess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-21-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes with ERDDAP and xarray</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-03-07-ERDDAP-R/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Masking shallow pixels</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/reuse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse Statement</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../coc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code of Conduct</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -170,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#raster-summary" id="toc-raster-summary" class="nav-link" data-scroll-target="#raster-summary">Raster summary</a></li>
   <li><a href="#global-summary" id="toc-global-summary" class="nav-link" data-scroll-target="#global-summary">Global summary</a></li>
   <li><a href="#monthly-means" id="toc-monthly-means" class="nav-link" data-scroll-target="#monthly-means">Monthly means</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/edit/main/topics-2025/2025-02-21-earthdata/4-data-cubes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-02-21-earthdata/4-data-cubes.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -186,9 +463,17 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/index.html">R - NASA Earth Data</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html">Data cubes and aggregating</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Working with terra data cubes</h1>
+<h1 class="title">Working with terra data cubes <a href="#dnldts22476" onclick="fetch('data:text/plain;base64,LS0tCnRpdGxlOiAiV29ya2luZyB3aXRoIHRlcnJhIGRhdGEgY3ViZXMgIHt7PCBkb3dubG9hZHRoaXMgNC1kYXRhLWN1YmVzLnFtZCBkbmFtZT0nNC1kYXRhLWN1YmVzLnFtZCcgPn19IgphdXRob3I6IEVsaSBIb2xtZXMgKE5PQUEgRmlzaGVyaWVzKQotLS0KCjo6OiB7LmNhbGxvdXQtbm90ZSB0aXRsZT0iTGVhcm5pbmcgT2JqZWN0aXZlcyJ9CjEuICBIb3cgdG8gY3JvcCBhIHNpbmdsZSBkYXRhIGZpbGUKMi4gIEhvdyB0byBjcmVhdGUgYSBkYXRhIGN1YmUgd2l0aCBgdGVycmFgCjMuICBIb3cgdG8gY3JvcCBhIGRhdGEgY3ViZSB0byBhIGJveAo6OjoKCiMjIFN1bW1hcnkKCk9uY2Ugd2UgaGF2ZSBhIGB0ZXJyYWAgU3BhdFJhc3RlciwgdGhlcmUgYXJlIG1hbnkgdGhpbmdzIHdlIGNhbiBkbyB3aXRoIGl0IGxpa2UgYWdncmVnYXRpb24sIHNhbXBsaW5nLCBtZWFucyBhbmQgaW50ZXJwb2xhdGlvbi4KCiMjIFByZXJlcXVpc2l0ZXMKClNlZSB0aGUgWzEtZWFydGhkYXRhbG9naW5dKDEtZWFydGhkYXRhbG9naW4uaHRtbCkgdHV0b3JpYWwgZm9yIHNldC11cCBpZiB5b3UgYXJlIHJ1bm5pbmcgdGhlIHR1dG9yaWFsIGxvY2FsbHkuCgojIyBMb2FkIFJlcXVpcmVkIFBhY2thZ2VzCgpgYGB7ciBtZXNzYWdlPUZBTFNFfQpsaWJyYXJ5KGVhcnRoZGF0YWxvZ2luKQpsaWJyYXJ5KGx1YnJpZGF0ZSkKbGlicmFyeSh0ZXJyYSkKYGBgCgojIyBHZXQgYSB2ZWN0b3Igb2YgdXJscyB0byBvdXIgbmMgZmlsZXMKCkF1dGhlbnRpY2F0ZS4KCmBgYHtyfQplYXJ0aGRhdGFsb2dpbjo6ZWRsX25ldHJjKCkgCmBgYAoKR2V0IHRoZSB1cmxzLiBUaGUgYHJlc3VsdHNgIG9iamVjdCBpcyBhIHZlY3RvciBvZiB1cmxzIHBvaW50aW5nIHRvIG91ciBgbmV0Q0RGYCBmaWxlcyBpbiB0aGUgY2xvdWQuIEVhY2ggYG5ldENERmAgZmlsZSBpcyBjaXJjYSA2NzBNYi4KCmBgYHtyIHJlc3VsdHNfU1NUfQpzaG9ydF9uYW1lIDwtICdBVkhSUl9PSS1OQ0VJLUw0LUdMT0ItdjIuMScKYmJveCA8LSBjKHhtaW49LTc1LjUsIHltaW49MzMuNSwgeG1heD0tNzMuNSwgeW1heD0zNS41KSAKdGJveCA8LSBjKCIyMDIwLTAxLTIwIiwgIjIwMjAtMDItMTAiKQoKcmVzdWx0cyA8LSBlYXJ0aGRhdGFsb2dpbjo6ZWRsX3NlYXJjaCgKICBzaG9ydF9uYW1lID0gc2hvcnRfbmFtZSwKICB2ZXJzaW9uID0gIjIuMSIsCiAgdGVtcG9yYWwgPSB0Ym94LCAKICBib3VuZGluZ19ib3ggPSBwYXN0ZShiYm94LGNvbGxhcHNlPSIsIikKKQpsZW5ndGgocmVzdWx0cykKYGBgCgojIyBDcmVhdGUgYSBkYXRhIGN1YmUKCkkgd2lsbCBnZXQgMTAgZGF5cyBvZiBkYXRhIGFuZCBjcm9wIHRvIGEgc21hbGwgYXJlYS4KCmBgYHtyIGdldF9vbmVfTVVSfQplIDwtIHRlcnJhOjpleHQoYyh4bWluPS03NS41LCB4bWF4PS03My41LCAgeW1pbj0zMy41LCB5bWF4PTM1LjUgKSkKcmFzIDwtIHRlcnJhOjpyYXN0KHJlc3VsdHMsIHZzaT1UUlVFKQpyYXMgPC0gdGVycmE6OmNyb3AocmFzLCBlKVsiYW5hbHlzZWRfc3N0Il0KYGBgCgpQbG90IHRoZSBmaXJzdCBkYXkuCmBgYHtyfQpwbG90KHJhc1tbMV1dKQpgYGAKCiMjIFJhc3RlciBzdW1tYXJ5CgptZWFuLCBtYXgsIHZhciBldGMgb2YgYSBTcGF0UmFzdGVyIHJldHVybnMgYSBzaW5nbGUgU3BhdFJhc3Rlci4KCmBgYHtyfQptZWFuKHJhcykKYGBgCmBgYHtyfQpwbG90KG1lYW4ocmFzKSkKYGBgCgojIyBHbG9iYWwgc3VtbWFyeQoKYGBge3J9CmcgPC0gdGVycmE6Omdsb2JhbChyYXMsIG1lYW4sIG5hLnJtPVRSVUUpCmcKYGBgCgpZb3UgY2FuIGRvIGN1c3RvbSBmdW5jdGlvbnMuCgpgYGB7cn0KZyA8LSBnbG9iYWwocmFzLCBmdW5jdGlvbihpKSBtaW4oaSkgLyBtYXgoaSkpCmRhdGEuZnJhbWUoZGF0ZSA9IGFzLkRhdGUodGltZShyYXMpKSwgZywgcm93Lm5hbWVzID0gTlVMTCkKYGBgCgpZb3UgY2FuIGdldCB0aGUgcmFuZ2UuCgpgYGB7cn0KZyA8LSB0ZXJyYTo6Z2xvYmFsKHJhcywgcmFuZ2UsIG5hLnJtPVRSVUUpCmRhdGEuZnJhbWUoZGF0ZSA9IGFzLkRhdGUodGltZShyYXMpKSwgZywgcm93Lm5hbWVzID0gTlVMTCkKYGBgCgojIyBNb250aGx5IG1lYW5zCgpgYGB7ciBnZXRfbW9udGhseV9tZWFuc30KIyBGdW5jdGlvbiB0byBjb252ZXJ0IHRpbWVzIHRvIHllYXItbW9udGggZm9ybWF0CnllYXJfbW9udGggPC0gZnVuY3Rpb24oeCkgewogIGZvcm1hdChhcy5EYXRlKHRpbWUoeCksIGZvcm1hdD0iJVktJW0tJWQiKSwgIiVZLSVtIikKfQoKIyBGb3JtYXQgdGltZSB0byBZZWFyLW1vbnRoIGZvciBtb250aGx5IGFnZ3JlZ2F0aW9uIAp5bSA8LSB5ZWFyX21vbnRoKHJhcykKeW0KYGBgCgoKYGBge3IgbW9uX21lYW59CiMgQ29tcHV0ZSByYXN0ZXIgbWVhbiBncm91cGVkIGJ5IFllYXItbW9udGgKbW9udGhseV9tZWFuX3Jhc3QgPC0gdGVycmE6OnRhcHAocmFzLCB5bSwgZnVuID0gbWVhbikKCiMgQ29tcHV0ZSBtZWFuIGFjcm9zcyByYXN0ZXIgZ3JvdXBlZCBieSBZZWFyLW1vbnRoCm1vbnRobHlfbWVhbnMgPC0gdGVycmE6Omdsb2JhbChtb250aGx5X21lYW5fcmFzdCwgZnVuID0gbWVhbiwgbmEucm09VFJVRSkKbW9udGhseV9tZWFucwpgYGAKCiMjIFN1bW1hcnkKCkFmdGVyIGNyZWF0aW5nIGEgZGF0YSBjdWJlIHdpdGggYHRlcnJhYCBhbmQgYGVhcnRoZGF0YWxvZ2luYCwgd2UgbGVhcm5lZCBob3cgdG8gZG8gc29tZSBiYXNpYyBzcGF0aWFsIGFuZCB0ZW1wb3JhbCBhdmVyYWdpbmcuIFRoZXNlIGNvbXB1dGF0aW9ucyBhcmUgbW9yZSBSQU0gaHVuZ3J5IHRoYW4gaW4gUHl0aG9uIGFuZCB3ZSBkb24ndCBoYXZlIHRoZSBlYXN5IG9wdGlvbiBvZiBjaHVua2luZyB0aGUgZGF0YSBsaWtlIHdlIGRvIHdpdGggYGRhc2tgIGFuZCBgeGFycmF5YC4gU2VlIHRoZSBbRVJEREFQIHhhcnJheV0oLi4vMjAyNS0wMi0yOC1FUkREQVAtUHkvZXJkZGFwX3hhcnJheS5odG1sKSB0dXRvcmlhbCBmb3IgYW4gZXhhbXBsZSBvZiBjaHVua2luZyB0byByZWR1Y2UgUkFNIHJlcXVpcmVtZW50cy4K').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = '4-data-cubes.qmd.qmd'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts22476"><i class="bi bi-download"></i> Download </button></a></h1>
 </div>
 
 
@@ -198,7 +483,7 @@ function googleTranslateElementInit() {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Eli Holmes </p>
+             <p>Eli Holmes (NOAA Fisheries) </p>
           </div>
   </div>
     
@@ -443,9 +728,9 @@ X2020.02 295.5335</code></pre>
 </div>
 </div>
 </section>
-<section id="conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>Some really cool things just happened here! You connected to multiple remote-sensing files (<code>netCDF</code>) in the cloud and worked with them without directly downloading them.</p>
+<section id="summary-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-1">Summary</h2>
+<p>After creating a data cube with <code>terra</code> and <code>earthdatalogin</code>, we learned how to do some basic spatial and temporal averaging. These computations are more RAM hungry than in Python and we don’t have the easy option of chunking the data like we do with <code>dask</code> and <code>xarray</code>. See the <a href="../2025-02-28-ERDDAP-Py/erddap_xarray.html">ERDDAP xarray</a> tutorial for an example of chunking to reduce RAM requirements.</p>
 
 
 </section>
@@ -677,6 +962,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -787,6 +1074,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1012,6 +1300,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="pagination-link" aria-label="Apply a polygon boundary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Apply a polygon boundary</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="pagination-link" aria-label="Python - ERDDAP">
+        <span class="nav-page-text">Python - ERDDAP</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

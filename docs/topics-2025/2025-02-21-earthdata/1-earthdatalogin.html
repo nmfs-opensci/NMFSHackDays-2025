@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Eli Holmes adapted from work by Luis Lopez and Carl Boettiger">
+<meta name="author" content="Eli Holmes (NOAA Fisheries) adapted from work by Luis Lopez and Carl Boettiger">
 
-<title>Earthdata Search and Discovery – NMFS HackHours 2025</title>
+<title>Earthdata Search and Discovery  – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,18 +64,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" rel="next">
+<link href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -152,10 +155,284 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/index.html">R - NASA Earth Data</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html">earthaccess package</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hackhours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-skills/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub Skills</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/jhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Hub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quick Start</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to JupyterHubs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git Authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthdata login</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3 Scratch Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AWS S3 Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+ <span class="menu-text">HackHour 2025 Topics</span>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/1-earthaccess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-21-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes with ERDDAP and xarray</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-03-07-ERDDAP-R/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Masking shallow pixels</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/reuse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse Statement</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../coc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code of Conduct</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -185,9 +462,17 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/index.html">R - NASA Earth Data</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html">earthaccess package</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Earthdata Search and Discovery</h1>
+<h1 class="title">Earthdata Search and Discovery <a href="#dnldts63654" onclick="fetch('data:text/plain;base64,LS0tCnRpdGxlOiAiRWFydGhkYXRhIFNlYXJjaCBhbmQgRGlzY292ZXJ5IHt7PCBkb3dubG9hZHRoaXMgMS1lYXJ0aGRhdGFsb2dpbi5xbWQgZG5hbWU9JzEtZWFydGhkYXRhbG9naW4ucW1kJyA+fX0iCmF1dGhvcjogRWxpIEhvbG1lcyAgKE5PQUEgRmlzaGVyaWVzKSBhZGFwdGVkIGZyb20gd29yayBieSBMdWlzIExvcGV6IGFuZCBDYXJsIEJvZXR0aWdlcgotLS0KCjo6OiB7LmNhbGxvdXQtbm90ZSB0aXRsZT0iTGVhcm5pbmcgT2JqZWN0aXZlcyJ9CjEuICBIb3cgdG8gYXV0aGVudGljYXRlIHdpdGggYGVhcnRoZGF0YWxvZ2luYAoyLiAgSG93IHRvIHVzZSBgZWFydGhkYXRhbG9naW5gIHRvIHNlYXJjaCBmb3IgZGF0YSB1c2luZyBzcGF0aWFsIGFuZCB0ZW1wb3JhbCBmaWx0ZXJzCjMuICBIb3cgdG8gbWFrZSBhIHBsb3Qgd2l0aG91dCBkb3dubG9hZGluZyB0aGUgZGF0YQo6OjoKCiMjIFN1bW1hcnkKCkluIHRoaXMgZXhhbXBsZSB3ZSB3aWxsIHVzZSB0aGUgYGVhcnRoZGF0YWxvZ2luYCBSIHBhY2thZ2UgdG8gc2VhcmNoIGZvciBkYXRhIGNvbGxlY3Rpb25zIGZyb20gTkFTQSBFYXJ0aGRhdGEuIGBlYXJ0aGRhdGFsb2dpbmAgaXMgYSBSIHBhY2thZ2UgdGhhdCBzaW1wbGlmaWVzIGRhdGEgZGlzY292ZXJ5IGFuZCBhY2Nlc3MgdG8gTkFTQeKAmXMgW0NvbW1vbiBNZXRhZGF0YSBSZXBvc2l0b3J5IChDTVIpIEFQSV0oaHR0cHM6Ly9jbXIuZWFydGhkYXRhLm5hc2EuZ292L3NlYXJjaC9zaXRlL2RvY3Mvc2VhcmNoL2FwaS5odG1sKSBTZWFyY2ggQVBJIGZvciBbTkFTQSBFYXJ0aGRhdGFdKGh0dHBzOi8vc2VhcmNoLmVhcnRoZGF0YS5uYXNhLmdvdi9zZWFyY2gpLiBEZXNwaXRlIHRoZSBuYW1lLCB0aGUgTkFTQSBFYXJ0aGRhdGEgYWxzbyBob2xkcyBOT0FBIGRhdGEgKHdoaWNoIHdlIHdpbGwgdXNlIHRvZGF5KS4KCkZvciBtb3JlIG9uIGBlYXJ0aGRhdGFsb2dpbmAgdmlzaXQgdGhlIFtgZWFydGhkYXRhbG9naW5gIEdpdEh1Yl0oaHR0cHM6Ly9naXRodWIuY29tL2JvZXR0aWdlci1sYWIvZWFydGhkYXRhbG9naW4vKSBwYWdlIGFuZC9vciB0aGUgW2BlYXJ0aGRhdGFsb2dpbmAgZG9jdW1lbnRhdGlvbl0oaHR0cHM6Ly9ib2V0dGlnZXItbGFiLmdpdGh1Yi5pby9lYXJ0aGRhdGFsb2dpbi8pIHNpdGUuIEJlIGF3YXJlIHRoYXQgYGVhcnRoZGF0YWxvZ2luYCBpcyB1bmRlciBhY3RpdmUgZGV2ZWxvcG1lbnQuCgojIyBUZXJtaW5vbG9neQoKLSAgICoqYE5ldENERmAgZmlsZXMqKjogbmV0d29yayBDb21tb24gRGF0YSBGb3JtOyBpcyBhIGZpbGUgZm9ybWF0IGZvciBzdG9yaW5nIG11bHRpZGltZW5zaW9uYWwgc2NpZW50aWZpYyBkYXRhICh2YXJpYWJsZXMpIHN1Y2ggYXMgdGVtcGVyYXR1cmUsIGh1bWlkaXR5LCBwcmVzc3VyZSwgd2luZCBzcGVlZCwgYW5kIGRpcmVjdGlvbi4gRWFjaCBvZiB0aGVzZSB2YXJpYWJsZXMgY2FuIGJlIGRpc3BsYXllZCB0aHJvdWdoIGEgZGltZW5zaW9uIChzdWNoIGFzIHRpbWUpIGluIEFyY0dJUyBieSBtYWtpbmcgYSBsYXllciBvciB0YWJsZSB2aWV3IGZyb20gdGhlIG5ldENERiBmaWxlLiBMZWFybiBtb3JlIFtoZXJlXShodHRwczovL3Byby5hcmNnaXMuY29tL2VuL3Byby1hcHAvbGF0ZXN0L2hlbHAvZGF0YS9tdWx0aWRpbWVuc2lvbmFsL3doYXQtaXMtbmV0Y2RmLWRhdGEuaHRtKS4KLSAgICoqYHRpZmAgb3IgYHRpZmZgIG9yIGdlbyB0aWZmIGZpbGUqKjogaXMgdXNlZCBhcyBhbiBpbnRlcmNoYW5nZSBmb3JtYXQgZm9yIGdlb3JlZmVyZW5jZWQgcmFzdGVyIGltYWdlcnkuIEdlb1RJRkYgaXMgaW4gd2lkZSB1c2UgaW4gTkFTQSBFYXJ0aCBzY2llbmNlIGRhdGEgc3lzdGVtcy4gTGVhcm4gbW9yZSBbaGVyZV0oaHR0cHM6Ly93d3cuZWFydGhkYXRhLm5hc2EuZ292L2VzZGlzL2VzY28vc3RhbmRhcmRzLWFuZC1wcmFjdGljZXMvZ2VvdGlmZikuCi0gICAqKnJhc3RlcioqOiBpcyBhIG1hdHJpeCBvZiBjZWxscyAob3IgcGl4ZWxzKSBvcmdhbml6ZWQgaW50byByb3dzIGFuZCBjb2x1bW5zIChvciBhIGdyaWQpIHdoZXJlIGVhY2ggY2VsbCBjb250YWlucyBhIHZhbHVlIHJlcHJlc2VudGluZyBpbmZvcm1hdGlvbiwgc3VjaCBhcyB0ZW1wZXJhdHVyZS4gUmFzdGVycyBhcmUgZGlnaXRhbCBhZXJpYWwgcGhvdG9ncmFwaHMsIGltYWdlcnkgZnJvbSBzYXRlbGxpdGVzLCBkaWdpdGFsIHBpY3R1cmVzLCBvciBldmVuIHNjYW5uZWQgbWFwcy5MZWFybiBtb3JlIFtoZXJlXShodHRwczovL2Rlc2t0b3AuYXJjZ2lzLmNvbS9lbi9hcmNtYXAvbGF0ZXN0L21hbmFnZS1kYXRhL3Jhc3Rlci1hbmQtaW1hZ2VzL3doYXQtaXMtcmFzdGVyLWRhdGEuaHRtKS4KLSAgICoqR0RBTCoqOiBpcyBhIHRyYW5zbGF0b3IgbGlicmFyeSBmb3IgcmFzdGVyIGFuZCB2ZWN0b3IgZ2Vvc3BhdGlhbCBkYXRhIGZvcm1hdHMuIEFzIGEgbGlicmFyeSwgaXQgcHJlc2VudHMgYSBzaW5nbGUgcmFzdGVyIGFic3RyYWN0IGRhdGEgbW9kZWwgYW5kIHNpbmdsZSB2ZWN0b3IgYWJzdHJhY3QgZGF0YSBtb2RlbCB0byB0aGUgY2FsbGluZyBhcHBsaWNhdGlvbiBmb3IgYWxsIHN1cHBvcnRlZCBmb3JtYXRzLiBJdCBhbHNvIGNvbWVzIHdpdGggYSB2YXJpZXR5IG9mIHVzZWZ1bCBjb21tYW5kIGxpbmUgdXRpbGl0aWVzIGZvciBkYXRhIHRyYW5zbGF0aW9uIGFuZCBwcm9jZXNzaW5nLiBMZWFybiBtb3JlIFtoZXJlXShodHRwczovL2dkYWwub3JnL2luZGV4Lmh0bWwpLgoKIyMgUHJlcmVxdWlzaXRlcwoKQW4gRWFydGhkYXRhIExvZ2luIGFjY291bnQgaXMgcmVxdWlyZWQgdG8gYWNjZXNzIGRhdGEgZnJvbSBOQVNBIEVhcnRoZGF0YS4gUGxlYXNlIHZpc2l0IDxodHRwczovL3Vycy5lYXJ0aGRhdGEubmFzYS5nb3Y+IHRvIHJlZ2lzdGVyIGFzIGEgbmV3IHVzZXIgYW5kIG1hbmFnZSB5b3VyIEVhcnRoZGF0YSBMb2dpbiBhY2NvdW50LiBUaGlzIGFjY291bnQgaXMgZnJlZSB0byBjcmVhdGUgYW5kIG9ubHkgdGFrZXMgYSBtb21lbnQgdG8gc2V0IHVwLgoKIyMgTG9hZCBSZXF1aXJlZCBQYWNrYWdlcwoKV2UgYXJlIHVzaW5nIHRoZSBKdXB5dGVySHViIGFuZCBhbGwgbmVjZXNzYXJ5IHBhY2thZ2VzIGFyZSBhbHJlYWR5IGluc3RhbGxlZCBmb3IgeW91LiBJZiB5b3UgYXJlIHJ1bm5pbmcgbG9jYWxseSwgeW91IGNhbiBpbnN0YWxsIHRoZSBwYWNrYWdlcyB3aXRoCgpgYGAgICAgICAgICAKZGV2dG9vbHM6Omluc3RhbGxfZ2l0aHViKCJib2V0dGlnZXItbGFiL2VhcnRoZGF0YWxvZ2luIikKaW5zdGFsbC5wYWNrYWdlcygidGVycmEiKQpgYGAKCkJ1dCBiZSBhd2FyZSB0aGF0IGl0IGlzIGNvbW1vbiB0byBydW4gaW50byB0cm91YmxlIGdldHRpbmcgR0RBTCBzZXQgdXAgcHJvcGVybHkgdG8gaGFuZGxlIG5ldENERiBmaWxlcy4gVXNpbmcgYSBEb2NrZXIgaW1hZ2UgbGlrZSBSb2NrZXIgZ2Vvc3BhdGlhbCBpcyBvZnRlbiBsZXNzIGFnZ3JhdmF0aW5nLgoKYGBge3J9CmxpYnJhcnkoZWFydGhkYXRhbG9naW4pCmxpYnJhcnkodGVycmEpCmBgYAoKIyMgQXV0aGVudGljYXRpb24gZm9yIE5BU0EgRWFydGhkYXRhCgpXZSB3aWxsIHN0YXJ0IGJ5IGF1dGhlbnRpY2F0aW5nIHVzaW5nIG91ciBFYXJ0aGRhdGEgTG9naW4gY3JlZGVudGlhbHMuIEF1dGhlbnRpY2F0aW9uIGlzIG5vdCBuZWNlc3NhcmlseSBuZWVkZWQgdG8gc2VhcmNoIGZvciBwdWJsaWNseSBhdmFpbGFibGUgZGF0YSBjb2xsZWN0aW9ucyBpbiBFYXJ0aGRhdGEsIGJ1dCBpcyBhbHdheXMgbmVlZGVkIHRvIGRvd25sb2FkIG9yIGFjY2VzcyBkYXRhIGZyb20gdGhlIE5BU0EgRWFydGhkYXRhIGFyY2hpdmVzLiBXZSBjYW4gdXNlIGBlZGxfbmV0cmMoKWAgZnJvbSB0aGUgYGVhcnRoZGF0YWxvZ2luYCBwYWNrYWdlIHRvIGNyZWF0ZSBhIGAubmV0cmNgIGZpbGUgdGhhdCB3aWxsIHN0b3JlIG91ciBjcmVkZW50aWFscy4KClRoZSBmaXJzdCB0aW1lIHlvdSBydW4gYXV0aGVudGljYXRpb24gdXNlIHRoaXMgY29kZS4gTm90ZSwgZG8gdGhpcyBldmVuIGlmIHlvdSBhdXRoZW50aWNhdGVkIGluIEp1cHl0ZXIgTGFiIGVhcmxpZXIuIFRoaXMgbmV0cmMgZmlsZSBpcyBwbGFjZWQgaW4gYSBkaWZmZXJlbnQgbG9jYXRpb24uCgpgYGB7ciwgZXZhbCA9IEZBTFNFfQplYXJ0aGRhdGFsb2dpbjo6ZWRsX25ldHJjKAogIHVzZXJuYW1lID0gInVzZXIiLCAjIGFkZCB5b3VyIHVzZXIgbmFtZQogIHBhc3N3b3JkID0gInBhc3N3b3JkIiAjIGFkZCB5b3UgcGFzc3dvcmQKKQpgYGAKClRoaXMgd2lsbCBwdXQgeW91ciBsb2dpbiBpbmZvIGluIGEgYG5ldHJjYCBmaWxlIGxvY2F0ZWQgYXQ6CgpgYGB7cn0KZWFydGhkYXRhbG9naW46OjplZGxfbmV0cmNfcGF0aCgpCmBgYAoKT25jZSB5b3VyIGBuZXRyY2AgZmlsZSBpcyBzYXZlZCwgeW91IGNhbiBhdXRoZW50aWNhdGUuCgpgYGB7cn0KZWFydGhkYXRhbG9naW46OmVkbF9uZXRyYygpCmBgYAoKKmBlZGxfbmV0cmMoKWAgd2lsbCBhbHNvIHdvcmsgYnkgdXNpbmcgYSBkZWZhdWx0IHB1YmxpYyBhY2NvdW50IGxvZ2luLCBidXQgZmVlbCBmcmVlIHRvIGxvZ2luIHdpdGggeW91ciBvd24gW05BU0EgRWFydGhkYXRhIGFjY291bnRdKGh0dHBzOi8vdXJzLmVhcnRoZGF0YS5uYXNhLmdvdi9ob21lKSoKCiMjIFNlYXJjaCBmb3IgZGF0YQoKVGhlcmUgYXJlIG11bHRpcGxlIGtleXdvcmRzIHdlIGNhbiB1c2UgdG8gZGlzY292ZXIgZGF0YSBmcm9tIGNvbGxlY3Rpb25zLiBUaGUgdGFibGUgYmVsb3cgY29udGFpbnMgdGhlIGBzaG9ydF9uYW1lYCwgYGNvbmNlcHRfaWRgLCBhbmQgYGRvaWAgZm9yIHNvbWUgY29sbGVjdGlvbnMgd2UgYXJlIGludGVyZXN0ZWQgaW4gZm9yIHRoZSB0dXRvcmlhbHMgdG9kYXkuIEVhY2ggb2YgdGhlc2UgY2FuIGJlIHVzZWQgdG8gc2VhcmNoIGZvciBkYXRhIG9yIGluZm9ybWF0aW9uIHJlbGF0ZWQgdG8gdGhlIGNvbGxlY3Rpb24gd2UgYXJlIGludGVyZXN0ZWQgaW4uCgp8IFNob3J0bmFtZSAgICAgICAgICAgICAgICAgIHwgQ29sbGVjdGlvbiBDb25jZXB0IElEIHwgRE9JICAgICAgICAgICAgICAgICB8CnwtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfC0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBNVVItSlBMLUw0LUdMT0ItdjQuMSAgICAgICB8IEMxOTk2ODgxMTQ2LVBPQ0xPVUQgICB8IDEwLjUwNjcvR0hHTVItNEZKMDQgfAp8IEFWSFJSX09JLU5DRUktTDQtR0xPQi12Mi4xIHwgQzIwMzY4ODE3MTItUE9DTE9VRCAgIHwgMTAuNTA2Ny9HSEFBTy00QkMyMSB8CgpIb3cgY2FuIHdlIGZpbmQgdGhlIGBzaG9ydG5hbWVgLCBgY29uY2VwdF9pZGAsIGFuZCBgZG9pYCBmb3IgY29sbGVjdGlvbnMgbm90IGluIHRoZSB0YWJsZSBhYm92ZT8gTGV0J3MgdGFrZSBhIHF1aWNrIGRldG91cjoKCjEuICBOYXZpZ2F0ZSB0byA8aHR0cHM6Ly9zZWFyY2guZWFydGhkYXRhLm5hc2EuZ292L3NlYXJjaD4gMjogU2VhcmNoIGZvciAiR0hSU1NUIExldmVsIDQgTVVSIEdsb2JhbCBGb3VuZGF0aW9uIFNlYSBTdXJmYWNlIFRlbXBlcmF0dXJlIEFuYWx5c2lzIiBvciBjbGljayB0aGlzIFtsaW5rXShodHRwczovL3NlYXJjaC5lYXJ0aGRhdGEubmFzYS5nb3Yvc2VhcmNoP3E9R0hSU1NUJTIwTGV2ZWwlMjA0JTIwTVVSJTIwR2xvYmFsJTIwRm91bmRhdGlvbiUyMFNlYSUyMFN1cmZhY2UlMjBUZW1wZXJhdHVyZSUyMEFuYWx5c2lzKSAoc2NyZWVuc2hvdCBiZWxvdykuCgohW10oaW1hZ2VzL1NTVF9CbGVuZGVkX0VhcnRoZGF0YV9TZWFyY2gucG5nKXt3aWR0aD0iNTAlIn0KCkZpbmQgYW5kIGNsaWNrIG9uIHRoZSBtb3JlIGluZm9ybWF0aW9uIGJ1dHRvbiAoYW4gaSB3aXRoIGEgY2lyY2xlIGFyb3VuZCBpdCkuIE9uIHRoaXMgcGFnZSwgeW91IHdpbGwgc2VlIHRoZSBgRE9JYC4gTm93IGNsaWNrICJWaWV3IE1vcmUgSW5mbyIgdG8gZ2V0IHRvIDxodHRwczovL2Ntci5lYXJ0aGRhdGEubmFzYS5nb3Yvc2VhcmNoL2NvbmNlcHRzL0MxOTk2ODgxMTQ2LVBPQ0xPVUQuaHRtbD4uCgpPbiB0aGF0IHBhZ2UgeW91IHdpbGwgc2VlIHRoZSAqKiJzaG9ydCBuYW1lIioqIGBNVVItSlBMLUw0LUdMT0ItdjQuMWAgYW5kIGJlbG93IHRoYXQgaW4gYW4gdW5sYWJlbGxlZCBib3ggaXMgdGhlIENvbmNlcHQgSUQuCgojIyMgU2VhcmNoIGJ5IHNob3J0IG5hbWUKCmBgYHtyfQpzaG9ydF9uYW1lIDwtICdNVVItSlBMLUw0LUdMT0ItdjQuMScKYGBgCgpMZXQncyBzZXQgc29tZSB0aW1lIGJvdW5kcy4KCmBgYHtyfQp0Ym94IDwtIGMoIjIwMjAtMDEtMTYiLCAiMjAyMC0xMi0xNiIpCmBgYAoKQW5kIG5vdyB3ZSBzZWFyY2ghCgpgYGB7cn0KcmVzdWx0cyA8LSBlYXJ0aGRhdGFsb2dpbjo6ZWRsX3NlYXJjaCgKICAgIHNob3J0X25hbWUgPSBzaG9ydF9uYW1lLAogICAgdmVyc2lvbiA9ICI0LjEiLAogICAgdGVtcG9yYWwgPSB0Ym94CikKbGVuZ3RoKHJlc3VsdHMpICMgaG93IG1hbnkgbGlua3Mgd2VyZSByZXR1cm5lZApyZXN1bHRzWzE6M10gIyBsZXQncyBzZWUgdGhlIGZpcnN0IDMgb2YgdGhlc2UgbGlua3MKYGBgCgpJbiB0aGlzIGV4YW1wbGUgd2UgdXNlZCB0aGUgYHNob3J0X25hbWVgIHBhcmFtZXRlciB0byBzZWFyY2ggZnJvbSBvdXIgZGVzaXJlZCBkYXRhIHNldC4gSG93ZXZlciwgdGhlcmUgYXJlIG11bHRpcGxlIHdheXMgdG8gc3BlY2lmeSB0aGUgY29sbGVjdGlvbihzKSB3ZSBhcmUgaW50ZXJlc3RlZCBpbi4gQWx0ZXJuYXRpdmUgcGFyYW1ldGVycyBpbmNsdWRlOgoKLSAgIGBkb2lgOiByZXF1ZXN0IGNvbGxlY3Rpb24gYnkgZGlnaXRhbCBvYmplY3QgaWRlbnRpZmllciAoZS5nLiwgYGRvaSA9ICcxMC41MDY3L0dIQUFPLTRCQzIxJ2ApCgoqKk5PVEU6KiogRWFjaCBFYXJ0aGRhdGEgY29sbGVjdCBoYXMgYSB1bmlxdWUgYGNvbmNlcHRfaWRgIGFuZCBgZG9pYC4gVGhpcyBpcyBub3QgdGhlIGNhc2Ugd2l0aCBgc2hvcnRfbmFtZWAsIHdoaWNoIGNhbiBiZSBhc3NvY2lhdGVkIHdpdGggbXVsdGlwbGUgdmVyc2lvbnMgb2YgYSBjb2xsZWN0aW9uLiBJZiBtdWx0aXBsZSB2ZXJzaW9ucyBvZiBhIGNvbGxlY3Rpb24gYXJlIHB1YmxpY2x5IGF2YWlsYWJsZSwgdXNpbmcgdGhlIGBzaG9ydF9uYW1lYCBwYXJhbWV0ZXIgd2l0aCByZXR1cm4gYWxsIHZlcnNpb25zIGF2YWlsYWJsZS4gSXQgaXMgYWR2aXNlZCB0byB1c2UgdGhlIGB2ZXJzaW9uYCBwYXJhbWV0ZXIgaW4gY29uanVuY3Rpb24gd2l0aCB0aGUgYHNob3J0X25hbWVgIHBhcmFtZXRlciB3aXRoIHNlYXJjaGluZy4KCldlIGNhbiByZWZpbmUgb3VyIHNlYXJjaCBieSBwYXNzaW5nIG1vcmUgcGFyYW1ldGVycyB0aGF0IGRlc2NyaWJlIHRoZSBzcGF0aW90ZW1wb3JhbCBkb21haW4gb2Ygb3VyIHVzZSBjYXNlLiBIZXJlLCB3ZSB1c2UgdGhlIGB0ZW1wb3JhbGAgcGFyYW1ldGVyIHRvIHJlcXVlc3QgYSBkYXRlIHJhbmdlIGFuZCB0aGUgYGJvdW5kaW5nX2JveGAgcGFyYW1ldGVyIHRvIHJlcXVlc3QgZ3JhbnVsZXMgdGhhdCBpbnRlcnNlY3Qgd2l0aCBhIGJvdW5kaW5nIGJveC4KCmBgYHtyfQpiYm94IDwtIGMoeG1pbj0tNzMuNSwgeW1pbj0zMy41LCB4bWF4PS00My41LCB5bWF4PTQzLjUpIApiYm94CmBgYAoKYGBge3J9CnJlc3VsdHMgPC0gZWFydGhkYXRhbG9naW46OmVkbF9zZWFyY2goCiAgICBzaG9ydF9uYW1lID0gc2hvcnRfbmFtZSwKICAgIHZlcnNpb24gPSAiNC4xIiwKICAgIHRlbXBvcmFsID0gdGJveCwKICAgIGJvdW5kaW5nX2JveCA9IHBhc3RlKGJib3gsY29sbGFwc2U9IiwiKQopCmxlbmd0aChyZXN1bHRzKQpyZXN1bHRzWzE6M10KYGBgCgojIyBXb3JraW5nIHdpdGggYGVhcnRoZGF0YWxvZ2luYCByZXR1cm5zCgpGb2xsb3dpbmcgdGhlIHNlYXJjaCBmb3IgZGF0YSwgeW91J2xsIGxpa2VseSB0YWtlIG9uZSBvZiB0d28gcGF0aHdheXMgd2l0aCB0aG9zZSByZXN1bHRzLiBZb3UgbWF5IGNob29zZSB0byAqKmRvd25sb2FkKiogdGhlIGFzc2V0cyB0aGF0IGhhdmUgYmVlbiByZXR1cm5lZCB0byB5b3Ugb3IgeW91IG1heSBjaG9vc2UgdG8gY29udGludWUgd29ya2luZyB3aXRoIHRoZSBzZWFyY2ggcmVzdWx0cyB3aXRoaW4gdGhlIFIgZW52aXJvbm1lbnQuCgojIyMgRG93bmxvYWQgYGVhcnRoZGF0YWxvZ2luYCByZXN1bHRzCgpJbiBzb21lIGNhc2VzIHlvdSBtYXkgd2FudCB0byBkb3dubG9hZCB5b3VyIGFzc2V0cy4gVGhlIGBlYXJ0aGRhdGFsb2dpbjo6ZWRsX2Rvd25sb2FkKClgIGZ1bmN0aW9uIG1ha2VzIGRvd25sb2FkaW5nIHRoZSBkYXRhIGZyb20gdGhlIHNlYXJjaCByZXN1bHRzIHZlcnkgZWFzeS4gV2Ugd29uJ3QgZG93bmxvYWQgdGhlIE1VUiBTU1QgZmlsZSBmb3IgdGhpcyB0dXRvcmlhbCBiZWNhdXNlIGl0IGlzIDY3MyBHYiwgYnV0IHlvdSBjb3VsZCB3aXRoIHRoZSBjb2RlIGJlbG93LCBpZiBpbmNsaW5lZC4KCmBgYHtyIGV2YWw9RkFMU0V9CmVhcnRoZGF0YWxvZ2luOjplZGxfZG93bmxvYWQoCiAgICByZXN1bHRzWzFdLAogICAgZGVzdCA9IGhlcmU6OmhlcmUoInRlc3QubmMiKQopCmBgYAoKIyMjIFdvcmsgaW4gdGhlIGNsb3VkCgpXZSBkbyBub3QgaGF2ZSB0byBkb3dubG9hZCB0aGUgZGF0YSB0byB3b3JrIHdpdGggaXQgb3IgYXQgbGVhc3Qgbm90IHVudGlsIHdlIG5lZWQgdG8gY29tcHV0ZSB3aXRoIGl0IG9yIHBsb3QgaXQuIExldCdzIGxvb2sgYXQgYSBzbWFsbGVyIGRhdGFzZXQuCgpgYGB7cn0Kb2kgPC0gZWFydGhkYXRhbG9naW46OmVkbF9zZWFyY2goCiAgICBzaG9ydF9uYW1lID0gIkFWSFJSX09JLU5DRUktTDQtR0xPQi12Mi4xIiwKICAgIHZlcnNpb24gPSAiMi4xIiwKICAgIHRlbXBvcmFsID0gYygiMjAyMC0wMS0xNiIsICIyMDIwLTAxLTE3IikKKQpvaQpgYGAKCkxldCdzIHRyeSBwbG90dGluZyB0aGlzLiBJIGFtIGdvaW5nIHRvIGF1dGhlbnRpY2F0ZSBhZ2FpbiBqdXN0IHRvIG1ha2Ugc3VyZSBteSB0b2tlbiBkaWQgbm90IGV4cGlyZS4gVG8gc2VhcmNoLCB3ZSBkb24ndCBuZWVkIHRvIGF1dGhlbnRpY2F0ZSwgYnV0IHRvIHBsb3Qgb3IgZG93bmxvYWQsIHdlIGRvLgoKYGBge3J9CiMgUmUtYXV0aGVudGljYXRlIChqdXN0IGluIGNhc2UpCmVhcnRoZGF0YWxvZ2luOjplZGxfbmV0cmMoKQpgYGAKCmBgYHtyIG1lc3NhZ2U9RkFMU0V9CmxpYnJhcnkodGVycmEpCnJhcyA8LSB0ZXJyYTo6cmFzdCh4ID0gb2lbMV0sIHZzaT1UUlVFKQpwbG90KHJhcykKYGBgCgo6Ojogey5jYWxsb3V0LW5vdGUgdGl0bGU9IlRyb3VibGVzaG9vdGluZyJ9CklmIHlvdSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvcjoKCj4gRXJyb3I6IFxbcmFzdFxdIGZpbGUgZG9lcyBub3QgZXhpc3Q6IC92c2ljdXJsL2h0dHBzOi8vYXJjaGl2ZS5wb2RhYWMuZWFydGhkYXRhLm5hc2EuZ292L3BvZGFhYy1vcHMtY3VtdWx1cy1wcm90ZWN0ZWQvQVZIUlJfT0ktTkNFSS1MNC1HTE9CLXYyLjEvMjAyMDAxMTUxMjAwMDAtTkNFSS1MNF9HSFJTU1QtU1NUYmxlbmQtQVZIUlJfT0ktR0xPQi12MDIuMC1mdjAyLjEubmMKCkl0IGlzIGxpa2VseSBiZWNhdXNlIHlvdSBkbyBub3QgaGF2ZSB0aGUgRW5kIFVzZXIgTGljZW5jZSBBZ3JlZW1lbnQgKEVVTEEpL3Blcm1pc3Npb25zIHRvIHVzZSB0aGF0IGRhdGEgc2V0IG9yIGFyZSBub3QgcHJvcGVybHkgbG9nZ2VkIGluIHVzaW5nIGBlYXJ0aGRhdGFsb2dpbjo6ZWRsX25ldHJjKClgLiBBbm90aGVyIHJlYXNvbiBtYXkgYmUgdGhhdCB5b3VyIEdEQUwgaW5zdGFsbGF0aW9uIGlzIG5vdCBwcm9wZXJseSBoYW5kbGluZyBgbmV0Q0RGYCBmaWxlcy4KOjo6CgpBbHNvIHRyeSB0aGlzIGV4YW1wbGUgc2NyaXB0IGZyb20gdGhlIGA/ZWFydGhkYXRhbG9naW46OmVkbF9uZXRyY2AgZG9jdW1lbnRhdGlvbiB0aGF0IHVzZXMgYSBgLnRpZmAgZmlsZSBpbnN0ZWFkIG9mIGAubmV0Q0RGYC4KCmBgYHtyfQp1cmwgPC0gZWFydGhkYXRhbG9naW46OmxwZGFjY19leGFtcGxlX3VybCgpCnJhcyA8LSB0ZXJyYTo6cmFzdCh1cmwsIHZzaT1UUlVFKQpwbG90KHJhcykKYGBgCgpIb3cgdG8geW91IGFjY2VwdCBFVUxBJ3M/IEdvIHRvIDxodHRwczovL3Vycy5lYXJ0aGRhdGEubmFzYS5nb3YvcHJvZmlsZT4uIExvb2sgZm9yIHRoZSBFVUxBIHRhYiBhbmQgYWNjZXB0IHRoZSBvbmUgdGhhdCBsb29rcyBsaWtlbHkuIFVuZm9ydHVuYXRlbHksIGl0IGlzIGhhcmQgdG8gZmluZCBvdXQgd2hpY2ggb25lIHlvdSBuZWVkLiBZb3UgY2FuIGp1c3QgYWNjZXB0IGFsbCBvZiB0aGVtIChvciBhbGwgdGhhdCBsb29rIHBvc3NpYmxlKS4gVGhlbiB0cnkgeW91ciBjb2RlIGFnYWluLgoKIyMgQ29uY2x1c2lvbgoKVGhpcyBjb25jbHVkZXMgdHV0b3JpYWwgMS4gWW91IGhhdmUgd29ya2VkIHdpdGggcmVtb3RlLXNlbnNpbmcgZGF0YSBpbiB0aGUgY2xvdWQgYW5kIHBsb3R0ZWQgaXQuCgpOZXh0IHdlIHdpbGwgbGVhcm4gdG8gc3Vic2V0IHRoZSBkYXRhIHNvIHdlIGNhbiB3b3JrIHdpdGggYmlnZ2VyIGRhdGFzZXRzIGluIHRoZSBjbG91ZCB3aXRob3V0IGRvd25sb2FkaW5nIHRoZSB3aG9sZSBkYXRhc2V0Lgo=').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = '1-earthdatalogin.qmd.qmd'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-default downloadthis  " id="dnldts63654"><i class="bi bi-download"></i> Download </button></a></h1>
 </div>
 
 
@@ -197,7 +482,7 @@ function googleTranslateElementInit() {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Eli Holmes adapted from work by Luis Lopez and Carl Boettiger </p>
+             <p>Eli Holmes (NOAA Fisheries) adapted from work by Luis Lopez and Carl Boettiger </p>
           </div>
   </div>
     
@@ -255,7 +540,7 @@ install.packages("terra")</code></pre>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(earthdatalogin)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>terra 1.7.83</code></pre>
+<pre><code>terra 1.8.29</code></pre>
 </div>
 </div>
 </section>
@@ -693,6 +978,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -803,6 +1090,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1028,6 +1316,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="pagination-link" aria-label="Earth Data catalog">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Earth Data catalog</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="pagination-link" aria-label="Subset and plot">
+        <span class="nav-page-text">Subset and plot</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

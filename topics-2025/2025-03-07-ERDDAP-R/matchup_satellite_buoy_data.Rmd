@@ -1,10 +1,7 @@
 ---
-title: Match up satellite to buoy data
+title: "Match up satellite to buoy data   {{< downloadthis matchup_satellite_buoy_data.Rmd dname='matchup_satellite_buoy_data.Rmd' >}}"
 author: NOAA CoastWatch
 date: March 2024
-output:
-  md_document:
-    variant: gfm
 ---
 ```{r echo=FALSE}
 knitr::opts_chunk$set(

@@ -1,6 +1,6 @@
 ---
-title: Working with terra data cubes
-author: Eli Holmes
+title: "Working with terra data cubes  {{< downloadthis 4-data-cubes.qmd dname='4-data-cubes.qmd' >}}"
+author: Eli Holmes (NOAA Fisheries)
 ---
 
 ::: {.callout-note title="Learning Objectives"}
@@ -119,6 +119,6 @@ monthly_means <- terra::global(monthly_mean_rast, fun = mean, na.rm=TRUE)
 monthly_means
 ```
 
-## Conclusions
+## Summary
 
-Some really cool things just happened here! You connected to multiple remote-sensing files (`netCDF`) in the cloud and worked with them without directly downloading them.
+After creating a data cube with `terra` and `earthdatalogin`, we learned how to do some basic spatial and temporal averaging. These computations are more RAM hungry than in Python and we don't have the easy option of chunking the data like we do with `dask` and `xarray`. See the [ERDDAP xarray](../2025-02-28-ERDDAP-Py/erddap_xarray.html) tutorial for an example of chunking to reduce RAM requirements.

@@ -1,6 +1,6 @@
 ---
-title: Earthdata Search and Discovery
-author: Eli Holmes adapted from work by Luis Lopez and Carl Boettiger
+title: "Earthdata Search and Discovery {{< downloadthis 1-earthdatalogin.qmd dname='1-earthdatalogin.qmd' >}}"
+author: Eli Holmes  (NOAA Fisheries) adapted from work by Luis Lopez and Carl Boettiger
 ---
 
 ::: {.callout-note title="Learning Objectives"}

@@ -1,9 +1,7 @@
 ---
-title: Mask shallow pixels for satellite ocean color datasets
+title: "Mask shallow pixels for satellite ocean color datasets  {{< downloadthis mask-shallow-ocean-color.rmd dname='mask-shallow-ocean-color.rmd' >}}"
 author: NOAA CoastWatch
 date: March 2024
-output: 
-  md_document
 ---
 
 # Mask shallow pixels for satellite ocean color datasets
