@@ -8,6 +8,8 @@ project:
     - "!topics-2025/2025-PACE/*"
     - "!topics-2025/2025-02-21-earthdata/gdalcubes.qmd"
     - "!topics-2025/2025-02-21-earthdata/zarr.qmd"
+
+default-image-extension: ""
     
 resources:
   - topics-2025/images
