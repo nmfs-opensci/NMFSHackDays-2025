@@ -6,8 +6,6 @@ During these stand-alone informal sessions we will get introduced to a variety o
 
 **When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
 
-<a href="https://raw.githubusercontent.com/nmfs-opensci/NMFSHackDays-2025/main/topics-2025/2025-02-14-earthdata/0-earthdata-catalog.ipynb" download>Download</a>
-
 ## Schedule
 
 -   Feb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours
