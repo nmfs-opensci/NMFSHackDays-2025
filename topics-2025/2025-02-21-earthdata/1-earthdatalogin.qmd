@@ -3,6 +3,12 @@ title: "Earthdata Search and Discovery {{< downloadthis 1-earthdatalogin.qmd dna
 author: Eli Holmes  (NOAA Fisheries) adapted from work by Luis Lopez and Carl Boettiger
 ---
 
+```{=html}
+<a href="https://raw.githubusercontent.com/nmfs-opensci/NMFSHackDays-2025/main/topics-2025/2025-02-14-earthdata/1-earthaccess.ipynb" download>
+        <button>Download Notebook</button>
+</a>
+```
+
 ::: {.callout-note title="Learning Objectives"}
 1.  How to authenticate with `earthdatalogin`
 2.  How to use `earthdatalogin` to search for data using spatial and temporal filters
