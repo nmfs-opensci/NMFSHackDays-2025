@@ -15,7 +15,7 @@ resources:
   - topics-2025/images
   - topics-2025/2025-02-21-earthdata/images
   - topics-2025/2025-02-28-ERDDAP-Py/images
-  - topics-2025/2025-02-14-earthdata/*.ipynb
+  - topics-2025/2025-02-14-earthdata
   
 execute:
   freeze: auto
