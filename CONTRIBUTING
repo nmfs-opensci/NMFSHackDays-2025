@@ -23,7 +23,9 @@ Format is `{{< downloadthis 0-earthdata-catalog.ipynb dname=“0-earthdata-catal
 ## Images
 
 So that external images appear if the user downloads the notebooks, use full links to images like
-`
+<nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/images/longhurst.png>
+
+Alternatively, you can copy and paste the image into the markdown and it will be incorporated into the notebook.
 
 
 ## Notice

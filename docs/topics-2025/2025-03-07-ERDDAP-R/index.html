@@ -405,7 +405,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
-  <li><a href="#how-to-clone" id="toc-how-to-clone" class="nav-link" data-scroll-target="#how-to-clone">How to clone</a></li>
+  <li><a href="#tutorials-1" id="toc-tutorials-1" class="nav-link" data-scroll-target="#tutorials-1">Tutorials</a></li>
+  <li><a href="#how-to-download-and-open-the-tutorials" id="toc-how-to-download-and-open-the-tutorials" class="nav-link" data-scroll-target="#how-to-download-and-open-the-tutorials">How to download and open the tutorials</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/edit/main/topics-2025/2025-03-07-ERDDAP-R/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-03-07-ERDDAP-R/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -454,17 +455,39 @@ function googleTranslateElementInit() {
 <li><a href="mask-shallow-ocean-color.html">(Optional) Mask shallow pixels for satellite ocean color datasets</a></li>
 </ul>
 </section>
-<section id="how-to-clone" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-clone">How to clone</h2>
-<p>Never cloned the NOAAHackDays repo?</p>
+<section id="tutorials-1" class="level2">
+<h2 class="anchored" data-anchor-id="tutorials-1">Tutorials</h2>
+</section>
+<section id="how-to-download-and-open-the-tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-download-and-open-the-tutorials">How to download and open the tutorials</h2>
+<section id="jupyter-hub" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-hub">Jupyter Hub</h3>
+<ol type="1">
+<li>Start the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;</li>
+<li>Click the orange Open in Jupyter Hub button</li>
+</ol>
+</section>
+<section id="download" class="level3">
+<h3 class="anchored" data-anchor-id="download">Download</h3>
+<ol type="1">
+<li>Download to your local computer</li>
+<li>You will need to have R (and RStudio/Positron) installed</li>
+<li>Install any needed packages</li>
+</ol>
+</section>
+<section id="how-to-clone-the-git-repository" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-clone-the-git-repository">How to clone the git repository</h3>
+<p>This code is run in a terminal. After cloning, you will need to navigate to the tutorials in the <code>topics-2025</code> directory.</p>
+<p>Never cloned the NMFSHackDays-2025 repo?</p>
 <pre><code>cd ~
-git clone https://github.com/nmfs-opensci/NOAAHackDays</code></pre>
+git clone https://github.com/nmfs-opensci/NMFSHackDays-2025</code></pre>
 <p>Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.</p>
-<pre><code>cd ~/NOAAHackDays
+<pre><code>cd ~/NMFSHackDays-2025
 git fetch origin
 git reset --hard origin/main</code></pre>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

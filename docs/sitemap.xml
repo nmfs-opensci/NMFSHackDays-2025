@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/index.html</loc>
-    <lastmod>2025-03-07T19:29:01.147Z</lastmod>
+    <lastmod>2025-03-12T00:33:22.466Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html</loc>
@@ -57,88 +57,92 @@
     <lastmod>2025-03-06T22:48:32.942Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
-    <lastmod>2025-03-07T19:29:01.151Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-14-Boettiger/index.html</loc>
+    <lastmod>2025-03-12T00:31:05.629Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
-    <lastmod>2025-03-06T22:48:32.654Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
+    <lastmod>2025-03-06T23:47:14.839Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html</loc>
-    <lastmod>2025-03-08T00:48:15.097Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html</loc>
+    <lastmod>2025-03-12T00:10:42.556Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/4-data-cubes.html</loc>
-    <lastmod>2025-03-08T00:42:47.551Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/index.html</loc>
+    <lastmod>2025-03-12T00:31:17.869Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/2-subset-and-plot.html</loc>
-    <lastmod>2025-03-08T00:43:10.819Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/3-polygon.html</loc>
+    <lastmod>2025-03-11T23:39:04.794Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html</loc>
-    <lastmod>2025-03-08T00:44:08.811Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/workshops.html</loc>
-    <lastmod>2025-03-06T22:48:30.718Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/slides.html</loc>
-    <lastmod>2025-03-06T22:48:30.710Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/setup.html</loc>
-    <lastmod>2025-03-06T22:48:30.706Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/jhub.html</loc>
-    <lastmod>2025-03-06T22:48:30.702Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/coc.html</loc>
-    <lastmod>2025-03-06T22:48:30.694Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/hackhours.html</loc>
-    <lastmod>2025-03-06T22:50:04.719Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/reuse.html</loc>
-    <lastmod>2025-03-06T22:50:04.723Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/signup.html</loc>
-    <lastmod>2025-03-06T22:48:30.706Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/why-cloud.html</loc>
-    <lastmod>2025-03-06T22:48:30.718Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/1-earthaccess.html</loc>
+    <lastmod>2025-03-11T23:40:24.587Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/index.html</loc>
     <lastmod>2025-03-11T22:21:01.765Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/1-earthaccess.html</loc>
-    <lastmod>2025-03-08T00:47:13.156Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/why-cloud.html</loc>
+    <lastmod>2025-03-06T22:48:30.718Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/3-polygon.html</loc>
-    <lastmod>2025-03-08T00:43:03.255Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/signup.html</loc>
+    <lastmod>2025-03-06T22:48:30.706Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/index.html</loc>
-    <lastmod>2025-03-06T22:50:05.115Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/reuse.html</loc>
+    <lastmod>2025-03-06T22:50:04.723Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html</loc>
-    <lastmod>2025-03-08T00:51:04.898Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/hackhours.html</loc>
+    <lastmod>2025-03-06T22:50:04.719Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
-    <lastmod>2025-03-06T23:47:14.839Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/coc.html</loc>
+    <lastmod>2025-03-06T22:48:30.694Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/jhub.html</loc>
+    <lastmod>2025-03-06T22:48:30.702Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/setup.html</loc>
+    <lastmod>2025-03-06T22:48:30.706Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/slides.html</loc>
+    <lastmod>2025-03-06T22:48:30.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/workshops.html</loc>
+    <lastmod>2025-03-06T22:48:30.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html</loc>
+    <lastmod>2025-03-11T23:40:44.771Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/2-subset-and-plot.html</loc>
+    <lastmod>2025-03-11T23:39:18.774Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/4-data-cubes.html</loc>
+    <lastmod>2025-03-12T00:29:24.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html</loc>
+    <lastmod>2025-03-12T00:10:03.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
+    <lastmod>2025-03-06T22:48:32.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
+    <lastmod>2025-03-07T19:29:01.151Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/index.html</loc>
@@ -174,7 +178,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-21-earthdata/index.html</loc>
-    <lastmod>2025-03-06T22:48:32.622Z</lastmod>
+    <lastmod>2025-03-12T00:32:47.485Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-04-XGBoost/index.html</loc>

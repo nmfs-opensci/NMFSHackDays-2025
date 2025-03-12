@@ -446,39 +446,75 @@
     ]
   },
   {
-    "objectID": "content/workshops.html",
-    "href": "content/workshops.html",
-    "title": "Workshops",
-    "section": "",
-    "text": "The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries. See the CoastWatch Training for all their events.\n\nOct-Dec 2024 Quarto Workshop\nOctober 25, 2024 Oceanographic Satellite and Animal Telemetry Data Training Course\nMay 17, 2024 Introduction to using earth data in the cloud for scientific workflows"
+    "objectID": "topics-2025/2025-03-14-Boettiger/index.html#tutorials",
+    "href": "topics-2025/2025-03-14-Boettiger/index.html#tutorials",
+    "title": "Topic",
+    "section": "Tutorials",
+    "text": "Tutorials"
   },
   {
-    "objectID": "content/slides.html#enabling-analysis-in-the-cloud-using-nasa-earth-science-data",
-    "href": "content/slides.html#enabling-analysis-in-the-cloud-using-nasa-earth-science-data",
-    "title": "NASA AGU 2023 Workshop Slides",
-    "section": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
-    "text": "Enabling Analysis in the Cloud Using NASA Earth Science Data"
+    "objectID": "topics-2025/2025-03-14-Boettiger/index.html#how-to-download-and-open-the-tutorials",
+    "href": "topics-2025/2025-03-14-Boettiger/index.html#how-to-download-and-open-the-tutorials",
+    "title": "Topic",
+    "section": "How to download and open the tutorials",
+    "text": "How to download and open the tutorials\n\nJupyter Hub\n\nStart the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;\nClick the orange Open in Jupyter Hub button\n\n\n\nColab\n\nClick the Open in Colab button\n\n\n\nDownload\n\nDownload to your local computer\nYou will need to have Python and Jupyter Lab installed\nInstall any needed packages\n\n\n\nHow to clone the git repository\nAfter cloning, you will need to navigate to the tutorials in the topics-2025 directory.\nNever cloned the NMFSHackDays-2025 repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NMFSHackDays-2025\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NMFSHackDays-2025\ngit fetch origin\ngit reset --hard origin/main"
   },
   {
-    "objectID": "content/setup.html",
-    "href": "content/setup.html",
-    "title": "Quick Start",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "HackHours 2025",
     "section": "",
-    "text": "For those already familiar with JupyterLab and unix.\n\nGitHub Account\nA GitHub account is required to gain access to the JupyterHub and to clone the tutorials used in the Hackhours.\nHow do I get the tutorials into the JupyterHub?\n\nYou can upload files.\nEasiest is probably cloning a repo into the hub. See the JupyterHub Skills section if you do not know how to do this.\n\n\n\nAuthenticating to GitHub\nThis is a little different on the JupyterHub. See git authentication.\nFor content that uses the NASA Earthdata repository, you will need an Earthdata Login account. Please visit https://urs.earthdata.nasa.gov to register and manage your Earthdata Login account. This account is free to create. Please jot down your username and password, as you need to enter it in the tutorials.\n\n\nWhen done, please stop the JupyterHub\nIf you are in JupyterLab in the browser:\n\nFile &gt; Hub Control Panel &gt; Stop my server\n\nIf you are in RStudio and you still have the JupyterLab tab open in your browser:\n\nGo to the JupyterLab tab\nFile &gt; Hub Control Panel &gt; Stop my server\n\nIf you are in RStudio and you do not have the JupyterLab tab open in your browser because you closed that tab:\n\nGo to the url https://&lt;jupyterhub url&gt;/user/&lt;your username in the hub&gt;/lab/ That will open the JupyterLab tab\nFile &gt; Hub Control Panel &gt; Stop my server",
+    "text": "During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes Jupyter Hub and you will not need to install anything.\nWhen: Fridays 11am Pacific/2pm Eastern. How do I get access? Click here for Video Link and JupyterHub Access (NOAA only)"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "HackHours 2025",
+    "section": "Schedule",
+    "text": "Schedule\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 14 - Using large language models in Python to create data dashboards (Carl Boettiger, UC Berkeley) \nMar 21 - Parallel processing NODD model data with Coiled (Rich Signell, Open Science Consulting) \nMar 28 - Working with data on OPeNDAP servers in Python & R  \nApr 4 - xarray + GPU integration (Max Jones, Development Seed) \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data\nMay 30 - Machine-Learning with Ocean Data: gap-filling with CNNs"
+  },
+  {
+    "objectID": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
+    "href": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
+    "title": "NMFS HackHours 2025",
+    "section": "Why would I want to work in the cloud?",
+    "text": "Why would I want to work in the cloud?\nWatch this video on “Enabling Analysis in the Cloud Using NASA Earth Science Data” by Michele Thorton, a NASA Openscapes mentor from the Oak Ridge National Laboratory Distributed Active Archive Center.\n\n\nMore earth data tutorials to explore!\nThe content and tutorials is a mix of content from workshops by the NASA Openscapes mentors (for example 2023 Cloud AGU Workshop), content developed by Carl Boettiger for NASA TOPS-T Cloud Native Geospatial in R & Python, content by NMFS CoastWatch, and other internal and external tutorials.\nHow do I get these tutorials into the JupyterHub? clone this https://github.com/NASA-Openscapes/earthdata-cloud-cookbook/ and then look in the examples folder.\nHow do I clone? Since these are Jupyter/Python notebooks, easiest is cloning via JupyterLab.\n\nGo to JupyterLab. How? I closed the tab. Open the JupyterHub url again.\nClick on the little file icon on left until you are at the home directory.\nClick on the little Git icon on left. Which is it? Click on all the icons until you find it.\nWhen you see the ‘Clone repository’ button, click that. Paste in the url of the GitHub repo. I don’t see ‘Clone repository’. Go back to step 1. You are not in the home directory yet.\n\n\n\nFAQ\n\nCan I bring my own content/code to the event and JupyterHub? Absolutely, please do!! You can clone a GitHub repo or just upload files into the hub."
+  },
+  {
+    "objectID": "content/signup.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
+    "href": "content/signup.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
+    "title": "HackHours in R and Python",
+    "section": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET",
+    "text": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nDuring these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.\nAdd event to your calendar\nClick “HackHour 2024” for list of events and dates"
+  },
+  {
+    "objectID": "content/reuse.html",
+    "href": "content/reuse.html",
+    "title": "Reuse Statement",
+    "section": "",
+    "text": "This content is released under CC0 Creative Commons.\nPermissive Re-Mix and No Attribution Needed: You may reuse the NMFS Open Science content in this repository—excluding the NMFS Open Science logo and any NOAA logos—in any way you like. You do not need permission. You do not need to give attribution, but if you use large parts of tutorials or content it is polite to give acknowledgement of the source. Please check each repository for its reuse statement. Some of the content is from outside of NMFS Open Science. This will be noted and you should check the original content for its reuse statement.",
     "crumbs": [
-      "JupyterHub Skills",
-      "Quick Start"
+      "Reuse Statement"
     ]
   },
   {
-    "objectID": "content/jhub.html",
-    "href": "content/jhub.html",
-    "title": "NMFS HackHours 2025",
+    "objectID": "content/hackhours.html",
+    "href": "content/hackhours.html",
+    "title": "Hackhours",
     "section": "",
-    "text": "The NMFS Openscapes JupyterHub is managed by Openscapes and developed in partnership with the International Interactive Computing Collaboration 2i2c. Launched in September 2024, the NMFS Openscapes JupyterHub joins the NASA Openscapes JupyterHub in providing a curated interactive computing platform to support training in earth and life science visualization, computing and analysis. The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries.",
+    "text": "These sessions are for NOAA staff to gain more familiarity with Jupyter Hubs and working with spatial data, esp big data hosted in the cloud in databases, via code and via geospatial packages in R and Python.\nFor more data science trainings and resource, see: * https://sites.google.com/noaa.gov/nmfs-hq-st-open-science/trainings * https://coastwatch.noaa.gov/cwn/training-courses.html * https://ioos.github.io/ioos_code_lab/content/intro.html",
     "crumbs": [
-      "JupyterHub Skills",
-      "About the Hub"
+      "About"
+    ]
+  },
+  {
+    "objectID": "content/hackhours.html#about-nmfs-open-science",
+    "href": "content/hackhours.html#about-nmfs-open-science",
+    "title": "Hackhours",
+    "section": "About NMFS Open Science",
+    "text": "About NMFS Open Science\nWe provide technical and infrastructure support for any groups within NOAA Fisheries who would like computing support for their workshops or trainings; See our training page (NOAA internal). In September 2024, we launched a JupyterHub with a variety of specialized computing environments tailored to needs in fisheries and ocean modeling. We also support the development of a Docker stack tailored to R and Python workflows. We run regular workshops and trainings in reproducible science. See NMFS Openscapes and NMFS Open Science. If at NOAA see our internal site and the tabs for News and Training.",
+    "crumbs": [
+      "About"
     ]
   },
   {
@@ -526,62 +562,40 @@
     ]
   },
   {
-    "objectID": "content/hackhours.html",
-    "href": "content/hackhours.html",
-    "title": "Hackhours",
-    "section": "",
-    "text": "These sessions are for NOAA staff to gain more familiarity with Jupyter Hubs and working with spatial data, esp big data hosted in the cloud in databases, via code and via geospatial packages in R and Python.\nFor more data science trainings and resource, see: * https://sites.google.com/noaa.gov/nmfs-hq-st-open-science/trainings * https://coastwatch.noaa.gov/cwn/training-courses.html * https://ioos.github.io/ioos_code_lab/content/intro.html",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "content/hackhours.html#about-nmfs-open-science",
-    "href": "content/hackhours.html#about-nmfs-open-science",
-    "title": "Hackhours",
-    "section": "About NMFS Open Science",
-    "text": "About NMFS Open Science\nWe provide technical and infrastructure support for any groups within NOAA Fisheries who would like computing support for their workshops or trainings; See our training page (NOAA internal). In September 2024, we launched a JupyterHub with a variety of specialized computing environments tailored to needs in fisheries and ocean modeling. We also support the development of a Docker stack tailored to R and Python workflows. We run regular workshops and trainings in reproducible science. See NMFS Openscapes and NMFS Open Science. If at NOAA see our internal site and the tabs for News and Training.",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "content/reuse.html",
-    "href": "content/reuse.html",
-    "title": "Reuse Statement",
-    "section": "",
-    "text": "This content is released under CC0 Creative Commons.\nPermissive Re-Mix and No Attribution Needed: You may reuse the NMFS Open Science content in this repository—excluding the NMFS Open Science logo and any NOAA logos—in any way you like. You do not need permission. You do not need to give attribution, but if you use large parts of tutorials or content it is polite to give acknowledgement of the source. Please check each repository for its reuse statement. Some of the content is from outside of NMFS Open Science. This will be noted and you should check the original content for its reuse statement.",
-    "crumbs": [
-      "Reuse Statement"
-    ]
-  },
-  {
-    "objectID": "content/signup.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
-    "href": "content/signup.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
-    "title": "HackHours in R and Python",
-    "section": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET",
-    "text": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nDuring these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.\nAdd event to your calendar\nClick “HackHour 2024” for list of events and dates"
-  },
-  {
-    "objectID": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
-    "href": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
+    "objectID": "content/jhub.html",
+    "href": "content/jhub.html",
     "title": "NMFS HackHours 2025",
-    "section": "Why would I want to work in the cloud?",
-    "text": "Why would I want to work in the cloud?\nWatch this video on “Enabling Analysis in the Cloud Using NASA Earth Science Data” by Michele Thorton, a NASA Openscapes mentor from the Oak Ridge National Laboratory Distributed Active Archive Center.\n\n\nMore earth data tutorials to explore!\nThe content and tutorials is a mix of content from workshops by the NASA Openscapes mentors (for example 2023 Cloud AGU Workshop), content developed by Carl Boettiger for NASA TOPS-T Cloud Native Geospatial in R & Python, content by NMFS CoastWatch, and other internal and external tutorials.\nHow do I get these tutorials into the JupyterHub? clone this https://github.com/NASA-Openscapes/earthdata-cloud-cookbook/ and then look in the examples folder.\nHow do I clone? Since these are Jupyter/Python notebooks, easiest is cloning via JupyterLab.\n\nGo to JupyterLab. How? I closed the tab. Open the JupyterHub url again.\nClick on the little file icon on left until you are at the home directory.\nClick on the little Git icon on left. Which is it? Click on all the icons until you find it.\nWhen you see the ‘Clone repository’ button, click that. Paste in the url of the GitHub repo. I don’t see ‘Clone repository’. Go back to step 1. You are not in the home directory yet.\n\n\n\nFAQ\n\nCan I bring my own content/code to the event and JupyterHub? Absolutely, please do!! You can clone a GitHub repo or just upload files into the hub."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "HackHours 2025",
     "section": "",
-    "text": "During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes Jupyter Hub and you will not need to install anything.\nWhen: Fridays 11am Pacific/2pm Eastern. How do I get access? Click here for Video Link and JupyterHub Access (NOAA only)"
+    "text": "The NMFS Openscapes JupyterHub is managed by Openscapes and developed in partnership with the International Interactive Computing Collaboration 2i2c. Launched in September 2024, the NMFS Openscapes JupyterHub joins the NASA Openscapes JupyterHub in providing a curated interactive computing platform to support training in earth and life science visualization, computing and analysis. The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries.",
+    "crumbs": [
+      "JupyterHub Skills",
+      "About the Hub"
+    ]
   },
   {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "HackHours 2025",
-    "section": "Schedule",
-    "text": "Schedule\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 14 - Using large language models in Python to create data dashboards (Carl Boettiger, UC Berkeley) \nMar 21 - Parallel processing NODD model data with Coiled (Rich Signell, Open Science Consulting) \nMar 28 - Working with data on OPeNDAP servers in Python & R  \nApr 4 - xarray + GPU integration (Max Jones, Development Seed) \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data\nMay 30 - Machine-Learning with Ocean Data: gap-filling with CNNs"
+    "objectID": "content/setup.html",
+    "href": "content/setup.html",
+    "title": "Quick Start",
+    "section": "",
+    "text": "For those already familiar with JupyterLab and unix.\n\nGitHub Account\nA GitHub account is required to gain access to the JupyterHub and to clone the tutorials used in the Hackhours.\nHow do I get the tutorials into the JupyterHub?\n\nYou can upload files.\nEasiest is probably cloning a repo into the hub. See the JupyterHub Skills section if you do not know how to do this.\n\n\n\nAuthenticating to GitHub\nThis is a little different on the JupyterHub. See git authentication.\nFor content that uses the NASA Earthdata repository, you will need an Earthdata Login account. Please visit https://urs.earthdata.nasa.gov to register and manage your Earthdata Login account. This account is free to create. Please jot down your username and password, as you need to enter it in the tutorials.\n\n\nWhen done, please stop the JupyterHub\nIf you are in JupyterLab in the browser:\n\nFile &gt; Hub Control Panel &gt; Stop my server\n\nIf you are in RStudio and you still have the JupyterLab tab open in your browser:\n\nGo to the JupyterLab tab\nFile &gt; Hub Control Panel &gt; Stop my server\n\nIf you are in RStudio and you do not have the JupyterLab tab open in your browser because you closed that tab:\n\nGo to the url https://&lt;jupyterhub url&gt;/user/&lt;your username in the hub&gt;/lab/ That will open the JupyterLab tab\nFile &gt; Hub Control Panel &gt; Stop my server",
+    "crumbs": [
+      "JupyterHub Skills",
+      "Quick Start"
+    ]
+  },
+  {
+    "objectID": "content/slides.html#enabling-analysis-in-the-cloud-using-nasa-earth-science-data",
+    "href": "content/slides.html#enabling-analysis-in-the-cloud-using-nasa-earth-science-data",
+    "title": "NASA AGU 2023 Workshop Slides",
+    "section": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
+    "text": "Enabling Analysis in the Cloud Using NASA Earth Science Data"
+  },
+  {
+    "objectID": "content/workshops.html",
+    "href": "content/workshops.html",
+    "title": "Workshops",
+    "section": "",
+    "text": "The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries. See the CoastWatch Training for all their events.\n\nOct-Dec 2024 Quarto Workshop\nOctober 25, 2024 Oceanographic Satellite and Animal Telemetry Data Training Course\nMay 17, 2024 Introduction to using earth data in the cloud for scientific workflows"
   },
   {
     "objectID": "topics-2025/index.html",
