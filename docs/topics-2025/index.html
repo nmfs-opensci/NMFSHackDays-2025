@@ -145,9 +145,9 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-    function openJupyterWidget() {
-        let notebookUrl = encodeURIComponent("https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-02-14-earthdata/1-earthaccess.ipynb");
-        let popupUrl = `widgets/jupyter-link-widget.html?notebook=${notebookUrl}`;
+    function openJupyterWidget(notebookUrl) {
+        let encodedNotebookUrl = encodeURIComponent(notebookUrl);
+        let popupUrl = `https://nmfs-opensci.github.io/nmfshackdays-2025/widgets/jupyter-link-widget.html?notebook=${encodedNotebookUrl}`;
         let popupWindow = window.open(popupUrl, "JupyterWidget", "width=600,height=400");
         if (!popupWindow) {
             alert("Popup blocked! Please allow popups for this site.");
