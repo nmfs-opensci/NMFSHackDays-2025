@@ -17,6 +17,7 @@ resources:
   - topics-2025/2025-02-28-ERDDAP-Py/images
   - topics-2025/2025-02-14-earthdata
   - topics-2025/2025-02-28-ERDDAP-Py/*.ipynb
+  - widgets/jupyterhub_link_widget.html
   
 execute:
   freeze: auto

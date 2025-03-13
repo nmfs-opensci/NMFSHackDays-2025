@@ -25,6 +25,8 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   May 19 - EDMW 3-hour Workshop working with PACE hyperspectral data
 -   May 30 - Machine-Learning with Ocean Data: [gap-filling](https://doi.org/10.6084/m9.figshare.27936036.v1) with CNNs {{< fa brands python >}}
 
+```{=html}
 <!--
 -   Mar 14 - Introduction to the [Nautilus](https://nationalresearchplatform.org/nautilus/) HyperCluster for running containerized Big Data Applications ([Carl Boettiger](https://www.carlboettiger.info/), UC Berkeley) {{< fa brands python >}}
 -->
+```
