@@ -149,8 +149,10 @@ format:
     css: styles.css
     toc: true
     toc-depth: 2
-    include-before-body: translate.html
-
+    include-before-body:
+      - translate.html
+      - widgets/widget-popout.html
+      
 #filters:
 #  - include-files.lua
 #  - quarto

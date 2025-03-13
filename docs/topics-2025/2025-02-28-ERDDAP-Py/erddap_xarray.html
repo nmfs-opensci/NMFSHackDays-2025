@@ -464,6 +464,16 @@ function googleTranslateElementInit() {
 </script>
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+    function openJupyterWidget() {
+        let notebookUrl = encodeURIComponent("https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-02-14-earthdata/1-earthaccess.ipynb");
+        let popupUrl = `widgets/jupyter-link-widget.html?notebook=${notebookUrl}`;
+        let popupWindow = window.open(popupUrl, "JupyterWidget", "width=600,height=400");
+        if (!popupWindow) {
+            alert("Popup blocked! Please allow popups for this site.");
+        }
+    }
+</script>
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html">Python - ERDDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html">Data cubes with ERDDAP and xarray</a></li></ol></nav>
 <div class="quarto-title">
