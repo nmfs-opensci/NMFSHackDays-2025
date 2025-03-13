@@ -139,7 +139,7 @@ function googleTranslateElementInit() {
 <script>
     function openJupyterWidget(notebookUrl) {
         let encodedNotebookUrl = encodeURIComponent(notebookUrl);
-        let popupUrl = `https://nmfs-opensci.github.io/nmfshackdays-2025/widgets/jupyter-link-widget.html?notebook=${encodedNotebookUrl}`;
+        let popupUrl = `https://nmfs-opensci.github.io/NMFSHackDays-2025/widgets/jupyterhub_link_widget.html?notebook=${encodedNotebookUrl}`;
         let popupWindow = window.open(popupUrl, "JupyterWidget", "width=600,height=400");
         if (!popupWindow) {
             alert("Popup blocked! Please allow popups for this site.");
