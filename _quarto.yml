@@ -108,6 +108,8 @@ website:
               href: topics-2025/2025-02-14-earthdata/3-polygon.html
             - text: Data cubes and aggregating
               href: topics-2025/2025-02-14-earthdata/4-data-cubes.html
+            - text: Create a virtual data set
+              href: topics-2025/2025-02-14-earthdata/5-virtual-dataset.html
         - section: "R - NASA Earth Data"
           href: topics-2025/2025-02-21-earthdata/index.html
           contents:

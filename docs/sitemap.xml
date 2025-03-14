@@ -57,32 +57,36 @@
     <lastmod>2025-03-06T22:48:32.942Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-14-Boettiger/index.html</loc>
-    <lastmod>2025-03-12T00:31:05.629Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/1-data-cube-opendap.html</loc>
+    <lastmod>2025-03-14T17:48:20.673Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
-    <lastmod>2025-03-06T23:47:14.839Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
+    <lastmod>2025-03-07T19:29:01.151Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html</loc>
-    <lastmod>2025-03-12T00:10:42.556Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
+    <lastmod>2025-03-06T22:48:32.654Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/index.html</loc>
-    <lastmod>2025-03-12T00:31:17.869Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html</loc>
+    <lastmod>2025-03-13T22:32:39.356Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/5-virtual-dataset.html</loc>
+    <lastmod>2025-03-14T14:47:42.264Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/3-polygon.html</loc>
-    <lastmod>2025-03-11T23:39:04.794Z</lastmod>
+    <lastmod>2025-03-13T22:31:19.079Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/1-earthaccess.html</loc>
-    <lastmod>2025-03-13T21:54:34.199Z</lastmod>
+    <lastmod>2025-03-13T22:27:04.009Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/index.html</loc>
-    <lastmod>2025-03-13T21:51:22.250Z</lastmod>
+    <lastmod>2025-03-14T18:08:17.338Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/why-cloud.html</loc>
@@ -126,23 +130,27 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/2-subset-and-plot.html</loc>
-    <lastmod>2025-03-11T23:39:18.774Z</lastmod>
+    <lastmod>2025-03-13T22:30:49.075Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/4-data-cubes.html</loc>
-    <lastmod>2025-03-12T00:29:24.512Z</lastmod>
+    <lastmod>2025-03-14T02:11:28.606Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html</loc>
-    <lastmod>2025-03-12T00:10:03.536Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/index.html</loc>
+    <lastmod>2025-03-12T00:31:17.869Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
-    <lastmod>2025-03-06T22:48:32.654Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html</loc>
+    <lastmod>2025-03-14T15:47:47.481Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
-    <lastmod>2025-03-07T19:29:01.151Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
+    <lastmod>2025-03-06T23:47:14.839Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-14-Boettiger/index.html</loc>
+    <lastmod>2025-03-14T18:22:44.056Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/index.html</loc>

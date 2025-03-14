@@ -13,7 +13,7 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   Feb 21 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in R (Eli Holmes) {{< fa brands r-project >}}
 -   Feb 28 - Working with ERDDAP data in Python: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) {{< fa brands python >}}
 -   Mar 7 - Working with ERDDAP data in R: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) {{< fa brands r-project >}}
--   Mar 14 - Using large language models in Python to create data dashboards ([Carl Boettiger](https://www.carlboettiger.info/), UC Berkeley) {{< fa brands python >}}
+-   Mar 14 - Using large language models in Python to create data dashboards like [this](https://huggingface.co/spaces/boettiger-lab/ca-30x30) ([Carl Boettiger](https://www.carlboettiger.info/), UC Berkeley) {{< fa brands python >}}
 -   Mar 21 - Parallel processing NODD model data with [Coiled](https://www.coiled.io/) ([Rich Signell](https://opensciencecomputing.com/), Open Science Consulting) {{< fa brands python >}}
 -   Mar 28 - Working with data on OPeNDAP servers in Python & R {{< fa brands python >}} {{< fa brands r-project >}}
 -   Apr 4 - xarray + GPU integration ([Max Jones](https://github.com/maxrjones), Development Seed) {{< fa brands python >}}
