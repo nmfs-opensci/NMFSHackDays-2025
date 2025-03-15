@@ -504,13 +504,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#usgs-lpdaac" id="toc-usgs-lpdaac" class="nav-link" data-scroll-target="#usgs-lpdaac">USGS LPDAAC</a></li>
-  <li><a href="#doesnt-work.-redirect-error" id="toc-doesnt-work.-redirect-error" class="nav-link" data-scroll-target="#doesnt-work.-redirect-error">doesn’t work. redirect error</a></li>
-  <li><a href="#change-block-to-code-to-run" id="toc-change-block-to-code-to-run" class="nav-link" data-scroll-target="#change-block-to-code-to-run">change block to code to run</a></li>
-  <li><a href="#doesnt-work.-redirect-error-1" id="toc-doesnt-work.-redirect-error-1" class="nav-link" data-scroll-target="#doesnt-work.-redirect-error-1">doesn’t work. redirect error</a>
-  <ul class="collapse">
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-opendap/5-usgs.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-opendap/5-usgs.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -564,7 +559,7 @@ function googleTranslateElementInit() {
 <p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-opendap/5-usgs.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-opendap/5-usgs.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/5-usgs.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The USGS LPDAAC server requires NASA Earthdata login authentication, but don’t require a EULA (as far as I know). However they have similar redirect issues as data that does require a EULA. The solution used for datasets that require a EULA seems to work for access.</p>
+<p>The USGS LPDAAC server requires NASA Earthdata login authentication, but doesn’t require a EULA (as far as I know). However they have similar redirect issues as data that does require a EULA. I could not get the data into an xarray.</p>
 <section id="prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
 <p>I assume you have a <code>.netrc</code> file at <code>~</code> (home). <code>~/.netrc</code> should look just like this with your username and password.</p>
@@ -610,22 +605,18 @@ function googleTranslateElementInit() {
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="doesnt-work.-redirect-error" class="level1">
-<h1>doesn’t work. redirect error</h1>
-</section>
-<section id="change-block-to-code-to-run" class="level1">
-<h1>change block to code to run</h1>
-<p>import xarray as xr # This works too but is so much slower store = xr.backends.PydapDataStore(pydap_ds) ds = xr.open_dataset(store)</p>
-</section>
-<section id="doesnt-work.-redirect-error-1" class="level1">
-<h1>doesn’t work. redirect error</h1>
-<p>url=“dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml” ds = xr.open_dataset(url, engine=“pydap”, session=session)</p>
-<div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/ECOSTRESS/ECO2CLD.001/2018.07.09/ECOSTRESS_L2_CLOUD_00048_001_20180709T204901_0601_03.h5"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This doesn’t work</p>
+<pre><code>store = xr.backends.PydapDataStore(pydap_ds)
+ds = xr.open_dataset(store)</code></pre>
+<p>This doesn’t either. Gives the same redirect error.</p>
+<pre><code>url="dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"
+ds = xr.open_dataset(url, engine="pydap", session=session)</code></pre>
+<div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another url that works with pydap</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/ECOSTRESS/ECO2CLD.001/2018.07.09/ECOSTRESS_L2_CLOUD_00048_001_20180709T204901_0601_03.h5"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Working with USGS data on its OPeNDAP server is hard if you want an xarray object.</p>
@@ -638,7 +629,6 @@ function googleTranslateElementInit() {
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
