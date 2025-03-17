@@ -15,8 +15,8 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   Feb 21 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in R (Eli Holmes) {{< fa brands r-project >}}
 -   Feb 28 - Working with ERDDAP data in Python: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) {{< fa brands python >}}
 -   Mar 7 - Working with ERDDAP data in R: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) {{< fa brands r-project >}}
--   Mar 14 - Introduction to the [Nautilus](https://nationalresearchplatform.org/nautilus/) HyperCluster for running containerized Big Data Applications ([Carl Boettiger](https://www.carlboettiger.info/), UC Berkeley) {{< fa brands python >}}
--   Mar 21 - Parallel processing NODD model data with [Coiled](https://www.coiled.io/) ([Rich Signell](https://opensciencecomputing.com/), Open Science Consulting) {{< fa brands python >}}
+-   Mar 14 - Using LLMs in R to improve data dashboards ([Carl Boettiger](https://www.carlboettiger.info/), UC Berkeley) {{< fa brands r-project >}}
+-   Mar 21 - [VirtualiZarr](https://virtualizarr.readthedocs.io/en/stable/index.html), Dask and Holoviz to explore NODD data ([Rich Signell](https://opensciencecomputing.com/), Open Science Consulting) {{< fa brands python >}}
 -   Mar 28 - Working with data on OPeNDAP servers in Python & R {{< fa brands python >}} {{< fa brands r-project >}}
 -   Apr 4 - xarray + GPU integration ([Max Jones](https://github.com/maxrjones), Development Seed) {{< fa brands python >}}
 -   Apr 11 - Accessing [CEFI data](https://psl.noaa.gov/cefi_portal/) on OPeNDAP, AWS and Google ([Chia-Wei Hsu](https://psl.noaa.gov/people/chia-wei.hsu/), NOAA PSL) {{< fa brands python >}}
@@ -26,3 +26,6 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   May 16 - [PACE](https://pace.oceansciences.org/home.htm) Hyperspectral Ocean Color Data Access and Visualization in R {{< fa brands r-project >}}
 -   May 19 - EDMW 3-hour Workshop working with PACE hyperspectral data
 -   May 30 - Machine-Learning with Ocean Data: [gap-filling](https://doi.org/10.6084/m9.figshare.27936036.v1) with CNNs {{< fa brands python >}}
+
+-   TBD - Introduction to the [Nautilus](https://nationalresearchplatform.org/nautilus/) HyperCluster for running containerized Big Data Applications, UC Berkeley) {{< fa brands python >}}
+
