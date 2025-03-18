@@ -3303,6 +3303,212 @@ Attributes: (12/14)
         269.124  ]], dtype=float32)</pre></div></div></li><li class="xr-section-item"><input id="section-9aa52abe-4d69-46ba-b7cd-0219a4803f4e" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-9aa52abe-4d69-46ba-b7cd-0219a4803f4e" class="xr-section-summary" title="Expand/collapse section">Coordinates: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-0ba12d19-0ca2-4391-8f9d-82300f8542b1" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-0ba12d19-0ca2-4391-8f9d-82300f8542b1" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-21367d67-f80d-4631-9771-ab6aebc8ef3b" class="xr-section-summary-in" type="checkbox"><label for="section-21367d67-f80d-4631-9771-ab6aebc8ef3b" class="xr-section-summary">Attributes: <span>(14)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>2-meter_air_temperature</dd><dt><span>units :</span></dt><dd>K</dd><dt><span>_FillValue :</span></dt><dd>999999987000000.0</dd><dt><span>missing_value :</span></dt><dd>999999987000000.0</dd><dt><span>fmissing_value :</span></dt><dd>999999987000000.0</dd><dt><span>scale_factor :</span></dt><dd>1.0</dd><dt><span>add_offset :</span></dt><dd>0.0</dd><dt><span>standard_name :</span></dt><dd>2-meter_air_temperature</dd><dt><span>vmax :</span></dt><dd>999999987000000.0</dd><dt><span>vmin :</span></dt><dd>-999999987000000.0</dd><dt><span>valid_range :</span></dt><dd>[-999999987000000.0, 999999987000000.0]</dd><dt><span>origname :</span></dt><dd>T2M</dd><dt><span>fullnamepath :</span></dt><dd>/T2M</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div></li></ul></div></div>
 </div>
 </div>
+<div id="2dabaf58-bd0f-4af1-9ae0-f206c11efb8a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>earthaccess.login()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>edl_session <span class="op">=</span> earthaccess.get_requests_https_session()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Try loading metadata for the whole collection</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://disc2.gesdisc.eosdis.nasa.gov/opendap/TRMM_L1/GPM_1BPR.07/"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>edl_session)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/handlers/dap.py:123: UserWarning: PyDAP was unable to determine the DAP protocol defaulting to DAP2 which is consider legacy and may result in slower responses. For more, see go to https://www.opendap.org/faq-page.
+  _warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">HTTPError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[4], line 8</span>
+<span class="ansi-green-fg ansi-bold">      6</span> <span style="font-style:italic;color:rgb(95,135,135)"># Try loading metadata for the whole collection</span>
+<span class="ansi-green-fg ansi-bold">      7</span> url <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">https://disc2.gesdisc.eosdis.nasa.gov/opendap/TRMM_L1/GPM_1BPR.07/</span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg">----&gt; 8</span> ds <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">xr</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">open_dataset</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">engine</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">pydap</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">session</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">edl_session</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">     10</span> <span style="color:rgb(0,135,0)">print</span>(ds)
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/backends/api.py:686</span>, in <span class="ansi-cyan-fg">open_dataset</span><span class="ansi-blue-fg">(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    674</span> decoders <span style="color:rgb(98,98,98)">=</span> _resolve_decoders_kwargs(
+<span class="ansi-green-fg ansi-bold">    675</span>     decode_cf,
+<span class="ansi-green-fg ansi-bold">    676</span>     open_backend_dataset_parameters<span style="color:rgb(98,98,98)">=</span>backend<span style="color:rgb(98,98,98)">.</span>open_dataset_parameters,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    682</span>     decode_coords<span style="color:rgb(98,98,98)">=</span>decode_coords,
+<span class="ansi-green-fg ansi-bold">    683</span> )
+<span class="ansi-green-fg ansi-bold">    685</span> overwrite_encoded_chunks <span style="color:rgb(98,98,98)">=</span> kwargs<span style="color:rgb(98,98,98)">.</span>pop(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">overwrite_encoded_chunks</span><span style="color:rgb(175,0,0)">"</span>, <span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
+<span class="ansi-green-fg">--&gt; 686</span> backend_ds <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">backend</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">open_dataset</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">    687</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">filename_or_obj</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    688</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">drop_variables</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">drop_variables</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    689</span> <span class="ansi-yellow-bg">    </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">decoders</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    690</span> <span class="ansi-yellow-bg">    </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    691</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    692</span> ds <span style="color:rgb(98,98,98)">=</span> _dataset_from_backend_dataset(
+<span class="ansi-green-fg ansi-bold">    693</span>     backend_ds,
+<span class="ansi-green-fg ansi-bold">    694</span>     filename_or_obj,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    704</span>     <span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span>kwargs,
+<span class="ansi-green-fg ansi-bold">    705</span> )
+<span class="ansi-green-fg ansi-bold">    706</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> ds
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/backends/pydap_.py:191</span>, in <span class="ansi-cyan-fg">PydapBackendEntrypoint.open_dataset</span><span class="ansi-blue-fg">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, application, session, output_grid, timeout, verify, user_charset)</span>
+<span class="ansi-green-fg ansi-bold">    173</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">open_dataset</span>(
+<span class="ansi-green-fg ansi-bold">    174</span>     <span style="color:rgb(0,135,0)">self</span>,
+<span class="ansi-green-fg ansi-bold">    175</span>     filename_or_obj: <span style="color:rgb(0,135,0)">str</span> <span style="color:rgb(98,98,98)">|</span> os<span style="color:rgb(98,98,98)">.</span>PathLike[Any] <span style="color:rgb(98,98,98)">|</span> ReadBuffer <span style="color:rgb(98,98,98)">|</span> AbstractDataStore,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    189</span>     user_charset<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">None</span>,
+<span class="ansi-green-fg ansi-bold">    190</span> ) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> Dataset:
+<span class="ansi-green-fg">--&gt; 191</span>     store <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">PydapDataStore</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">open</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">    192</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">url</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">filename_or_obj</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    193</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">application</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">application</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    194</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">session</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">session</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    195</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">output_grid</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">output_grid</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    196</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">timeout</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">timeout</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    197</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">verify</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">verify</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    198</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">user_charset</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">user_charset</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">    199</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    201</span>     store_entrypoint <span style="color:rgb(98,98,98)">=</span> StoreBackendEntrypoint()
+<span class="ansi-green-fg ansi-bold">    202</span>     <span style="font-weight:bold;color:rgb(0,135,0)">with</span> close_on_error(store):
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/backends/pydap_.py:129</span>, in <span class="ansi-cyan-fg">PydapDataStore.open</span><span class="ansi-blue-fg">(cls, url, application, session, output_grid, timeout, verify, user_charset)</span>
+<span class="ansi-green-fg ansi-bold">    127</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> user_charset <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg ansi-bold">    128</span>     kwargs<span style="color:rgb(98,98,98)">.</span>update({<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">user_charset</span><span style="color:rgb(175,0,0)">"</span>: user_charset})
+<span class="ansi-green-fg">--&gt; 129</span> ds <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">pydap</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">client</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">open_url</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    130</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">cls</span>(ds)
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/client.py:78</span>, in <span class="ansi-cyan-fg">open_url</span><span class="ansi-blue-fg">(url, application, session, output_grid, timeout, verify, user_charset, protocol)</span>
+<span class="ansi-green-fg ansi-bold">     62</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">open_url</span>(
+<span class="ansi-green-fg ansi-bold">     63</span>     url,
+<span class="ansi-green-fg ansi-bold">     64</span>     application<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">None</span>,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">     70</span>     protocol<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">None</span>,
+<span class="ansi-green-fg ansi-bold">     71</span> ):
+<span class="ansi-green-fg ansi-bold">     72</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic;color:rgb(175,0,0)">"""</span>
+<span class="ansi-green-fg ansi-bold">     73</span> <span style="font-style:italic;color:rgb(175,0,0)">    Open a remote URL, returning a dataset.</span>
+<span class="ansi-green-fg ansi-bold">     74</span> 
+<span class="ansi-green-fg ansi-bold">     75</span> <span style="font-style:italic;color:rgb(175,0,0)">    set output_grid to `False` to retrieve only main arrays and</span>
+<span class="ansi-green-fg ansi-bold">     76</span> <span style="font-style:italic;color:rgb(175,0,0)">    never retrieve coordinate axes.</span>
+<span class="ansi-green-fg ansi-bold">     77</span> <span style="font-style:italic;color:rgb(175,0,0)">    """</span>
+<span class="ansi-green-fg">---&gt; 78</span>     handler <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">pydap</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">handlers</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">dap</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">DAPHandler</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg ansi-bold">     79</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     80</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">application</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     81</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">session</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     82</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">output_grid</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     83</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">timeout</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">timeout</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     84</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">verify</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">verify</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     85</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">user_charset</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">user_charset</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     86</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">protocol</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">protocol</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">     87</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">     88</span>     dataset <span style="color:rgb(98,98,98)">=</span> handler<span style="color:rgb(98,98,98)">.</span>dataset
+<span class="ansi-green-fg ansi-bold">     90</span>     <span style="font-style:italic;color:rgb(95,135,135)"># attach server-side functions</span>
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/handlers/dap.py:101</span>, in <span class="ansi-cyan-fg">DAPHandler.__init__</span><span class="ansi-blue-fg">(self, url, application, session, output_grid, timeout, verify, user_charset, protocol)</span>
+<span class="ansi-green-fg ansi-bold">     92</span> arg <span style="color:rgb(98,98,98)">=</span> (
+<span class="ansi-green-fg ansi-bold">     93</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>scheme,
+<span class="ansi-green-fg ansi-bold">     94</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>netloc,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">     98</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>fragment,
+<span class="ansi-green-fg ansi-bold">     99</span> )
+<span class="ansi-green-fg ansi-bold">    100</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>base_url <span style="color:rgb(98,98,98)">=</span> urlunparse(arg)
+<span class="ansi-green-fg">--&gt; 101</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">make_dataset</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    102</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>add_proxies()
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/handlers/dap.py:137</span>, in <span class="ansi-cyan-fg">DAPHandler.make_dataset</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    135</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>dataset_from_dap4()
+<span class="ansi-green-fg ansi-bold">    136</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">--&gt; 137</span>     <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">dataset_from_dap2</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    138</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>attach_das()
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/handlers/dap.py:181</span>, in <span class="ansi-cyan-fg">DAPHandler.dataset_from_dap2</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    164</span> dds_url <span style="color:rgb(98,98,98)">=</span> urlunparse(
+<span class="ansi-green-fg ansi-bold">    165</span>     (
+<span class="ansi-green-fg ansi-bold">    166</span>         <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>scheme,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    172</span>     )
+<span class="ansi-green-fg ansi-bold">    173</span> )
+<span class="ansi-green-fg ansi-bold">    174</span> r <span style="color:rgb(98,98,98)">=</span> GET(
+<span class="ansi-green-fg ansi-bold">    175</span>     dds_url,
+<span class="ansi-green-fg ansi-bold">    176</span>     <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>application,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    179</span>     verify<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>verify,
+<span class="ansi-green-fg ansi-bold">    180</span> )
+<span class="ansi-green-fg">--&gt; 181</span> <span class="ansi-yellow-bg">raise_for_status</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">r</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    182</span> dds <span style="color:rgb(98,98,98)">=</span> safe_charset_text(r, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>user_charset)
+<span class="ansi-green-fg ansi-bold">    183</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>dataset <span style="color:rgb(98,98,98)">=</span> dds_to_dataset(dds)
+
+File <span class="ansi-green-fg">/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/net.py:37</span>, in <span class="ansi-cyan-fg">raise_for_status</span><span class="ansi-blue-fg">(response)</span>
+<span class="ansi-green-fg ansi-bold">     34</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,0,255)">raise_for_status</span>(response):
+<span class="ansi-green-fg ansi-bold">     35</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Raise error if status is above 300:</span>
+<span class="ansi-green-fg ansi-bold">     36</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> response<span style="color:rgb(98,98,98)">.</span>status_code <span style="color:rgb(98,98,98)">&gt;</span><span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(98,98,98)">400</span>:
+<span class="ansi-green-fg">---&gt; 37</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> HTTPError(
+<span class="ansi-green-fg ansi-bold">     38</span>             detail<span style="color:rgb(98,98,98)">=</span>response<span style="color:rgb(98,98,98)">.</span>status <span style="color:rgb(98,98,98)">+</span> <span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">"</span> <span style="color:rgb(98,98,98)">+</span> response<span style="color:rgb(98,98,98)">.</span>text,
+<span class="ansi-green-fg ansi-bold">     39</span>             headers<span style="color:rgb(98,98,98)">=</span>response<span style="color:rgb(98,98,98)">.</span>headers,
+<span class="ansi-green-fg ansi-bold">     40</span>             comment<span style="color:rgb(98,98,98)">=</span>response<span style="color:rgb(98,98,98)">.</span>body,
+<span class="ansi-green-fg ansi-bold">     41</span>         )
+<span class="ansi-green-fg ansi-bold">     42</span>     <span style="font-weight:bold;color:rgb(0,135,0)">elif</span> response<span style="color:rgb(98,98,98)">.</span>status_code <span style="color:rgb(98,98,98)">&gt;</span><span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(98,98,98)">300</span>:
+<span class="ansi-green-fg ansi-bold">     43</span>         <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+
+<span class="ansi-red-fg">HTTPError</span>: 404 404
+
+
+
+
+
+
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/&gt;
+    &lt;link rel='stylesheet' href='/opendap/docs/css/contents.css' type='text/css'/&gt;
+    &lt;title&gt;Hyrax - Resource Not Found (404)&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p align="left"&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h1 align="center"&gt;Hyrax - Resource Not Found (404)&lt;/h1&gt;
+&lt;hr align="left" size="1" noshade="noshade"/&gt;
+&lt;table width="100%" border="0"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;a href="/opendap/docs/images/largeEarth.jpg"&gt;
+            &lt;img src="/opendap/docs/images/smallEarth.jpg"
+                 alt="I looked everywhere!"
+                 title="I looked everywhere!"
+                 border="0"/&gt;
+            &lt;/a&gt;
+        &lt;/td&gt;
+
+        &lt;td&gt;
+            &lt;p align="left"&gt;The URL requested does not describe a resource that can be found on this server.&lt;/p&gt;
+
+            &lt;p align="left"&gt;If you would like to start at the top level of this server, go &lt;a
+                    href="/opendap/"&gt;&lt;strong&gt;HERE&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+            
+            &lt;p align="left"&gt;The specific error message associated with your request was:&lt;/p&gt;
+            &lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;Failed to locate resource: /TRMM_L1/GPM_1BPR.07/.dds &lt;/strong&gt;&lt;/p&gt; &lt;/blockquote&gt;
+            
+            
+            &lt;p align="left"&gt; If you think that the server is broken (that the URL you submitted should have worked),
+                then please contact the OPeNDAP user support coordinator at:
+                &lt;a href="mailto:gsfc-dl-help-disc@mail.nasa.gov?subject=Hyrax Error 404&amp;amp;body=%0A%0A%0A%0A%0A# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --%0A# %0A# We&amp;#39;re sorry you had a problem using the server.%0A# Please use the space above to describe what you%0A# were trying to do and we will try to assist you.%0A# Thanks,%0A# OPeNDAP Support.%0A# %0A# -- -- -- hyrax error info, please include -- -- --%0A# %0A# ReqInfo.getRequestUrl(): https://disc2.gesdisc.eosdis.nasa.gov/opendap/TRMM_L1/GPM_1BPR.07/.dds%0A# request_url: https://disc2.gesdisc.eosdis.nasa.gov/opendap/error/error404.jsp%0A# protocol: HTTP/1.1%0A# server: disc2.gesdisc.eosdis.nasa.gov%0A# port: 443%0A# javax.servlet.forward.request_uri: /opendap/TRMM_L1/GPM_1BPR.07/.dds%0A# query_string: n/a%0A# status: 404%0A# message: Failed to locate resource: /TRMM_L1/GPM_1BPR.07/.dds%0A# %0A# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --%0A"&gt;gsfc-dl-help-disc@mail.nasa.gov&lt;/a&gt;
+            &lt;/p&gt;
+            
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;hr align="left" size="1" noshade="noshade"/&gt;
+&lt;h1 align="center"&gt;Hyrax - Resource Not Found (404)&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+</div>
+</div>
 
 
 

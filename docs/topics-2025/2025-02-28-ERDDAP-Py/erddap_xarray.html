@@ -465,6 +465,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/7-nomads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NOMADS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-opendap/6-nasa-pydap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NASA OPeNDAP servers - extras</span></a>
   </div>
@@ -580,7 +586,7 @@ function googleTranslateElementInit() {
 </blockquote>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>We can open ERDDAP gridded datasets with <code>xarray</code>. Make sure that the url points to the dataset without any subsetting of specification. Under the hood, ERDDAP uses OPeNDAP and <code>xarray</code> will load the metadata (lazily). After loading, you can subset the data as needed.</p>
+<p>We can open ERDDAP gridded dataset collections with <code>xarray</code>. ERDDAP automatically creates an aggregated metadata layer that combines all granules in a collection. We can then call <code>xarray.open_dataset(collection_url)</code> to get a data cube without having to point to all the individual files. Make sure that the collection url points to the dataset without any subsetting specification. Under the hood, <code>xarray</code> will load the collection metadata (lazily). After loading, you can subset the full collection data as needed.</p>
 <p>We will use the <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41.html">Multi-scale Ultra-high Resolution (MUR) SST Analysis fv04.1, Global, 0.01°, 2002-present, Daily</a> data from NASA JPL. This is a high-resolution dataset of over 150 terabytes.</p>
 <section id="for-those-not-working-in-the-jupyterhub" class="level4">
 <h4 class="anchored" data-anchor-id="for-those-not-working-in-the-jupyterhub">For those not working in the JupyterHub</h4>

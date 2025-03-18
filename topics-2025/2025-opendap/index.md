@@ -16,6 +16,7 @@ If you use NASA data, they are migrating to serving their data to the cloud and 
 * NASA OPeNDAP servers, authentication needed. [NASA OPeNDAP](3-earthdata-auth.html)
 * NSIDC server, NASA Earthdata authentication needed. 
 * USDA LPDAAC server, NASA Earthdata authentication needed. 
+* NOAA Operational Model Archive and Distribution System (NOMADS)
 
 ## Servers that use NASA Earthdata authentication
 
@@ -33,3 +34,4 @@ Things with `nasa.gov` are obvious but a couple others without nasa.gov in the u
 * <https://github.com/podaac/tutorials/blob/master/notebooks/opendap/MUR-OPeNDAP.ipynb>
 * <https://earthaccess.readthedocs.io/en/latest/user-reference/api/api/#earthaccess.api.get_requests_https_session>
 * <https://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud>
+* NASA opendap servers: <https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers>
