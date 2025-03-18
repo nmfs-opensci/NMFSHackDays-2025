@@ -58,14 +58,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2025/2025-03-14-Boettiger/index.html" rel="next">
-<link href="../../topics-2025/2025-opendap/4-nsidc.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -105,12 +103,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,348 +155,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/5-usgs.html">USGS LPDAAC</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/hackhours.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-skills/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JupyterHub Skills</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/jhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About the Hub</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quick Start</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro to JupyterHubs</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JupyterLab</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro to Git</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git Authentication</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git in JupyterLab</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RStudio</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git in RStudio</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git in the terminal</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Other images</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Earthdata login</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">S3 Scratch Bucket</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AWS S3 Bucket</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/04-learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Learning resources</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
- <span class="menu-text">HackHour 2025 Topics</span>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python - NASA Earth Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Earth Data catalog</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/1-earthaccess.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">earthaccess package</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Subset and plot</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Apply a polygon boundary</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes and aggregating</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/5-virtual-dataset.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Create a virtual data set</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-02-21-earthdata/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - NASA Earth Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Earth Data catalog</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">earthaccess package</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Subset and plot</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Apply a polygon boundary</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes and aggregating</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python - ERDDAP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Match to points on a track</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes with ERDDAP and xarray</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-03-07-ERDDAP-R/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - ERDDAP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Match to points on a track</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Masking shallow pixels</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-opendap/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python - OPeNDAP</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/1-ncep-ncar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simple example 1 - NCEP-NCAR</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/2-dbofs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simple example 1 - ROMS Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/3-nasa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NASA OPeNDAP servers - authentication</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/4-nsidc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NSIDC</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/5-usgs.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">USGS LPDAAC</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Guest Speakers</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/reuse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse Statement</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../coc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code of Conduct</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -531,7 +194,7 @@ function googleTranslateElementInit() {
     }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/5-usgs.html">USGS LPDAAC</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Accessing data on the USGS LPDAAC server via OPeNDAP protocol</h1>
 </div>
@@ -569,7 +232,7 @@ function googleTranslateElementInit() {
 </section>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="22">
+<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap.client</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -578,7 +241,10 @@ function googleTranslateElementInit() {
 <section id="usgs-lpdaac" class="level2">
 <h2 class="anchored" data-anchor-id="usgs-lpdaac">USGS LPDAAC</h2>
 <p>Their OPeNDAP server also uses NASA Earthdata login authentication.</p>
-<div id="78fb6e16-2321-474e-84ed-a4bd3c9b6ad4" class="cell" data-execution_count="4">
+<section id="password-approach-doesnt-work-for-xarray" class="level3">
+<h3 class="anchored" data-anchor-id="password-approach-doesnt-work-for-xarray">Password approach doesn’t work for xarray</h3>
+<p>It workds for creating a pydap object but not for creating an xarray object.</p>
+<div id="78fb6e16-2321-474e-84ed-a4bd3c9b6ad4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load username and password</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netrc</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get credentials from .netrc</span></span>
@@ -592,10 +258,10 @@ function googleTranslateElementInit() {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not find ~/.netrc. Ensure it exists and is configured correctly."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="33">
+<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d87c5df6-7d00-49c5-b738-3442424904b7" class="cell" data-execution_count="28">
+<div id="d87c5df6-7d00-49c5-b738-3442424904b7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.cas.urs <span class="im">import</span> setup_session</span>
@@ -611,11 +277,427 @@ ds = xr.open_dataset(store)</code></pre>
 <p>This doesn’t either. Gives the same redirect error.</p>
 <pre><code>url="dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"
 ds = xr.open_dataset(url, engine="pydap", session=session)</code></pre>
-<div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another url that works with pydap</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/ECOSTRESS/ECO2CLD.001/2018.07.09/ECOSTRESS_L2_CLOUD_00048_001_20180709T204901_0601_03.h5"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d544081e-76a5-4cf9-8426-213c5c15b12f" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>edl_token <span class="op">=</span> <span class="st">"eyJ0eXAiOiJKV1QiLCJvcmlnaW4iOiJFYXJ0aGRhdGEgTG9naW4iLCJzaWciOiJlZGxqd3RwdWJrZXlfb3BzIiwiYWxnIjoiUlMyNTYifQ.eyJ0eXBlIjoiVXNlciIsInVpZCI6ImVlaG9sbWVzIiwiZXhwIjoxNzQ3MjgzNjAyLCJpYXQiOjE3NDIwOTk2MDIsImlzcyI6Imh0dHBzOi8vdXJzLmVhcnRoZGF0YS5uYXNhLmdvdiIsImlkZW50aXR5X3Byb3ZpZGVyIjoiZWRsX29wcyIsImFjciI6ImVkbCIsImFzc3VyYW5jZV9sZXZlbCI6M30.qeqQPjJhARObiNnDwWIS3-uQJP_J1hFxJPAlfcdx5smdnxKJ3G-aMqejQmVyB-Yn31eqhEoqkh2m3uDRpr9SxeBKNbIS2wFC4WVS1KhKoKXFXRvIIPKiapVgkpMnQA8KNnU0H5HvKNypx1KTjU1iQ__EQJ4aqBGF8fZQi-rhK-ELBfK1slqHv0_GkMr7ZmdxYAH56nVbJbC0T3yQLlkXGreBwGVUbKNo9Uvn1rKECQyHM5t1RUn9eof7UzvTbMp_pTWDVj1MF1PNftTxFf9zcbklvbITPDjig7SZIMu5YvANBz-utE0Wlw6aQr4o6ZV4WBF4H_dxWh0njvusiM8jLg"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>auth_hdr<span class="op">=</span><span class="st">"Bearer "</span> <span class="op">+</span> edl_token</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>my_session <span class="op">=</span> requests.Session()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>my_session.headers<span class="op">=</span>{<span class="st">"Authorization"</span>: auth_hdr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="661c4f42-5dbf-43e7-b25a-4af57b451e98" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>my_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="83b9c4b1-afc5-4f6c-a0f7-b1948a2d2890" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> Tb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset size: 690.46 Tb</code></pre>
+</div>
+</div>
+<div id="8af7a113-5935-4791-a66c-e34b20fcd158" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># deal with the slashes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/YDim"</span>: <span class="st">"y"</span>, <span class="st">"/XDim"</span>: <span class="st">"x"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="27a091d8-702e-4470-9784-427ce1a6c8c7" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># getting the data works</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"_250m_16_days_NDVI"</span>].isel(time<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="dv">1</span>, x<span class="op">=</span><span class="dv">1</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewbox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewbox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray '_250m_16_days_NDVI' ()&gt; Size: 4B
+array(0.1549, dtype=float32)
+Coordinates:
+    Latitude   float64 8B 30.0
+    Longitude  float64 8B -103.9
+Attributes:
+    long_name:          250m 16 days NDVI
+    units:              NDVI
+    scale_factor_err:   0.0
+    add_offset_err:     0.0
+    calibrated_nt:      5
+    orig_scale_factor:  10000.0
+    orig_add_offset:    0.0
+    valid_min:          -0.200000003
+    valid_max:          1.0
+    grid_mapping:       MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection
+    Maps:               ()</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'_250m_16_days_NDVI'</div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-f00709c6-a139-4be4-88a3-b7efb9b3efb5" class="xr-array-in" type="checkbox" checked=""><label for="section-f00709c6-a139-4be4-88a3-b7efb9b3efb5" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.1549</span></div><div class="xr-array-data"><pre>array(0.1549, dtype=float32)</pre></div></div></li><li class="xr-section-item"><input id="section-1e08707a-eb23-45b2-8b82-6e07887fb7b6" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-1e08707a-eb23-45b2-8b82-6e07887fb7b6" class="xr-section-summary">Coordinates: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>Latitude</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">30.0</div><input id="attrs-06df41ac-0084-4e90-b07a-d328cff767a5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-06df41ac-0084-4e90-b07a-d328cff767a5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d15dd3ad-78c7-44f1-99bc-8cf62f7d614f" class="xr-var-data-in" type="checkbox"><label for="data-d15dd3ad-78c7-44f1-99bc-8cf62f7d614f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>array(29.996875)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>Longitude</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">-103.9</div><input id="attrs-799962d2-219b-480e-9ffa-9be220983eeb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-799962d2-219b-480e-9ffa-9be220983eeb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-73ea9005-03ab-4f8e-a5f4-02e6f8e014ca" class="xr-var-data-in" type="checkbox"><label for="data-73ea9005-03ab-4f8e-a5f4-02e6f8e014ca" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>array(-103.91616788)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b81e8f33-5e0b-4e41-9b23-a2fb560b3bd9" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-b81e8f33-5e0b-4e41-9b23-a2fb560b3bd9" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-9d588309-2e26-46cc-a1d7-941e74c95960" class="xr-section-summary-in" type="checkbox"><label for="section-9d588309-2e26-46cc-a1d7-941e74c95960" class="xr-section-summary">Attributes: <span>(11)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days NDVI</dd><dt><span>units :</span></dt><dd>NDVI</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>-0.200000003</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div></li></ul></div></div>
+</div>
+</div>
+<div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another url that works with pydap</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/ECOSTRESS/ECO2CLD.001/2018.07.09/ECOSTRESS_L2_CLOUD_00048_001_20180709T204901_0601_03.h5"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
@@ -1196,18 +1278,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../topics-2025/2025-opendap/4-nsidc.html" class="pagination-link" aria-label="NSIDC">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NSIDC</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="pagination-link" aria-label="3/14 Carl Boettiger - Integrating LLMs into your data dashboards">
-        <span class="nav-page-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

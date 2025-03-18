@@ -64,8 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2025/2025-opendap/5-usgs.html" rel="next">
-<link href="../../topics-2025/2025-opendap/3-nasa.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -110,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,348 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/4-nsidc.html">NSIDC</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/hackhours.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-skills/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JupyterHub Skills</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/jhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About the Hub</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quick Start</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro to JupyterHubs</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JupyterLab</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro to Git</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git Authentication</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git in JupyterLab</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RStudio</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git in RStudio</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Git in the terminal</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Other images</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Earthdata login</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">S3 Scratch Bucket</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AWS S3 Bucket</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-skills/04-learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Learning resources</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
- <span class="menu-text">HackHour 2025 Topics</span>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python - NASA Earth Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Earth Data catalog</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/1-earthaccess.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">earthaccess package</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Subset and plot</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Apply a polygon boundary</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes and aggregating</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/5-virtual-dataset.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Create a virtual data set</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-02-21-earthdata/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - NASA Earth Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Earth Data catalog</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">earthaccess package</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Subset and plot</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Apply a polygon boundary</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes and aggregating</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python - ERDDAP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Match to points on a track</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data cubes with ERDDAP and xarray</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-03-07-ERDDAP-R/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - ERDDAP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Match to points on a track</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Masking shallow pixels</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../topics-2025/2025-opendap/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Python - OPeNDAP</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/1-ncep-ncar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simple example 1 - NCEP-NCAR</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/2-dbofs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simple example 1 - ROMS Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/3-nasa.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">NASA OPeNDAP servers - authentication</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/4-nsidc.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">NSIDC</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-opendap/5-usgs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">USGS LPDAAC</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Guest Speakers</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/reuse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse Statement</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../coc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code of Conduct</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -531,7 +191,7 @@ function googleTranslateElementInit() {
     }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/4-nsidc.html">NSIDC</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Accessing data on NSIDC servers via OPeNDAP protocol</h1>
 </div>
@@ -560,6 +220,7 @@ function googleTranslateElementInit() {
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>The National Snow and Ice Data Center servers require NASA Earthdata login authentication, but don’t require a EULA (as far as I know). However they have similar redirect issues as data that does require a EULA. The solution used for datasets that require a EULA seems to work for access.</p>
+<p>I suggest going throuhg 3-nasa.ipynb before this tutorial.</p>
 <section id="prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
 <p>I assume you have a <code>.netrc</code> file at <code>~</code> (home). <code>~/.netrc</code> should look just like this with your username and password.</p>
@@ -569,53 +230,61 @@ function googleTranslateElementInit() {
 </section>
 <section id="packages-and-setup" class="level3">
 <h3 class="anchored" data-anchor-id="packages-and-setup">Packages and setup</h3>
-<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="22">
+<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap.client</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2c2a97ca-0f6c-456f-9c2e-cc443232bccb" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load username and password</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netrc</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get credentials from .netrc</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>auth_host <span class="op">=</span> <span class="st">"urs.earthdata.nasa.gov"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    credentials <span class="op">=</span> netrc.netrc().authenticators(auth_host)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> credentials:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        username, _, password <span class="op">=</span> credentials</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No credentials found in .netrc!"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not find ~/.netrc. Ensure it exists and is configured correctly."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2c2a97ca-0f6c-456f-9c2e-cc443232bccb" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an authenticated session</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>earthaccess.login()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>edl_session <span class="op">=</span> earthaccess.get_requests_https_session()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="national-snow-and-ice-data-center" class="level2">
 <h2 class="anchored" data-anchor-id="national-snow-and-ice-data-center">National Snow and Ice Data Center</h2>
 <p>Their OPeNDAP server also uses NASA Earthdata login authentication. I struggled to find the right format for url that would open.</p>
-<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="3">
+<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#url = "https://n5eil02u.ecs.nsidc.org/opendap/OTHR/NISE.004/2012.10.02/NISE_SSMISF17_20121002.HDFEOS"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://n5eil02u.ecs.nsidc.org/opendap/MOST/MOD10A1.006/2000.03.22/MOD10A1.A2000082.h00v08.006.2016061212345.hdf"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="b6362f08-b9c4-4fa4-96e8-fbeb76adb6fd" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dap4_url <span class="op">=</span> url.replace(<span class="st">"https"</span>, <span class="st">"dap4"</span>, <span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(dap4_url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>edl_session)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div id="d87c5df6-7d00-49c5-b738-3442424904b7" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.cas.urs <span class="im">import</span> setup_session</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> setup_session(username, password, check_url<span class="op">=</span>url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.cas.urs <span class="im">import</span> setup_session</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> setup_session(username, password, check_url<span class="op">=</span>url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dd2e89f8-4aed-46f4-887a-2f63ccc29da4" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="211f5c1a-3f00-495b-b78a-6d238d6bbb7e" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, session<span class="op">=</span>edl_session, engine<span class="op">=</span><span class="st">"pydap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/handlers/dap.py:123: UserWarning: PyDAP was unable to determine the DAP protocol defaulting to DAP2 which is consider legacy and may result in slower responses. For more, see go to https://www.opendap.org/faq-page.
+  _warnings.warn(
+/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/conventions.py:200: SerializationWarning: variable 'NDSI_Snow_Cover' has multiple fill values {np.int64(200), np.int64(255)} defined, decoding all values to NaN.
+  var = coder.decode(var, name=name)
+/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/conventions.py:200: SerializationWarning: variable 'Snow_Albedo_Daily_Tile' has multiple fill values {np.int64(250), np.int64(255)} defined, decoding all values to NaN.
+  var = coder.decode(var, name=name)</code></pre>
+</div>
 </div>
 <div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pydap_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pydap_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>&lt;DatasetType with children 'NDSI_Snow_Cover', 'NDSI_Snow_Cover_Basic_QA', 'NDSI_Snow_Cover_Algorithm_Flags_QA', 'NDSI', 'Snow_Albedo_Daily_Tile', 'orbit_pnt', 'granule_pnt', 'Latitude', 'Longitude', 'YDim', 'XDim', 'MOD_Grid_Snow_500m_eos_cf_projection'&gt;</code></pre>
 </div>
 </div>
 <div id="cd728814-72f6-4cd2-a1a4-a2051f3bc7c9" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this works but odd errors</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this works but odd errors</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/conventions.py:200: SerializationWarning: variable 'NDSI_Snow_Cover' has multiple fill values {np.int64(200), np.int64(255)} defined, decoding all values to NaN.
   var = coder.decode(var, name=name)
@@ -628,9 +297,9 @@ Wall time: 1.18 s</code></pre>
 </div>
 </div>
 <div id="119476cb-330f-4d9f-9e58-35db2102f2a3" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>]url<span class="op">=</span><span class="st">"https://n5eil02u.ecs.nsidc.org/opendap/MOST/MOD10A1.006/2000.03.22/MOD10A1.A2000082.h00v08.006.2016061212345.hdf"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"https://n5eil02u.ecs.nsidc.org/opendap/MOST/MOD10A1.006/2000.03.22/MOD10A1.A2000082.h00v08.006.2016061212345.hdf"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/srv/conda/envs/notebook/lib/python3.12/site-packages/pydap/handlers/dap.py:123: UserWarning: PyDAP was unable to determine the DAP protocol defaulting to DAP2 which is consider legacy and may result in slower responses. For more, see go to https://www.opendap.org/faq-page.
   _warnings.warn(
@@ -1224,18 +893,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../topics-2025/2025-opendap/3-nasa.html" class="pagination-link" aria-label="NASA OPeNDAP servers - authentication">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NASA OPeNDAP servers - authentication</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-opendap/5-usgs.html" class="pagination-link" aria-label="USGS LPDAAC">
-        <span class="nav-page-text">USGS LPDAAC</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

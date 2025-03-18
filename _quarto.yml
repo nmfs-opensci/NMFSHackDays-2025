@@ -144,12 +144,14 @@ website:
               href: topics-2025/2025-opendap/1-ncep-ncar.html
             - text: Simple example 1 - ROMS Models
               href: topics-2025/2025-opendap/2-dbofs.html
-            - text: NASA OPeNDAP servers - authentication
+            - text: NASA OPeNDAP servers
               href: topics-2025/2025-opendap/3-nasa.html
-            - text: NSIDC
-              href: topics-2025/2025-opendap/4-nsidc.html
-            - text: USGS LPDAAC
-              href: topics-2025/2025-opendap/5-usgs.html
+#            - text: NSIDC
+#              href: topics-2025/2025-opendap/4-nsidc.html
+#            - text: USGS LPDAAC
+#              href: topics-2025/2025-opendap/5-usgs.html
+            - text: NASA OPeNDAP servers - extras
+              href: topics-2025/2025-opendap/6-nasa-pydap.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards
