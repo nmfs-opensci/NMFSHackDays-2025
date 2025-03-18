@@ -583,7 +583,9 @@ function googleTranslateElementInit() {
 </blockquote>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>See the 3-nasa.ipynb notebook for the recommended way to authenticate. This notebook is included to document PyDAP authentication.</p>
+<p>See the 3-nasa.ipynb notebook for the recommended way to authenticate until pydap &gt; 3.5.3 (Jan 2025) is released. This notebook is included to document PyDAP authentication. When the new version is released, this authentication works similar to token-based (meaning works for all cases tested).</p>
+<pre><code>import requests
+my_session=requests.Session()</code></pre>
 <p>PyDAP will automatically look for <code>~/.netrc</code> file and use that so it may seem that you are not authenticating (if you have that file). But you are. The “silent” method fails if the data require a User Agreement (EULA) that you have to accept on your Earthdata profile because it cannot handle redirects. You can set up a session with username/password which will work for single files with <code>xarray.open_dataset</code> but fails with <code>xarray.open_mfdataset</code>. Setting up a session with a token works in all cases, but is more of a hassle. <code>earthaccess</code> will authenticate from your <code>~/.netrc</code> file and handle the token for you. So I recommend that approach.</p>
 <p>I am going to first show how to set up a token and create a “session” that is passed to <code>xarray</code>. For what I have found (in March 2025), this works to get past “re-direct” errors that arise when the data require a EULA. Tokens also get past the redirect errors from other non-NASA OPeNDAP servers that use NASA EDL (USDA and NSIDC). At the end, I will show how <code>xarray+pydap</code> can automatically use your <code>.netrc</code> file to authenticate, but this won’t work for data that need a EULA so it might be best to use the token method as that will work for data that need a EULA too.</p>
 <section id="references" class="level3">
@@ -608,8 +610,8 @@ edl_token = os.getenv("NASA_EDL_TOKEN")</code></pre>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
 <div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap.client</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap.client</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -626,10 +628,10 @@ edl_token = os.getenv("NASA_EDL_TOKEN")</code></pre>
 <p>If the data need Earthdata authentication but don’t need a EULA, then you can let <code>pydap</code> use your <code>.netrc</code> file silently. But this method is the most likely to produce redirect errors and access errors.</p>
 <p>The following code works because <code>pydap</code> uses the .netrc file that is in <code>~/.netrc</code>. It does this silently for you. But this only works because this particular dataset does not require a User Agreement to be accepted on your Earthdata profile.</p>
 <div id="1ec7dce8-4fc1-4e13-adf7-109ca7249026" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn't need a eula</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, decode_timedelta<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"wind_speed"</span>].load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn't need a eula</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, decode_timedelta<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"wind_speed"</span>].load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1034,41 +1036,50 @@ Attributes:
 <h3 class="anchored" data-anchor-id="set-up-a-session-with-username-and-password">Set up a session with username and password</h3>
 <p>Using the <code>session</code> argument with <code>pydap</code> is more robust because it will open data that require a EULA. You can set up a session like this with your username and password in your .netrc file. This mostly works but it fails when using <code>xarray.open_mfdataset()</code> with data that require a EULA. So using a token is better though more of a hassle.</p>
 <div id="27cacc08-d5de-4129-8d28-d0ff4d47a42e" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netrc</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Get credentials from .netrc</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>auth_host <span class="op">=</span> <span class="st">"urs.earthdata.nasa.gov"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    credentials <span class="op">=</span> netrc.netrc().authenticators(auth_host)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> credentials:</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        username, _, password <span class="op">=</span> credentials</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No credentials found in .netrc!"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not find ~/.netrc. Ensure it exists and is configured correctly."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netrc</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Get credentials from .netrc</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>auth_host <span class="op">=</span> <span class="st">"urs.earthdata.nasa.gov"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    credentials <span class="op">=</span> netrc.netrc().authenticators(auth_host)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> credentials:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        username, _, password <span class="op">=</span> credentials</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No credentials found in .netrc!"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not find ~/.netrc. Ensure it exists and is configured correctly."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d8041a0c-4e3b-4250-a307-995ba44eec17" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.cas.urs <span class="im">import</span> setup_session</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pw_session <span class="op">=</span> setup_session(username, password)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.cas.urs <span class="im">import</span> setup_session</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>pw_session <span class="op">=</span> setup_session(username, password)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="set-up-a-session-with-a-edl-token" class="level3">
-<h3 class="anchored" data-anchor-id="set-up-a-session-with-a-edl-token">Set up a session with a EDL token</h3>
+<section id="set-up-a-session-with-a-edl-token-pydap-3.5.3" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-a-session-with-a-edl-token-pydap-3.5.3">Set up a session with a EDL token (pydap = 3.5.3)</h3>
 <p>This is the robust way to set up an authenticated session. Note see the notebook where I authenticate with <code>earthaccess</code>, which makes this easier and you don’t need to save anything to <code>.env</code>.</p>
 <p>Load the token. Make sure you have your token set up in your <code>~/.env</code> file. See prerequisites.</p>
 <div id="a9241b9d-47a6-4bc3-a8c5-dcf8b0ffc726" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>edl_token <span class="op">=</span> os.getenv(<span class="st">"NASA_EDL_TOKEN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>edl_token <span class="op">=</span> os.getenv(<span class="st">"NASA_EDL_TOKEN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next we set up a NASA EDL session with this token.</p>
 <div id="13784924-c653-4827-8505-25eca4a030d4" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>auth_hdr<span class="op">=</span><span class="st">"Bearer "</span> <span class="op">+</span> edl_token</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>token_session <span class="op">=</span> requests.Session()</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>token_session.headers<span class="op">=</span>{<span class="st">"Authorization"</span>: auth_hdr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>auth_hdr<span class="op">=</span><span class="st">"Bearer "</span> <span class="op">+</span> edl_token</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>token_session <span class="op">=</span> requests.Session()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>token_session.headers<span class="op">=</span>{<span class="st">"Authorization"</span>: auth_hdr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="if-pydap-version-3.5.3" class="level3">
+<h3 class="anchored" data-anchor-id="if-pydap-version-3.5.3">If pydap version &gt; 3.5.3</h3>
+<p>If you have pydap version &gt; 3.5.3, then you do not need to generate your own token. You can use your <code>.netrc</code> file (with EDL username and password) and use this:</p>
+<div id="a82f32c2-ef29-4cbb-bafb-44cbc719c1bf" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># uncomment to use</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#import requests</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#token_session=requests.Session()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For the rest of the notebook, the <code>token_session</code> will be used.</p>
 </section>
@@ -1076,37 +1087,37 @@ Attributes:
 <section id="load-non-eula-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-non-eula-data">Load non-EULA data</h2>
 <div id="31eab0ce-2617-4d02-b51d-d52cee2a7a7f" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn't point to specific file but we will spec protocol</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"https://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another test url that works for this example</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># url="https://opendap.earthdata.nasa.gov/hyrax/data/nc/fnoc1.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn't point to specific file but we will spec protocol</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"https://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another test url that works for this example</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># url="https://opendap.earthdata.nasa.gov/hyrax/data/nc/fnoc1.nc"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="bf65f621-c345-4532-8afe-f703740f5e28" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#from pydap.client import open_url</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> pydap.client.open_url(url, protocol<span class="op">=</span><span class="st">"dap4"</span>, session<span class="op">=</span>token_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#from pydap.client import open_url</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> pydap.client.open_url(url, protocol<span class="op">=</span><span class="st">"dap4"</span>, session<span class="op">=</span>token_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 13 ms, sys: 11.9 ms, total: 24.9 ms
 Wall time: 744 ms</code></pre>
 </div>
 </div>
 <div id="c9a134d6-ad2b-4862-9176-a481e2018faf" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># getting the data does work</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>test_ds <span class="op">=</span> pydap_ds[<span class="st">'lat'</span>][:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># getting the data does work</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>test_ds <span class="op">=</span> pydap_ds[<span class="st">'lat'</span>][:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 18 ms, sys: 628 µs, total: 18.6 ms
 Wall time: 2.67 s</code></pre>
 </div>
 </div>
 <div id="8fbda214-a702-46d9-8b9a-6bdf319e1954" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    url.replace(<span class="st">"https"</span>, <span class="st">"dap4"</span>, <span class="dv">1</span>), engine<span class="op">=</span><span class="st">"pydap"</span>, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    decode_cf<span class="op">=</span><span class="va">False</span>, session<span class="op">=</span>token_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    url.replace(<span class="st">"https"</span>, <span class="st">"dap4"</span>, <span class="dv">1</span>), engine<span class="op">=</span><span class="st">"pydap"</span>, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    decode_cf<span class="op">=</span><span class="va">False</span>, session<span class="op">=</span>token_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="56fe9475-ef0a-418f-aaf4-b0bba74a8d93" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"wind_speed"</span>].plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"wind_speed"</span>].plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/plot/utils.py:260: RuntimeWarning: overflow encountered in scalar absolute
   vlim = max(abs(vmin - center), abs(vmax - center))</code></pre>
@@ -1114,17 +1125,17 @@ Wall time: 2.67 s</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="6-nasa-pydap_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="6-nasa-pydap_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="8590798f-9b96-4bed-b433-43970734faa1" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is doing the same thing as engine="pydap" I think but I don't have to know the dap4 replacement</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ds created is the same though</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store, decode_cf<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is doing the same thing as engine="pydap" I think but I don't have to know the dap4 replacement</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ds created is the same though</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store, decode_cf<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 2.11 ms, sys: 0 ns, total: 2.11 ms
 Wall time: 2.11 ms</code></pre>
@@ -1144,65 +1155,65 @@ Wall time: 2.11 ms</code></pre>
 <li>Go to unaccepted EULAs and make sure that GESDISC is accepted</li>
 </ol>
 <div id="3ca0aacd-a2df-4cc5-9a29-2fdb1e532d87" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the GESDISC data requires a EULA</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>eula_url <span class="op">=</span> <span class="st">'https://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXSLV.5.12.4/2016/06/MERRA2_400.tavg1_2d_slv_Nx.20160601.nc4'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the GESDISC data requires a EULA</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>eula_url <span class="op">=</span> <span class="st">'https://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXSLV.5.12.4/2016/06/MERRA2_400.tavg1_2d_slv_Nx.20160601.nc4'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="f31e640b-ce28-470a-8ff3-91ee3fabcf78" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(eula_url, session<span class="op">=</span>token_session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(eula_url, session<span class="op">=</span>token_session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 41.3 ms, sys: 3.79 ms, total: 45.1 ms
 Wall time: 1.58 s</code></pre>
 </div>
 </div>
 <div id="fff988c6-8902-4e4f-b945-6426005c46c4" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># works when we try to get data</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>test_ds <span class="op">=</span> pydap_ds[<span class="st">'lat'</span>][:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># works when we try to get data</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>test_ds <span class="op">=</span> pydap_ds[<span class="st">'lat'</span>][:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="38808556-3aee-4858-b446-0f26ceec7008" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this works but is a lot of syntax to remember</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(eula_url.replace(<span class="st">"https"</span>, <span class="st">"dap4"</span>, <span class="dv">1</span>), </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                     engine<span class="op">=</span><span class="st">"pydap"</span>, decode_cf<span class="op">=</span><span class="va">False</span>, </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                     session<span class="op">=</span>token_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this works but is a lot of syntax to remember</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(eula_url.replace(<span class="st">"https"</span>, <span class="st">"dap4"</span>, <span class="dv">1</span>), </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                     engine<span class="op">=</span><span class="st">"pydap"</span>, decode_cf<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                     session<span class="op">=</span>token_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 42.4 ms, sys: 3.77 ms, total: 46.2 ms
 Wall time: 1.08 s</code></pre>
 </div>
 </div>
 <div id="2ff1bfb4-59ec-4773-bad8-284361e270bf" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yeah! I can get the data</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"T2M"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># yeah! I can get the data</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"T2M"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="6-nasa-pydap_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="6-nasa-pydap_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="e7411e51-8610-4d9b-905c-5e1190277036" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This works too but is so much slower</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This works too but is so much slower</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 35.4 ms, sys: 11.5 ms, total: 46.9 ms
 Wall time: 2.47 s</code></pre>
 </div>
 </div>
 <div id="bcc8428b-c352-46c7-a4dc-8c42b02e44c6" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I have to rename variables</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"T2M"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I have to rename variables</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"T2M"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="6-nasa-pydap_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="6-nasa-pydap_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1219,22 +1230,22 @@ Wall time: 2.47 s</code></pre>
 <section id="example-1-non-eula-data" class="level3">
 <h3 class="anchored" data-anchor-id="example-1-non-eula-data">Example 1 Non-EULA data</h3>
 <div id="1e4d7398-e12c-47aa-885a-7f420cd064a1" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn't point to specific file but we will spec protocol</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>url1<span class="op">=</span><span class="st">"dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0"</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>url2<span class="op">=</span><span class="st">"dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220813010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220813_010000-v02.0-fv01.0"</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> [url1, url2]</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>urls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn't point to specific file but we will spec protocol</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>url1<span class="op">=</span><span class="st">"dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>url2<span class="op">=</span><span class="st">"dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220813010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220813_010000-v02.0-fv01.0"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> [url1, url2]</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>urls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>['dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220812010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220812_010000-v02.0-fv01.0',
  'dap4://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20220813010000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20220813_010000-v02.0-fv01.0']</code></pre>
 </div>
 </div>
 <div id="fa12e48f-ef52-4388-822d-efdd4beb5003" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(urls, engine<span class="op">=</span><span class="st">"pydap"</span>, </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                       combine<span class="op">=</span><span class="st">"nested"</span>, </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                       concat_dim<span class="op">=</span><span class="st">"/time"</span>, decode_cf<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>                      session<span class="op">=</span>token_session)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(urls, engine<span class="op">=</span><span class="st">"pydap"</span>, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                       combine<span class="op">=</span><span class="st">"nested"</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                       concat_dim<span class="op">=</span><span class="st">"/time"</span>, decode_cf<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                      session<span class="op">=</span>token_session)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -2525,11 +2536,11 @@ H5.SmallDataMemCacheEntries=0
 </div>
 <p>Let’s do some slicing and see how fast we can get the data.</p>
 <div id="698e66c4-ff07-48dc-9ef8-be252f32475c" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="273d8d88-00ba-4fe0-8d45-b4a53956799d" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> ds[<span class="st">"wind_speed"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> ds[<span class="st">"wind_speed"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 32.1 ms, sys: 36 ms, total: 68.1 ms
 Wall time: 6.08 s</code></pre>
@@ -2540,18 +2551,18 @@ Wall time: 6.08 s</code></pre>
 <h3 class="anchored" data-anchor-id="example-2-eula-data">Example 2 EULA data</h3>
 <p><code>token_session</code> is critical so that things don’t go south with re-directs.</p>
 <div id="203b5845-64cb-4430-8fb7-9e8aa5a82e8b" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>eula_url1 <span class="op">=</span> <span class="st">'dap4://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXSLV.5.12.4/2016/06/MERRA2_400.tavg1_2d_slv_Nx.20160601.nc4'</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>eula_url2 <span class="op">=</span> <span class="st">'dap4://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXSLV.5.12.4/2016/06/MERRA2_400.tavg1_2d_slv_Nx.20160602.nc4'</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>eula_urls <span class="op">=</span> [eula_url1, eula_url2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>eula_url1 <span class="op">=</span> <span class="st">'dap4://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXSLV.5.12.4/2016/06/MERRA2_400.tavg1_2d_slv_Nx.20160601.nc4'</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>eula_url2 <span class="op">=</span> <span class="st">'dap4://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXSLV.5.12.4/2016/06/MERRA2_400.tavg1_2d_slv_Nx.20160602.nc4'</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>eula_urls <span class="op">=</span> [eula_url1, eula_url2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="e002f808-75db-47c1-b55d-d3b49f1526a7" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># very fast and this is 1Tb of data</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(eula_urls, engine<span class="op">=</span><span class="st">"pydap"</span>, </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                       combine<span class="op">=</span><span class="st">"nested"</span>, concat_dim<span class="op">=</span><span class="st">"/time"</span>, </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>                       decode_cf<span class="op">=</span><span class="va">False</span>, session<span class="op">=</span>token_session)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># very fast and this is 1Tb of data</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(eula_urls, engine<span class="op">=</span><span class="st">"pydap"</span>, </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                       combine<span class="op">=</span><span class="st">"nested"</span>, concat_dim<span class="op">=</span><span class="st">"/time"</span>, </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                       decode_cf<span class="op">=</span><span class="va">False</span>, session<span class="op">=</span>token_session)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 141 ms, sys: 12 ms, total: 153 ms
 Wall time: 2.24 s</code></pre>
@@ -5111,15 +5122,15 @@ Attributes: (12/31)
 </div>
 </div>
 <div id="6316afc0-80b6-44ca-a01f-930e47b03e1f" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dataset size: 1876.77 MB</code></pre>
 </div>
 </div>
 <div id="b6b78da7-8482-4330-9542-b8ca066507f3" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can load the data</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"T2M"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can load the data</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/lat"</span>: <span class="st">"lat"</span>, <span class="st">"/lon"</span>: <span class="st">"lon"</span>})</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"T2M"</span>].isel(time<span class="op">=</span><span class="dv">1</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -5540,15 +5551,15 @@ Attributes: (12/14)
 <h3 class="anchored" data-anchor-id="example-3-from-pydap-documentation">Example 3 from PyDap documentation</h3>
 <p>In this example, constraint expression is used just to get certain variables. See full notebook <a href="https://pydap.github.io/pydap/notebooks/ECCO.html#add-a-constraint-expression-to-the-url-to-only-retrieve-theta">here</a>.</p>
 <div id="193e1f91-9205-4bd3-adbc-b4f7ce240d5a" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>baseURL <span class="op">=</span> <span class="st">'dap4://opendap.earthdata.nasa.gov/providers/POCLOUD/collections/'</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>Temp_Salt <span class="op">=</span> <span class="st">"ECCO%20Ocean%20Temperature%20and%20Salinity%20-%20Monthly%20Mean%20llc90</span><span class="sc">%20G</span><span class="st">rid%20(Version</span><span class="sc">%204%</span><span class="st">20Release%204)/granules/OCEAN_TEMPERATURE_SALINITY_mon_mean_"</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="st">'2017-'</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="st">'01'</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>end_ <span class="op">=</span> <span class="st">'_ECCO_V4r4_native_llc0090'</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>CE <span class="op">=</span> <span class="st">'?dap4.ce=/THETA;/SALT;/tile;/j;/k;/i;/time'</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>Temp_2017 <span class="op">=</span> [baseURL <span class="op">+</span> Temp_Salt <span class="op">+</span> year <span class="op">+</span> <span class="ss">f'</span><span class="sc">{</span>i<span class="sc">:02}</span><span class="ss">'</span> <span class="op">+</span> end_ <span class="op">+</span> CE <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>)]</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>Temp_2017</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>baseURL <span class="op">=</span> <span class="st">'dap4://opendap.earthdata.nasa.gov/providers/POCLOUD/collections/'</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Temp_Salt <span class="op">=</span> <span class="st">"ECCO%20Ocean%20Temperature%20and%20Salinity%20-%20Monthly%20Mean%20llc90</span><span class="sc">%20G</span><span class="st">rid%20(Version</span><span class="sc">%204%</span><span class="st">20Release%204)/granules/OCEAN_TEMPERATURE_SALINITY_mon_mean_"</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="st">'2017-'</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="st">'01'</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>end_ <span class="op">=</span> <span class="st">'_ECCO_V4r4_native_llc0090'</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>CE <span class="op">=</span> <span class="st">'?dap4.ce=/THETA;/SALT;/tile;/j;/k;/i;/time'</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>Temp_2017 <span class="op">=</span> [baseURL <span class="op">+</span> Temp_Salt <span class="op">+</span> year <span class="op">+</span> <span class="ss">f'</span><span class="sc">{</span>i<span class="sc">:02}</span><span class="ss">'</span> <span class="op">+</span> end_ <span class="op">+</span> CE <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>)]</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>Temp_2017</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>['dap4://opendap.earthdata.nasa.gov/providers/POCLOUD/collections/ECCO%20Ocean%20Temperature%20and%20Salinity%20-%20Monthly%20Mean%20llc90%20Grid%20(Version%204%20Release%204)/granules/OCEAN_TEMPERATURE_SALINITY_mon_mean_2017-01_ECCO_V4r4_native_llc0090?dap4.ce=/THETA;/SALT;/tile;/j;/k;/i;/time',
  'dap4://opendap.earthdata.nasa.gov/providers/POCLOUD/collections/ECCO%20Ocean%20Temperature%20and%20Salinity%20-%20Monthly%20Mean%20llc90%20Grid%20(Version%204%20Release%204)/granules/OCEAN_TEMPERATURE_SALINITY_mon_mean_2017-02_ECCO_V4r4_native_llc0090?dap4.ce=/THETA;/SALT;/tile;/j;/k;/i;/time',
@@ -5558,17 +5569,17 @@ Attributes: (12/14)
 <p>Create data cube with <code>open_mfdataset</code> but not concat dim is <code>/time</code> not <code>time</code>. This takes a really long time, but if we didn’t do the constraint expression part, it would take much longer. So it is good to do that step.</p>
 <p>Note <code>token_session</code> is not required since these data don’t need a EULA, but good practice to use.</p>
 <div id="df6ba471-05a9-4f6e-8fc7-d2be2eda2a84" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 13 seconds to assemble the data cube for a 126Mb dataset...slow</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>theta_salt_ds <span class="op">=</span> xr.open_mfdataset(</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    Temp_2017, </span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    engine<span class="op">=</span><span class="st">'pydap'</span>,</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    parallel<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'nested'</span>, </span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    concat_dim<span class="op">=</span><span class="st">'/time'</span>,</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    session<span class="op">=</span>token_session</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>theta_salt_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 13 seconds to assemble the data cube for a 126Mb dataset...slow</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>theta_salt_ds <span class="op">=</span> xr.open_mfdataset(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    Temp_2017, </span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    engine<span class="op">=</span><span class="st">'pydap'</span>,</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    parallel<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'nested'</span>, </span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    concat_dim<span class="op">=</span><span class="st">'/time'</span>,</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    session<span class="op">=</span>token_session</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>theta_salt_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 184 ms, sys: 12.7 ms, total: 196 ms
 Wall time: 13 s</code></pre>
@@ -6274,24 +6285,24 @@ Attributes: (12/62)
 </div>
 </div>
 <div id="ec5e4821-24b6-4e04-a342-b1f4e35c8ec3" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>theta_salt_ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>theta_salt_ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dataset size: 126.36 MB</code></pre>
 </div>
 </div>
 <div id="cefe7f79-f7e5-4f01-af8b-4172509cbb74" class="cell" data-execution_count="142">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>theta_salt_ds <span class="op">=</span> theta_salt_ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/j"</span>: <span class="st">"j"</span>, <span class="st">"/i"</span>: <span class="st">"i"</span>, <span class="st">"/tile"</span>: <span class="st">"tile"</span>, <span class="st">"/k"</span>: <span class="st">"k"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>theta_salt_ds <span class="op">=</span> theta_salt_ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/j"</span>: <span class="st">"j"</span>, <span class="st">"/i"</span>: <span class="st">"i"</span>, <span class="st">"/tile"</span>: <span class="st">"tile"</span>, <span class="st">"/k"</span>: <span class="st">"k"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/tmp/ipykernel_1511/704975482.py:1: UserWarning: rename '/time' to 'time' does not create an index anymore. Try using swap_dims instead or use set_index after rename to create an indexed coordinate.
   theta_salt_ds = theta_salt_ds.rename({"/time": "time", "/j": "j", "/i": "i", "/tile": "tile", "/k": "k"})</code></pre>
 </div>
 </div>
 <div id="119965ec-ba73-4afb-bc5e-a52ecb5fe5ec" class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>theta_salt_ds[<span class="st">"THETA"</span>].isel(time<span class="op">=</span><span class="dv">1</span>, tile<span class="op">=</span><span class="dv">10</span>, k<span class="op">=</span><span class="dv">1</span>).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>theta_salt_ds[<span class="st">"THETA"</span>].isel(time<span class="op">=</span><span class="dv">1</span>, tile<span class="op">=</span><span class="dv">10</span>, k<span class="op">=</span><span class="dv">1</span>).plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="6-nasa-pydap_files/figure-html/cell-33-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="6-nasa-pydap_files/figure-html/cell-34-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
