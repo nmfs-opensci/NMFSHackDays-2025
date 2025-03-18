@@ -146,10 +146,10 @@ website:
               href: topics-2025/2025-opendap/2-dbofs.html
             - text: NASA OPeNDAP servers
               href: topics-2025/2025-opendap/3-nasa.html
-#            - text: NSIDC
-#              href: topics-2025/2025-opendap/4-nsidc.html
-#            - text: USGS LPDAAC
-#              href: topics-2025/2025-opendap/5-usgs.html
+            - text: NSIDC
+              href: topics-2025/2025-opendap/4-nsidc.html
+            - text: USGS LPDAAC
+              href: topics-2025/2025-opendap/5-usgs.html
             - text: NASA OPeNDAP servers - extras
               href: topics-2025/2025-opendap/6-nasa-pydap.html
         - section: "Guest Speakers"

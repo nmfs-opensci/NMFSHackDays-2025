@@ -64,6 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../topics-2025/2025-opendap/6-nasa-pydap.html" rel="next">
+<link href="../../topics-2025/2025-opendap/4-nsidc.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -155,10 +157,354 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/5-usgs.html">USGS LPDAAC</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hackhours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-skills/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub Skills</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/jhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Hub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quick Start</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to JupyterHubs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git Authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthdata login</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3 Scratch Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AWS S3 Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+ <span class="menu-text">HackHour 2025 Topics</span>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/1-earthaccess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/5-virtual-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create a virtual data set</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-21-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes with ERDDAP and xarray</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-03-07-ERDDAP-R/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Masking shallow pixels</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-opendap/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - OPeNDAP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/1-ncep-ncar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple example 1 - NCEP-NCAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/2-dbofs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple example 1 - ROMS Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/3-nasa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NASA OPeNDAP servers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/4-nsidc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NSIDC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/5-usgs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">USGS LPDAAC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/6-nasa-pydap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NASA OPeNDAP servers - extras</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Guest Speakers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/reuse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse Statement</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../coc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code of Conduct</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -166,7 +512,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#set-up-a-token-based-session-with-earthaccess" id="toc-set-up-a-token-based-session-with-earthaccess" class="nav-link" data-scroll-target="#set-up-a-token-based-session-with-earthaccess">Set up a token-based session with <code>earthaccess</code></a></li>
   <li><a href="#usgs-lpdaac" id="toc-usgs-lpdaac" class="nav-link" data-scroll-target="#usgs-lpdaac">USGS LPDAAC</a></li>
+  <li><a href="#setting-token-based-authentication-with-pydap" id="toc-setting-token-based-authentication-with-pydap" class="nav-link" data-scroll-target="#setting-token-based-authentication-with-pydap">Setting token-based authentication with pydap</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -194,7 +542,7 @@ function googleTranslateElementInit() {
     }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/5-usgs.html">USGS LPDAAC</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Accessing data on the USGS LPDAAC server via OPeNDAP protocol</h1>
 </div>
@@ -232,77 +580,59 @@ function googleTranslateElementInit() {
 </section>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="1">
+<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap.client</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap.client</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+</section>
+<section id="set-up-a-token-based-session-with-earthaccess" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-a-token-based-session-with-earthaccess">Set up a token-based session with <code>earthaccess</code></h2>
+<div id="78fb6e16-2321-474e-84ed-a4bd3c9b6ad4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an authenticated session</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>earthaccess.login()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>edl_session <span class="op">=</span> earthaccess.get_requests_https_session()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5627558a-c2e3-4c0a-a9d8-f5c596df7e5d" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if it keeps asking for your password, run this instead to save to .netrc file</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># are we authenticated?</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> auth.authenticated:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ask for credentials and persist them in a .netrc file</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    auth.login(strategy<span class="op">=</span><span class="st">"interactive"</span>, persist<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="usgs-lpdaac" class="level2">
 <h2 class="anchored" data-anchor-id="usgs-lpdaac">USGS LPDAAC</h2>
 <p>Their OPeNDAP server also uses NASA Earthdata login authentication.</p>
-<section id="password-approach-doesnt-work-for-xarray" class="level3">
-<h3 class="anchored" data-anchor-id="password-approach-doesnt-work-for-xarray">Password approach doesn’t work for xarray</h3>
-<p>It workds for creating a pydap object but not for creating an xarray object.</p>
-<div id="78fb6e16-2321-474e-84ed-a4bd3c9b6ad4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load username and password</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netrc</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get credentials from .netrc</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>auth_host <span class="op">=</span> <span class="st">"urs.earthdata.nasa.gov"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    credentials <span class="op">=</span> netrc.netrc().authenticators(auth_host)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> credentials:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        username, _, password <span class="op">=</span> credentials</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No credentials found in .netrc!"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"Could not find ~/.netrc. Ensure it exists and is configured correctly."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="d87c5df6-7d00-49c5-b738-3442424904b7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.client <span class="im">import</span> open_url</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydap.cas.urs <span class="im">import</span> setup_session</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> setup_session(username, password)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="dd2e89f8-4aed-46f4-887a-2f63ccc29da4" class="cell" data-execution_count="39">
+<div id="dd2e89f8-4aed-46f4-887a-2f63ccc29da4" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> pydap.client.open_url(url, session<span class="op">=</span>edl_session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This doesn’t work</p>
-<pre><code>store = xr.backends.PydapDataStore(pydap_ds)
-ds = xr.open_dataset(store)</code></pre>
-<p>This doesn’t either. Gives the same redirect error.</p>
-<pre><code>url="dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"
-ds = xr.open_dataset(url, engine="pydap", session=session)</code></pre>
-<div id="d544081e-76a5-4cf9-8426-213c5c15b12f" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>edl_token <span class="op">=</span> <span class="st">"eyJ0eXAiOiJKV1QiLCJvcmlnaW4iOiJFYXJ0aGRhdGEgTG9naW4iLCJzaWciOiJlZGxqd3RwdWJrZXlfb3BzIiwiYWxnIjoiUlMyNTYifQ.eyJ0eXBlIjoiVXNlciIsInVpZCI6ImVlaG9sbWVzIiwiZXhwIjoxNzQ3MjgzNjAyLCJpYXQiOjE3NDIwOTk2MDIsImlzcyI6Imh0dHBzOi8vdXJzLmVhcnRoZGF0YS5uYXNhLmdvdiIsImlkZW50aXR5X3Byb3ZpZGVyIjoiZWRsX29wcyIsImFjciI6ImVkbCIsImFzc3VyYW5jZV9sZXZlbCI6M30.qeqQPjJhARObiNnDwWIS3-uQJP_J1hFxJPAlfcdx5smdnxKJ3G-aMqejQmVyB-Yn31eqhEoqkh2m3uDRpr9SxeBKNbIS2wFC4WVS1KhKoKXFXRvIIPKiapVgkpMnQA8KNnU0H5HvKNypx1KTjU1iQ__EQJ4aqBGF8fZQi-rhK-ELBfK1slqHv0_GkMr7ZmdxYAH56nVbJbC0T3yQLlkXGreBwGVUbKNo9Uvn1rKECQyHM5t1RUn9eof7UzvTbMp_pTWDVj1MF1PNftTxFf9zcbklvbITPDjig7SZIMu5YvANBz-utE0Wlw6aQr4o6ZV4WBF4H_dxWh0njvusiM8jLg"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>auth_hdr<span class="op">=</span><span class="st">"Bearer "</span> <span class="op">+</span> edl_token</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>my_session <span class="op">=</span> requests.Session()</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>my_session.headers<span class="op">=</span>{<span class="st">"Authorization"</span>: auth_hdr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="45782398-763a-4228-a0e5-ef69dbf9a7f5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works too</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> xr.backends.PydapDataStore(pydap_ds)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(store)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="661c4f42-5dbf-43e7-b25a-4af57b451e98" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>my_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f09bfb8c-ef18-46b7-9a82-7e6eddb78def" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works too</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"dap4://opendap.cr.usgs.gov/opendap/hyrax/MOD13Q1.061/h09v06.ncml"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>edl_session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="83b9c4b1-afc5-4f6c-a0f7-b1948a2d2890" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> Tb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="83b9c4b1-afc5-4f6c-a0f7-b1948a2d2890" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> Tb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dataset size: 690.46 Tb</code></pre>
 </div>
 </div>
-<div id="8af7a113-5935-4791-a66c-e34b20fcd158" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># deal with the slashes</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.rename({<span class="st">"/time"</span>: <span class="st">"time"</span>, <span class="st">"/YDim"</span>: <span class="st">"y"</span>, <span class="st">"/XDim"</span>: <span class="st">"x"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="27a091d8-702e-4470-9784-427ce1a6c8c7" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># getting the data works</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"_250m_16_days_NDVI"</span>].isel(time<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="dv">1</span>, x<span class="op">=</span><span class="dv">1</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div id="5c2b077f-f5f6-4e22-bbce-817966c6a51d" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -673,35 +1003,543 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray '_250m_16_days_NDVI' ()&gt; Size: 4B
-array(0.1549, dtype=float32)
+</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt; Size: 690GB
+Dimensions:                                          (/YDim: 4800, /XDim: 4800,
+                                                      /time: 576)
 Coordinates:
-    Latitude   float64 8B 30.0
-    Longitude  float64 8B -103.9
+    Latitude                                         (/YDim, /XDim) float64 184MB ...
+    Longitude                                        (/YDim, /XDim) float64 184MB ...
+Dimensions without coordinates: /YDim, /XDim, /time
+Data variables: (12/16)
+    YDim                                             (/YDim) float64 38kB ...
+    XDim                                             (/XDim) float64 38kB ...
+    MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection  uint8 1B ...
+    _250m_16_days_VI_Quality                         (/time, /YDim, /XDim) float32 53GB ...
+    _250m_16_days_red_reflectance                    (/time, /YDim, /XDim) float32 53GB ...
+    _250m_16_days_sun_zenith_angle                   (/time, /YDim, /XDim) float32 53GB ...
+    ...                                               ...
+    _250m_16_days_EVI                                (/time, /YDim, /XDim) float32 53GB ...
+    _250m_16_days_composite_day_of_the_year          (/time, /YDim, /XDim) float32 53GB ...
+    _250m_16_days_MIR_reflectance                    (/time, /YDim, /XDim) float32 53GB ...
+    _250m_16_days_blue_reflectance                   (/time, /YDim, /XDim) float32 53GB ...
+    _250m_16_days_NDVI                               (/time, /YDim, /XDim) float32 53GB ...
+    time                                             (/time) datetime64[ns] 5kB ...
 Attributes:
-    long_name:          250m 16 days NDVI
-    units:              NDVI
-    scale_factor_err:   0.0
-    add_offset_err:     0.0
-    calibrated_nt:      5
-    orig_scale_factor:  10000.0
-    orig_add_offset:    0.0
-    valid_min:          -0.200000003
-    valid_max:          1.0
-    grid_mapping:       MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection
-    Maps:               ()</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'_250m_16_days_NDVI'</div></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-f00709c6-a139-4be4-88a3-b7efb9b3efb5" class="xr-array-in" type="checkbox" checked=""><label for="section-f00709c6-a139-4be4-88a3-b7efb9b3efb5" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>0.1549</span></div><div class="xr-array-data"><pre>array(0.1549, dtype=float32)</pre></div></div></li><li class="xr-section-item"><input id="section-1e08707a-eb23-45b2-8b82-6e07887fb7b6" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-1e08707a-eb23-45b2-8b82-6e07887fb7b6" class="xr-section-summary">Coordinates: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>Latitude</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">30.0</div><input id="attrs-06df41ac-0084-4e90-b07a-d328cff767a5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-06df41ac-0084-4e90-b07a-d328cff767a5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d15dd3ad-78c7-44f1-99bc-8cf62f7d614f" class="xr-var-data-in" type="checkbox"><label for="data-d15dd3ad-78c7-44f1-99bc-8cf62f7d614f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>array(29.996875)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>Longitude</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">-103.9</div><input id="attrs-799962d2-219b-480e-9ffa-9be220983eeb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-799962d2-219b-480e-9ffa-9be220983eeb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-73ea9005-03ab-4f8e-a5f4-02e6f8e014ca" class="xr-var-data-in" type="checkbox"><label for="data-73ea9005-03ab-4f8e-a5f4-02e6f8e014ca" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>array(-103.91616788)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b81e8f33-5e0b-4e41-9b23-a2fb560b3bd9" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-b81e8f33-5e0b-4e41-9b23-a2fb560b3bd9" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-9d588309-2e26-46cc-a1d7-941e74c95960" class="xr-section-summary-in" type="checkbox"><label for="section-9d588309-2e26-46cc-a1d7-941e74c95960" class="xr-section-summary">Attributes: <span>(11)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days NDVI</dd><dt><span>units :</span></dt><dd>NDVI</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>-0.200000003</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div></li></ul></div></div>
+    HDFEOSVersion:                     HDFEOS_V2.19
+    identifier_product_doi:            10.5067/MODIS/MOD13Q1.061
+    identifier_product_doi_authority:  http://dx.doi.org</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-f87c2e09-438c-48a3-bce0-2419a5c8205c" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-f87c2e09-438c-48a3-bce0-2419a5c8205c" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span>/YDim</span>: 4800</li><li><span>/XDim</span>: 4800</li><li><span>/time</span>: 576</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-697be674-4ce9-4f95-b0ef-8094653967c0" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-697be674-4ce9-4f95-b0ef-8094653967c0" class="xr-section-summary">Coordinates: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>Latitude</span></div><div class="xr-var-dims">(/YDim, /XDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3b0cbc3c-44cb-4ea3-9db3-0950c0a057f6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3b0cbc3c-44cb-4ea3-9db3-0950c0a057f6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c4e2409b-17b7-43fb-9cee-f3404aa58189" class="xr-var-data-in" type="checkbox"><label for="data-c4e2409b-17b7-43fb-9cee-f3404aa58189" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[23040000 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>Longitude</span></div><div class="xr-var-dims">(/YDim, /XDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-2066defe-0dc4-44b6-9847-84f1df64ce8d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2066defe-0dc4-44b6-9847-84f1df64ce8d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-21a09d2f-79e5-43a7-9baa-471ce15d75ba" class="xr-var-data-in" type="checkbox"><label for="data-21a09d2f-79e5-43a7-9baa-471ce15d75ba" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[23040000 values with dtype=float64]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-e3cbed59-25fc-4426-bd87-c072685f34c9" class="xr-section-summary-in" type="checkbox"><label for="section-e3cbed59-25fc-4426-bd87-c072685f34c9" class="xr-section-summary">Data variables: <span>(16)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>YDim</span></div><div class="xr-var-dims">(/YDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4006b7c0-b55e-4794-afff-385aa5263858" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4006b7c0-b55e-4794-afff-385aa5263858" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7d48b646-ade0-42b0-9e28-2efbec604dec" class="xr-var-data-in" type="checkbox"><label for="data-7d48b646-ade0-42b0-9e28-2efbec604dec" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd><dt><span>long_name :</span></dt><dd>y coordinate of projection for grid MODIS_Grid_16DAY_250m_500m_VI</dd><dt><span>units :</span></dt><dd>meter</dd><dt><span>_CoordinateAxisType :</span></dt><dd>GeoY</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[4800 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>XDim</span></div><div class="xr-var-dims">(/XDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4fb11e96-6732-4a52-8b0a-f3421826b64c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4fb11e96-6732-4a52-8b0a-f3421826b64c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f215bfc6-659f-4bc8-a5e1-ed5f2810b39d" class="xr-var-data-in" type="checkbox"><label for="data-f215bfc6-659f-4bc8-a5e1-ed5f2810b39d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd><dt><span>long_name :</span></dt><dd>x coordinate of projection for grid MODIS_Grid_16DAY_250m_500m_VI</dd><dt><span>units :</span></dt><dd>meter</dd><dt><span>_CoordinateAxisType :</span></dt><dd>GeoX</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[4800 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4240c4b5-a5f5-412e-9db1-0accef5b0046" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4240c4b5-a5f5-412e-9db1-0accef5b0046" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2867a40d-8aa5-49ad-918e-0887b4c059cd" class="xr-var-data-in" type="checkbox"><label for="data-2867a40d-8aa5-49ad-918e-0887b4c059cd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>grid_mapping_name :</span></dt><dd>sinusoidal</dd><dt><span>longitude_of_central_meridian :</span></dt><dd>0.0</dd><dt><span>earth_radius :</span></dt><dd>6371007.181</dd><dt><span>_CoordinateAxisTypes :</span></dt><dd>GeoX GeoY</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[1 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_VI_Quality</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5d993bf9-5ed0-41aa-a25a-30dd843928c2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5d993bf9-5ed0-41aa-a25a-30dd843928c2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-da087c1f-6482-4354-bc63-7aa34855ba4d" class="xr-var-data-in" type="checkbox"><label for="data-da087c1f-6482-4354-bc63-7aa34855ba4d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days VI Quality</dd><dt><span>units :</span></dt><dd>bit field</dd><dt><span>valid_range :</span></dt><dd>[0, 65534]</dd><dt><span>Legend :</span></dt><dd>
+     Bit Fields Description (Right to Left): 
+    [0-1] : MODLAND_QA [2 bit range] 
+         00: VI produced, good quality 
+         01: VI produced, but check other QA 
+         10: Pixel produced, but most probably cloudy 
+         11: Pixel not produced due to other reasons than clouds 
+    [2-5] : VI usefulness [4 bit range] 
+         0000: Highest quality 
+         0001: Lower quality  
+         0010..1010: Decreasing quality 
+         1100: Lowest quality 
+         1101: Quality so low that it is not useful 
+         1110: L1B data faulty 
+         1111: Not useful for any other reason/not processed 
+    [6-7] : Aerosol quantity [2 bit range] 
+         00: Climatology 
+         01: Low 
+         10: Average 
+         11: High (11) 
+    [8] : Adjacent cloud detected; [1 bit range] 
+         1: Yes 
+         0: No 
+    [9] : Atmosphere BRDF correction performed [1 bit range] 
+         1: Yes 
+         0: No 
+    [10] : Mixed clouds  [1 bit range] 
+         1: Yes 
+         0: No 
+    [11-13] : Land/Water Flag [3 bit range] 
+         000: Shallow ocean 
+         001: Land (Nothing else but land) 
+         010: Ocean coastlines and lake shorelines 
+         011: Shallow inland water 
+         100: Ephemeral water 
+         101: Deep inland water 
+         110: Moderate or continental ocean 
+         111: Deep ocean 
+    [14] : Possible snow/ice [1 bit range] 
+         1: Yes 
+         0: No 
+    [15] : Possible shadow [1 bit range] 
+         1: Yes 
+         0: No 
+</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_red_reflectance</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-227cb08f-a697-43e4-8d26-1f5f0fc612b3" class="xr-var-attrs-in" type="checkbox"><label for="attrs-227cb08f-a697-43e4-8d26-1f5f0fc612b3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-448bb952-4695-425f-b51c-716175242b35" class="xr-var-data-in" type="checkbox"><label for="data-448bb952-4695-425f-b51c-716175242b35" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days red reflectance</dd><dt><span>units :</span></dt><dd>reflectance</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_sun_zenith_angle</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-72ce713c-796e-46a9-8aac-ed4b6d801a8d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-72ce713c-796e-46a9-8aac-ed4b6d801a8d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1ec9edbb-cada-4a0f-a90a-c00244b48375" class="xr-var-data-in" type="checkbox"><label for="data-1ec9edbb-cada-4a0f-a90a-c00244b48375" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days sun zenith angle</dd><dt><span>units :</span></dt><dd>degrees</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>100.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_relative_azimuth_angle</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-20ea15ff-7ff1-447c-8b07-f7e65b2dfcd6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-20ea15ff-7ff1-447c-8b07-f7e65b2dfcd6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8509cfd0-9ba7-47db-ba1f-322843a80b49" class="xr-var-data-in" type="checkbox"><label for="data-8509cfd0-9ba7-47db-ba1f-322843a80b49" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days relative azimuth angle</dd><dt><span>units :</span></dt><dd>degrees</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>100.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_NIR_reflectance</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-d3dac431-661d-4890-8fe6-65e3b33ed67a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d3dac431-661d-4890-8fe6-65e3b33ed67a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5c0ecfed-04e5-42dc-8726-8291034884de" class="xr-var-data-in" type="checkbox"><label for="data-5c0ecfed-04e5-42dc-8726-8291034884de" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days NIR reflectance</dd><dt><span>units :</span></dt><dd>reflectance</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_view_zenith_angle</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0b798ff7-bf02-411b-90ff-ab92aa9c950c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0b798ff7-bf02-411b-90ff-ab92aa9c950c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f9b42c02-35a9-4430-8a2f-37d01b9a6c81" class="xr-var-data-in" type="checkbox"><label for="data-f9b42c02-35a9-4430-8a2f-37d01b9a6c81" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days view zenith angle</dd><dt><span>units :</span></dt><dd>degrees</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>100.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_pixel_reliability</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ea6f1d10-8bf2-4815-9d44-00ea31d85e42" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ea6f1d10-8bf2-4815-9d44-00ea31d85e42" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-924a6e80-92b1-4287-a5cd-8ee6bdf9001c" class="xr-var-data-in" type="checkbox"><label for="data-924a6e80-92b1-4287-a5cd-8ee6bdf9001c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days pixel reliability</dd><dt><span>units :</span></dt><dd>rank</dd><dt><span>valid_range :</span></dt><dd>[0, 3]</dd><dt><span>Legend :</span></dt><dd>
+     Rank Keys: 
+        [-1]:  Fill/No Data-Not Processed. 
+         [0]:  Good data      - Use with confidence 
+         [1]:  Marginal data  - Useful, but look at other QA information 
+         [2]:  Snow/Ice       - Target covered with snow/ice 
+         [3]:  Cloudy         - Target not visible, covered with cloud 
+</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_EVI</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-6e5a31d7-4c98-4f0f-99ec-ca73764b06fa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6e5a31d7-4c98-4f0f-99ec-ca73764b06fa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-737c3d3a-a7f6-40d8-8d54-38939f0a93e8" class="xr-var-data-in" type="checkbox"><label for="data-737c3d3a-a7f6-40d8-8d54-38939f0a93e8" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days EVI</dd><dt><span>units :</span></dt><dd>EVI</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>-0.200000003</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_composite_day_of_the_year</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-356db7c6-eee6-423b-adc2-98ef7eb4afff" class="xr-var-attrs-in" type="checkbox"><label for="attrs-356db7c6-eee6-423b-adc2-98ef7eb4afff" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e1615eb8-7c1a-4a1c-a3c1-26fc6c0f697b" class="xr-var-data-in" type="checkbox"><label for="data-e1615eb8-7c1a-4a1c-a3c1-26fc6c0f697b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days composite day of the year</dd><dt><span>units :</span></dt><dd>Julian day of the year </dd><dt><span>valid_range :</span></dt><dd>[1, 366]</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_MIR_reflectance</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-897ec4e4-7343-430d-99af-014a6361a6f7" class="xr-var-attrs-in" type="checkbox"><label for="attrs-897ec4e4-7343-430d-99af-014a6361a6f7" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4ef8c7f0-4c8d-4ba6-aeb3-4e03bb772c03" class="xr-var-data-in" type="checkbox"><label for="data-4ef8c7f0-4c8d-4ba6-aeb3-4e03bb772c03" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days MIR reflectance</dd><dt><span>units :</span></dt><dd>reflectance</dd><dt><span>Legend :</span></dt><dd>
+     The MIR band saved in the VI product is MODIS band 7 
+         Bandwidth : 2105-2155 nm 
+         Band center: 2130 nm 
+</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_blue_reflectance</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-96eaab80-e6ee-46db-ae3a-86dacda2ac45" class="xr-var-attrs-in" type="checkbox"><label for="attrs-96eaab80-e6ee-46db-ae3a-86dacda2ac45" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f636b8b2-e618-42c8-b1a5-9582a745116b" class="xr-var-data-in" type="checkbox"><label for="data-f636b8b2-e618-42c8-b1a5-9582a745116b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days blue reflectance</dd><dt><span>units :</span></dt><dd>reflectance</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>_250m_16_days_NDVI</span></div><div class="xr-var-dims">(/time, /YDim, /XDim)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5278c544-026a-4d00-a0ca-5d47647ec0ba" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5278c544-026a-4d00-a0ca-5d47647ec0ba" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c64a47f0-125d-4db1-a056-20c987d30d83" class="xr-var-data-in" type="checkbox"><label for="data-c64a47f0-125d-4db1-a056-20c987d30d83" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days NDVI</dd><dt><span>units :</span></dt><dd>NDVI</dd><dt><span>scale_factor_err :</span></dt><dd>0.0</dd><dt><span>add_offset_err :</span></dt><dd>0.0</dd><dt><span>calibrated_nt :</span></dt><dd>5</dd><dt><span>orig_scale_factor :</span></dt><dd>10000.0</dd><dt><span>orig_add_offset :</span></dt><dd>0.0</dd><dt><span>valid_min :</span></dt><dd>-0.200000003</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[13271040000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">(/time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-e4897c3a-ab34-4e9f-8193-5c5e173cb2f0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e4897c3a-ab34-4e9f-8193-5c5e173cb2f0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-06a69546-e7ed-465a-acc2-9fa5102f122b" class="xr-var-data-in" type="checkbox"><label for="data-06a69546-e7ed-465a-acc2-9fa5102f122b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>[576 values with dtype=datetime64[ns]]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-d8071198-eff9-4893-b65d-506674e6bc87" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-d8071198-eff9-4893-b65d-506674e6bc87" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-c726dbdf-4f4b-4172-9040-389e5576a74b" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c726dbdf-4f4b-4172-9040-389e5576a74b" class="xr-section-summary">Attributes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>HDFEOSVersion :</span></dt><dd>HDFEOS_V2.19</dd><dt><span>identifier_product_doi :</span></dt><dd>10.5067/MODIS/MOD13Q1.061</dd><dt><span>identifier_product_doi_authority :</span></dt><dd>http://dx.doi.org</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another url that works with pydap</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/ECOSTRESS/ECO2CLD.001/2018.07.09/ECOSTRESS_L2_CLOUD_00048_001_20180709T204901_0601_03.h5"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> open_url(url, session<span class="op">=</span>session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fdc666be-ba77-4dce-bb6e-bb2cd729509b" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading data works</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"_250m_16_days_VI_Quality"</span>].isel({<span class="st">"/time"</span>: <span class="dv">1</span>, <span class="st">"/YDim"</span>: <span class="dv">1</span>}).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewbox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewbox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray '_250m_16_days_VI_Quality' (/XDim: 4800)&gt; Size: 19kB
+array([2116., 2116., 2116., ..., 2116., 2116., 2116.], dtype=float32)
+Coordinates:
+    Latitude   (/XDim) float64 38kB 30.0 30.0 30.0 30.0 ... 30.0 30.0 30.0 30.0
+    Longitude  (/XDim) float64 38kB -103.9 -103.9 -103.9 ... -92.38 -92.37
+Dimensions without coordinates: /XDim
+Attributes:
+    long_name:     250m 16 days VI Quality
+    units:         bit field
+    valid_range:   [0, 65534]
+    Legend:        \n\t Bit Fields Description (Right to Left): \n\t[0-1] : M...
+    grid_mapping:  MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection
+    Maps:          ()</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'_250m_16_days_VI_Quality'</div><ul class="xr-dim-list"><li><span>/XDim</span>: 4800</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-435042a4-c004-46b5-a34f-8b0f284d7774" class="xr-array-in" type="checkbox" checked=""><label for="section-435042a4-c004-46b5-a34f-8b0f284d7774" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>2.116e+03 2.116e+03 2.116e+03 ... 2.116e+03 2.116e+03 2.116e+03</span></div><div class="xr-array-data"><pre>array([2116., 2116., 2116., ..., 2116., 2116., 2116.], dtype=float32)</pre></div></div></li><li class="xr-section-item"><input id="section-b5777aad-db4b-408d-aac0-77659fb01ef3" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-b5777aad-db4b-408d-aac0-77659fb01ef3" class="xr-section-summary">Coordinates: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>Latitude</span></div><div class="xr-var-dims">(/XDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">30.0 30.0 30.0 ... 30.0 30.0 30.0</div><input id="attrs-3c35a28c-f7e1-40e7-89c1-2e7f56a3b658" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3c35a28c-f7e1-40e7-89c1-2e7f56a3b658" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b036320b-9e99-4031-aa04-8713cc82eabf" class="xr-var-data-in" type="checkbox"><label for="data-b036320b-9e99-4031-aa04-8713cc82eabf" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>array([29.996875, 29.996875, 29.996875, ..., 29.996875, 29.996875,
+       29.996875])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>Longitude</span></div><div class="xr-var-dims">(/XDim)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">-103.9 -103.9 ... -92.38 -92.37</div><input id="attrs-51bfbf5a-a589-4d0e-aff5-ca1be08dd2d5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-51bfbf5a-a589-4d0e-aff5-ca1be08dd2d5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7307d9d6-9f8f-413e-b077-fb541fcf2b83" class="xr-var-data-in" type="checkbox"><label for="data-7307d9d6-9f8f-413e-b077-fb541fcf2b83" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div><div class="xr-var-data"><pre>array([-103.91857343, -103.91616788, -103.91376233, ...,  -92.37914828,
+        -92.37674273,  -92.37433718])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-17147185-1d7f-4356-89f8-9d4b294e1b98" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-17147185-1d7f-4356-89f8-9d4b294e1b98" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-4d53fa8c-0289-49d4-bdae-43cf49fad00b" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-4d53fa8c-0289-49d4-bdae-43cf49fad00b" class="xr-section-summary">Attributes: <span>(6)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>250m 16 days VI Quality</dd><dt><span>units :</span></dt><dd>bit field</dd><dt><span>valid_range :</span></dt><dd>[0, 65534]</dd><dt><span>Legend :</span></dt><dd>
+     Bit Fields Description (Right to Left): 
+    [0-1] : MODLAND_QA [2 bit range] 
+         00: VI produced, good quality 
+         01: VI produced, but check other QA 
+         10: Pixel produced, but most probably cloudy 
+         11: Pixel not produced due to other reasons than clouds 
+    [2-5] : VI usefulness [4 bit range] 
+         0000: Highest quality 
+         0001: Lower quality  
+         0010..1010: Decreasing quality 
+         1100: Lowest quality 
+         1101: Quality so low that it is not useful 
+         1110: L1B data faulty 
+         1111: Not useful for any other reason/not processed 
+    [6-7] : Aerosol quantity [2 bit range] 
+         00: Climatology 
+         01: Low 
+         10: Average 
+         11: High (11) 
+    [8] : Adjacent cloud detected; [1 bit range] 
+         1: Yes 
+         0: No 
+    [9] : Atmosphere BRDF correction performed [1 bit range] 
+         1: Yes 
+         0: No 
+    [10] : Mixed clouds  [1 bit range] 
+         1: Yes 
+         0: No 
+    [11-13] : Land/Water Flag [3 bit range] 
+         000: Shallow ocean 
+         001: Land (Nothing else but land) 
+         010: Ocean coastlines and lake shorelines 
+         011: Shallow inland water 
+         100: Ephemeral water 
+         101: Deep inland water 
+         110: Moderate or continental ocean 
+         111: Deep ocean 
+    [14] : Possible snow/ice [1 bit range] 
+         1: Yes 
+         0: No 
+    [15] : Possible shadow [1 bit range] 
+         1: Yes 
+         0: No 
+</dd><dt><span>grid_mapping :</span></dt><dd>MODIS_Grid_16DAY_250m_500m_VI_eos_cf_projection</dd><dt><span>Maps :</span></dt><dd>()</dd></dl></div></li></ul></div></div>
+</div>
+</div>
+<div id="aaaa1963-a372-43aa-a23a-66c60ea335ad" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is another url that works with pydap</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://opendap.cr.usgs.gov/opendap/hyrax/ECOSTRESS/ECO2CLD.001/2018.07.09/ECOSTRESS_L2_CLOUD_00048_001_20180709T204901_0601_03.h5"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pydap_ds <span class="op">=</span> pydap.client.open_url(url, session<span class="op">=</span>edl_session, protocol<span class="op">=</span><span class="st">"dap4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="setting-token-based-authentication-with-pydap" class="level2">
+<h2 class="anchored" data-anchor-id="setting-token-based-authentication-with-pydap">Setting token-based authentication with pydap</h2>
+<p>If you don’t want to use earthaccess, here is how to set up token-based authentication with pydap. Go on your Earthdata login user profile to create a token.</p>
+<div id="cc6cfcb7-d8ae-49e4-ae42-94c55e9e0b11" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>edl_token <span class="op">=</span> <span class="st">"put your token here"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>auth_hdr<span class="op">=</span><span class="st">"Bearer "</span> <span class="op">+</span> edl_token</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>token_session <span class="op">=</span> requests.Session()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>token_session.headers<span class="op">=</span>{<span class="st">"Authorization"</span>: auth_hdr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Working with USGS data on its OPeNDAP server is hard if you want an xarray object.</p>
+<p>Working with USGS data on its OPeNDAP server requires Earthdata authentication. Use token-based authentication to solve redirect errors. <code>earthaccess</code> helps with this.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -1278,6 +2116,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../topics-2025/2025-opendap/4-nsidc.html" class="pagination-link" aria-label="NSIDC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">NSIDC</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../topics-2025/2025-opendap/6-nasa-pydap.html" class="pagination-link" aria-label="NASA OPeNDAP servers - extras">
+        <span class="nav-page-text">NASA OPeNDAP servers - extras</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
