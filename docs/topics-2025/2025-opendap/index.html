@@ -521,7 +521,7 @@ function googleTranslateElementInit() {
 
 
 <p>In this session, you will get an introduction to accessing data on data servers that provide <a href="https://www.opendap.org/">OPeNDAP</a> for data access. <a href="https://www.opendap.org/about/what-is-opendap/">What is OPeNDAP</a>? “OPeNDAP is the commonly used name for a discipline-neutral data access protocol (DAP) that’s widely utilized both to access and to provide data over the internet. You will find lots of data servers that use OPeNDAP.</p>
-<p>Note, these tutorials are narrowly focused on an <code>xarray</code> workflow. The goal is to create a lazy (no data loaded) <code>xarray</code> data cubes via <code>open_dataset</code> and <code>open_mfdataset</code> functions.</p>
+<p>Note, these tutorials are narrowly focused on an <code>xarray</code> workflow with <code>earthaccess</code> handling authentication and <code>pydap</code> as the underlying engine. The goal is to create a lazy (no data loaded) <code>xarray</code> data cubes via <code>open_dataset</code> and <code>open_mfdataset</code> functions.</p>
 <p>If you use NASA data, they are migrating to serving their data to the cloud and you should look at the <code>earthaccess</code> examples for data access. If you use NOAA data, they use a lot of ERDDAP servers, which are built off OPeNDAP but have some extra features. Go to the ERDDAP examples. If your data are somewhere in a cloud-native format (Zarr, geotiff) use that. That is going to be a lot easier (and faster) to work with for the xarray workflows that I focus in the 2025 HackDays tutorials.</p>
 <section id="tutorials" class="level2">
 <h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
@@ -529,14 +529,15 @@ function googleTranslateElementInit() {
 <li>Simple example 1 with no authentication needed. <a href="1-ncep-ncar.html">NCEP-NCAR</a></li>
 <li>Simple example 2 with no authentication needed. <a href="2-dbofs.html">Delaware Bay Operational Forecast System</a></li>
 <li>NASA OPeNDAP servers, authentication needed. <a href="3-earthdata-auth.html">NASA OPeNDAP</a></li>
-<li>NSIDC serviers, authentication needed. Working on this. Lots of problems with redirects.</li>
+<li>NSIDC server, NASA Earthdata authentication needed.</li>
+<li>USDA LPDAAC server, NASA Earthdata authentication needed.</li>
 </ul>
 </section>
 <section id="servers-that-use-nasa-earthdata-authentication" class="level2">
 <h2 class="anchored" data-anchor-id="servers-that-use-nasa-earthdata-authentication">Servers that use NASA Earthdata authentication</h2>
 <p>Things with <code>nasa.gov</code> are obvious but a couple others without nasa.gov in the url also use it.</p>
 <ul>
-<li>list of NASA opendap servers: <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers" class="uri">https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers</a></li>
+<li>list (not fully up to date) of NASA opendap servers: <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers" class="uri">https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers</a></li>
 <li>NSIDC <a href="https://n5eil02u.ecs.nsidc.org/opendap/" class="uri">https://n5eil02u.ecs.nsidc.org/opendap/</a> <a href="https://nsidc.org/data/user-resources/help-center/how-do-i-access-data-using-opendap">docs</a></li>
 <li>USGS LPDAAC <a href="https://opendap.cr.usgs.gov/opendap/hyrax/" class="uri">https://opendap.cr.usgs.gov/opendap/hyrax/</a></li>
 </ul>
@@ -547,6 +548,9 @@ function googleTranslateElementInit() {
 <li><a href="https://docs.xarray.dev/en/stable/user-guide/io.html#opendap">xarray support for opendap</a></li>
 <li><a href="https://pydap.github.io/pydap/intro.html">pydap</a></li>
 <li><a href="https://github.com/ornldaac/daymet-python-opendap-xarray" class="uri">https://github.com/ornldaac/daymet-python-opendap-xarray</a></li>
+<li><a href="https://github.com/podaac/tutorials/blob/master/notebooks/opendap/MUR-OPeNDAP.ipynb" class="uri">https://github.com/podaac/tutorials/blob/master/notebooks/opendap/MUR-OPeNDAP.ipynb</a></li>
+<li><a href="https://earthaccess.readthedocs.io/en/latest/user-reference/api/api/#earthaccess.api.get_requests_https_session" class="uri">https://earthaccess.readthedocs.io/en/latest/user-reference/api/api/#earthaccess.api.get_requests_https_session</a></li>
+<li><a href="https://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud" class="uri">https://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud</a></li>
 </ul>
 
 

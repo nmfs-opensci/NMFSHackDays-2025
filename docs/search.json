@@ -994,7 +994,7 @@
     "href": "topics-2025/2025-opendap/6-nasa-pydap.html#references-1",
     "title": "Accessing data on NASA Earthdata servers via OPeNDAP protocol and PyDAP",
     "section": "References",
-    "text": "References\n\nhttps://pydap.github.io/pydap/intro.html\nhttps://opendap.github.io/documentation/tutorials/ClientAuthentication.html#_pydap\nhttps://github.com/OPENDAP/NASA-tutorials/tree/main",
+    "text": "References\n\nhttps://pydap.github.io/pydap/intro.html\nhttps://opendap.github.io/documentation/tutorials/ClientAuthentication.html#_pydap\nhttps://github.com/OPENDAP/NASA-tutorials/tree/main\nhttps://pydap.github.io/pydap/notebooks/Authentication.html",
     "crumbs": [
       "Python - OPeNDAP",
       "NASA OPeNDAP servers - extras"
@@ -1005,7 +1005,7 @@
     "href": "topics-2025/2025-opendap/index.html",
     "title": "OPeNDAP - Python",
     "section": "",
-    "text": "In this session, you will get an introduction to accessing data on data servers that provide OPeNDAP for data access. What is OPeNDAP? “OPeNDAP is the commonly used name for a discipline-neutral data access protocol (DAP) that’s widely utilized both to access and to provide data over the internet. You will find lots of data servers that use OPeNDAP.\nNote, these tutorials are narrowly focused on an xarray workflow. The goal is to create a lazy (no data loaded) xarray data cubes via open_dataset and open_mfdataset functions.\nIf you use NASA data, they are migrating to serving their data to the cloud and you should look at the earthaccess examples for data access. If you use NOAA data, they use a lot of ERDDAP servers, which are built off OPeNDAP but have some extra features. Go to the ERDDAP examples. If your data are somewhere in a cloud-native format (Zarr, geotiff) use that. That is going to be a lot easier (and faster) to work with for the xarray workflows that I focus in the 2025 HackDays tutorials.",
+    "text": "In this session, you will get an introduction to accessing data on data servers that provide OPeNDAP for data access. What is OPeNDAP? “OPeNDAP is the commonly used name for a discipline-neutral data access protocol (DAP) that’s widely utilized both to access and to provide data over the internet. You will find lots of data servers that use OPeNDAP.\nNote, these tutorials are narrowly focused on an xarray workflow with earthaccess handling authentication and pydap as the underlying engine. The goal is to create a lazy (no data loaded) xarray data cubes via open_dataset and open_mfdataset functions.\nIf you use NASA data, they are migrating to serving their data to the cloud and you should look at the earthaccess examples for data access. If you use NOAA data, they use a lot of ERDDAP servers, which are built off OPeNDAP but have some extra features. Go to the ERDDAP examples. If your data are somewhere in a cloud-native format (Zarr, geotiff) use that. That is going to be a lot easier (and faster) to work with for the xarray workflows that I focus in the 2025 HackDays tutorials.",
     "crumbs": [
       "Python - OPeNDAP"
     ]
@@ -1015,7 +1015,7 @@
     "href": "topics-2025/2025-opendap/index.html#tutorials",
     "title": "OPeNDAP - Python",
     "section": "Tutorials",
-    "text": "Tutorials\n\nSimple example 1 with no authentication needed. NCEP-NCAR\nSimple example 2 with no authentication needed. Delaware Bay Operational Forecast System\nNASA OPeNDAP servers, authentication needed. NASA OPeNDAP\nNSIDC serviers, authentication needed. Working on this. Lots of problems with redirects.",
+    "text": "Tutorials\n\nSimple example 1 with no authentication needed. NCEP-NCAR\nSimple example 2 with no authentication needed. Delaware Bay Operational Forecast System\nNASA OPeNDAP servers, authentication needed. NASA OPeNDAP\nNSIDC server, NASA Earthdata authentication needed.\nUSDA LPDAAC server, NASA Earthdata authentication needed.",
     "crumbs": [
       "Python - OPeNDAP"
     ]
@@ -1025,7 +1025,7 @@
     "href": "topics-2025/2025-opendap/index.html#servers-that-use-nasa-earthdata-authentication",
     "title": "OPeNDAP - Python",
     "section": "Servers that use NASA Earthdata authentication",
-    "text": "Servers that use NASA Earthdata authentication\nThings with nasa.gov are obvious but a couple others without nasa.gov in the url also use it.\n\nlist of NASA opendap servers: https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers\nNSIDC https://n5eil02u.ecs.nsidc.org/opendap/ docs\nUSGS LPDAAC https://opendap.cr.usgs.gov/opendap/hyrax/",
+    "text": "Servers that use NASA Earthdata authentication\nThings with nasa.gov are obvious but a couple others without nasa.gov in the url also use it.\n\nlist (not fully up to date) of NASA opendap servers: https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers\nNSIDC https://n5eil02u.ecs.nsidc.org/opendap/ docs\nUSGS LPDAAC https://opendap.cr.usgs.gov/opendap/hyrax/",
     "crumbs": [
       "Python - OPeNDAP"
     ]
@@ -1035,7 +1035,7 @@
     "href": "topics-2025/2025-opendap/index.html#references",
     "title": "OPeNDAP - Python",
     "section": "References",
-    "text": "References\n\nxarray support for opendap\npydap\nhttps://github.com/ornldaac/daymet-python-opendap-xarray",
+    "text": "References\n\nxarray support for opendap\npydap\nhttps://github.com/ornldaac/daymet-python-opendap-xarray\nhttps://github.com/podaac/tutorials/blob/master/notebooks/opendap/MUR-OPeNDAP.ipynb\nhttps://earthaccess.readthedocs.io/en/latest/user-reference/api/api/#earthaccess.api.get_requests_https_session\nhttps://podaac.jpl.nasa.gov/OPeNDAP-in-the-Cloud",
     "crumbs": [
       "Python - OPeNDAP"
     ]
