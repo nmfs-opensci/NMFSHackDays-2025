@@ -154,6 +154,8 @@ website:
               href: topics-2025/2025-opendap/7-nomads.html
             - text: NASA OPeNDAP servers - extras
               href: topics-2025/2025-opendap/6-nasa-pydap.html
+            - text: DAP2 vs DAP4
+              href: topics-2025/2025-opendap/dap2-vs-dap4.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards
