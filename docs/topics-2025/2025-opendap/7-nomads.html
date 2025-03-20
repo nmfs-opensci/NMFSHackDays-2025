@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Eli Holmes (NOAA)">
+
+<title>NOAA Operational Model Archive and Distribution System – NMFS HackHours 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../topics-2025/2025-opendap/6-nasa-pydap.html" rel="next">
+<link href="../../topics-2025/2025-opendap/5-usgs.html" rel="prev">
+<link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">NMFS HackHours 2025</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://nmfs-openscapes.2i2c.cloud/"> <i class="bi bi-server" role="img">
+</i> 
+<span class="menu-text">JupyterHub</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/orgs/nmfs-openscapes/discussions/categories/hackhours"> <i class="bi bi-wechat" role="img">
+</i> 
+<span class="menu-text">Discussions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NMFSHackDays-2025"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">repo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/nmfs-opensci"> <i class="bi bi-globe" role="img">
+</i> 
+<span class="menu-text">GH org</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/7-nomads.html">NOMADS</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hackhours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-skills/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub Skills</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/jhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Hub</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quick Start</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to JupyterHubs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to Git</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git Authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in JupyterLab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthdata login</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3 Scratch Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AWS S3 Bucket</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-skills/04-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+ <span class="menu-text">HackHour 2025 Topics</span>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/1-earthaccess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-14-earthdata/5-virtual-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Create a virtual data set</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-21-earthdata/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - NASA Earth Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Data catalog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/1-earthdatalogin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">earthaccess package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/2-subset-and-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Subset and plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply a polygon boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-21-earthdata/4-data-cubes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes and aggregating</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-02-28-ERDDAP-Py/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data cubes with ERDDAP and xarray</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-03-07-ERDDAP-R/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - ERDDAP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Match to points on a track</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Masking shallow pixels</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../topics-2025/2025-opendap/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - OPeNDAP</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/1-ncep-ncar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple example 1 - NCEP-NCAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/2-dbofs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple example 1 - ROMS Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/3-nasa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NASA OPeNDAP servers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/4-nsidc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NSIDC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/5-usgs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">USGS LPDAAC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/7-nomads.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">NOMADS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/6-nasa-pydap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pydap authentication</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-opendap/dap2-vs-dap4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DAP2 vs DAP4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Guest Speakers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/reuse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reuse Statement</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../coc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code of Conduct</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#load-some-data-and-plot" id="toc-load-some-data-and-plot" class="nav-link" data-scroll-target="#load-some-data-and-plot">Load some data and plot</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-opendap/7-nomads.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-opendap/7-nomads.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+    function openJupyterWidget(notebookUrl) {
+        let encodedNotebookUrl = encodeURIComponent(notebookUrl);
+        let popupUrl = `https://nmfs-opensci.github.io/NMFSHackDays-2025/widgets/jupyterhub_link_widget.html?notebook=${encodedNotebookUrl}`;
+        let popupWindow = window.open(popupUrl, "JupyterWidget", "width=600,height=400");
+        if (!popupWindow) {
+            alert("Popup blocked! Please allow popups for this site.");
+        }
+    }
+</script>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/index.html">Python - OPeNDAP</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-opendap/7-nomads.html">NOMADS</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">NOAA Operational Model Archive and Distribution System</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eli Holmes (NOAA) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-opendap/7-nomads.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-opendap/7-nomads.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/7-nomads.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>WORK IN PROGRESS</p>
+<p>This tutorial will show examples of working with OPeNDAP data from the NOAA Operational Model Archive and Distribution System. These OPeNDAP servers use the GrADS protocol.</p>
+<p><a href="https://nomads.ncep.noaa.gov/" class="uri">https://nomads.ncep.noaa.gov/</a></p>
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
+</section>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<div id="108ce5a7-a596-41bf-9b2a-97c381607336" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="load-some-data-and-plot" class="level2">
+<h2 class="anchored" data-anchor-id="load-some-data-and-plot">Load some data and plot</h2>
+<div id="46f04435-ecb7-4895-8f28-0b989e0a75f0" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url<span class="op">=</span><span class="st">"http://nomads.ncep.noaa.gov:80/dods/fnl/fnl20250312/fnlflx_00z"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f09bfb8c-ef18-46b7-9a82-7e6eddb78def" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># time will need to be fixed probably</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url, decode_times<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="83b9c4b1-afc5-4f6c-a0f7-b1948a2d2890" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset size: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> Tb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset size: 2.13 Tb</code></pre>
+</div>
+</div>
+<div id="5c2b077f-f5f6-4e22-bbce-817966c6a51d" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewbox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewbox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt; Size: 2GB
+Dimensions:         (time: 1, lat: 1536, lon: 3072)
+Coordinates:
+  * time            (time) float64 8B 7.393e+05
+  * lat             (lat) float64 12kB -89.91 -89.79 -89.68 ... 89.79 89.91
+  * lon             (lon) float64 25kB 0.0 0.1172 0.2344 ... 359.6 359.8 359.9
+Data variables: (12/113)
+    acondsfc        (time, lat, lon) float32 19MB ...
+    albdosfc        (time, lat, lon) float32 19MB ...
+    cduvbsfc        (time, lat, lon) float32 19MB ...
+    cnwatsfc        (time, lat, lon) float32 19MB ...
+    cpofpsfc        (time, lat, lon) float32 19MB ...
+    cpratsfc        (time, lat, lon) float32 19MB ...
+    ...              ...
+    vgrd10m         (time, lat, lon) float32 19MB ...
+    vgrdhy1         (time, lat, lon) float32 19MB ...
+    vgtypsfc        (time, lat, lon) float32 19MB ...
+    watrsfc         (time, lat, lon) float32 19MB ...
+    weasdsfc        (time, lat, lon) float32 19MB ...
+    wiltsfc         (time, lat, lon) float32 19MB ...
+Attributes:
+    title:        GDAS flux file at 00Z12mar2025, downloaded Mar 12 06:56 UTC
+    Conventions:  COARDS\nGrADS
+    dataType:     Grid
+    history:      Sat Mar 15 17:21:35 UTC 2025 : imported by GrADS Data Serve...</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-d7da37a4-959f-4f34-8e83-cd1706c07e30" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-d7da37a4-959f-4f34-8e83-cd1706c07e30" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 1</li><li><span class="xr-has-index">lat</span>: 1536</li><li><span class="xr-has-index">lon</span>: 3072</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-597b9073-5e3e-4736-83b7-de8723c11d35" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-597b9073-5e3e-4736-83b7-de8723c11d35" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">7.393e+05</div><input id="attrs-7fc15a88-8412-41ce-ba37-10e5671d4e1d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7fc15a88-8412-41ce-ba37-10e5671d4e1d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-92c70f51-f25f-4aac-9d3b-a6c8fef66ba9" class="xr-var-data-in" type="checkbox"><label for="data-92c70f51-f25f-4aac-9d3b-a6c8fef66ba9" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>grads_dim :</span></dt><dd>t</dd><dt><span>grads_mapping :</span></dt><dd>linear</dd><dt><span>grads_size :</span></dt><dd>1</dd><dt><span>grads_min :</span></dt><dd>00z12mar2025</dd><dt><span>grads_step :</span></dt><dd>1hr</dd><dt><span>units :</span></dt><dd>days since 1-1-1 00:00:0.0</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>minimum :</span></dt><dd>00z12mar2025</dd><dt><span>maximum :</span></dt><dd>00z12mar2025</dd></dl></div><div class="xr-var-data"><pre>array([739323.])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">-89.91 -89.79 ... 89.79 89.91</div><input id="attrs-279fe323-d0b4-4902-9b52-782f4a99155e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-279fe323-d0b4-4902-9b52-782f4a99155e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-793bdbf7-af46-4c65-85d8-196f74456705" class="xr-var-data-in" type="checkbox"><label for="data-793bdbf7-af46-4c65-85d8-196f74456705" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>grads_dim :</span></dt><dd>y</dd><dt><span>grads_mapping :</span></dt><dd>levels</dd><dt><span>grads_size :</span></dt><dd>1536</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>minimum :</span></dt><dd>-89.91</dd><dt><span>maximum :</span></dt><dd>89.91</dd><dt><span>resolution :</span></dt><dd>0.11714658</dd></dl></div><div class="xr-var-data"><pre>array([-89.91 , -89.794, -89.677, ...,  89.677,  89.794,  89.91 ])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">0.0 0.1172 0.2344 ... 359.8 359.9</div><input id="attrs-c67edda5-2d1a-4a3c-93d7-6d81e1dab43c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c67edda5-2d1a-4a3c-93d7-6d81e1dab43c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-215c36a7-5999-4fc0-a2be-fa3d8020a257" class="xr-var-data-in" type="checkbox"><label for="data-215c36a7-5999-4fc0-a2be-fa3d8020a257" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>grads_dim :</span></dt><dd>x</dd><dt><span>grads_mapping :</span></dt><dd>linear</dd><dt><span>grads_size :</span></dt><dd>3072</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>minimum :</span></dt><dd>0.0</dd><dt><span>maximum :</span></dt><dd>359.882813</dd><dt><span>resolution :</span></dt><dd>0.1171875</dd></dl></div><div class="xr-var-data"><pre>array([0.000000e+00, 1.171875e-01, 2.343750e-01, ..., 3.596484e+02,
+       3.597656e+02, 3.598828e+02])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-bb5ee3eb-91bd-4f6e-ae87-648ce9e8c2fe" class="xr-section-summary-in" type="checkbox"><label for="section-bb5ee3eb-91bd-4f6e-ae87-648ce9e8c2fe" class="xr-section-summary">Data variables: <span>(113)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>acondsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-7a39cdb2-66eb-4416-aad6-86fb88dd4455" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7a39cdb2-66eb-4416-aad6-86fb88dd4455" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e7a25203-cb6b-46ae-b1a4-7497e58cd2a3" class="xr-var-data-in" type="checkbox"><label for="data-e7a25203-cb6b-46ae-b1a4-7497e58cd2a3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface aerodynamic conductance [m/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>albdosfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-e2be3d63-d5a0-4cc3-ba26-9856f0dd738f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e2be3d63-d5a0-4cc3-ba26-9856f0dd738f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2d9407e3-0642-4870-916f-a8887952b4ef" class="xr-var-data-in" type="checkbox"><label for="data-2d9407e3-0642-4870-916f-a8887952b4ef" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface albedo [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>cduvbsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-c936ed63-e8f0-4196-b145-160f6ddfb302" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c936ed63-e8f0-4196-b145-160f6ddfb302" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-855df246-ea20-43fe-bd57-c6015489aba6" class="xr-var-data-in" type="checkbox"><label for="data-855df246-ea20-43fe-bd57-c6015489aba6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface clear sky uv-b downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>cnwatsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-84aa66fd-0d97-4dbe-a78b-68ae65ae5547" class="xr-var-attrs-in" type="checkbox"><label for="attrs-84aa66fd-0d97-4dbe-a78b-68ae65ae5547" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b5d0cb33-c118-488f-ad1d-1dd2ee096780" class="xr-var-data-in" type="checkbox"><label for="data-b5d0cb33-c118-488f-ad1d-1dd2ee096780" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface plant canopy surface water [kg/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>cpofpsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-48b85d09-36b2-4c31-9600-a069414397f2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-48b85d09-36b2-4c31-9600-a069414397f2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0ba79470-7abd-4d47-8898-f85b71d58f48" class="xr-var-data-in" type="checkbox"><label for="data-0ba79470-7abd-4d47-8898-f85b71d58f48" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface percent frozen precipitation [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>cpratsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-476f2ec7-5eb0-4a34-a180-a9957440f970" class="xr-var-attrs-in" type="checkbox"><label for="attrs-476f2ec7-5eb0-4a34-a180-a9957440f970" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f1d647ae-a841-46e4-9dae-4ee31177879f" class="xr-var-data-in" type="checkbox"><label for="data-f1d647ae-a841-46e4-9dae-4ee31177879f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface convective precipitation rate [kg/m^2/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>csdlfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-1adf0d13-69f4-4a68-bd9a-5818142f0c5d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1adf0d13-69f4-4a68-bd9a-5818142f0c5d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6c2143af-9294-47fe-b2f3-2d5b128e5764" class="xr-var-data-in" type="checkbox"><label for="data-6c2143af-9294-47fe-b2f3-2d5b128e5764" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface clear sky downward long wave flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>csdsfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4127b001-9926-40b6-b7a1-c4af22165616" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4127b001-9926-40b6-b7a1-c4af22165616" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a875aebd-7562-48c5-ba05-5d7c74a8fd87" class="xr-var-data-in" type="checkbox"><label for="data-a875aebd-7562-48c5-ba05-5d7c74a8fd87" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface clear sky downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>csulfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-154e5a47-766d-4b5f-9920-0ba250f343ae" class="xr-var-attrs-in" type="checkbox"><label for="attrs-154e5a47-766d-4b5f-9920-0ba250f343ae" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4869a031-ba69-4d69-97a3-d0ab55090ff5" class="xr-var-data-in" type="checkbox"><label for="data-4869a031-ba69-4d69-97a3-d0ab55090ff5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface clear sky upward long wave flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>csulftoa</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-dfe488a2-8bab-4555-99d5-b9148546415f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-dfe488a2-8bab-4555-99d5-b9148546415f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c03c13f5-f143-4757-96a4-7915c33d3dca" class="xr-var-data-in" type="checkbox"><label for="data-c03c13f5-f143-4757-96a4-7915c33d3dca" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** top of atmosphere clear sky upward long wave flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>csusfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-6ca8ab4e-ced0-4018-8c02-ffc800af5b01" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6ca8ab4e-ced0-4018-8c02-ffc800af5b01" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d307bf92-b117-4675-b9db-f85414461cfa" class="xr-var-data-in" type="checkbox"><label for="data-d307bf92-b117-4675-b9db-f85414461cfa" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface clear sky upward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>csusftoa</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f1edc79c-77f2-46db-b779-5826e27aac63" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f1edc79c-77f2-46db-b779-5826e27aac63" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8b0d85f1-6dbf-46e2-8483-f295a2ebbe8d" class="xr-var-data-in" type="checkbox"><label for="data-8b0d85f1-6dbf-46e2-8483-f295a2ebbe8d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** top of atmosphere clear sky upward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>cworkclm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3bd94440-a5af-473b-a926-52c739a47c2a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3bd94440-a5af-473b-a926-52c739a47c2a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-405a7951-830e-4c64-b74f-5cadeac4628e" class="xr-var-data-in" type="checkbox"><label for="data-405a7951-830e-4c64-b74f-5cadeac4628e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** entire atmosphere (considered as a single layer) cloud work function [j/kg] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dlwrfavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-2b12409e-a585-447e-94ac-0d5dfa94a5f7" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2b12409e-a585-447e-94ac-0d5dfa94a5f7" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e8f2c6ff-ef15-49c4-9521-e3961fa001f5" class="xr-var-data-in" type="checkbox"><label for="data-e8f2c6ff-ef15-49c4-9521-e3961fa001f5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface downward long-wave rad. flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dlwrfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-8a7667a6-4c85-48b6-af4d-a4282f7e5eec" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8a7667a6-4c85-48b6-af4d-a4282f7e5eec" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ade2f987-debe-45cb-b224-da23583c46e0" class="xr-var-data-in" type="checkbox"><label for="data-ade2f987-debe-45cb-b224-da23583c46e0" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface downward long-wave rad. flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dswrfavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-83dfec13-329f-4c87-aec1-9b8324dd8587" class="xr-var-attrs-in" type="checkbox"><label for="attrs-83dfec13-329f-4c87-aec1-9b8324dd8587" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c2fd220b-8a73-4ae4-96fd-0e2268df3f5e" class="xr-var-data-in" type="checkbox"><label for="data-c2fd220b-8a73-4ae4-96fd-0e2268df3f5e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface downward short-wave radiation flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dswrftoa</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-03e87ca6-9aa6-411b-83e4-c9b644fc4b65" class="xr-var-attrs-in" type="checkbox"><label for="attrs-03e87ca6-9aa6-411b-83e4-c9b644fc4b65" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a14b0c05-593e-4d87-a501-fcda81b8d9c1" class="xr-var-data-in" type="checkbox"><label for="data-a14b0c05-593e-4d87-a501-fcda81b8d9c1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** top of atmosphere downward short-wave radiation flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dswrfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4e67555b-8fad-48be-a4b1-cb2d55d9f3dd" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4e67555b-8fad-48be-a4b1-cb2d55d9f3dd" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0fd39a04-7f38-4241-a163-8133e38ce01d" class="xr-var-data-in" type="checkbox"><label for="data-0fd39a04-7f38-4241-a163-8133e38ce01d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface downward short-wave radiation flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>duvbsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-40ae3c8e-0145-4f18-8551-9b56f654e43f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-40ae3c8e-0145-4f18-8551-9b56f654e43f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e63cb8e4-aad0-4f51-ae28-6003703f5380" class="xr-var-data-in" type="checkbox"><label for="data-e63cb8e4-aad0-4f51-ae28-6003703f5380" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface uv-b downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>evbssfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-1288deef-3330-4dfa-8a74-7a8f135640c8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1288deef-3330-4dfa-8a74-7a8f135640c8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-255cca93-73c8-4802-84b9-c8aeca215cc0" class="xr-var-data-in" type="checkbox"><label for="data-255cca93-73c8-4802-84b9-c8aeca215cc0" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface direct evaporation from bare soil [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>evcwsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-126b6473-eee8-49c2-9b6c-26e2bd0c7cef" class="xr-var-attrs-in" type="checkbox"><label for="attrs-126b6473-eee8-49c2-9b6c-26e2bd0c7cef" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5a5942b2-2bd0-443a-af14-8d0babe61072" class="xr-var-data-in" type="checkbox"><label for="data-5a5942b2-2bd0-443a-af14-8d0babe61072" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface canopy water evaporation [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>fldcpsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-35d128f0-cb54-453e-a6a8-ab3b3fd9952f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-35d128f0-cb54-453e-a6a8-ab3b3fd9952f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-106d8c64-eef8-4646-a16e-ab5dc0eea3bc" class="xr-var-data-in" type="checkbox"><label for="data-106d8c64-eef8-4646-a16e-ab5dc0eea3bc" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface field capacity [fraction] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>fricvsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f1304173-119b-4ecd-8907-460e386631a4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f1304173-119b-4ecd-8907-460e386631a4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5c3da6c9-4093-4a4a-9d58-e0710bdf92b7" class="xr-var-data-in" type="checkbox"><label for="data-5c3da6c9-4093-4a4a-9d58-e0710bdf92b7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface frictional velocity [m/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>gfluxavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5334b8ac-76ad-43a6-bec5-66c888ab7e77" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5334b8ac-76ad-43a6-bec5-66c888ab7e77" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a7a4c47b-7996-4bbb-935e-762460d19718" class="xr-var-data-in" type="checkbox"><label for="data-a7a4c47b-7996-4bbb-935e-762460d19718" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface ground heat flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>gfluxsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-551dd3c6-6863-4c38-88fb-ccd77d2a56dc" class="xr-var-attrs-in" type="checkbox"><label for="attrs-551dd3c6-6863-4c38-88fb-ccd77d2a56dc" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-16351968-d4d1-4c21-8087-f5cb1a86e1b4" class="xr-var-data-in" type="checkbox"><label for="data-16351968-d4d1-4c21-8087-f5cb1a86e1b4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface ground heat flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>hcdchcll</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-753b21d1-6298-4a95-99eb-fe0c609cae18" class="xr-var-attrs-in" type="checkbox"><label for="attrs-753b21d1-6298-4a95-99eb-fe0c609cae18" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-dff66417-1e73-4ca6-8700-a6a308a70cb6" class="xr-var-data-in" type="checkbox"><label for="data-dff66417-1e73-4ca6-8700-a6a308a70cb6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** high cloud layer high cloud cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>hgtsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-c67e16e9-54a6-49e6-b740-c1270e942c4d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c67e16e9-54a6-49e6-b740-c1270e942c4d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cd2994a8-80c6-4930-a45d-22df39c4fd08" class="xr-var-data-in" type="checkbox"><label for="data-cd2994a8-80c6-4930-a45d-22df39c4fd08" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface geopotential height [gpm] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>hgthy1</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3b73b15e-74ff-4fca-8f6e-a710b88c5b64" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3b73b15e-74ff-4fca-8f6e-a710b88c5b64" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bdd09363-18da-42b3-88e4-59bd9070e5f4" class="xr-var-data-in" type="checkbox"><label for="data-bdd09363-18da-42b3-88e4-59bd9070e5f4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1 hybrid level geopotential height [gpm] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>hpblsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-d207244f-6e91-4e50-839f-053c6f8e8f74" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d207244f-6e91-4e50-839f-053c6f8e8f74" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a8734dcf-2b2f-4e64-8b0f-0d7c50ea5093" class="xr-var-data-in" type="checkbox"><label for="data-a8734dcf-2b2f-4e64-8b0f-0d7c50ea5093" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface planetary boundary layer height [m] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>icecsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-19ddf19a-484e-430d-8f3b-4492d5f0bb3d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-19ddf19a-484e-430d-8f3b-4492d5f0bb3d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1188e9ed-b12b-4d6b-96a0-0d552c19bbba" class="xr-var-data-in" type="checkbox"><label for="data-1188e9ed-b12b-4d6b-96a0-0d552c19bbba" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface ice cover [proportion] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>icetksfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-b4f820ad-953a-4413-b9d6-31c7407eabbb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b4f820ad-953a-4413-b9d6-31c7407eabbb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-09a2a542-aea5-4856-a3ca-29148ba4d601" class="xr-var-data-in" type="checkbox"><label for="data-09a2a542-aea5-4856-a3ca-29148ba4d601" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface ice thickness [m] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>landsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-37d1bc1e-e6ce-424b-9453-c58a835c8ae7" class="xr-var-attrs-in" type="checkbox"><label for="attrs-37d1bc1e-e6ce-424b-9453-c58a835c8ae7" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f127dedc-a16f-4ea4-be35-a12e2279f709" class="xr-var-data-in" type="checkbox"><label for="data-f127dedc-a16f-4ea4-be35-a12e2279f709" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface land cover (0=sea, 1=land) [proportion] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lcdclcll</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-cd846b62-9362-4016-afb4-af2106ed5eaa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-cd846b62-9362-4016-afb4-af2106ed5eaa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ea82e303-9e72-456a-b91f-3913f5613304" class="xr-var-data-in" type="checkbox"><label for="data-ea82e303-9e72-456a-b91f-3913f5613304" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** low cloud layer low cloud cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lhtflavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-77977fed-3320-42cb-b656-38fe6da6dad4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-77977fed-3320-42cb-b656-38fe6da6dad4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8a9b3ee3-a81a-4a4c-a379-fe88bcf91acd" class="xr-var-data-in" type="checkbox"><label for="data-8a9b3ee3-a81a-4a4c-a379-fe88bcf91acd" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface latent heat net flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lhtflsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f60efb43-86de-41c4-abbd-78665421f99b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f60efb43-86de-41c4-abbd-78665421f99b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8b575c26-0a98-41c4-b18c-bdd85bb1c36c" class="xr-var-data-in" type="checkbox"><label for="data-8b575c26-0a98-41c4-b18c-bdd85bb1c36c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface latent heat net flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>mcdcmcll</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-fa339538-8a70-4ac1-981e-04ec70bf5b65" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fa339538-8a70-4ac1-981e-04ec70bf5b65" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3bb9167c-008e-49b8-a079-e95e55261744" class="xr-var-data-in" type="checkbox"><label for="data-3bb9167c-008e-49b8-a079-e95e55261744" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** middle cloud layer medium cloud cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>nbdsfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-956c9afc-9e97-47f6-a8fc-481338ce4f2d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-956c9afc-9e97-47f6-a8fc-481338ce4f2d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-619becca-433a-4cc8-8322-d1bbc289ad2e" class="xr-var-data-in" type="checkbox"><label for="data-619becca-433a-4cc8-8322-d1bbc289ad2e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface near ir beam downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>nddsfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-8624b978-f75e-4ca8-b9cb-7e54a2acd62c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8624b978-f75e-4ca8-b9cb-7e54a2acd62c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a0592980-7d3c-40d5-bc28-20af42a72f3d" class="xr-var-data-in" type="checkbox"><label for="data-a0592980-7d3c-40d5-bc28-20af42a72f3d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface near ir diffuse downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pevpravesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-69a7d08b-ed9f-4c7a-bfd0-6a637be1d6f5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-69a7d08b-ed9f-4c7a-bfd0-6a637be1d6f5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5d2449cb-d073-4f05-bf36-952e7c72414c" class="xr-var-data-in" type="checkbox"><label for="data-5d2449cb-d073-4f05-bf36-952e7c72414c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface potential evaporation rate [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pevprsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-1b72cae1-5877-447a-9ca1-090222a3fa49" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1b72cae1-5877-447a-9ca1-090222a3fa49" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-039107cf-37b7-4a44-a059-1fd74dde115b" class="xr-var-data-in" type="checkbox"><label for="data-039107cf-37b7-4a44-a059-1fd74dde115b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface potential evaporation rate [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pratesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-75b71f92-87cd-4757-8b6d-4e9e57a8b107" class="xr-var-attrs-in" type="checkbox"><label for="attrs-75b71f92-87cd-4757-8b6d-4e9e57a8b107" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-54b7babd-0871-4849-8b32-cf5adb53433c" class="xr-var-data-in" type="checkbox"><label for="data-54b7babd-0871-4849-8b32-cf5adb53433c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface precipitation rate [kg/m^2/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>preslclb</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-799a6e51-0d9f-4d0a-82a8-c947acbca831" class="xr-var-attrs-in" type="checkbox"><label for="attrs-799a6e51-0d9f-4d0a-82a8-c947acbca831" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1c996d3e-0e42-4bb1-85b0-ecf92f144454" class="xr-var-data-in" type="checkbox"><label for="data-1c996d3e-0e42-4bb1-85b0-ecf92f144454" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** low cloud bottom level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>preslclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-8b6dede3-46e8-49a9-8d7e-325065041744" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8b6dede3-46e8-49a9-8d7e-325065041744" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cf0a715f-eae5-4c74-9a97-e757efdb8828" class="xr-var-data-in" type="checkbox"><label for="data-cf0a715f-eae5-4c74-9a97-e757efdb8828" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** low cloud top level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>presmclb</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-17652513-2aef-4a7a-b538-f34f5fedd319" class="xr-var-attrs-in" type="checkbox"><label for="attrs-17652513-2aef-4a7a-b538-f34f5fedd319" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ab321053-d256-4d70-8cdd-0d0394125ed8" class="xr-var-data-in" type="checkbox"><label for="data-ab321053-d256-4d70-8cdd-0d0394125ed8" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** middle cloud bottom level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>presmclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-6de2458e-44e7-41fa-ac02-9254a919b8ac" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6de2458e-44e7-41fa-ac02-9254a919b8ac" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0e11cc6e-f29d-490a-9a9f-c691fa89267d" class="xr-var-data-in" type="checkbox"><label for="data-0e11cc6e-f29d-490a-9a9f-c691fa89267d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** middle cloud top level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>preshclb</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-dd4d3450-8ceb-494f-b22a-d35e9fe07be5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-dd4d3450-8ceb-494f-b22a-d35e9fe07be5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-20a68e28-a449-4276-9d77-87b27d7a09be" class="xr-var-data-in" type="checkbox"><label for="data-20a68e28-a449-4276-9d77-87b27d7a09be" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** high cloud bottom level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>preshclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-532b3799-0f67-42cc-877f-3ef21325400a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-532b3799-0f67-42cc-877f-3ef21325400a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-41119158-ac2c-4a89-b3cc-6958b372a834" class="xr-var-data-in" type="checkbox"><label for="data-41119158-ac2c-4a89-b3cc-6958b372a834" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** high cloud top level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pressfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-b7889e58-98fb-457b-9265-0fd9fdbc9711" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b7889e58-98fb-457b-9265-0fd9fdbc9711" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b877c391-b7b5-433f-925f-ffcb71f1d08f" class="xr-var-data-in" type="checkbox"><label for="data-b877c391-b7b5-433f-925f-ffcb71f1d08f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>prescclb</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-74dd3a45-3703-4d50-997a-e9e68d1f501f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-74dd3a45-3703-4d50-997a-e9e68d1f501f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c70eb499-844a-4596-8873-9acc293d3836" class="xr-var-data-in" type="checkbox"><label for="data-c70eb499-844a-4596-8873-9acc293d3836" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** convective cloud bottom level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>prescclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-e12cce7f-bbba-4439-bea5-afd54ca34d1d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e12cce7f-bbba-4439-bea5-afd54ca34d1d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-88d2dd90-dc2c-4f80-a4bb-60b3f180fd31" class="xr-var-data-in" type="checkbox"><label for="data-88d2dd90-dc2c-4f80-a4bb-60b3f180fd31" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** convective cloud top level pressure [pa] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pwatclm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-23a693fb-cfb9-433a-9657-d43b2c7454c2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-23a693fb-cfb9-433a-9657-d43b2c7454c2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-03215b70-239d-42d5-b8ae-59d90ddfff20" class="xr-var-data-in" type="checkbox"><label for="data-03215b70-239d-42d5-b8ae-59d90ddfff20" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** entire atmosphere (considered as a single layer) precipitable water [kg/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>qmax2m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-564bdab7-bd7b-4368-978f-72b3a4ccb758" class="xr-var-attrs-in" type="checkbox"><label for="attrs-564bdab7-bd7b-4368-978f-72b3a4ccb758" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1cac766c-1b47-44f7-9e7b-d859e0422ae1" class="xr-var-data-in" type="checkbox"><label for="data-1cac766c-1b47-44f7-9e7b-d859e0422ae1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 2 m above ground maximum specific humidity at 2m [kg/kg] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>qmin2m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-18331d13-7209-4dcd-acd9-6b883afa8946" class="xr-var-attrs-in" type="checkbox"><label for="attrs-18331d13-7209-4dcd-acd9-6b883afa8946" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c06cb105-95f5-49fa-9dd4-e38edf95b0b5" class="xr-var-data-in" type="checkbox"><label for="data-c06cb105-95f5-49fa-9dd4-e38edf95b0b5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 2 m above ground minimum specific humidity at 2m [kg/kg] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sbsnosfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-6df5ed99-b2c0-47c0-8a74-15649656f524" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6df5ed99-b2c0-47c0-8a74-15649656f524" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-28808a2f-91ee-4a6d-94c5-57118048a56c" class="xr-var-data-in" type="checkbox"><label for="data-28808a2f-91ee-4a6d-94c5-57118048a56c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface sublimation (evaporation from snow) [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sfcrsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-7c32e93f-39e2-486e-81a7-b9e2fa6cf666" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7c32e93f-39e2-486e-81a7-b9e2fa6cf666" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9ce4830d-d47e-48e3-8dcc-6f98bb4ca827" class="xr-var-data-in" type="checkbox"><label for="data-9ce4830d-d47e-48e3-8dcc-6f98bb4ca827" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface surface roughness [m] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sfexcsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-d07fcc40-b87a-4ba2-b21a-7927a58c6f10" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d07fcc40-b87a-4ba2-b21a-7927a58c6f10" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f9df90aa-8b80-449f-a4a7-b6e4d15eb1e2" class="xr-var-data-in" type="checkbox"><label for="data-f9df90aa-8b80-449f-a4a7-b6e4d15eb1e2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface exchange coefficient [(kg/m^3)(m/s)] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>shtflavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f262368c-1702-44f5-b58d-0d2470762f82" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f262368c-1702-44f5-b58d-0d2470762f82" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2daa0931-dbcd-4aeb-aa32-fe8a399e202d" class="xr-var-data-in" type="checkbox"><label for="data-2daa0931-dbcd-4aeb-aa32-fe8a399e202d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface sensible heat net flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>shtflsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-684cdfa2-52cb-4264-8150-4de64d3e04b2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-684cdfa2-52cb-4264-8150-4de64d3e04b2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c44aacac-1628-4f3a-9080-a549c7725017" class="xr-var-data-in" type="checkbox"><label for="data-c44aacac-1628-4f3a-9080-a549c7725017" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface sensible heat net flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sltypsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-304ddca8-11d2-4723-8c0e-6085ca3a54d1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-304ddca8-11d2-4723-8c0e-6085ca3a54d1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-78f4bd69-d045-407a-aca6-c12ecbeddf56" class="xr-var-data-in" type="checkbox"><label for="data-78f4bd69-d045-407a-aca6-c12ecbeddf56" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface surface slope type [index] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>snodsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-af94024c-ae6a-411d-8c42-2102d069ad69" class="xr-var-attrs-in" type="checkbox"><label for="attrs-af94024c-ae6a-411d-8c42-2102d069ad69" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5ddbea7e-57d7-438a-a224-6180b138114e" class="xr-var-data-in" type="checkbox"><label for="data-5ddbea7e-57d7-438a-a224-6180b138114e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface snow depth [m] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>snohfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-32e66d74-b2d6-4407-a9e8-860353d28931" class="xr-var-attrs-in" type="checkbox"><label for="attrs-32e66d74-b2d6-4407-a9e8-860353d28931" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b9b00596-dff1-4892-bccb-8f14e21116c4" class="xr-var-data-in" type="checkbox"><label for="data-b9b00596-dff1-4892-bccb-8f14e21116c4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface snow phase change heat flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>snowcsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-93649beb-6970-4b7d-bfd4-01bb489ae5ed" class="xr-var-attrs-in" type="checkbox"><label for="attrs-93649beb-6970-4b7d-bfd4-01bb489ae5ed" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ddd98b31-bd55-48cc-a9f1-743a5adadff5" class="xr-var-data-in" type="checkbox"><label for="data-ddd98b31-bd55-48cc-a9f1-743a5adadff5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface snow cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soill0_10cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-83c00848-de86-424c-a8c1-f7ba9e1d3f77" class="xr-var-attrs-in" type="checkbox"><label for="attrs-83c00848-de86-424c-a8c1-f7ba9e1d3f77" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-acc9f99d-2b85-4667-adf1-9852d37697b7" class="xr-var-data-in" type="checkbox"><label for="data-acc9f99d-2b85-4667-adf1-9852d37697b7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0-0.1 m below ground liquid volumetric soil moisture (non frozen) [proportion] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soill10_40cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-eec85c0a-44cd-4b3c-9318-358676ce6aa7" class="xr-var-attrs-in" type="checkbox"><label for="attrs-eec85c0a-44cd-4b3c-9318-358676ce6aa7" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-75c30622-74b7-4df3-8fcf-0a09f3b30e41" class="xr-var-data-in" type="checkbox"><label for="data-75c30622-74b7-4df3-8fcf-0a09f3b30e41" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0.1-0.4 m below ground liquid volumetric soil moisture (non frozen) [proportion] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soill40_100cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3367ce2c-3a6e-4407-bb41-f5955c59471c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3367ce2c-3a6e-4407-bb41-f5955c59471c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9995749b-0d52-4594-923b-5e6b5b1e4ec6" class="xr-var-data-in" type="checkbox"><label for="data-9995749b-0d52-4594-923b-5e6b5b1e4ec6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0.4-1 m below ground liquid volumetric soil moisture (non frozen) [proportion] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soill100_200cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-caaf767f-1881-48b4-974d-1c5df9acce78" class="xr-var-attrs-in" type="checkbox"><label for="attrs-caaf767f-1881-48b4-974d-1c5df9acce78" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-407f46b0-6f04-46a5-8b51-556aa31e0f82" class="xr-var-data-in" type="checkbox"><label for="data-407f46b0-6f04-46a5-8b51-556aa31e0f82" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1-2 m below ground liquid volumetric soil moisture (non frozen) [proportion] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soilm0_200cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3c34a525-85c3-4ddc-be1a-5497bac36ad4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3c34a525-85c3-4ddc-be1a-5497bac36ad4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3769c831-283e-4f04-bb5e-858be29ed9c5" class="xr-var-data-in" type="checkbox"><label for="data-3769c831-283e-4f04-bb5e-858be29ed9c5" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0-2 m below ground soil moisture validation to deprecate [kg/m^3] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soilw0_10cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-807aab54-02c7-4326-a291-d316686f0ccd" class="xr-var-attrs-in" type="checkbox"><label for="attrs-807aab54-02c7-4326-a291-d316686f0ccd" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cf7da461-f397-44f0-affc-bc425c4dbee2" class="xr-var-data-in" type="checkbox"><label for="data-cf7da461-f397-44f0-affc-bc425c4dbee2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0-0.1 m below ground volumetric soil moisture content [fraction] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soilw10_40cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f1a4061c-91d8-4d70-9ebd-e1b9a093df07" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f1a4061c-91d8-4d70-9ebd-e1b9a093df07" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4bd25ac2-4317-4936-ba3d-0c8bce56dcd7" class="xr-var-data-in" type="checkbox"><label for="data-4bd25ac2-4317-4936-ba3d-0c8bce56dcd7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0.1-0.4 m below ground volumetric soil moisture content [fraction] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soilw40_100cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-e3463a33-c046-42fb-971d-e1f7837001d4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e3463a33-c046-42fb-971d-e1f7837001d4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-44f97633-48bc-4dfb-affb-acb29269a1c2" class="xr-var-data-in" type="checkbox"><label for="data-44f97633-48bc-4dfb-affb-acb29269a1c2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0.4-1 m below ground volumetric soil moisture content [fraction] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>soilw100_200cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-676c5fa5-ca7a-4210-bbf9-decc41037863" class="xr-var-attrs-in" type="checkbox"><label for="attrs-676c5fa5-ca7a-4210-bbf9-decc41037863" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-eb2e40e8-8ee8-4710-830d-6e2eccb35c1a" class="xr-var-data-in" type="checkbox"><label for="data-eb2e40e8-8ee8-4710-830d-6e2eccb35c1a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1-2 m below ground volumetric soil moisture content [fraction] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sotypsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-87c0e16b-2645-448b-869e-a03a4a97b1ef" class="xr-var-attrs-in" type="checkbox"><label for="attrs-87c0e16b-2645-448b-869e-a03a4a97b1ef" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ae51e521-cb21-4c20-b6e7-5063a9552a95" class="xr-var-data-in" type="checkbox"><label for="data-ae51e521-cb21-4c20-b6e7-5063a9552a95" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface soil type [-] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>spfh2m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-2eb1b96c-344a-44a6-8c51-18ad6b4454fd" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2eb1b96c-344a-44a6-8c51-18ad6b4454fd" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c328aa29-cd79-4032-9686-95abdf07c6f2" class="xr-var-data-in" type="checkbox"><label for="data-c328aa29-cd79-4032-9686-95abdf07c6f2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 2 m above ground specific humidity [kg/kg] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>spfhhy1</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-6be23751-9777-4c11-b6ec-8443fe863fee" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6be23751-9777-4c11-b6ec-8443fe863fee" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2cceeed0-8b7b-4d6b-b0cd-abf51875448f" class="xr-var-data-in" type="checkbox"><label for="data-2cceeed0-8b7b-4d6b-b0cd-abf51875448f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1 hybrid level specific humidity [kg/kg] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ssrunsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f70ce1d1-77db-4368-90f2-0c098745a575" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f70ce1d1-77db-4368-90f2-0c098745a575" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c21db8b7-7813-4fa4-8890-460aa3a63df9" class="xr-var-data-in" type="checkbox"><label for="data-c21db8b7-7813-4fa4-8890-460aa3a63df9" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface storm surface runoff [kg/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sunsdsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-cf00a5b3-8a69-4bff-96fa-6545759dfa6b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-cf00a5b3-8a69-4bff-96fa-6545759dfa6b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d74d0303-9193-4744-90ca-cd671e883835" class="xr-var-data-in" type="checkbox"><label for="data-d74d0303-9193-4744-90ca-cd671e883835" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface sunshine duration [s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tcdcclm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5a322896-544d-4787-ae64-f2bf7a370d88" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5a322896-544d-4787-ae64-f2bf7a370d88" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f2122e2d-c585-4a4a-afc2-deeff2f407c9" class="xr-var-data-in" type="checkbox"><label for="data-f2122e2d-c585-4a4a-afc2-deeff2f407c9" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** entire atmosphere total cloud cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tcdcblcll</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4b7b394e-31b1-4652-842c-02328cb49676" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4b7b394e-31b1-4652-842c-02328cb49676" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c6b8d14d-9d25-44ac-83f9-e45d874397f2" class="xr-var-data-in" type="checkbox"><label for="data-c6b8d14d-9d25-44ac-83f9-e45d874397f2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** boundary layer cloud layer total cloud cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tcdcccll</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-08cafe32-a4d8-4d23-959a-324669142ae3" class="xr-var-attrs-in" type="checkbox"><label for="attrs-08cafe32-a4d8-4d23-959a-324669142ae3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-279ba53c-d791-40d6-a289-93ecd5cdf963" class="xr-var-data-in" type="checkbox"><label for="data-279ba53c-d791-40d6-a289-93ecd5cdf963" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** convective cloud layer total cloud cover [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmax2m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3d8c38ba-8286-4fae-8bab-387ee8cde88b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3d8c38ba-8286-4fae-8bab-387ee8cde88b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2d2a7e75-62d0-42f7-8e88-d66e7c5c3937" class="xr-var-data-in" type="checkbox"><label for="data-2d2a7e75-62d0-42f7-8e88-d66e7c5c3937" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 2 m above ground maximum temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmin2m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0199dbc2-6cb1-4579-b1fd-5ce803da7a18" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0199dbc2-6cb1-4579-b1fd-5ce803da7a18" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b527143a-086a-44d2-9e19-6eea7687344f" class="xr-var-data-in" type="checkbox"><label for="data-b527143a-086a-44d2-9e19-6eea7687344f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 2 m above ground minimum temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmplclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-18cb6c4d-cef5-4d49-bed8-6f08f45e9659" class="xr-var-attrs-in" type="checkbox"><label for="attrs-18cb6c4d-cef5-4d49-bed8-6f08f45e9659" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3bbf581f-74bb-4c48-8306-91b51bf2d44a" class="xr-var-data-in" type="checkbox"><label for="data-3bbf581f-74bb-4c48-8306-91b51bf2d44a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** low cloud top level temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmpmclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-4123f9a9-c350-4890-89ad-5845dcc58b27" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4123f9a9-c350-4890-89ad-5845dcc58b27" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-91603b4d-09d1-4beb-8ba9-7613d8295374" class="xr-var-data-in" type="checkbox"><label for="data-91603b4d-09d1-4beb-8ba9-7613d8295374" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** middle cloud top level temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmphclt</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-45b77c44-a22d-4585-baa1-805e5bd465c6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-45b77c44-a22d-4585-baa1-805e5bd465c6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-77176622-0ebc-4061-b525-810bd266c95e" class="xr-var-data-in" type="checkbox"><label for="data-77176622-0ebc-4061-b525-810bd266c95e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** high cloud top level temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmpsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-35fcc345-b013-4071-8033-5c67d28cf4f5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-35fcc345-b013-4071-8033-5c67d28cf4f5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cc48a8c0-47eb-4d36-b5fb-18c47af420d4" class="xr-var-data-in" type="checkbox"><label for="data-cc48a8c0-47eb-4d36-b5fb-18c47af420d4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmp2m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-bda61c3d-8274-48c5-8f3d-37b4a9df68e2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-bda61c3d-8274-48c5-8f3d-37b4a9df68e2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-59584283-58d9-46b5-b35e-8d90b5fc1987" class="xr-var-data-in" type="checkbox"><label for="data-59584283-58d9-46b5-b35e-8d90b5fc1987" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 2 m above ground temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tmphy1</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-d967def8-80e8-4cc1-ad8b-e25b035138df" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d967def8-80e8-4cc1-ad8b-e25b035138df" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9d44bc56-bede-427a-91f5-7a51ee8b0317" class="xr-var-data-in" type="checkbox"><label for="data-9d44bc56-bede-427a-91f5-7a51ee8b0317" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1 hybrid level temperature [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>transsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-381678cf-e66a-4d54-a785-3081217b033c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-381678cf-e66a-4d54-a785-3081217b033c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4f8c2393-dd39-428b-b01a-55153946d7d9" class="xr-var-data-in" type="checkbox"><label for="data-4f8c2393-dd39-428b-b01a-55153946d7d9" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface transpiration [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tsoil0_10cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-b76143b0-d59c-42a9-b511-533f388f2076" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b76143b0-d59c-42a9-b511-533f388f2076" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-51fc31fb-da1b-4bea-83d6-889276fa86f1" class="xr-var-data-in" type="checkbox"><label for="data-51fc31fb-da1b-4bea-83d6-889276fa86f1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0-0.1 m below ground soil temperature validation to deprecate [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tsoil10_40cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-6cfe797c-6823-4ab0-8188-bc90b4c18732" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6cfe797c-6823-4ab0-8188-bc90b4c18732" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d5a64345-ad9a-4e05-9079-fa8f64b4f21c" class="xr-var-data-in" type="checkbox"><label for="data-d5a64345-ad9a-4e05-9079-fa8f64b4f21c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0.1-0.4 m below ground soil temperature validation to deprecate [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tsoil40_100cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f5f0184d-c72c-419b-aa3f-2664d6b84702" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f5f0184d-c72c-419b-aa3f-2664d6b84702" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b65c98f8-7da8-4dbc-a91f-2fd95cbcf0ed" class="xr-var-data-in" type="checkbox"><label for="data-b65c98f8-7da8-4dbc-a91f-2fd95cbcf0ed" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 0.4-1 m below ground soil temperature validation to deprecate [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>tsoil100_200cm</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-b744a88d-a1a3-4d16-9dfb-e9e39f27f6c2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b744a88d-a1a3-4d16-9dfb-e9e39f27f6c2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8275009b-c43a-4e7b-b750-40761e82a5d1" class="xr-var-data-in" type="checkbox"><label for="data-8275009b-c43a-4e7b-b750-40761e82a5d1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1-2 m below ground soil temperature validation to deprecate [k] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ugwdsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-8082904f-ff30-44e9-89ec-701231f43ec4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8082904f-ff30-44e9-89ec-701231f43ec4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-38e0df0b-0806-4aaf-ae07-fe1514365f69" class="xr-var-data-in" type="checkbox"><label for="data-38e0df0b-0806-4aaf-ae07-fe1514365f69" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface zonal flux of gravity wave stress [n/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>uflxsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0b207df8-0c68-49af-b8f6-0dbca6452985" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0b207df8-0c68-49af-b8f6-0dbca6452985" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e183bbfb-015c-4f02-9b58-daa6e6d33ae4" class="xr-var-data-in" type="checkbox"><label for="data-e183bbfb-015c-4f02-9b58-daa6e6d33ae4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface momentum flux, u-component [n/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ugrd10m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-32682d2d-bb31-4814-80d1-2653eb45c545" class="xr-var-attrs-in" type="checkbox"><label for="attrs-32682d2d-bb31-4814-80d1-2653eb45c545" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-56ee9fbf-37b4-49e8-8cec-426a46125c68" class="xr-var-data-in" type="checkbox"><label for="data-56ee9fbf-37b4-49e8-8cec-426a46125c68" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 10 m above ground u-component of wind [m/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ugrdhy1</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-48b66e83-0f96-47b8-bd39-13fbb24460fe" class="xr-var-attrs-in" type="checkbox"><label for="attrs-48b66e83-0f96-47b8-bd39-13fbb24460fe" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8fc87b7d-4835-4ea9-afa0-008988d372e4" class="xr-var-data-in" type="checkbox"><label for="data-8fc87b7d-4835-4ea9-afa0-008988d372e4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1 hybrid level u-component of wind [m/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ulwrfavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ad7002fe-e60f-4eb1-823e-12c719059e9a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ad7002fe-e60f-4eb1-823e-12c719059e9a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-cd99dddb-a371-4556-bfc0-f4ad3f7114ab" class="xr-var-data-in" type="checkbox"><label for="data-cd99dddb-a371-4556-bfc0-f4ad3f7114ab" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface upward long-wave rad. flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ulwrftoa</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0cd96a83-3c23-47df-bac2-e0a166322e7c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0cd96a83-3c23-47df-bac2-e0a166322e7c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-16ecc228-8ed1-49a3-a685-b342683024c9" class="xr-var-data-in" type="checkbox"><label for="data-16ecc228-8ed1-49a3-a685-b342683024c9" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** top of atmosphere upward long-wave rad. flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ulwrfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-8f3a85ec-17ff-4344-936c-460b50e4ddfc" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8f3a85ec-17ff-4344-936c-460b50e4ddfc" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6bf37827-82ec-4abd-94c5-3f5885b5bde7" class="xr-var-data-in" type="checkbox"><label for="data-6bf37827-82ec-4abd-94c5-3f5885b5bde7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface upward long-wave rad. flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>uswrfavesfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-c14d4847-3f2c-4d37-b481-d2ab622e5ca0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c14d4847-3f2c-4d37-b481-d2ab622e5ca0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f7ab3caf-7345-4633-bc7e-b3bfe189e692" class="xr-var-data-in" type="checkbox"><label for="data-f7ab3caf-7345-4633-bc7e-b3bfe189e692" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface upward short-wave radiation flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>uswrftoa</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-daf8478b-ea26-415a-ae7b-e59c5b029019" class="xr-var-attrs-in" type="checkbox"><label for="attrs-daf8478b-ea26-415a-ae7b-e59c5b029019" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3b739f6d-fef9-42f6-bfae-b253f053c2f2" class="xr-var-data-in" type="checkbox"><label for="data-3b739f6d-fef9-42f6-bfae-b253f053c2f2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** top of atmosphere upward short-wave radiation flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>uswrfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-2d0fff51-d960-4dd5-9891-e7c9ce147f0d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2d0fff51-d960-4dd5-9891-e7c9ce147f0d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b260ac58-6e05-486d-89bd-94cb1f918f57" class="xr-var-data-in" type="checkbox"><label for="data-b260ac58-6e05-486d-89bd-94cb1f918f57" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface upward short-wave radiation flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vgwdsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5d34c62d-a471-49a5-b074-13dc2db61dfb" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5d34c62d-a471-49a5-b074-13dc2db61dfb" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c4ed911e-66f3-457b-b137-4436a246e739" class="xr-var-data-in" type="checkbox"><label for="data-c4ed911e-66f3-457b-b137-4436a246e739" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface meridional flux of gravity wave stress [n/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vbdsfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-9b11e7f1-8632-408e-b9b9-505e823f5aba" class="xr-var-attrs-in" type="checkbox"><label for="attrs-9b11e7f1-8632-408e-b9b9-505e823f5aba" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-787cec58-6259-4c10-99fb-778a24de2989" class="xr-var-data-in" type="checkbox"><label for="data-787cec58-6259-4c10-99fb-778a24de2989" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface visible beam downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vddsfsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f6b6b928-9b28-4be6-8294-f80e45ea6ab3" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f6b6b928-9b28-4be6-8294-f80e45ea6ab3" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2712d46f-f157-4279-968a-b48dd4d7960b" class="xr-var-data-in" type="checkbox"><label for="data-2712d46f-f157-4279-968a-b48dd4d7960b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface visible diffuse downward solar flux [w/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vegsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5b1abb90-9d82-4e62-bb13-cc25cd0ba419" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5b1abb90-9d82-4e62-bb13-cc25cd0ba419" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-411c5eae-6c5f-4c46-840e-56ac3f084408" class="xr-var-data-in" type="checkbox"><label for="data-411c5eae-6c5f-4c46-840e-56ac3f084408" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface vegetation [%] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vflxsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ef2b39df-191c-48bd-bb97-17184fb6c551" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ef2b39df-191c-48bd-bb97-17184fb6c551" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3134e36c-9010-4df6-88c8-0f446fcab129" class="xr-var-data-in" type="checkbox"><label for="data-3134e36c-9010-4df6-88c8-0f446fcab129" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface momentum flux, v-component [n/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vgrd10m</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-b7248612-9069-4d52-82d0-52e0641a0d9a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b7248612-9069-4d52-82d0-52e0641a0d9a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a69af44a-724d-429d-96d4-cfbcdd0dbf3c" class="xr-var-data-in" type="checkbox"><label for="data-a69af44a-724d-429d-96d4-cfbcdd0dbf3c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 10 m above ground v-component of wind [m/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vgrdhy1</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-eba92115-4546-433f-8bb1-c7ea2d958026" class="xr-var-attrs-in" type="checkbox"><label for="attrs-eba92115-4546-433f-8bb1-c7ea2d958026" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-effeb7f2-541e-4d81-9745-b635174f74fc" class="xr-var-data-in" type="checkbox"><label for="data-effeb7f2-541e-4d81-9745-b635174f74fc" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** 1 hybrid level v-component of wind [m/s] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>vgtypsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-a1ba8292-2456-444b-b0c2-e6a5192d643d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-a1ba8292-2456-444b-b0c2-e6a5192d643d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0febcf27-ee84-458c-a9d0-886efe4d5c58" class="xr-var-data-in" type="checkbox"><label for="data-0febcf27-ee84-458c-a9d0-886efe4d5c58" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface vegetation type [integer(0-13)] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>watrsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-34dc286e-a217-4ea9-bee1-36811ded48ec" class="xr-var-attrs-in" type="checkbox"><label for="attrs-34dc286e-a217-4ea9-bee1-36811ded48ec" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f40c4016-cc13-4d7f-b8bb-dc1ac3659cbb" class="xr-var-data-in" type="checkbox"><label for="data-f40c4016-cc13-4d7f-b8bb-dc1ac3659cbb" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface water runoff [kg/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>weasdsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-7091478b-f4ff-42db-b7e1-921d16776292" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7091478b-f4ff-42db-b7e1-921d16776292" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-482217c0-2912-4ec4-ba1f-4605784477e3" class="xr-var-data-in" type="checkbox"><label for="data-482217c0-2912-4ec4-ba1f-4605784477e3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface water equivalent of accumulated snow depth [kg/m^2] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>wiltsfc</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-69ea2088-2138-44f0-8236-3af977f64bc2" class="xr-var-attrs-in" type="checkbox"><label for="attrs-69ea2088-2138-44f0-8236-3af977f64bc2" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-78644076-fd7a-4bf8-9802-be32f9daa821" class="xr-var-data-in" type="checkbox"><label for="data-78644076-fd7a-4bf8-9802-be32f9daa821" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>** surface wilting point [fraction] </dd></dl></div><div class="xr-var-data"><pre>[4718592 values with dtype=float32]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-377a23ef-1101-47eb-a2ed-ab08d32abcf2" class="xr-section-summary-in" type="checkbox"><label for="section-377a23ef-1101-47eb-a2ed-ab08d32abcf2" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-4b037740-7f64-4498-b423-19d2af10093f" class="xr-index-data-in" type="checkbox"><label for="index-4b037740-7f64-4498-b423-19d2af10093f" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([739323.0], dtype='float64', name='time'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-286c6558-9a82-491e-a706-162af17ebda2" class="xr-index-data-in" type="checkbox"><label for="index-286c6558-9a82-491e-a706-162af17ebda2" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([ -89.91, -89.794, -89.677,  -89.56, -89.443, -89.326, -89.209, -89.092,
+       -88.975, -88.858,
+       ...
+        88.858,  88.975,  89.092,  89.209,  89.326,  89.443,   89.56,  89.677,
+        89.794,   89.91],
+      dtype='float64', name='lat', length=1536))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-c56d1188-c53b-4d34-98f0-93f52445320c" class="xr-index-data-in" type="checkbox"><label for="index-c56d1188-c53b-4d34-98f0-93f52445320c" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([            0.0,   0.11718750016,   0.23437500033,   0.35156250049,
+         0.46875000065,   0.58593750081,   0.70312500098,   0.82031250114,
+          0.9375000013,   1.05468750147,
+       ...
+       358.82812549853,  358.9453129987, 359.06250049886, 359.17968799902,
+       359.29687549918, 359.41406299935, 359.53125049951, 359.64843799967,
+       359.76562549984,      359.882813],
+      dtype='float64', name='lon', length=3072))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-fd541136-fa31-4172-87c8-4d6c96b23041" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-fd541136-fa31-4172-87c8-4d6c96b23041" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>title :</span></dt><dd>GDAS flux file at 00Z12mar2025, downloaded Mar 12 06:56 UTC</dd><dt><span>Conventions :</span></dt><dd>COARDS
+GrADS</dd><dt><span>dataType :</span></dt><dd>Grid</dd><dt><span>history :</span></dt><dd>Sat Mar 15 17:21:35 UTC 2025 : imported by GrADS Data Server 2.0</dd></dl></div></li></ul></div></div>
+</div>
+</div>
+<div id="08457601-2737-45e8-bf7d-c7847f7d5386" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># it plots so we can get the data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"tsoil0_10cm"</span>].plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="7-nomads_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://nomads.ncep.noaa.gov/" class="uri">https://nomads.ncep.noaa.gov/</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/nmfs-opensci\.github\.io\/NMFSHackDays-2025");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../topics-2025/2025-opendap/5-usgs.html" class="pagination-link" aria-label="USGS LPDAAC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">USGS LPDAAC</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../topics-2025/2025-opendap/6-nasa-pydap.html" class="pagination-link" aria-label="Pydap authentication">
+        <span class="nav-page-text">Pydap authentication</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-opendap/7-nomads.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-opendap/7-nomads.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
