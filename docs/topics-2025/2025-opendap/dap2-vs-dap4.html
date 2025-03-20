@@ -632,18 +632,19 @@ function googleTranslateElementInit() {
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="47acdce9-d309-46b9-84cd-05aa839a75fb" class="cell" data-execution_count="1">
+<div id="47acdce9-d309-46b9-84cd-05aa839a75fb" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>earthaccess.login()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> earthaccess.get_requests_https_session()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>earthaccess.login()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> earthaccess.get_requests_https_session()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="comparison" class="level2">
 <h2 class="anchored" data-anchor-id="comparison">Comparison</h2>
 <p>This dataset has both DAP4 and DAP2 access: <a href="https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/hyrax/MERRA/MAI1NXINT.5.2.0/2016/01/contents.html" class="uri">https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/hyrax/MERRA/MAI1NXINT.5.2.0/2016/01/contents.html</a></p>
 <p>If we use <code>https://</code> in the url, pydap will automatically use DAP2. To use DAP4, we use <code>dap4://</code> instead. pydap issues a warning if we are accessing with DAP2, so let’s turn that off.</p>
-<div id="3a6c4542-cd53-43c6-a052-346af082ab22" class="cell" data-execution_count="110">
+<div id="3a6c4542-cd53-43c6-a052-346af082ab22" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress only the specific warning from PyDAP</span></span>
@@ -706,23 +707,41 @@ Wall time: 977 ms</code></pre>
 </div>
 </div>
 </section>
-<section id="mean-is-also-faster-with-dap2" class="level3">
-<h3 class="anchored" data-anchor-id="mean-is-also-faster-with-dap2">Mean is also faster with DAP2</h3>
-<p>In this example.</p>
-<div id="093637dd-4a08-4a60-adb4-304e162b4adb" class="cell" data-execution_count="129">
+<section id="mean-is-not-too-different" class="level3">
+<h3 class="anchored" data-anchor-id="mean-is-not-too-different">Mean is not too different</h3>
+<p>Need to reset up data since I loaded the data in the previous example.</p>
+<div id="b36bac91-a086-49b2-8a71-65500febe620" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ds2[<span class="st">"TQL"</span>].mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 133 ms, sys: 60.8 ms, total: 194 ms
-Wall time: 2.65 s</code></pre>
+<pre><code>CPU times: user 674 ms, sys: 57.7 ms, total: 732 ms
+Wall time: 7.5 s</code></pre>
 </div>
 </div>
-<div id="421e6e00-b15f-45ec-9b4f-0770687bf6eb" class="cell" data-execution_count="126">
+<div id="093637dd-4a08-4a60-adb4-304e162b4adb" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ds4[<span class="st">"TQL"</span>].mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ds2[<span class="st">"TQL"</span>].mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 139 ms, sys: 69.2 ms, total: 208 ms
-Wall time: 3.01 s</code></pre>
+<pre><code>CPU times: user 132 ms, sys: 76.9 ms, total: 208 ms
+Wall time: 2.61 s</code></pre>
+</div>
+</div>
+<div id="c7ee0956-2cbe-44eb-b8f6-f71d1efd4b3b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ds4 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 136 ms, sys: 8.96 ms, total: 145 ms
+Wall time: 3.59 s</code></pre>
+</div>
+</div>
+<div id="421e6e00-b15f-45ec-9b4f-0770687bf6eb" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ds4[<span class="st">"TQL"</span>].mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 144 ms, sys: 66.7 ms, total: 210 ms
+Wall time: 2.44 s</code></pre>
 </div>
 </div>
 </section>
@@ -730,19 +749,19 @@ Wall time: 3.01 s</code></pre>
 <h3 class="anchored" data-anchor-id="adding-constraints-decreases-lazy-loading-time-but-dap4-still-faster">Adding constraints decreases lazy loading time but DAP4 still faster</h3>
 <p>For DAP4, add <code>?dap4.ce=/TQL</code> to select just TQL. For DAP2, add <code>?TQL</code>.</p>
 <div id="23436055-9770-487c-add1-c209ae87941a" class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?TQL"</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#pydap_ds2 = pydap.client.open_url(url, protocol="dap2", session=session)</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?TQL"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#pydap_ds2 = pydap.client.open_url(url, protocol="dap2", session=session)</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 36 ms, sys: 0 ns, total: 36 ms
 Wall time: 1.74 s</code></pre>
 </div>
 </div>
 <div id="5ffa3fb6-7ad1-4f00-9077-ff93d824b531" class="cell" data-execution_count="131">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?dap4.ce=/TQL"</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ds4 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?dap4.ce=/TQL"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ds4 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 15.1 ms, sys: 7.53 ms, total: 22.6 ms
 Wall time: 947 ms</code></pre>
@@ -753,34 +772,34 @@ Wall time: 947 ms</code></pre>
 <h3 class="anchored" data-anchor-id="xarray.open_mfdataset-is-faster-with-dap4">xarray.open_mfdataset is faster with DAP4</h3>
 <p>Though speed difference has decreased from using <code>xarray.open_dataset</code>.</p>
 <div id="617b6014-306f-4e11-a9ea-7130db8f0bfa" class="cell" data-execution_count="137">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> [</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?dap4.ce=/TQL"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160102.hdf?dap4.ce=/TQL"</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160103.hdf?dap4.ce=/TQL"</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ds4 <span class="op">=</span> xr.open_mfdataset(urls, engine<span class="op">=</span><span class="st">"pydap"</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                        parallel<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                        combine<span class="op">=</span><span class="st">'nested'</span>, </span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                        concat_dim<span class="op">=</span><span class="st">'/TIME'</span>,</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>                        session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> [</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?dap4.ce=/TQL"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160102.hdf?dap4.ce=/TQL"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160103.hdf?dap4.ce=/TQL"</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>ds4 <span class="op">=</span> xr.open_mfdataset(urls, engine<span class="op">=</span><span class="st">"pydap"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                        parallel<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                        combine<span class="op">=</span><span class="st">'nested'</span>, </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                        concat_dim<span class="op">=</span><span class="st">'/TIME'</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>                        session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 68.8 ms, sys: 5 ms, total: 73.8 ms
 Wall time: 968 ms</code></pre>
 </div>
 </div>
 <div id="c9bc1301-73fc-49b7-9b04-9e2277b3ec91" class="cell" data-execution_count="135">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> [</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?TQL"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160102.hdf?TQL"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160103.hdf?TQL"</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> xr.open_mfdataset(urls, engine<span class="op">=</span><span class="st">"pydap"</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                        parallel<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                        combine<span class="op">=</span><span class="st">'nested'</span>, </span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                        concat_dim<span class="op">=</span><span class="st">'TIME'</span>,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                        session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> [</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf?TQL"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160102.hdf?TQL"</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160103.hdf?TQL"</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> xr.open_mfdataset(urls, engine<span class="op">=</span><span class="st">"pydap"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                        parallel<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                        combine<span class="op">=</span><span class="st">'nested'</span>, </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                        concat_dim<span class="op">=</span><span class="st">'TIME'</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                        session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 114 ms, sys: 11.1 ms, total: 125 ms
 Wall time: 1.59 s</code></pre>
@@ -791,16 +810,16 @@ Wall time: 1.59 s</code></pre>
 <h3 class="anchored" data-anchor-id="mean-is-now-faster-with-dap4">Mean is now faster with DAP4</h3>
 <p>For this example.</p>
 <div id="ded7dc07-0c1f-4e30-9d2d-e829368be76d" class="cell" data-execution_count="138">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ds4.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ds4.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 475 ms, sys: 143 ms, total: 619 ms
 Wall time: 2.95 s</code></pre>
 </div>
 </div>
 <div id="f2194fbc-57c5-4fd6-9583-fbb9231d426f" class="cell" data-execution_count="153">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ds2.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ds2.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 393 ms, sys: 108 ms, total: 501 ms
 Wall time: 3.12 s</code></pre>
@@ -811,50 +830,50 @@ Wall time: 3.12 s</code></pre>
 <h3 class="anchored" data-anchor-id="effect-of-rechunking-doesnt-seem-to-be-different">Effect of rechunking doesn’t seem to be different</h3>
 <p>all the ds’s are like this to start. Rechunking doesn’t seem to slow one down more than another.</p>
 <div id="b1ee57dd-262a-43b3-acde-009ee96f88bf" class="cell" data-execution_count="140">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds4[<span class="st">"TQL"</span>].chunks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ds4[<span class="st">"TQL"</span>].chunks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>((24, 24, 24), (361,), (540,))</code></pre>
 </div>
 </div>
 <div id="dabecb3e-76da-45dd-802a-bfe7d81662b6" class="cell" data-execution_count="144">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ds2_rechunked <span class="op">=</span> ds2.chunk({<span class="st">"TIME"</span>: <span class="dv">2</span>, <span class="st">"XDim"</span>: <span class="dv">25</span>, <span class="st">"YDim"</span>: <span class="dv">25</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ds2_rechunked <span class="op">=</span> ds2.chunk({<span class="st">"TIME"</span>: <span class="dv">2</span>, <span class="st">"XDim"</span>: <span class="dv">25</span>, <span class="st">"YDim"</span>: <span class="dv">25</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="3ff6d198-5a04-4456-8b17-4a75387e7c4c" class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ds2_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>ds2_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 9.39 s, sys: 1.28 s, total: 10.7 s
 Wall time: 11.9 s</code></pre>
 </div>
 </div>
 <div id="0acc1bcd-6150-429e-82e5-eccfa41aa173" class="cell" data-execution_count="147">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ds4_rechunked <span class="op">=</span> ds4.chunk({<span class="st">"/TIME"</span>: <span class="dv">2</span>, <span class="st">"/XDim"</span>: <span class="dv">25</span>, <span class="st">"/YDim"</span>: <span class="dv">25</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ds4_rechunked <span class="op">=</span> ds4.chunk({<span class="st">"/TIME"</span>: <span class="dv">2</span>, <span class="st">"/XDim"</span>: <span class="dv">25</span>, <span class="st">"/YDim"</span>: <span class="dv">25</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="af749fd3-9060-4166-8467-029a566aafa9" class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ds4_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ds4_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 9.06 s, sys: 1.29 s, total: 10.4 s
 Wall time: 11.4 s</code></pre>
 </div>
 </div>
 <div id="935211dc-a9e6-4224-a812-f5e5e5301598" class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ds2_rechunked <span class="op">=</span> ds2.chunk({<span class="st">"TIME"</span>: <span class="dv">50</span>, <span class="st">"XDim"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"YDim"</span>: <span class="op">-</span><span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ds2_rechunked <span class="op">=</span> ds2.chunk({<span class="st">"TIME"</span>: <span class="dv">50</span>, <span class="st">"XDim"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"YDim"</span>: <span class="op">-</span><span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="10cdbeae-377c-4f14-916f-3f25786a0f7b" class="cell" data-execution_count="150">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ds2_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>ds2_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 411 ms, sys: 98 ms, total: 509 ms
 Wall time: 2.96 s</code></pre>
 </div>
 </div>
 <div id="cc9716ad-6da7-4940-af0d-39fc4f11d786" class="cell" data-execution_count="151">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ds4_rechunked <span class="op">=</span> ds4.chunk({<span class="st">"/TIME"</span>: <span class="dv">50</span>, <span class="st">"/XDim"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"/YDim"</span>: <span class="op">-</span><span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ds4_rechunked <span class="op">=</span> ds4.chunk({<span class="st">"/TIME"</span>: <span class="dv">50</span>, <span class="st">"/XDim"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"/YDim"</span>: <span class="op">-</span><span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="154393f3-d4a2-4f63-82e5-ae89ac29b5d5" class="cell" data-execution_count="152">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ds4_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ds4_rechunked.mean().compute()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 465 ms, sys: 182 ms, total: 647 ms
 Wall time: 2.85 s</code></pre>
@@ -865,21 +884,21 @@ Wall time: 2.85 s</code></pre>
 <h3 class="anchored" data-anchor-id="saving-to-netcdf">Saving to netcdf</h3>
 <p>Not too different. I have to do some clean up on the DAP4 dim names with slashes before saving.</p>
 <div id="ef7e4bd1-3ac1-4284-8c05-144146f4daf5" class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ds2.attrs <span class="op">=</span> {}</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>ds2.to_netcdf(<span class="st">"output.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ds2.attrs <span class="op">=</span> {}</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>ds2.to_netcdf(<span class="st">"output.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 389 ms, sys: 178 ms, total: 567 ms
 Wall time: 4.17 s</code></pre>
 </div>
 </div>
 <div id="8b0e630d-2c65-4c99-8e22-461dd7119f04" class="cell" data-execution_count="165">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ds4_clean <span class="op">=</span> ds4.rename({<span class="st">"/TIME"</span>: <span class="st">"TIME"</span>, <span class="st">"/YDim"</span>: <span class="st">"YDim"</span>, <span class="st">"/XDim"</span>: <span class="st">"XDim"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>ds4_clean <span class="op">=</span> ds4.rename({<span class="st">"/TIME"</span>: <span class="st">"TIME"</span>, <span class="st">"/YDim"</span>: <span class="st">"YDim"</span>, <span class="st">"/XDim"</span>: <span class="st">"XDim"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="7a858ce5-5652-4349-b615-15ee9470c19b" class="cell" data-execution_count="166">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>ds4_clean.attrs <span class="op">=</span> {}</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>ds4_clean.to_netcdf(<span class="st">"output.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>ds4_clean.attrs <span class="op">=</span> {}</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>ds4_clean.to_netcdf(<span class="st">"output.nc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 554 ms, sys: 190 ms, total: 744 ms
 Wall time: 3.66 s</code></pre>
