@@ -643,11 +643,11 @@
     ]
   },
   {
-    "objectID": "topics-2025/2025-03-21-Signell/index.html",
-    "href": "topics-2025/2025-03-21-Signell/index.html",
+    "objectID": "topics-2025/2025-03-21-Signell/index.html#how-to-download-and-open-the-tutorials",
+    "href": "topics-2025/2025-03-21-Signell/index.html#how-to-download-and-open-the-tutorials",
     "title": "Using Virtualizarr, Dask and Holoviz to explore NODD data",
-    "section": "",
-    "text": "Using Virtualizarr, Dask and Holoviz to explore NODD data\nAuthor: Rich Signell (Open Science Computing)\nWe will use the notebook here to explore NODD data using holoviz, then create a virtual dataset using Virtualizarr, and then run an embarrassingly parallel job (construction of references for each file) using Dask, and then also use Dask for parallel data access in Xarray.\n    \nBecause the NMFS OpenScapes hub was not set up for dask at the time I developed the demo, I decided to use Coiled for Dask.\nTo allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day. To use the token to run COILED, login to the NMFS OpenSpaces 2i2c JuptyerHub with the default environment, open a terminal and type:\ncoiled login --token af791b1a879e4c0b99a8b7bec850e9a1-1e7144a190114be06abf273052d98640b62cb5fa\nI created the named coiled environment by creating a conda environment file that matched the package versions in the JupyterHub default environment, as of 2025-03-21, via this command:\ncoiled env create --name hackhours-arm --workspace esip-lab --conda hackhours_coiled_env.yml --architecture aarch64"
+    "section": "How to download and open the tutorials",
+    "text": "How to download and open the tutorials\n\nJupyter Hub\n\nStart the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;\nClick the orange Open in Jupyter Hub button\n\n\n\nColab\n\nClick the Open in Colab button\n\n\n\nDownload\n\nDownload to your local computer\nYou will need to have Python and Jupyter Lab installed\nInstall any needed packages\n\n\n\nHow to clone the git repository\nAfter cloning, you will need to navigate to the tutorials in the topics-2025 directory.\nNever cloned the NMFSHackDays-2025 repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NMFSHackDays-2025\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NMFSHackDays-2025\ngit fetch origin\ngit reset --hard origin/main"
   },
   {
     "objectID": "topics-2025/2025-03-21-Signell/Parallel_compute_with_dask.html",
