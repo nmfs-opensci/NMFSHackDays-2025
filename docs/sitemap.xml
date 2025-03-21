@@ -82,7 +82,11 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/index.html</loc>
-    <lastmod>2025-03-17T23:42:15.288Z</lastmod>
+    <lastmod>2025-03-21T17:43:05.674Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/Parallel_compute_with_dask.html</loc>
+    <lastmod>2025-03-21T00:23:21.627Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
@@ -177,6 +181,10 @@
     <lastmod>2025-03-14T18:50:37.048Z</lastmod>
   </url>
   <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/hackhours_demo.html</loc>
+    <lastmod>2025-03-21T17:38:25.228Z</lastmod>
+  </url>
+  <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/1-ncep-ncar.html</loc>
     <lastmod>2025-03-18T16:54:38.291Z</lastmod>
   </url>
@@ -194,7 +202,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/dap2-vs-dap4.html</loc>
-    <lastmod>2025-03-20T01:29:55.203Z</lastmod>
+    <lastmod>2025-03-20T01:43:02.769Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/index.html</loc>

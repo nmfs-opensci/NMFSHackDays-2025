@@ -5,6 +5,15 @@
 
 We will use the notebook here to explore NODD data using holoviz, then create a virtual dataset using Virtualizarr, and then run an embarrassingly parallel job (construction of references for each file) using Dask, and then also use Dask for parallel data access in Xarray.  
 
+[![Colab Badge](https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge)][colab-link]
+<a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb');">
+    <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge">
+</a> [![Download Badge](https://img.shields.io/badge/Download-grey?style=for-the-badge)][download-link]
+
+[download-link]: https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb
+[colab-link]: https://colab.research.google.com/github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb
+[jupyter-link]: https://nmfs-openscapes.2i2c.cloud/hub/user-redirect/lab?fromURL=https://raw.githubusercontent.com/OpenScienceComputing/HackHours/main/hackhours_demo.ipynb
+
 Because the NMFS OpenScapes hub was not set up for dask at the time I developed the demo, I decided to use Coiled for Dask.
 
 To allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day. To use the token to run COILED, login to the [NMFS OpenSpaces 2i2c JuptyerHub](https://nmfs-openscapes.2i2c.cloud/) with the default environment, open a terminal and type:

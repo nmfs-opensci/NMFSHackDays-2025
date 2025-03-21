@@ -127,10 +127,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#using-virtualizarr-dask-and-holoviz-to-explore-nodd-data" id="toc-using-virtualizarr-dask-and-holoviz-to-explore-nodd-data" class="nav-link active" data-scroll-target="#using-virtualizarr-dask-and-holoviz-to-explore-nodd-data">Using Virtualizarr, Dask and Holoviz to explore NODD data</a>
-  <ul class="collapse">
-  <li><a href="#tutorials" id="toc-tutorials" class="nav-link" data-scroll-target="#tutorials">Tutorials</a></li>
-  </ul></li>
+  <li><a href="#using-virtualizarr-dask-and-holoviz-to-explore-nodd-data" id="toc-using-virtualizarr-dask-and-holoviz-to-explore-nodd-data" class="nav-link active" data-scroll-target="#using-virtualizarr-dask-and-holoviz-to-explore-nodd-data">Using Virtualizarr, Dask and Holoviz to explore NODD data</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/edit/main/topics-2025/2025-03-21-Signell/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-03-21-Signell/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -162,11 +159,15 @@ function googleTranslateElementInit() {
 <section id="using-virtualizarr-dask-and-holoviz-to-explore-nodd-data" class="level1">
 <h1>Using Virtualizarr, Dask and Holoviz to explore NODD data</h1>
 <p><strong>Author:</strong> <a href="https://opensciencecomputing.com/">Rich Signell</a> (Open Science Computing)</p>
-<section id="tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
+<p>We will use the notebook here to explore NODD data using holoviz, then create a virtual dataset using Virtualizarr, and then run an embarrassingly parallel job (construction of references for each file) using Dask, and then also use Dask for parallel data access in Xarray.</p>
+<p><a href="https://colab.research.google.com/github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
+<p>Because the NMFS OpenScapes hub was not set up for dask at the time I developed the demo, I decided to use Coiled for Dask.</p>
+<p>To allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day. To use the token to run COILED, login to the <a href="https://nmfs-openscapes.2i2c.cloud/">NMFS OpenSpaces 2i2c JuptyerHub</a> with the default environment, open a terminal and type:</p>
+<pre><code>coiled login --token af791b1a879e4c0b99a8b7bec850e9a1-1e7144a190114be06abf273052d98640b62cb5fa</code></pre>
+<p>I created the named coiled environment by creating a <a href="hackhours_coiled_env.yml">conda environment file</a> that matched the package versions in the JupyterHub default environment, as of 2025-03-21, via this command:</p>
+<pre><code>coiled env create --name hackhours-arm --workspace esip-lab --conda hackhours_coiled_env.yml --architecture aarch64</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

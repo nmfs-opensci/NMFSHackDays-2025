@@ -632,7 +632,7 @@ function googleTranslateElementInit() {
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div id="47acdce9-d309-46b9-84cd-05aa839a75fb" class="cell" data-execution_count="5">
+<div id="47acdce9-d309-46b9-84cd-05aa839a75fb" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydap</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
@@ -652,22 +652,22 @@ function googleTranslateElementInit() {
 </div>
 <section id="dap4-is-faster-for-data-lazy-loading" class="level3">
 <h3 class="anchored" data-anchor-id="dap4-is-faster-for-data-lazy-loading">DAP4 is faster for data lazy loading</h3>
-<div id="584e4d13-eb1e-4ac4-bd76-a962e06df944" class="cell" data-execution_count="128">
+<div id="584e4d13-eb1e-4ac4-bd76-a962e06df944" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds2 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 119 ms, sys: 0 ns, total: 119 ms
-Wall time: 6.57 s</code></pre>
+<pre><code>CPU times: user 111 ms, sys: 8.42 ms, total: 119 ms
+Wall time: 6.84 s</code></pre>
 </div>
 </div>
-<div id="1fc84bdb-68a0-479a-86ed-f219bfa1c341" class="cell" data-execution_count="112">
+<div id="1fc84bdb-68a0-479a-86ed-f219bfa1c341" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"dap4://goldsmr1.gesdisc.eosdis.nasa.gov/opendap/MERRA/MAI1NXINT.5.2.0/2016/01/MERRA300.prod.assim.inst1_2d_int_Nx.20160101.hdf"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ds4 <span class="op">=</span> xr.open_dataset(url, engine<span class="op">=</span><span class="st">"pydap"</span>, session<span class="op">=</span>session)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 56.6 ms, sys: 6.98 ms, total: 63.6 ms
-Wall time: 3.2 s</code></pre>
+<pre><code>CPU times: user 56.9 ms, sys: 9.32 ms, total: 66.2 ms
+Wall time: 3.32 s</code></pre>
 </div>
 </div>
 </section>
@@ -909,6 +909,12 @@ Wall time: 3.66 s</code></pre>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>The main difference I was able to see with these tests is that lazy loading was faster with DAP4, but this was evidenced mostly when using <code>open_dataset</code>. One the xarray Dataset was lazy loading, loading the data or doing computations (mean) was similar or sometimes faster when DAP2 was used.</p>
+<div id="2884bc9e-ac2f-4203-b9a2-20a9ae3728ee" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ds4.nbytes <span class="op">/</span> <span class="fl">1e6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>299.44264</code></pre>
+</div>
+</div>
 
 
 </section>
