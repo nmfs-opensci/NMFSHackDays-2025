@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-skills/03-AWS_S3_bucket.html</loc>
-    <lastmod>2025-03-06T22:48:33.018Z</lastmod>
+    <lastmod>2025-03-24T17:47:19.697Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-skills/02-git.html</loc>
@@ -81,12 +81,20 @@
     <lastmod>2025-03-18T17:41:00.878Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/index.html</loc>
-    <lastmod>2025-03-21T17:47:50.928Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/test_dask.html</loc>
+    <lastmod>2025-03-24T14:48:33.948Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/Parallel_compute_with_dask.html</loc>
-    <lastmod>2025-03-21T00:23:21.627Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/Dask_local_cluster.html</loc>
+    <lastmod>2025-03-24T17:06:34.595Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/Dask_coiled.html</loc>
+    <lastmod>2025-03-24T17:21:47.574Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/hackhours_demo.html</loc>
+    <lastmod>2025-03-24T15:16:25.149Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
@@ -94,7 +102,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
-    <lastmod>2025-03-06T22:48:32.654Z</lastmod>
+    <lastmod>2025-03-24T16:12:45.498Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.html</loc>
@@ -114,7 +122,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/index.html</loc>
-    <lastmod>2025-03-18T22:42:54.879Z</lastmod>
+    <lastmod>2025-03-21T23:09:30.631Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/content/why-cloud.html</loc>
@@ -166,11 +174,11 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/index.html</loc>
-    <lastmod>2025-03-12T00:31:17.869Z</lastmod>
+    <lastmod>2025-03-24T16:12:56.562Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-28-ERDDAP-Py/erddap_xarray.html</loc>
-    <lastmod>2025-03-18T16:34:07.198Z</lastmod>
+    <lastmod>2025-03-24T16:06:52.432Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
@@ -181,8 +189,16 @@
     <lastmod>2025-03-14T18:50:37.048Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/hackhours_demo.html</loc>
-    <lastmod>2025-03-21T17:38:25.228Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-03-21-Signell/index.html</loc>
+    <lastmod>2025-03-24T16:11:47.114Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/Dask_gateway.html</loc>
+    <lastmod>2025-03-24T17:05:26.066Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/index.html</loc>
+    <lastmod>2025-03-24T16:20:54.538Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-opendap/1-ncep-ncar.html</loc>
@@ -210,7 +226,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/index.html</loc>
-    <lastmod>2025-03-17T23:42:15.296Z</lastmod>
+    <lastmod>2025-03-21T23:08:21.507Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-skills/02-git-clinic.html</loc>
@@ -230,7 +246,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-skills/03-ScratchBucket.html</loc>
-    <lastmod>2025-03-06T22:48:33.050Z</lastmod>
+    <lastmod>2025-03-24T17:41:59.907Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-skills/04-learning.html</loc>

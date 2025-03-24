@@ -94,6 +94,7 @@ website:
             - text: Learning resources
               href: topics-skills/04-learning.md
         - text: "HackHour 2025 Topics"
+          href: topics-2025/index.html
         - text: "---"
         - section: "Python - NASA Earth Data"
           href: topics-2025/2025-02-14-earthdata/index.html
@@ -156,6 +157,15 @@ website:
               href: topics-2025/2025-opendap/6-nasa-pydap.html
             - text: DAP2 vs DAP4
               href: topics-2025/2025-opendap/dap2-vs-dap4.html
+        - section: "Python - Parallel Computing with Dask"
+          href: topics-2025/2025-dask/index.html
+          contents:
+            - text: Local cluster
+              href: topics-2025/2025-dask/Dask_local_cluster.html
+            - text: Gateway cluster
+              href: topics-2025/2025-dask/Dask_gateway.html
+            - text: Coiled cluster
+              href: topics-2025/2025-dask/Dask_coiled.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards

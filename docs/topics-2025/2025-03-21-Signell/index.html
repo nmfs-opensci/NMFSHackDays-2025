@@ -248,8 +248,11 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
         <li class="sidebar-item">
- <span class="menu-text">HackHour 2025 Topics</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HackHour 2025 Topics</span></a>
+  </div>
+</li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -446,13 +449,42 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Guest Speakers</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../../topics-2025/2025-dask/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - Parallel Computing with Dask</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-dask/Dask_local_cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Local cluster</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-dask/Dask_gateway.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gateway cluster</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-dask/Dask_coiled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coiled cluster</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guest Speakers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
@@ -527,7 +559,6 @@ function googleTranslateElementInit() {
 <p><strong>Author:</strong> <a href="https://opensciencecomputing.com/">Rich Signell</a> (Open Science Computing)</p>
 <p>We will use the notebook here to explore NODD data using holoviz, then create a virtual dataset using Virtualizarr, and then run an embarrassingly parallel job (construction of references for each file) using Dask, and then also use Dask for parallel data access in Xarray.</p>
 <p><a href="https://colab.research.google.com/github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
-<p>Because the NMFS OpenScapes hub was not set up for dask at the time I developed the demo, I decided to use Coiled for Dask.</p>
 <p>To allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day. To use the token to run COILED, login to the <a href="https://nmfs-openscapes.2i2c.cloud/">NMFS OpenSpaces 2i2c JuptyerHub</a> with the default environment, open a terminal and type:</p>
 <pre><code>coiled login --token af791b1a879e4c0b99a8b7bec850e9a1-1e7144a190114be06abf273052d98640b62cb5fa</code></pre>
 <p>I created the named coiled environment by creating a <a href="hackhours_coiled_env.yml">conda environment file</a> that matched the package versions in the JupyterHub default environment, as of 2025-03-21, via this command:</p>

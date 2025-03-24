@@ -249,8 +249,11 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
         <li class="sidebar-item">
- <span class="menu-text">HackHour 2025 Topics</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./topics-2025/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HackHour 2025 Topics</span></a>
+  </div>
+</li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -447,13 +450,42 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Guest Speakers</span></a>
+            <a href="./topics-2025/2025-dask/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - Parallel Computing with Dask</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics-2025/2025-dask/Dask_local_cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Local cluster</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics-2025/2025-dask/Dask_gateway.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gateway cluster</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./topics-2025/2025-dask/Dask_coiled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coiled cluster</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Guest Speakers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
@@ -541,23 +573,23 @@ function googleTranslateElementInit() {
 <section id="schedule-links-to-content-on-left" class="level2">
 <h2 class="anchored" data-anchor-id="schedule-links-to-content-on-left">Schedule (links to content on left)</h2>
 <ul>
-<li><p>Feb 7 - Q&amp;A and Intro to the Ocean Data Science JupyterHub and Friday HackHours</p></li>
-<li><p>Feb 14 - Accessing <a href="https://www.earthdata.nasa.gov/">NASA Earth Observation data</a> in Python (Eli Holmes) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>Feb 21 - Accessing <a href="https://www.earthdata.nasa.gov/">NASA Earth Observation data</a> in R (Eli Holmes) <i class="fa-brands fa-r-project" aria-label="r-project"></i></p></li>
-<li><p>Feb 28 - Working with ERDDAP data in Python: <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">CoastWatch tutorials</a> (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>Mar 7 - Working with ERDDAP data in R: <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">CoastWatch tutorials</a> (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) <i class="fa-brands fa-r-project" aria-label="r-project"></i></p></li>
-<li><p>Mar 14 - Using LLMs in R to improve data dashboards (<a href="https://www.carlboettiger.info/">Carl Boettiger</a>, UC Berkeley) <i class="fa-brands fa-r-project" aria-label="r-project"></i></p></li>
-<li><p>Mar 21 - <a href="https://virtualizarr.readthedocs.io/en/stable/index.html">VirtualiZarr</a>, Dask and Holoviz to explore NODD data (<a href="https://opensciencecomputing.com/">Rich Signell</a>, Open Science Consulting) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>Mar 28 - Working with data on OPeNDAP servers in Python &amp; R <i class="fa-brands fa-python" aria-label="python"></i> <i class="fa-brands fa-r-project" aria-label="r-project"></i></p></li>
-<li><p>Apr 4 - xarray + GPU integration (<a href="https://github.com/maxrjones">Max Jones</a>, Development Seed) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>Apr 11 - Accessing <a href="https://psl.noaa.gov/cefi_portal/">CEFI data</a> on OPeNDAP, AWS and Google (<a href="https://psl.noaa.gov/people/chia-wei.hsu/">Chia-Wei Hsu</a>, NOAA PSL) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>Apr 25 - Working with acoustic data in Python: <a href="https://echopype.readthedocs.io/en/stable/">echopype</a> (<a href="https://www.apl.washington.edu/people/profile.php?last_name=Lee&amp;first_name=Wu-Jung">Wu-Jung Lee</a>, UW APL) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>May 2 - <a href="https://www.coiled.io/">Coiled</a> demo – parallel processing for big data pipelines (Coiled team)</p></li>
-<li><p>May 9 - <a href="https://pace.oceansciences.org/home.htm">PACE</a> Hyperspectral Ocean Color Data Access and Visualization in Python (<a href="https://earthaccess.readthedocs.io/en/latest/">earthaccess</a>) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>May 16 - <a href="https://pace.oceansciences.org/home.htm">PACE</a> Hyperspectral Ocean Color Data Access and Visualization in R <i class="fa-brands fa-r-project" aria-label="r-project"></i></p></li>
-<li><p>May 19 - EDMW 3-hour Workshop working with PACE hyperspectral data</p></li>
-<li><p>May 30 - Machine-Learning with Ocean Data: <a href="https://doi.org/10.6084/m9.figshare.27936036.v1">gap-filling</a> with CNNs <i class="fa-brands fa-python" aria-label="python"></i></p></li>
-<li><p>TBD - Introduction to the <a href="https://nationalresearchplatform.org/nautilus/">Nautilus</a> HyperCluster for running containerized Big Data Applications, UC Berkeley) <i class="fa-brands fa-python" aria-label="python"></i></p></li>
+<li>Feb 7 - Q&amp;A and Intro to the Ocean Data Science JupyterHub and Friday HackHours</li>
+<li>Feb 14 - Accessing <a href="https://www.earthdata.nasa.gov/">NASA Earth Observation data</a> in Python (Eli Holmes) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>Feb 21 - Accessing <a href="https://www.earthdata.nasa.gov/">NASA Earth Observation data</a> in R (Eli Holmes) <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+<li>Feb 28 - Working with ERDDAP data in Python: <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">CoastWatch tutorials</a> (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>Mar 7 - Working with ERDDAP data in R: <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">CoastWatch tutorials</a> (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+<li>Mar 14 - Using LLMs in R to improve data dashboards (<a href="https://www.carlboettiger.info/">Carl Boettiger</a>, UC Berkeley) <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+<li>Mar 21 - <a href="https://virtualizarr.readthedocs.io/en/stable/index.html">VirtualiZarr</a>, Dask and Holoviz to explore NODD data (<a href="https://opensciencecomputing.com/">Rich Signell</a>, Open Science Consulting) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>Mar 28 - Working with data on OPeNDAP servers in Python &amp; R <i class="fa-brands fa-python" aria-label="python"></i> <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+<li>Apr 4 - xarray + GPU integration (<a href="https://github.com/maxrjones">Max Jones</a>, Development Seed) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>Apr 11 - Accessing <a href="https://psl.noaa.gov/cefi_portal/">CEFI data</a> on OPeNDAP, AWS and Google (<a href="https://psl.noaa.gov/people/chia-wei.hsu/">Chia-Wei Hsu</a>, NOAA PSL) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>Apr 18 - Introduction to the <a href="https://nationalresearchplatform.org/nautilus/">Nautilus</a> HyperCluster for running containerized Big Data Applications) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>Apr 25 - Working with acoustic data in Python: <a href="https://echopype.readthedocs.io/en/stable/">echopype</a> (<a href="https://www.apl.washington.edu/people/profile.php?last_name=Lee&amp;first_name=Wu-Jung">Wu-Jung Lee</a>, UW APL) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>May 2 - <a href="https://www.coiled.io/">Coiled</a> demo – parallel processing for big data pipelines (Coiled team)</li>
+<li>May 9 - <a href="https://pace.oceansciences.org/home.htm">PACE</a> Hyperspectral Ocean Color Data Access and Visualization in Python (<a href="https://earthaccess.readthedocs.io/en/latest/">earthaccess</a>) <i class="fa-brands fa-python" aria-label="python"></i></li>
+<li>May 16 - <a href="https://pace.oceansciences.org/home.htm">PACE</a> Hyperspectral Ocean Color Data Access and Visualization in R <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+<li>May 19 - EDMW 3-hour Workshop working with PACE hyperspectral data</li>
+<li>May 30 - Machine-Learning with Ocean Data: <a href="https://doi.org/10.6084/m9.figshare.27936036.v1">gap-filling</a> with CNNs <i class="fa-brands fa-python" aria-label="python"></i></li>
 </ul>
 
 

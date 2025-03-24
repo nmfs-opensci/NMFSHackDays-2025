@@ -14,8 +14,6 @@ We will use the notebook here to explore NODD data using holoviz, then create a 
 [colab-link]: https://colab.research.google.com/github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb
 [jupyter-link]: https://nmfs-openscapes.2i2c.cloud/hub/user-redirect/lab?fromURL=https://raw.githubusercontent.com/OpenScienceComputing/HackHours/main/hackhours_demo.ipynb
 
-Because the NMFS OpenScapes hub was not set up for dask at the time I developed the demo, I decided to use Coiled for Dask.
-
 To allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day. To use the token to run COILED, login to the [NMFS OpenSpaces 2i2c JuptyerHub](https://nmfs-openscapes.2i2c.cloud/) with the default environment, open a terminal and type:
 ```
 coiled login --token af791b1a879e4c0b99a8b7bec850e9a1-1e7144a190114be06abf273052d98640b62cb5fa

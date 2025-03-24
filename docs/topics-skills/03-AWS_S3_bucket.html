@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="CryoCloud (with edits by Eli Holmes)">
 
-<title>Instructions for setting up an AWS S3 bucket for your project – NMFS HackHours 2025</title>
+<title>S3 Scratch Bucket – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -286,8 +287,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item">
- <span class="menu-text">HackHour 2025 Topics</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../topics-2025/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HackHour 2025 Topics</span></a>
+  </div>
+</li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -484,13 +488,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
- <span class="menu-text">Guest Speakers</span></a>
+            <a href="../topics-2025/2025-dask/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - Parallel Computing with Dask</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-2025/2025-dask/Dask_local_cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Local cluster</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-2025/2025-dask/Dask_gateway.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gateway cluster</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-2025/2025-dask/Dask_coiled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coiled cluster</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Guest Speakers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
@@ -528,7 +561,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#create-an-aws-account-and-s3-bucket" id="toc-create-an-aws-account-and-s3-bucket" class="nav-link active" data-scroll-target="#create-an-aws-account-and-s3-bucket">Create an AWS account and S3 bucket</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#create-an-aws-account-and-s3-bucket" id="toc-create-an-aws-account-and-s3-bucket" class="nav-link" data-scroll-target="#create-an-aws-account-and-s3-bucket">Create an AWS account and S3 bucket</a></li>
   <li><a href="#create-aws-s3-bucket" id="toc-create-aws-s3-bucket" class="nav-link" data-scroll-target="#create-aws-s3-bucket">Create AWS S3 bucket</a></li>
   <li><a href="#create-a-user" id="toc-create-a-user" class="nav-link" data-scroll-target="#create-a-user">Create a user</a></li>
   <li><a href="#create-the-bucket-policy" id="toc-create-the-bucket-policy" class="nav-link" data-scroll-target="#create-the-bucket-policy">Create the bucket policy</a></li>
@@ -565,13 +599,19 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../topics-skills/index.html">JupyterHub Skills</a></li><li class="breadcrumb-item"><a href="../topics-skills/03-AWS_S3_bucket.html">AWS S3 Bucket</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Instructions for setting up an AWS S3 bucket for your project</h1>
+<h1 class="title">S3 Scratch Bucket</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>CryoCloud (with edits by Eli Holmes) </p>
+          </div>
+  </div>
     
   
     
@@ -582,8 +622,17 @@ function googleTranslateElementInit() {
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-skills/03-ScratchBucket.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid figure-img" alt="Download Badge"></a></p>
+<figcaption>Download Badge</figcaption>
+</figure>
+</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This set of instructions will walk through how to setup an AWS S3 bucket for a specific project and how to configure that bucket to allow all members of the project team to have access.</p>
-<p><em>This notebook is from the CryoCloud documentation. THE CODE WILL NOT WORK SINCE YOU NEED TO AUTHENTICATE TO THE S3 BUCKET.</em></p>
+<p><em>THE CODE WILL NOT WORK SINCE YOU NEED TO AUTHENTICATE A S3 BUCKET.</em> However, it shows the concept.</p>
+</section>
 <section id="create-an-aws-account-and-s3-bucket" class="level2">
 <h2 class="anchored" data-anchor-id="create-an-aws-account-and-s3-bucket">Create an AWS account and S3 bucket</h2>
 <p>The first step is to create an AWS account that will be billed to your particular project. This can be done using these <a href="https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/">instructions</a>.</p>
@@ -592,12 +641,12 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="create-aws-s3-bucket">Create AWS S3 bucket</h2>
 <p>Within your new AWS account, create an new S3 bucket:</p>
 <ol type="1">
-<li>Open the AWS S3 console (https://console.aws.amazon.com/s3/)</li>
-<li>From the navigation pane, choose <strong>Buckets</strong></li>
-<li>Choose <strong>Create bucket</strong></li>
-<li>Name the bucket and select us-west-2 for the region</li>
-<li>Leave all other default options</li>
-<li>Click <strong>Create Bucket</strong></li>
+<li><p>Open the AWS S3 console (https://console.aws.amazon.com/s3/)</p></li>
+<li><p>From the navigation pane, choose <strong>Buckets</strong></p></li>
+<li><p>Choose <strong>Create bucket</strong></p></li>
+<li><p>Name the bucket and select us-west-2 for the region</p></li>
+<li><p>Leave all other default options</p></li>
+<li><p>Click <strong>Create Bucket</strong></p></li>
 </ol>
 </section>
 <section id="create-a-user" class="level2">
@@ -664,7 +713,6 @@ function googleTranslateElementInit() {
 <p>This can be done manually but the easiest way to do it is by using <a href="https://aws.amazon.com/cli/">AWS Command Line Interface (CLI)</a>.</p>
 <p>On the local computer: 1. Open a terminal 1. Install AWS CLI (if using the <code>conda</code> package manager, you can install like this: <code>conda install -c conda-forge awscli</code>) 1. Configure the AWS profile with the keys from above and give your profile a new profile name: - <code>aws configure --profile PROFILE_NAME</code> - Enter the access key and secret access key - Enter <code>us-west-2</code> for the region and <code>json</code> for format</p>
 <p>In the code examples below, the profile name is <code>icesat2</code>. Replace this with the profile name that you used.</p>
-<hr>
 </section>
 <section id="example-code" class="level1">
 <h1>Example code</h1>
