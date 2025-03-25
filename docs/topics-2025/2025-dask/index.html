@@ -570,6 +570,7 @@ function googleTranslateElementInit() {
 
 
 <p>In this session, you will get an introduction to <a href="https://www.dask.org/">Dask</a> for parallel computing in Python. You learn about local Dask clusters to run tasks on all your CPUs versus Dask Gateway and Coiled clusters. The nmfs-openscapes Jupyter Hub is set-up with Dask Gateway to allow Gateway; it is a common but not a default feature of Jupyter Hubs. Coiled will require a Coiled account and your own AWS, GCP, Azure or other cloud account where your new pods (virtual machines) will be spun up.</p>
+<p>When you start up the Jupyter Hub, please select the “Py - NASA Openscapes Python 07980b9” image not the default image. This is smaller and the Gateway pods will start faster.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 34%">
@@ -620,6 +621,11 @@ function googleTranslateElementInit() {
 </table>
 <section id="tutorials" class="level2">
 <h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
+<ul>
+<li><a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/Dask_local_cluster.html">Local clusters</a></li>
+<li><a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/Dask_gateway.html">Gateway clusters</a></li>
+<li><a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/Dask_coiled.html">Coiled clusters</a></li>
+</ul>
 </section>
 <section id="how-to-download-and-open-the-tutorials" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-download-and-open-the-tutorials">How to download and open the tutorials</h2>
@@ -633,15 +639,15 @@ function googleTranslateElementInit() {
 <section id="colab" class="level3">
 <h3 class="anchored" data-anchor-id="colab">Colab</h3>
 <ol type="1">
-<li>Click the Open in Colab button</li>
+<li>Click the Open in Colab button. You will need to install dask, dask-labextension, dask-geopandas, coiled. Gateway will not work as that is for a hub on top of Kubernetes.</li>
 </ol>
 </section>
 <section id="download" class="level3">
 <h3 class="anchored" data-anchor-id="download">Download</h3>
 <ol type="1">
-<li>Download to your local computer</li>
+<li>Download to your local computer. Dask works on local computers or standalone virtual machines.</li>
 <li>You will need to have Python and Jupyter Lab installed</li>
-<li>Install any needed packages</li>
+<li>Install any needed packages. You will need to install dask, dask-labextension, dask-geopandas, coiled. Gateway will not work as that is for a hub on top of Kubernetes.</li>
 </ol>
 </section>
 <section id="how-to-clone-the-git-repository" class="level3">

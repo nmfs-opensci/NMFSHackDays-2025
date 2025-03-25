@@ -557,9 +557,11 @@ function googleTranslateElementInit() {
 <section id="using-virtualizarr-dask-and-holoviz-to-explore-nodd-data" class="level1">
 <h1>Using Virtualizarr, Dask and Holoviz to explore NODD data</h1>
 <p><strong>Author:</strong> <a href="https://opensciencecomputing.com/">Rich Signell</a> (Open Science Computing)</p>
-<p>We will use the notebook here to explore NODD data using holoviz, then create a virtual dataset using Virtualizarr, and then run an embarrassingly parallel job (construction of references for each file) using Dask, and then also use Dask for parallel data access in Xarray.</p>
+<p><a href="https://drive.google.com/drive/folders/1XaTSDZiqcStU0UbwC8fvHdwfbwF5GL2g">Video recording of session</a> (NOAA Access Only)</p>
+<p>We will use the hackhours_demo.ipynb notebook in <a href="https://github.com/OpenScienceComputing/HackHours">this repo</a> to explore NODD data using holoviz, then create a virtual dataset using VirtualiZarr, and then run an embarrassingly parallel job (construction of references for each file) using Dask, and then also use Dask for parallel data access in Xarray.</p>
+<p>When you start up the Jupyter Hub, please select the “Py - NASA Openscapes Python 07980b9” image not the default image. New to Dask? You can review the <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-dask/">Dask tutorials</a> which will introduce the difference between local, Gateway and coiled clusters.</p>
 <p><a href="https://colab.research.google.com/github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://github.com/OpenScienceComputing/HackHours/blob/main/hackhours_demo.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
-<p>To allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day. To use the token to run COILED, login to the <a href="https://nmfs-openscapes.2i2c.cloud/">NMFS OpenSpaces 2i2c JuptyerHub</a> with the default environment, open a terminal and type:</p>
+<p>To allow folks to try Coiled, but without signing up, you can use a token I created that expires in one day; (update the token was only for the hackhour so will not work now). To use the token to run COILED, login to the <a href="https://nmfs-openscapes.2i2c.cloud/">NMFS OpenSpaces 2i2c JuptyerHub</a> with the default environment, open a terminal and type:</p>
 <pre><code>coiled login --token af791b1a879e4c0b99a8b7bec850e9a1-1e7144a190114be06abf273052d98640b62cb5fa</code></pre>
 <p>I created the named coiled environment by creating a <a href="hackhours_coiled_env.yml">conda environment file</a> that matched the package versions in the JupyterHub default environment, as of 2025-03-21, via this command:</p>
 <pre><code>coiled env create --name hackhours-arm --workspace esip-lab --conda hackhours_coiled_env.yml --architecture aarch64</code></pre>
@@ -575,15 +577,15 @@ function googleTranslateElementInit() {
 <section id="colab" class="level3">
 <h3 class="anchored" data-anchor-id="colab">Colab</h3>
 <ol type="1">
-<li>Click the Open in Colab button</li>
+<li>Click the Open in Colab button. You will need to install xarray and coiled. xarray installation should also install dask but if not you will need to install that too. Gateway will not work as that is for a hub on top of Kubernetes.</li>
 </ol>
 </section>
 <section id="download" class="level3">
 <h3 class="anchored" data-anchor-id="download">Download</h3>
 <ol type="1">
-<li>Download to your local computer</li>
+<li>Download to your local computer. Dask works on local computers or standalone virtual machines.</li>
 <li>You will need to have Python and Jupyter Lab installed</li>
-<li>Install any needed packages</li>
+<li>Install any needed packages. You will need to install xarray and coiled. xarray installation should also install dask but if not you will need to install that too. Gateway will not work as that is for a hub on top of Kubernetes.</li>
 </ol>
 </section>
 <section id="how-to-clone-the-git-repository" class="level3">

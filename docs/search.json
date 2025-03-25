@@ -898,7 +898,7 @@
     "href": "topics-2025/2025-03-21-Signell/index.html#how-to-download-and-open-the-tutorials",
     "title": "Using Virtualizarr, Dask and Holoviz to explore NODD data",
     "section": "How to download and open the tutorials",
-    "text": "How to download and open the tutorials\n\nJupyter Hub\n\nStart the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;\nClick the orange Open in Jupyter Hub button\n\n\n\nColab\n\nClick the Open in Colab button\n\n\n\nDownload\n\nDownload to your local computer\nYou will need to have Python and Jupyter Lab installed\nInstall any needed packages\n\n\n\nHow to clone the git repository\nAfter cloning, you will need to navigate to the tutorials in the topics-2025 directory.\nNever cloned the NMFSHackDays-2025 repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NMFSHackDays-2025\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NMFSHackDays-2025\ngit fetch origin\ngit reset --hard origin/main",
+    "text": "How to download and open the tutorials\n\nJupyter Hub\n\nStart the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;\nClick the orange Open in Jupyter Hub button\n\n\n\nColab\n\nClick the Open in Colab button. You will need to install xarray and coiled. xarray installation should also install dask but if not you will need to install that too. Gateway will not work as that is for a hub on top of Kubernetes.\n\n\n\nDownload\n\nDownload to your local computer. Dask works on local computers or standalone virtual machines.\nYou will need to have Python and Jupyter Lab installed\nInstall any needed packages. You will need to install xarray and coiled. xarray installation should also install dask but if not you will need to install that too. Gateway will not work as that is for a hub on top of Kubernetes.\n\n\n\nHow to clone the git repository\nAfter cloning, you will need to navigate to the tutorials in the topics-2025 directory.\nNever cloned the NMFSHackDays-2025 repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NMFSHackDays-2025\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NMFSHackDays-2025\ngit fetch origin\ngit reset --hard origin/main",
     "crumbs": [
       "Guest Speakers",
       "3/21 Rich Signell - VirtualiZarr, Dask and Holoviz"
@@ -964,7 +964,7 @@
     "href": "topics-2025/2025-dask/index.html",
     "title": "Intro to Dask",
     "section": "",
-    "text": "In this session, you will get an introduction to Dask for parallel computing in Python. You learn about local Dask clusters to run tasks on all your CPUs versus Dask Gateway and Coiled clusters. The nmfs-openscapes Jupyter Hub is set-up with Dask Gateway to allow Gateway; it is a common but not a default feature of Jupyter Hubs. Coiled will require a Coiled account and your own AWS, GCP, Azure or other cloud account where your new pods (virtual machines) will be spun up.",
+    "text": "In this session, you will get an introduction to Dask for parallel computing in Python. You learn about local Dask clusters to run tasks on all your CPUs versus Dask Gateway and Coiled clusters. The nmfs-openscapes Jupyter Hub is set-up with Dask Gateway to allow Gateway; it is a common but not a default feature of Jupyter Hubs. Coiled will require a Coiled account and your own AWS, GCP, Azure or other cloud account where your new pods (virtual machines) will be spun up.\nWhen you start up the Jupyter Hub, please select the “Py - NASA Openscapes Python 07980b9” image not the default image. This is smaller and the Gateway pods will start faster.",
     "crumbs": [
       "Python - Parallel Computing with Dask"
     ]
@@ -974,7 +974,7 @@
     "href": "topics-2025/2025-dask/index.html#tutorials",
     "title": "Intro to Dask",
     "section": "Tutorials",
-    "text": "Tutorials",
+    "text": "Tutorials\n\nLocal clusters\nGateway clusters\nCoiled clusters",
     "crumbs": [
       "Python - Parallel Computing with Dask"
     ]
@@ -984,7 +984,7 @@
     "href": "topics-2025/2025-dask/index.html#how-to-download-and-open-the-tutorials",
     "title": "Intro to Dask",
     "section": "How to download and open the tutorials",
-    "text": "How to download and open the tutorials\n\nJupyter Hub\n\nStart the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;\nClick the orange Open in Jupyter Hub button\n\n\n\nColab\n\nClick the Open in Colab button\n\n\n\nDownload\n\nDownload to your local computer\nYou will need to have Python and Jupyter Lab installed\nInstall any needed packages\n\n\n\nHow to clone the git repository\nAfter cloning, you will need to navigate to the tutorials in the topics-2025 directory.\nNever cloned the NMFSHackDays-2025 repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NMFSHackDays-2025\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NMFSHackDays-2025\ngit fetch origin\ngit reset --hard origin/main",
+    "text": "How to download and open the tutorials\n\nJupyter Hub\n\nStart the Jupyter Hub server &lt;nmfs-openscapes.2i2c.cloud&gt;\nClick the orange Open in Jupyter Hub button\n\n\n\nColab\n\nClick the Open in Colab button. You will need to install dask, dask-labextension, dask-geopandas, coiled. Gateway will not work as that is for a hub on top of Kubernetes.\n\n\n\nDownload\n\nDownload to your local computer. Dask works on local computers or standalone virtual machines.\nYou will need to have Python and Jupyter Lab installed\nInstall any needed packages. You will need to install dask, dask-labextension, dask-geopandas, coiled. Gateway will not work as that is for a hub on top of Kubernetes.\n\n\n\nHow to clone the git repository\nAfter cloning, you will need to navigate to the tutorials in the topics-2025 directory.\nNever cloned the NMFSHackDays-2025 repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NMFSHackDays-2025\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NMFSHackDays-2025\ngit fetch origin\ngit reset --hard origin/main",
     "crumbs": [
       "Python - Parallel Computing with Dask"
     ]
