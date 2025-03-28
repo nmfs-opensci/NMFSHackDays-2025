@@ -4,7 +4,7 @@ title: Intro to Dask
 
 In this session, you will get an introduction to [Dask](https://www.dask.org/) for parallel computing in Python.  You learn about local Dask clusters to run tasks on all your CPUs versus Dask Gateway and Coiled clusters. The nmfs-openscapes Jupyter Hub is set-up with Dask Gateway to allow Gateway; it is a common but not a default feature of Jupyter Hubs. Coiled will require a Coiled account and your own AWS, GCP, Azure or other cloud account where your new pods (virtual machines) will be spun up.
 
-When you start up the Jupyter Hub, please select the "Py - NASA Openscapes Python 07980b9" image not the default image. This is smaller and the Gateway pods will start faster.
+When you start up the Jupyter Hub, please select the "Py - NASA Openscapes Python 07980b9" image not the default image. This is smaller and the Gateway pods will start much faster.
 
 | Feature                 | `LocalCluster`  | `DaskGateway`   | `Coiled` |
 |------------------------|----------------|---------------|---------------|
