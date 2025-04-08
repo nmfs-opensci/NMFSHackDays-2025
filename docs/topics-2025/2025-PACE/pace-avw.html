@@ -8,7 +8,7 @@
 
 <meta name="author" content="Eli Holmes (NOAA)">
 
-<title>PACE Data Access with earthaccess – AVW – NMFS HackHours 2025</title>
+<title>Apparent Visible Wavelength (AVW) – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -610,8 +610,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#apparent-visible-wavelength-avw" id="toc-apparent-visible-wavelength-avw" class="nav-link" data-scroll-target="#apparent-visible-wavelength-avw">Apparent Visible Wavelength (AVW)</a></li>
-  <li><a href="#apparent-visible-wavelength-avw-1" id="toc-apparent-visible-wavelength-avw-1" class="nav-link" data-scroll-target="#apparent-visible-wavelength-avw-1">Apparent Visible Wavelength (AVW)</a></li>
+  <li><a href="#monthly-data" id="toc-monthly-data" class="nav-link" data-scroll-target="#monthly-data">Monthly data</a></li>
+  <li><a href="#daily-data" id="toc-daily-data" class="nav-link" data-scroll-target="#daily-data">Daily data</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-PACE/pace-avw.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-PACE/pace-avw.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -640,7 +640,7 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-PACE/index.html">Python - PACE Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-PACE/pace-avw.html">AVW</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">PACE Data Access with earthaccess – AVW</h1>
+<h1 class="title">Apparent Visible Wavelength (AVW)</h1>
 </div>
 
 
@@ -676,6 +676,7 @@ function googleTranslateElementInit() {
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>The PACE Level-3 (gridded) OCI (ocean color instrument) data is available on an NASA EarthData. Search using the instrument filter “OCI” and processing level filter “Gridded Observations” <a href="https://search.earthdata.nasa.gov/search?fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations" class="uri">https://search.earthdata.nasa.gov/search?fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations</a> and you will see 45+ data collections. In this tutorial, we will look at the Apparent Visible Wavelength (AVW) product.</p>
+<p>The collection information page is here: <a href="https://cmr.earthdata.nasa.gov/search/concepts/C3385050418-OB_CLOUD.html">PACE OCI Level-3 Global Mapped Apparent Visible Wavelength (AVW) Data, version 3.0</a>. The concept id for this dataset is “C3385050418-OB_CLOUD” and the short name is “PACE_OCI_L3M_AVW”.</p>
 <section id="prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
 <p>You need to have an EarthData Login username and password. Go here to get one <a href="https://urs.earthdata.nasa.gov/" class="uri">https://urs.earthdata.nasa.gov/</a></p>
@@ -691,13 +692,9 @@ function googleTranslateElementInit() {
 </div>
 </section>
 </section>
-</section>
-<section id="apparent-visible-wavelength-avw" class="level2">
-<h2 class="anchored" data-anchor-id="apparent-visible-wavelength-avw">Apparent Visible Wavelength (AVW)</h2>
-<p><a href="https://cmr.earthdata.nasa.gov/search/concepts/C3385050418-OB_CLOUD.html">PACE OCI Level-3 Global Mapped Apparent Visible Wavelength (AVW) Data, version 3.0</a>. The concept id for this dataset is “C3385050418-OB_CLOUD” and the short name is “PACE_OCI_L3M_AVW”.</p>
 <section id="create-a-nasa-edl-authenticated-session" class="level3">
 <h3 class="anchored" data-anchor-id="create-a-nasa-edl-authenticated-session">Create a NASA EDL authenticated session</h3>
-<p>Authenticate with <code>earthaccess.login()</code>.</p>
+<p>Authenticate with <code>earthaccess.login()</code>.Authenticate with <code>earthaccess.login()</code>. You will need your EarthData Login username and password for this step. Get one here <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>.</p>
 <div id="0fe0002f-c759-4611-8dd7-861b8bd38971" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
@@ -714,11 +711,8 @@ function googleTranslateElementInit() {
 </div>
 </section>
 </section>
-<section id="apparent-visible-wavelength-avw-1" class="level2">
-<h2 class="anchored" data-anchor-id="apparent-visible-wavelength-avw-1">Apparent Visible Wavelength (AVW)</h2>
-<p>Load the data.</p>
-<section id="find-the-monthly-data" class="level3">
-<h3 class="anchored" data-anchor-id="find-the-monthly-data">Find the monthly data</h3>
+<section id="monthly-data" class="level2">
+<h2 class="anchored" data-anchor-id="monthly-data">Monthly data</h2>
 <p>I poked around on the files on <a href="https://search.earthdata.nasa.gov/search/granules/collection-details?p=C3385050418-OB_CLOUD&amp;pg%5B0%5D%5Bv%5D=f&amp;pg%5B0%5D%5Bgsk%5D=-start_date&amp;fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations&amp;tl=1726833236.2!4!!&amp;lat=0.0703125">search.earthdata</a> so I know what the files look like.</p>
 <div id="8715485c-979e-41d2-9f68-259d47bf373d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
@@ -1232,7 +1226,6 @@ Attributes: (12/62)
 </div>
 </div>
 </div>
-</section>
 <section id="multiple-months" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-months">Multiple months</h3>
 <div id="d796bd90-a382-4afe-9958-cf31049f6c20" class="cell" data-execution_count="61">
@@ -1755,9 +1748,10 @@ Attributes: (12/62)
 </div>
 </div>
 </section>
-<section id="find-the-daily-data" class="level3">
-<h3 class="anchored" data-anchor-id="find-the-daily-data">Find the daily data</h3>
-<p>We need the data links that are 0.1 deg and DAY.</p>
+</section>
+<section id="daily-data" class="level2">
+<h2 class="anchored" data-anchor-id="daily-data">Daily data</h2>
+<p>We need the data links that have 0.1 deg and DAY in the file name.</p>
 <div id="a4499303-42de-442d-8540-f51da03ebc4b" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>results_day <span class="op">=</span> earthaccess.search_data(</span>
@@ -2390,7 +2384,6 @@ Attributes: (12/62)
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

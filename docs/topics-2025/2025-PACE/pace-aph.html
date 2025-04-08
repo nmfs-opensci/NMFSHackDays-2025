@@ -8,7 +8,7 @@
 
 <meta name="author" content="Eli Holmes (NOAA)">
 
-<title>PACE Data Access with earthaccess – APH – NMFS HackHours 2025</title>
+<title>Spectral phytoplankton absorption coefficients (APH) – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -610,8 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#spectral-phytoplankton-absorption-coefficients-aph" id="toc-spectral-phytoplankton-absorption-coefficients-aph" class="nav-link" data-scroll-target="#spectral-phytoplankton-absorption-coefficients-aph">Spectral phytoplankton absorption coefficients (APH)</a></li>
-  <li><a href="#multiple-months" id="toc-multiple-months" class="nav-link" data-scroll-target="#multiple-months">Multiple months</a></li>
+  <li><a href="#monthly-data" id="toc-monthly-data" class="nav-link" data-scroll-target="#monthly-data">Monthly data</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-PACE/pace-aph.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-PACE/pace-aph.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -640,7 +639,7 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-PACE/index.html">Python - PACE Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-PACE/pace-aph.html">APH</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">PACE Data Access with earthaccess – APH</h1>
+<h1 class="title">Spectral phytoplankton absorption coefficients (APH)</h1>
 </div>
 
 
@@ -676,6 +675,7 @@ function googleTranslateElementInit() {
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>The PACE Level-3 (gridded) OCI (ocean color instrument) data is available on an NASA EarthData. Search using the instrument filter “OCI” and processing level filter “Gridded Observations” <a href="https://search.earthdata.nasa.gov/search?fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations" class="uri">https://search.earthdata.nasa.gov/search?fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations</a> and you will see 45+ data collections. In this tutorial, we will look at the Spectral phytoplankton absorption coefficients (APH) product.</p>
+<p>APH is in the IOP collection: <a href="https://cmr.earthdata.nasa.gov/search/concepts/C3385050632-OB_CLOUD.html">PACE OCI Level-3 Global Mapped Inherent Optical Properties (IOP) Data, version 3.0</a>. The concept id for this dataset is “C3385050632-OB_CLOUD” and the short name is “PACE_OCI_L3M_IOP”.</p>
 <section id="prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
 <p>You need to have an EarthData Login username and password. Go here to get one <a href="https://urs.earthdata.nasa.gov/" class="uri">https://urs.earthdata.nasa.gov/</a></p>
@@ -691,13 +691,9 @@ function googleTranslateElementInit() {
 </div>
 </section>
 </section>
-</section>
-<section id="spectral-phytoplankton-absorption-coefficients-aph" class="level2">
-<h2 class="anchored" data-anchor-id="spectral-phytoplankton-absorption-coefficients-aph">Spectral phytoplankton absorption coefficients (APH)</h2>
-<p>APH is in the IOP collection: <a href="https://cmr.earthdata.nasa.gov/search/concepts/C3385050632-OB_CLOUD.html">PACE OCI Level-3 Global Mapped Inherent Optical Properties (IOP) Data, version 3.0</a>. The concept id for this dataset is “C3385050632-OB_CLOUD” and the short name is “PACE_OCI_L3M_IOP”.</p>
 <section id="create-a-nasa-edl-authenticated-session" class="level3">
 <h3 class="anchored" data-anchor-id="create-a-nasa-edl-authenticated-session">Create a NASA EDL authenticated session</h3>
-<p>Authenticate with <code>earthaccess.login()</code>.</p>
+<p>Authenticate with <code>earthaccess.login()</code>.Authenticate with <code>earthaccess.login()</code>. You will need your EarthData Login username and password for this step. Get one here <a href="https://urs.earthdata.nasa.gov/">https://urs.earthdata.nasa.gov/</a>.</p>
 <div id="0fe0002f-c759-4611-8dd7-861b8bd38971" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
@@ -713,8 +709,9 @@ function googleTranslateElementInit() {
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="find-the-monthly-data" class="level3">
-<h3 class="anchored" data-anchor-id="find-the-monthly-data">Find the monthly data</h3>
+</section>
+<section id="monthly-data" class="level2">
+<h2 class="anchored" data-anchor-id="monthly-data">Monthly data</h2>
 <p>I poked around on the files on <a href="https://search.earthdata.nasa.gov/search/granules/collection-details?p=C3385050418-OB_CLOUD&amp;pg%5B0%5D%5Bv%5D=f&amp;pg%5B0%5D%5Bgsk%5D=-start_date&amp;fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations&amp;tl=1726833236.2!4!!&amp;lat=0.0703125">search.earthdata</a> so I know what the files look like. March to December 2024.</p>
 <div id="8715485c-979e-41d2-9f68-259d47bf373d" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
@@ -1223,10 +1220,8 @@ Attributes: (12/64)
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="multiple-months" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-months">Multiple months</h2>
+<section id="multiple-months" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-months">Multiple months</h3>
 <div id="5c95207d-6552-4734-9fc6-063f36edc16d" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    fileset,</span>
@@ -1751,6 +1746,9 @@ Attributes: (12/64)
 </div>
 </div>
 </div>
+</section>
+<section id="raster-plots-of-the-aph" class="level3">
+<h3 class="anchored" data-anchor-id="raster-plots-of-the-aph">Raster plots of the APH</h3>
 <div id="e5b607a9-e4c7-48b2-9079-4891eee7831c" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"aph"</span>].isel(time<span class="op">=</span><span class="dv">0</span>).sel(wavelength <span class="op">=</span> <span class="dv">361</span>, lat <span class="op">=</span> <span class="bu">slice</span>(<span class="dv">50</span>, <span class="dv">30</span>), lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="dv">140</span>, <span class="op">-</span><span class="dv">110</span>)).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1782,6 +1780,7 @@ Attributes: (12/64)
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
