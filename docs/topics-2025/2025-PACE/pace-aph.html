@@ -685,7 +685,10 @@ function googleTranslateElementInit() {
         password yourpassword</code></pre>
 <section id="for-those-not-working-in-the-jupyterhub" class="level4">
 <h4 class="anchored" data-anchor-id="for-those-not-working-in-the-jupyterhub">For those not working in the JupyterHub</h4>
-<p>Create a code cell and run <code>pip install earthaccess</code>.</p>
+<p>Uncomment this line and run the cell:</p>
+<div id="2b036850-2a65-45d0-ab41-a5cef63a35fe" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install earthaccess</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 </section>
@@ -696,37 +699,37 @@ function googleTranslateElementInit() {
 <h3 class="anchored" data-anchor-id="create-a-nasa-edl-authenticated-session">Create a NASA EDL authenticated session</h3>
 <p>Authenticate with <code>earthaccess.login()</code>.</p>
 <div id="0fe0002f-c759-4611-8dd7-861b8bd38971" class="cell" data-tags="[]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># are we authenticated?</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> auth.authenticated:</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ask for credentials and persist them in a .netrc file</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    auth.login(strategy<span class="op">=</span><span class="st">"interactive"</span>, persist<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># are we authenticated?</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> auth.authenticated:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ask for credentials and persist them in a .netrc file</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    auth.login(strategy<span class="op">=</span><span class="st">"interactive"</span>, persist<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="import-required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="import-required-packages">Import Required Packages</h3>
 <div id="f04a653d-b9e5-4cfe-a198-b5b612389742" class="cell" data-tags="[]" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="find-the-monthly-data" class="level3">
 <h3 class="anchored" data-anchor-id="find-the-monthly-data">Find the monthly data</h3>
 <p>I poked around on the files on <a href="https://search.earthdata.nasa.gov/search/granules/collection-details?p=C3385050418-OB_CLOUD&amp;pg%5B0%5D%5Bv%5D=f&amp;pg%5B0%5D%5Bgsk%5D=-start_date&amp;fi=OCI&amp;fl=3%2B-%2BGridded%2BObservations&amp;tl=1726833236.2!4!!&amp;lat=0.0703125">search.earthdata</a> so I know what the files look like. March to December 2024.</p>
 <div id="8715485c-979e-41d2-9f68-259d47bf373d" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results_mo <span class="op">=</span> earthaccess.search_data(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    short_name <span class="op">=</span> <span class="st">"PACE_OCI_L3M_IOP"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> (<span class="st">"2024-03-01"</span>, <span class="st">"2024-12-31"</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    granule_name<span class="op">=</span><span class="st">"*.MO.*aph.0p1deg.*"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(results_mo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>results_mo <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    short_name <span class="op">=</span> <span class="st">"PACE_OCI_L3M_IOP"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> (<span class="st">"2024-03-01"</span>, <span class="st">"2024-12-31"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    granule_name<span class="op">=</span><span class="st">"*.MO.*aph.0p1deg.*"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(results_mo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>10</code></pre>
 </div>
 </div>
 <div id="31c7f363-e2ab-40a7-abe2-06b1059d8682" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results_mo[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>results_mo[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 
     <div id="83eb2052-c1d4-4476-a66f-abc432f09e11" style="height: 0px; display: none">
@@ -765,8 +768,8 @@ function googleTranslateElementInit() {
 </div>
 </div>
 <div id="ca779a7f-b5a0-45c7-a2db-cbc1af38fdf2" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a fileset</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fileset <span class="op">=</span> earthaccess.<span class="bu">open</span>(results_mo)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a fileset</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fileset <span class="op">=</span> earthaccess.<span class="bu">open</span>(results_mo)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"7ab99c62fdbc4bd690436b7c6f94649c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -784,10 +787,10 @@ function googleTranslateElementInit() {
 </div>
 </div>
 <div id="c848e877-e50f-4cd6-b0a2-9560d3429b29" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's load just one month</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(fileset[<span class="dv">0</span>])</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's load just one month</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(fileset[<span class="dv">0</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1210,12 +1213,12 @@ Attributes: (12/64)
 </div>
 </div>
 <div id="01a71669-d027-491d-84da-b4c64bc2a233" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ds_np <span class="op">=</span> ds[<span class="st">'aph'</span>].sel(lat<span class="op">=</span><span class="fl">44.6517</span>, lon<span class="op">=-</span><span class="fl">124.1770</span>, method<span class="op">=</span><span class="st">'nearest'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ds_np.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ds_np <span class="op">=</span> ds[<span class="st">'aph'</span>].sel(lat<span class="op">=</span><span class="fl">44.6517</span>, lon<span class="op">=-</span><span class="fl">124.1770</span>, method<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ds_np.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="pace-aph_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="pace-aph_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1225,11 +1228,11 @@ Attributes: (12/64)
 <section id="multiple-months" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-months">Multiple months</h2>
 <div id="5c95207d-6552-4734-9fc6-063f36edc16d" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    fileset,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'nested'</span>, concat_dim<span class="op">=</span><span class="st">"time"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    fileset,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'nested'</span>, concat_dim<span class="op">=</span><span class="st">"time"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1738,18 +1741,8 @@ Attributes: (12/64)
 </div>
 </div>
 <div id="3f3a19ae-9dcb-494d-8ec3-c4601af6323a" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds_np <span class="op">=</span> ds[<span class="st">'aph'</span>].sel(lat<span class="op">=</span><span class="fl">44.6517</span>, lon<span class="op">=-</span><span class="fl">124.1770</span>, method<span class="op">=</span><span class="st">'nearest'</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ds_np.plot.line(x<span class="op">=</span><span class="st">"wavelength"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="pace-aph_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="e5b607a9-e4c7-48b2-9079-4891eee7831c" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"aph"</span>].isel(time<span class="op">=</span><span class="dv">0</span>).sel(wavelength <span class="op">=</span> <span class="dv">361</span>, lat <span class="op">=</span> <span class="bu">slice</span>(<span class="dv">50</span>, <span class="dv">30</span>), lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="dv">140</span>, <span class="op">-</span><span class="dv">110</span>)).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ds_np <span class="op">=</span> ds[<span class="st">'aph'</span>].sel(lat<span class="op">=</span><span class="fl">44.6517</span>, lon<span class="op">=-</span><span class="fl">124.1770</span>, method<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ds_np.plot.line(x<span class="op">=</span><span class="st">"wavelength"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1758,23 +1751,33 @@ Attributes: (12/64)
 </div>
 </div>
 </div>
+<div id="e5b607a9-e4c7-48b2-9079-4891eee7831c" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"aph"</span>].isel(time<span class="op">=</span><span class="dv">0</span>).sel(wavelength <span class="op">=</span> <span class="dv">361</span>, lat <span class="op">=</span> <span class="bu">slice</span>(<span class="dv">50</span>, <span class="dv">30</span>), lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="dv">140</span>, <span class="op">-</span><span class="dv">110</span>)).plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pace-aph_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <div id="bf14fd60-208d-4b3d-a35d-2d689b7158ef" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"wavelength"</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"wavelength"</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>array([351., 361., 385., 413., 425., 442., 460., 475., 490., 510., 532.,
        555., 583., 618., 640., 655., 665., 678., 711.])</code></pre>
 </div>
 </div>
 <div id="71ceff87-a045-4626-bce6-a488b9d17877" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"aph"</span>].isel(time<span class="op">=</span><span class="dv">0</span>).sel(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    lat<span class="op">=</span><span class="bu">slice</span>(<span class="dv">50</span>, <span class="dv">30</span>), </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="dv">140</span>, <span class="op">-</span><span class="dv">110</span>), </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    wavelength<span class="op">=</span>[<span class="dv">351</span>, <span class="dv">413</span>, <span class="dv">555</span>, <span class="dv">678</span>]  <span class="co"># choose your wavelengths</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>).plot(x<span class="op">=</span><span class="st">"lon"</span>, y<span class="op">=</span><span class="st">"lat"</span>, col<span class="op">=</span><span class="st">"wavelength"</span>, col_wrap<span class="op">=</span><span class="dv">2</span>, robust<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ds[<span class="st">"aph"</span>].isel(time<span class="op">=</span><span class="dv">0</span>).sel(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    lat<span class="op">=</span><span class="bu">slice</span>(<span class="dv">50</span>, <span class="dv">30</span>), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="dv">140</span>, <span class="op">-</span><span class="dv">110</span>), </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    wavelength<span class="op">=</span>[<span class="dv">351</span>, <span class="dv">413</span>, <span class="dv">555</span>, <span class="dv">678</span>]  <span class="co"># choose your wavelengths</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>).plot(x<span class="op">=</span><span class="st">"lon"</span>, y<span class="op">=</span><span class="st">"lat"</span>, col<span class="op">=</span><span class="st">"wavelength"</span>, col_wrap<span class="op">=</span><span class="dv">2</span>, robust<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="pace-aph_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="pace-aph_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
