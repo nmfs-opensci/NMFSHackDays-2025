@@ -20,7 +20,7 @@ If you use NASA data, they are migrating to serving their data to the cloud and 
 
 ## Servers that use NASA Earthdata authentication
 
-Things with `nasa.gov` are obvious but a couple others without nasa.gov in the url also use it.
+urls with `nasa.gov` obviously use NASA authentication but a couple other servers without `nasa.gov` in the url also use it.
 
 * list (not fully up to date) of NASA opendap servers: <https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/opendap/servers>
 * NSIDC <https://n5eil02u.ecs.nsidc.org/opendap/> [docs](https://nsidc.org/data/user-resources/help-center/how-do-i-access-data-using-opendap) 
