@@ -177,6 +177,8 @@ website:
               href: topics-2025/2025-PACE/pace-aph.html
             - text: Kd
               href: topics-2025/2025-PACE/pace-kd.html
+            - text: Level 2 data
+              href: topics-2025/2025-PACE/level2.html
             - text: OPeNDAP
               href: topics-2025/2025-PACE/pace-aph.html
         - section: "Guest Speakers"
@@ -187,6 +189,8 @@ website:
               href: topics-2025/2025-03-21-Signell/index.html
             - text: 4/4 Negin Sobhani and Max Jones - xarray + GPU
               href: topics-2025/2025-04-04-xarray-gpu/index.html
+            - text: 4/11 Chia-Wei Hsu - CEFI data
+              href: topics-2025/2025-04-11-cefi/index.html
         - text: "---"
         - href: content/reuse.md
           text: Reuse Statement
