@@ -1,0 +1,231 @@
+---
+title: Accessing CEFI data with R
+jupyter:
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+
+The following notebook is a quick demostration on how to use R to access the OPeNDAP server data. This is designed for users that prefer the programing interface to be R. There are already couple of great resource related to preprocessing and visualizing data in R. Therefore, the notebook will not repeat that part of the code but focusing on how to accessing the data from a R interface. The resources is listed below 
+> - http://cran.nexr.com/web/packages/rerddap/vignettes/Using_rerddap.html (A detail introduction of rerddap package and show the visualization in many different datasets)
+> - https://ioos.github.io/ioos_code_lab/content/code_gallery/data_access_notebooks/2017-08-01-xtractoR.html (use a different package called xtractomatic to access the ERDDAP data)
+
+
+<div class="admonition alert alert-info">
+    <p class="admonition-title" style="font-weight:bold">Launch R in Jupyterlab</p>
+    In addition to the standard R code demonstrated below, our current interface leverages JupyterLab to execute R code using the R kernel. To enable this functionality, we utilize the environment.yml file to create a Conda/Mamba environment. The primary objective is to install the r-irkernel package within this environment.
+
+This installation of r-irkernel through Conda/Mamba ensures that the R kernel becomes available as an option when launching JupyterLab. Selecting the R kernel empowers users to utilize the JupyterLab interface for running R code effortlessly.
+    
+</div>
+
+## Packages used
+To use R to access the OPeNDAP server directly from your R script or R-notebook, you will need
+- ncdf4 
+
+There are couple of ways to install the packages, here we provide two popular ways below
+1. In the R environment, `install.packages('<package name>')`
+2. In the conda/mamba environment for package version control, `conda install r-<package name>` or `mamba install r-<package name>` (many r package can be install this way by adding "r-" in front of the package name)
+
+## Import R packages
+The way to import packages to the current R environment is to use the `require` or `library` functions
+Both functions will import the package but with subtle different of 
+> The require() and library() functions can both be used to load packages in R, but they have one subtle difference:
+>
+> - require() will output a warning if a package is not installed and then continue to execute the code.
+> - library() will output an error and stop the execution of the code.
+
+Detail explanation can be find [here](https://www.statology.org/r-require-vs-library/#:~:text=The%20require()%20and%20library,the%20execution%20of%20the%20code.)
+
+```{r}
+#| tags: []
+#| vscode: {languageId: r}
+library("ncdf4")
+```
+
+## Help page for the package and related functions
+A great way to find information about the package directly in the R-notebook environment is to add the `?` in front of the package/function name
+
+```{r}
+#| tags: []
+#| vscode: {languageId: r}
+??ncdf4
+```
+
+## Direct OPeNDAP server data access
+
+With the help of the ncdf4 package we are able to load the data that is hosted on the OPeNDAP server and grab the coordinate and attribute without the need to downloading the entire dataset.
+
+- first we need to find the URL that can provide the OPeNDAP access for R (this can be find on the THREDDS server [here](https://psl.noaa.gov/thredds/catalog/Projects/CEFI/regional_mom6/northwest_atlantic/hist_run/catalog.html))
+- click on OPeNDAP option when clicking on any of the netcdf files
+- on top of the OPeNDAP form there is a URL for accessing the data
+
+```{tip}
+[Understanding of the OPeNDAP server and what it provides](opendapData) is highly recommended before reading the following intructions.
+```
+
+### Link to data source (regular gridded product)
+
+```{r}
+#| tags: []
+#| vscode: {languageId: r}
+# Specify the OPeNDAP server URL (using regular grid output)
+url <- "http://psl.noaa.gov/thredds/dodsC/Projects/CEFI/regional_mom6/northwest_atlantic/hist_run/regrid/ocean_monthly.199301-201912.sos.nc"
+
+# Open a NetCDF file lazily and remotely
+ncopendap <- nc_open(url)
+```
+
+### Load the data to local memory
+```{warning}
+There is a 500MB limit per request so making sure the data request each time is not over the limit. For loop to seperate the request is one of the solution to avoid the single time request becoming to large.
+```
+
+Here we only request a single slice in the time domain but the whole northeast Atlantic domain in the regional mom6 model. Since this is the part that actually downloading the data. It would takes a bit longer.
+
+```{r}
+#| vscode: {languageId: r}
+# Read the data into memory
+timeslice = 1
+lon <- ncvar_get(ncopendap, "lon")
+lat <- ncvar_get(ncopendap, "lat")
+time <- ncvar_get(ncopendap, "time",start = c(timeslice), count = c(1))
+
+# Read a slice of the data into memory
+sos <- ncvar_get(ncopendap, "sos", start = c(1, 1, timeslice), count = c(-1, -1, 1))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# the matrix output of sea surface salinity
+sos
+```
+
+### Converting time array to datetime
+The origial time would be only in the unit of time "days since 1993-01-01". In order to understand what is the actual time. We need to grab the time unit and the time number and convert to a datetime object.
+
+```{r}
+#| vscode: {languageId: r}
+# Get the units
+tunits <- ncatt_get(ncopendap, "time", "units")
+datesince <- tunits$value
+datesince <- substr(datesince, nchar(datesince)-9, nchar(datesince))
+datesince
+```
+
+```{r}
+#| vscode: {languageId: r}
+# convert the number to datetime (input should be in second while the time is in unit of days)
+datetime_var <- as.POSIXct(time*86400, origin=datesince, tz="UTC")
+datetime_var
+```
+
+### Quick view of the data
+
+```{r}
+#| vscode: {languageId: r}
+filled.contour(lon, lat, sos, main = paste("Sea surface salinity at ", datetime_var), xlab = "Longitude", ylab = "Latitude", levels = pretty(c(20,40), 20))
+```
+
+### Convert the matrix to dataframe 
+
+```{r}
+#| vscode: {languageId: r}
+df <- expand.grid(X = lon, Y = lat)
+data <- as.vector(t(sos))
+df$Data <- data
+names(df) <- c("lon", "lat", "sos")
+```
+
+```{r}
+#| vscode: {languageId: r}
+df
+```
+
+### Link to data source (Raw gridded product)
+
+Let's proceed to load a more complex data structure, specifically the raw grid structure from the regional MOM6 output. This time besides the data itself we also need to load the grid structure that is stored in another file
+
+```{r}
+#| vscode: {languageId: r}
+# Specify the OPeNDAP server URL (using regular grid output)
+url <- "http://psl.noaa.gov/thredds/dodsC/Projects/CEFI/regional_mom6/northwest_atlantic/hist_run/ocean_monthly.199301-201912.sos.nc"
+url_static <- "http://psl.noaa.gov/thredds/dodsC/Projects/CEFI/regional_mom6/northwest_atlantic/hist_run/ocean_static.nc"
+
+# Open a NetCDF file lazily and remotely
+ncopendap <- nc_open(url)
+ncstaticopendap <- nc_open(url_static)
+```
+
+### Load the data to local memory
+
+```{r}
+#| vscode: {languageId: r}
+# Read the data into memory
+timeslice = 1
+lon <- ncvar_get(ncstaticopendap, "geolon")
+lat <- ncvar_get(ncstaticopendap, "geolat")
+x <- ncvar_get(ncopendap, "xh")
+y <- ncvar_get(ncopendap, "yh")
+time <- ncvar_get(ncopendap, "time",start = c(timeslice), count = c(1))
+
+# Read a slice of the data into memory
+sos <- ncvar_get(ncopendap, "sos", start = c(1, 1, timeslice), count = c(-1, -1, 1))
+```
+
+```{r}
+#| vscode: {languageId: r}
+# the matrix output of sea surface salinity in raw grid
+sos
+```
+
+### Converting time array to datetime
+The origial time would be only in the unit of time "days since 1993-01-01". In order to understand what is the actual time. We need to grab the time unit and the time number and convert to a datetime object.
+
+```{r}
+#| vscode: {languageId: r}
+# Get the units
+tunits <- ncatt_get(ncopendap, "time", "units")
+datesince <- tunits$value
+datesince <- substr(datesince, nchar(datesince)-18, nchar(datesince)-8)
+datesince
+```
+
+```{r}
+#| vscode: {languageId: r}
+# convert the number to datetime (input should be in second while the time is in unit of days)
+datetime_var <- as.POSIXct(time*86400, origin=datesince, tz="UTC")
+datetime_var
+```
+
+### Quick view of the data
+
+```{r}
+#| vscode: {languageId: r}
+filled.contour(x, y, sos, main = paste("Sea surface salinity on raw grid at ", datetime_var), xlab = "xh", ylab = "yh", levels = pretty(c(20,40), 20))
+```
+
+### Convert the matrix to dataframe 
+Since we might want the dataframe to represent the lon lat data structure. We can convert the lon, lat,(not xh,yh which represents the grid number and not the actual lon lat) and data matrix to the dataframe.
+
+```{r}
+#| vscode: {languageId: r}
+X <- as.vector(t(lon))
+Y <- as.vector(t(lat))
+data <- as.vector(t(sos))
+
+df <- data.frame(
+  "lon" = X,
+  "lat" = Y,
+  "sos" = data
+)
+```
+
+```{r}
+#| vscode: {languageId: r}
+df
+```
+
+
