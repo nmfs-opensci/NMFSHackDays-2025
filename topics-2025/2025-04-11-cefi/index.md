@@ -5,6 +5,9 @@ Friday April 11 11am PT/2pm ET. This Friday's HackHour topic is Accessing CEFI d
 # Building a Docker Image and Environment on 2i2c
 To create a 2i2c-compatible Docker image for use with the notebook materials, please use the [CEFI Cookbook GitHub repository](https://github.com/NOAA-CEFI-Portal/cefi-cookbook). When setting up the environment, select the option to build the Docker image directly from the GitHub repository.
 
+<img width="855" alt="image" src="https://github.com/user-attachments/assets/9131f51b-624a-41c9-bd13-8173369f47c3" />
+
+
 
 Some useful links below:
 
