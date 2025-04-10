@@ -7,5 +7,5 @@ Some useful links below:
 * [CEFI portal cookbooks](https://psl.noaa.gov/cefi_portal/#cookbooks)
 * [CEFI portal](https://psl.noaa.gov/cefi_portal/#overview )
 * [CEFI portal GitHub organization](https://github.com/NOAA-CEFI-Portal)
-* [Data OPeNDAP](https://psl.noaa.gov/thredds/catalog/Projects/CEFI/catalog.html)
+* [Data OPeNDAP](https://psl.noaa.gov/thredds/catalog/Projects/CEFI/regional_mom6/cefi_portal/catalog.html)
 
