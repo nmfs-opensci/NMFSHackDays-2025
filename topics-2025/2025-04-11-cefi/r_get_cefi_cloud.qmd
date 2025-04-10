@@ -5,6 +5,8 @@ jupyter:
     display_name: R
     language: R
     name: ir
+reticulate:
+  python: "/srv/conda/envs/notebook/bin/python"
 ---
 
 This example requires you to have used conda or mamba to install the [cefi-cookbook-dev environment as explained here](conda-setup).
@@ -50,8 +52,10 @@ library(ggplot2)
 
 ```{r}
 #| vscode: {languageId: r}
-use_condaenv('cefi-cookbook-dev')
+options(reticulate.conda_binary = "/srv/conda/condabin/conda")
+use_condaenv("/srv/conda/envs/notebook", required = TRUE)
 ```
+
 
 ## Get some python tools to read the data from the cloud storage
 fsspec and xarray are python packages that are in the conda environment we build to run this notebook.
