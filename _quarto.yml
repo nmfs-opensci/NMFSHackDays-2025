@@ -183,6 +183,17 @@ website:
               href: topics-2025/2025-PACE/level2.html
             - text: OPeNDAP
               href: topics-2025/2025-PACE/pace-aph.html
+        - section: "CEFI Data Access"
+          href: topics-2025/2025-04-11-cefi/index.html
+          contents:
+            - text: Python - OPeNDAP
+              href: topics-2025/2025-04-11-cefi/python_get_cefi.html
+            - text: Python - Cloud
+              href: topics-2025/2025-04-11-cefi/python_get_cefi_cloud.html
+            - text: R - OPeNDAP
+              href: topics-2025/2025-04-11-cefi/r_get_cefi.ipynb
+            - text: R - Cloud
+              href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards
