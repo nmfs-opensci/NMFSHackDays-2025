@@ -191,9 +191,9 @@ website:
             - text: Python - Cloud
               href: topics-2025/2025-04-11-cefi/python_get_cefi_cloud.html
             - text: R - OPeNDAP
-              href: topics-2025/2025-04-11-cefi/r_get_cefi.ipynb
+              href: topics-2025/2025-04-11-cefi/r_get_cefi.html
             - text: R - Cloud
-              href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb
+              href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards

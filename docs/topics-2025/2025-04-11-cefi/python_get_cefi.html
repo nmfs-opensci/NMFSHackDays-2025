@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Chia-Wei Hsu (NOAA Hsu)">
+<meta name="author" content="Chia-Wei Hsu (NOAA PSL)">
 
 <title>Python - Accessing CEFI Data via OPeNDAP – NMFS HackHours 2025</title>
 <style>
@@ -585,13 +585,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.ipynb" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R - OPeNDAP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R - Cloud</span></a>
   </div>
 </li>
@@ -699,7 +699,7 @@ function googleTranslateElementInit() {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Chia-Wei Hsu (NOAA Hsu) </p>
+             <p>Chia-Wei Hsu (NOAA PSL) </p>
           </div>
   </div>
     
@@ -715,17 +715,26 @@ function googleTranslateElementInit() {
 <p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/python_get_cefi.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/python_get_cefi.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/python_get_cefi.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
 <section id="packages-used" class="level2">
 <h2 class="anchored" data-anchor-id="packages-used">Packages used</h2>
-<p>To use python to access the ERDDAP server directly from your python script or jupyter-notebook, you will need - Xarray - netcdf4 - matplotlib - folium</p>
-<p>:::{admonition} Packages The package <a href="http://unidata.github.io/netcdf4-python/"><strong>netcdf4</strong></a> develop by UNIDATA is not needed in the import part of the python script. However, it is the essential package that <a href="https://docs.xarray.dev/en/stable/user-guide/io.html">support netCDF format output from Xarray and OPeNDAP access</a>. The package <a href="https://matplotlib.org/stable/"><strong>matplotlib</strong></a> is also not needed in the import part of the python script. It is the essential package that <a href="https://docs.xarray.dev/en/stable/user-guide/plotting.html">support quick visualization from Xarray</a>. :::</p>
+<p>To use python to access the ERDDAP server directly from your python script or jupyter-notebook, you will need</p>
+<ul>
+<li>Xarray</li>
+<li>netcdf4</li>
+<li>matplotlib</li>
+<li>folium</li>
+</ul>
+<section id="note-re-packages" class="level3">
+<h3 class="anchored" data-anchor-id="note-re-packages">Note re packages</h3>
+<p>The package <a href="http://unidata.github.io/netcdf4-python/"><strong>netcdf4</strong></a> develop by UNIDATA is not needed in the import part of the python script. However, it is the essential package that <a href="https://docs.xarray.dev/en/stable/user-guide/io.html">support netCDF format output from Xarray and OPeNDAP access</a>. The package <a href="https://matplotlib.org/stable/"><strong>matplotlib</strong></a> is also not needed in the import part of the python script. It is the essential package that <a href="https://docs.xarray.dev/en/stable/user-guide/plotting.html">support quick visualization from Xarray</a>.</p>
 <hr>
 <p>On this page, we will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize OPeNDAP for accessing the data and visualize it on an interactive map. The currently available data can be viewed <a href="https://psl.noaa.gov/thredds/catalog/Projects/CEFI/regional_mom6/catalog.html">here</a>. The contents of this folder encompass historical simulations derived from the regional MOM6 model spanning the years 1993 to 2019.</p>
 </section>
+</section>
 <section id="import-python-packages" class="level2">
 <h2 class="anchored" data-anchor-id="import-python-packages">Import python packages</h2>
+<p>Thanks to the netCDF4/Pydap library, accessing data through OPeNDAP directly from Xarray is made seamless. For detailed usage guidance, the <a href="https://docs.xarray.dev/en/stable/user-guide/io.html#opendap">Xarray documentation</a> offers excellent examples and explanations. Ex: if the OPeNDAP server require authentication, <code>backends.PydapDataStore</code> can help on storing the login data.</p>
 <div id="aece2081" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>:::{admonition} Info Thanks to the netCDF4/Pydap library, accessing data through OPeNDAP directly from Xarray is made seamless. For detailed usage guidance, the <a href="https://docs.xarray.dev/en/stable/user-guide/io.html#opendap">Xarray documentation</a> offers excellent examples and explanations. Ex: if the OPeNDAP server require authentication, <code>backends.PydapDataStore</code> can help on storing the login data. :::</p>
 </section>
 <section id="access-data-regular-grid-product" class="level2">
 <h2 class="anchored" data-anchor-id="access-data-regular-grid-product">Access data (regular grid product)</h2>
@@ -1162,7 +1171,9 @@ Attributes:
               dtype='datetime64[ns]', name='time', length=324, freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-9ddb1a93-6691-4771-b45b-3c4e8abc00b6" class="xr-section-summary-in" type="checkbox"><label for="section-9ddb1a93-6691-4771-b45b-3c4e8abc00b6" class="xr-section-summary">Attributes: <span>(11)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>NumFilesInSet :</span></dt><dd>1</dd><dt><span>title :</span></dt><dd>NWA12_COBALT_2023_04_kpo4-coastatten-physics</dd><dt><span>associated_files :</span></dt><dd>areacello: 19930101.ocean_static.nc</dd><dt><span>grid_type :</span></dt><dd>regular</dd><dt><span>grid_tile :</span></dt><dd>N/A</dd><dt><span>external_variables :</span></dt><dd>areacello</dd><dt><span>history :</span></dt><dd>Derived and written at NOAA Physical Science Laboratory</dd><dt><span>NCO :</span></dt><dd>netCDF Operators version 5.0.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd><dt><span>contact :</span></dt><dd>chia-wei.hsu@noaa.gov</dd><dt><span>dataset :</span></dt><dd>regional mom6 regrid</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.9.2,hdf5=1.14.3</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<p>:::{admonition} Tip :class: tip When we use <code>xr.open_dataset()</code> to load the data from OPeNDAP, we actually only load the metadata and coordinates information. This provide a great way to peek at the data’s dimension and availability on our local machine in the xarray object format. The actual gridded data values at each grid point will only be downloaded from the PSL server when we add <code>.load()</code> to the dataset. :::</p>
+<section id="tip" class="level3">
+<h3 class="anchored" data-anchor-id="tip">Tip</h3>
+<p>When we use <code>xr.open_dataset()</code> to load the data from OPeNDAP, we actually only load the metadata and coordinates information. This provide a great way to peek at the data’s dimension and availability on our local machine in the xarray object format. The actual gridded data values at each grid point will only be downloaded from the PSL server when we add <code>.load()</code> to the dataset.</p>
 <p>Since most OPeNDAP server will set a single time data transfer limit (PSL server has a 500MB limit), we cannot <code>ds_ssh.load()</code> the whole dataset. However, we can load the sea level map at a single time step which is smaller than 500MB.</p>
 <div id="5db51e89" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ds_ssh_subset <span class="op">=</span> ds_ssh.sel(time<span class="op">=</span><span class="st">'2012-12'</span>).load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1595,6 +1606,7 @@ Attributes:
 </div>
 <p>From the xarray dataset object output above, we will notice the <code>ssh</code> value in <code>ds_ssh_subset</code> is now avaible and printed out while the <code>ssh</code> value in <code>ds_ssh</code> is not. This means the <code>ssh</code> values has been downloaded from the OPeNDAP server to the local machine memory.</p>
 </section>
+</section>
 <section id="quick-view-of-the-variable" class="level2">
 <h2 class="anchored" data-anchor-id="quick-view-of-the-variable">Quick view of the variable</h2>
 <p>To check if the data makes sense and fits the chosen time and region, you can use Xarray’s <code>.plot()</code> method. This way, you see a graph instead of just numbers, making it easier to understand.</p>
@@ -1608,7 +1620,10 @@ Attributes:
 </div>
 </div>
 </div>
-<p>:::{admonition} Science info :class: info The map illustrates a clear distinction between high sea levels, primarily from tropical regions (hot and fresh water), and low sea levels, mainly from the Labrador Sea or other polar areas (cold and salty sea water). The meandering pattern of the sharp sea level gradient, indicating rapid sea level changes over a short distance, highlights the location of the Gulf Stream. This distinctive sea level feature is a result of the existence of western boundary currents, commonly observed on the western edges of major ocean basins, such as the Kuroshio in the Pacific basin. :::</p>
+<section id="science-info" class="level3">
+<h3 class="anchored" data-anchor-id="science-info">Science info</h3>
+<p>The map illustrates a clear distinction between high sea levels, primarily from tropical regions (hot and fresh water), and low sea levels, mainly from the Labrador Sea or other polar areas (cold and salty sea water). The meandering pattern of the sharp sea level gradient, indicating rapid sea level changes over a short distance, highlights the location of the Gulf Stream. This distinctive sea level feature is a result of the existence of western boundary currents, commonly observed on the western edges of major ocean basins, such as the Kuroshio in the Pacific basin.</p>
+</section>
 </section>
 <section id="plotting-the-data-on-a-interactive-leaflet-map" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-the-data-on-a-interactive-leaflet-map">Plotting the data on a interactive leaflet map</h2>
@@ -1859,7 +1874,9 @@ Attributes:
 <section id="access-data-raw-grid-product" class="level2">
 <h2 class="anchored" data-anchor-id="access-data-raw-grid-product">Access data (raw grid product)</h2>
 <p>The raw grid product differs from the regular grid in that it represents the original output of the model. The model grid uses the Arakawa C grid. The <a href="https://mom6.readthedocs.io/en/main/api/generated/pages/Discrete_Grids.html?highlight=arakawa#vertical-grids">MOM6 documentation</a> provides an excellent visualization of the Arakawa C grid. We can concentrate on the <code>h</code> point, which is where scalar values like sea level height are stored. The grid does not have uniform spacing and is, in fact, a curvilinear grid.</p>
-<p>:::{admonition} Info The raw model output is beneficial when calculating the energy budget, which includes factors like heat and momentum. This output preserves each term’s original values, avoiding any potential distortions caused by interpolation. By using the raw grid product, we can ensure the energy budget balances within a closed system. :::</p>
+<section id="info" class="level3">
+<h3 class="anchored" data-anchor-id="info">Info</h3>
+<p>The raw model output is beneficial when calculating the energy budget, which includes factors like heat and momentum. This output preserves each term’s original values, avoiding any potential distortions caused by interpolation. By using the raw grid product, we can ensure the energy budget balances within a closed system.</p>
 <p>To use the raw grid data, one need to get two files. 1. the variable file 2. the static file</p>
 <div id="bf11b6cf" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>opendap_url <span class="op">=</span> <span class="st">"http://psl.noaa.gov/thredds/dodsC/Projects/CEFI/regional_mom6/northwest_atlantic/hist_run/ocean_monthly.199301-201912.ssh.nc"</span></span>
@@ -2730,8 +2747,14 @@ Attributes:
              dtype='float64', name='yq', length=846))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-ee81d800-18b2-43f7-98ed-6d5fca28a181" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-ee81d800-18b2-43f7-98ed-6d5fca28a181" class="xr-section-summary">Attributes: <span>(8)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.9.0,hdf5=1.12.2</dd><dt><span>NumFilesInSet :</span></dt><dd>1</dd><dt><span>title :</span></dt><dd>NWA12_MOM6_v1.0</dd><dt><span>grid_type :</span></dt><dd>regular</dd><dt><span>grid_tile :</span></dt><dd>N/A</dd><dt><span>history :</span></dt><dd>Fri May 12 10:50:21 2023: ncks -4 -L 3 ocean_static.nc compressed/ocean_static.nc</dd><dt><span>NCO :</span></dt><dd>netCDF Operators version 5.0.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<p>:::{admonition} Tip :class: tip Again, only the metadata and coordinate information are loaded into local memory, not the actual data. The gridded data values at each grid point are only downloaded from the PSL server when we append <code>.load()</code> to the dataset. :::</p>
-<p>:::{admonition} Warning :class: tip In the <code>ds_static</code> dataset, you can observe the one-dimensional <code>xh, yh</code> grid. The numbers on this grid may resemble longitude and latitude values, but they do not represent actual geographical locations. For accurate longitude and latitude data, you should refer to the <code>geolon, geolat</code> variables in the list. These variables, which are dimensioned by <code>xh, yh</code>, provide the correct geographical coordinates. :::</p>
+</section>
+<section id="tip-1" class="level3">
+<h3 class="anchored" data-anchor-id="tip-1">Tip</h3>
+<p>Again, only the metadata and coordinate information are loaded into local memory, not the actual data. The gridded data values at each grid point are only downloaded from the PSL server when we append <code>.load()</code> to the dataset.</p>
+</section>
+<section id="warning" class="level3">
+<h3 class="anchored" data-anchor-id="warning">Warning</h3>
+<p>In the <code>ds_static</code> dataset, you can observe the one-dimensional <code>xh, yh</code> grid. The numbers on this grid may resemble longitude and latitude values, but they do not represent actual geographical locations. For accurate longitude and latitude data, you should refer to the <code>geolon, geolat</code> variables in the list. These variables, which are dimensioned by <code>xh, yh</code>, provide the correct geographical coordinates.</p>
 <p>Now let’s take a look at the grid area distribution which give a great sense of how it is different from regular spacing grid</p>
 <div id="c431aea5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ds_static <span class="op">=</span> ds_static.set_coords([<span class="st">'geolon'</span>,<span class="st">'geolat'</span>])</span>
@@ -3216,6 +3239,7 @@ Attributes:
 </div>
 </div>
 <p>From the xarray dataset object output above, we will notice the <code>ssh</code> value in <code>ds</code> is now avaible and the coordinate information in teh coordinate is also include into a single Dataset object.</p>
+</section>
 </section>
 <section id="quick-view-of-the-variable-1" class="level2">
 <h2 class="anchored" data-anchor-id="quick-view-of-the-variable-1">Quick view of the variable</h2>

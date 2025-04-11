@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Roland Schweitzer (NOAA PSL)">
 
-<title>Accessing CEFI Cloud data with Python – NMFS HackHours 2025</title>
+<title>Python - Accessing CEFI Data from the Cloud – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2025/2025-04-11-cefi/r_get_cefi.ipynb" rel="next">
+<link href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" rel="next">
 <link href="../../topics-2025/2025-04-11-cefi/python_get_cefi.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -584,13 +585,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.ipynb" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R - OPeNDAP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R - Cloud</span></a>
   </div>
 </li>
@@ -689,13 +690,19 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/python_get_cefi_cloud.html">Python - Cloud</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Accessing CEFI Cloud data with Python</h1>
+<h1 class="title">Python - Accessing CEFI Data from the Cloud</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Roland Schweitzer (NOAA PSL) </p>
+          </div>
+  </div>
     
   
     
@@ -709,11 +716,24 @@ function googleTranslateElementInit() {
 <p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/python_get_cefi_cloud.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/python_get_cefi_cloud.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/python_get_cefi_cloud.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
 <section id="packages-used" class="level2">
 <h2 class="anchored" data-anchor-id="packages-used">Packages used</h2>
-<p>To use python to access the ERDDAP server directly from your python script or jupyter-notebook, you will need - Xarray - cf_xarray - netcdf4 - matplotlib - zarr - fsspec - s3sf - cartopy</p>
-<p>:::{admonition} Packages The package <a href="http://unidata.github.io/netcdf4-python/"><strong>netcdf4</strong></a> developed by UNIDATA and the zarr engine are used at runtime. It is the essential package that <a href="https://docs.xarray.dev/en/stable/user-guide/io.html">support netCDF format output from Xarray and OPeNDAP access</a> be available in the environment when using xarray. The package <a href="https://scitools.org.uk/cartopy/docs/latest/"><strong>cartopy</strong></a> is also not needed to read the data, but is used later in the script for making the map plots. :::</p>
+<p>To use python to access the ERDDAP server directly from your python script or jupyter-notebook, you will need</p>
+<ul>
+<li>Xarray</li>
+<li>cf_xarray</li>
+<li>netcdf4</li>
+<li>matplotlib</li>
+<li>zarr</li>
+<li>fsspec</li>
+<li>s3sf</li>
+<li>cartopy</li>
+</ul>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>The package <a href="http://unidata.github.io/netcdf4-python/"><strong>netcdf4</strong></a> developed by UNIDATA and the zarr engine are used at runtime. It is the essential package that <a href="https://docs.xarray.dev/en/stable/user-guide/io.html">support netCDF format output from Xarray and OPeNDAP access</a> be available in the environment when using xarray. The package <a href="https://scitools.org.uk/cartopy/docs/latest/"><strong>cartopy</strong></a> is also not needed to read the data, but is used later in the script for making the map plots.</p>
 <hr>
 <p>On this page, we will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize xarray and fsspec for accessing the data and visualize it on an detailed map. The currently available data can be viewed on - <a href="https://noaa-oar-cefi-regional-mom6-pds.s3.amazonaws.com/index.html">AWS</a> - <a href="https://console.cloud.google.com/storage/browser/noaa-oar-cefi-regional-mom6">Google Cloud Storage</a></p>
 <p>The contents of this folder encompass hindcast simulations derived from the regional MOM6 model spanning the years 1993 to 2019.</p>
+</section>
 </section>
 <section id="import-python-packages" class="level2">
 <h2 class="anchored" data-anchor-id="import-python-packages">Import python packages</h2>
@@ -722,7 +742,7 @@ function googleTranslateElementInit() {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cf_xarray <span class="co"># This is a wrapper for xarray that allows access to the data through standard coordinate names</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>:::{admonition} Info Thanks to the xarray, fsspec, zarr and kerchunk, accessing data from the cloud directly from Xarray is seamless. For detailed usage guidance, the <a href="https://docs.xarray.dev/en/stable/user-guide/io.html#cloud-storage-buckets">Xarray documentation</a> offers excellent examples and explanations. :::</p>
+<p>Thanks to the xarray, fsspec, zarr and kerchunk, accessing data from the cloud directly from Xarray is seamless. For detailed usage guidance, the <a href="https://docs.xarray.dev/en/stable/user-guide/io.html#cloud-storage-buckets">Xarray documentation</a> offers excellent examples and explanations.</p>
 </section>
 <section id="access-data-regular-grid-product" class="level2">
 <h2 class="anchored" data-anchor-id="access-data-regular-grid-product">Access data (regular grid product)</h2>
@@ -739,9 +759,11 @@ function googleTranslateElementInit() {
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> fs.get_mapper()</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ds_tob <span class="op">=</span> xr.open_dataset(m, engine<span class="op">=</span><span class="st">'zarr'</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>:::{admonition} Info <code>fsspec</code> is a library that provides a unified interface for accessing various file systems, including local, cloud, and remote file systems. filesystem(“reference”, …) creates a reference file system using fsspec. This is used to access a dataset described by a reference JSON file.</p>
+<section id="info" class="level3">
+<h3 class="anchored" data-anchor-id="info">Info</h3>
+<p><code>fsspec</code> is a library that provides a unified interface for accessing various file systems, including local, cloud, and remote file systems. filesystem(“reference”, …) creates a reference file system using fsspec. This is used to access a dataset described by a reference JSON file.</p>
 <p><code>get_mapper</code> method returns a mapper object that can be used to access the data described by the reference JSON file.</p>
-<p>Finally, we use the <code>xr.open_dataset</code> to open the remote dataset using the zarr engine. :::</p>
+<p>Finally, we use the <code>xr.open_dataset</code> to open the remote dataset using the zarr engine.</p>
 <div id="2aedc764" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ds_tob.cf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -1198,7 +1220,10 @@ Attributes: (12/30)
               dtype='datetime64[ns]', name='time', length=324, freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-4ee998c6-f8b5-41d9-b3fb-3ba96eca3e70" class="xr-section-summary-in" type="checkbox"><label for="section-4ee998c6-f8b5-41d9-b3fb-3ba96eca3e70" class="xr-section-summary">Attributes: <span>(30)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>NCO :</span></dt><dd>netCDF Operators version 5.0.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd><dt><span>NumFilesInSet :</span></dt><dd>1</dd><dt><span>associated_files :</span></dt><dd>areacello: 19930101.ocean_static.nc</dd><dt><span>cefi_archive_version :</span></dt><dd>/archive/acr/fre/NWA/2023_04/NWA12_COBALT_2023_04_kpo4-coastatten-physics/gfdl.ncrc5-intel22-prod/</dd><dt><span>cefi_aux :</span></dt><dd>N/A</dd><dt><span>cefi_data_doi :</span></dt><dd>10.5281/zenodo.7893386</dd><dt><span>cefi_date_range :</span></dt><dd>199301-201912</dd><dt><span>cefi_ensemble_info :</span></dt><dd>N/A</dd><dt><span>cefi_experiment_name :</span></dt><dd>nwa12_cobalt</dd><dt><span>cefi_experiment_type :</span></dt><dd>hindcast</dd><dt><span>cefi_filename :</span></dt><dd>tob.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.nc</dd><dt><span>cefi_forcing :</span></dt><dd>N/A</dd><dt><span>cefi_grid_type :</span></dt><dd>regrid</dd><dt><span>cefi_init_date :</span></dt><dd>N/A</dd><dt><span>cefi_ori_category :</span></dt><dd>ocean_monthly</dd><dt><span>cefi_ori_filename :</span></dt><dd>ocean_monthly.199301-201912.tob.nc</dd><dt><span>cefi_output_frequency :</span></dt><dd>monthly</dd><dt><span>cefi_paper_doi :</span></dt><dd>10.5194/gmd-16-6943-2023</dd><dt><span>cefi_region :</span></dt><dd>nwa</dd><dt><span>cefi_rel_path :</span></dt><dd>cefi_portal/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520</dd><dt><span>cefi_release :</span></dt><dd>r20230520</dd><dt><span>cefi_run_xml :</span></dt><dd>N/A</dd><dt><span>cefi_subdomain :</span></dt><dd>full</dd><dt><span>cefi_variable :</span></dt><dd>tob</dd><dt><span>contact :</span></dt><dd>chia-wei.hsu@noaa.gov</dd><dt><span>dataset :</span></dt><dd>regional mom6 regrid</dd><dt><span>external_variables :</span></dt><dd>areacello</dd><dt><span>grid_tile :</span></dt><dd>N/A</dd><dt><span>grid_type :</span></dt><dd>regular</dd><dt><span>title :</span></dt><dd>NWA12_COBALT_2023_04_kpo4-coastatten-physics</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<p>:::{admonition} Tip :class: tip When we use <code>xr.open_dataset()</code> to load the data, we actually only load the metadata and coordinates information. This provide a great way to peek at the data’s dimension and availability on our local machine in the xarray object format. The actual gridded data values at each grid point will only be downloaded from the cloud server when we add <code>.load()</code> to the dataset or when we access the data with a visualization or analysis operation. :::</p>
+</section>
+<section id="tip" class="level3">
+<h3 class="anchored" data-anchor-id="tip">Tip</h3>
+<p>When we use <code>xr.open_dataset()</code> to load the data, we actually only load the metadata and coordinates information. This provide a great way to peek at the data’s dimension and availability on our local machine in the xarray object format. The actual gridded data values at each grid point will only be downloaded from the cloud server when we add <code>.load()</code> to the dataset or when we access the data with a visualization or analysis operation.</p>
 <p>xarray will lazy load the data from the selected subset when it’s needed, in this case when the plot is made below.</p>
 <div id="5db51e89" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset <span class="op">=</span> ds_tob.sel(time<span class="op">=</span><span class="st">'2012-12'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1613,6 +1638,7 @@ Attributes: (12/30)
 </div>
 </div>
 </section>
+</section>
 <section id="quick-view-of-the-variable" class="level2">
 <h2 class="anchored" data-anchor-id="quick-view-of-the-variable">Quick view of the variable</h2>
 <p>To check if the data makes sense and fits the chosen time and region, you can use Xarray’s <code>.plot()</code> method. This way, you see a graph, making it easier to understand.</p>
@@ -1687,7 +1713,9 @@ Attributes: (12/30)
 <section id="access-data-raw-grid-product" class="level2">
 <h2 class="anchored" data-anchor-id="access-data-raw-grid-product">Access data (raw grid product)</h2>
 <p>The raw grid product differs from the regular grid in that it represents the original output of the model. The model grid uses the Arakawa C grid. The <a href="rmom6Grid">Regional MOM6 Grid</a> provides an excellent visualization of the Arakawa C grid. We can concentrate on the <code>h</code> point, which is where scalar values like sea level height are stored. The grid does not have uniform spacing and is, in fact, a curvilinear grid.</p>
-<p>:::{admonition} Info The raw model output is beneficial when calculating the energy budget, which includes factors like heat and momentum. This output preserves each term’s original values, avoiding any potential distortions caused by interpolation. By using the raw grid product, we can ensure the energy budget balances within a closed system. :::</p>
+<section id="info-1" class="level3">
+<h3 class="anchored" data-anchor-id="info-1">Info</h3>
+<p>The raw model output is beneficial when calculating the energy budget, which includes factors like heat and momentum. This output preserves each term’s original values, avoiding any potential distortions caused by interpolation. By using the raw grid product, we can ensure the energy budget balances within a closed system.</p>
 <p>To use the raw grid data, one need to get two files. 1. the variable file 2. the static file</p>
 <p>For this demonstration we will use the AWS S3 to access the data. You can use either the Google Cloud Storage copy (gcs://noaa-oar-cefi-regional-mom6) or the AWS copy (s3://noaa-oar-cefi-regional-mom6-pds) by changing the prefix and name of the bucket.</p>
 <div id="bf11b6cf" class="cell" data-execution_count="11">
@@ -2577,8 +2605,14 @@ Attributes:
              dtype='float64', name='yq', length=846))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-32d39cda-8cc9-427a-9137-af92eaf54c44" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-32d39cda-8cc9-427a-9137-af92eaf54c44" class="xr-section-summary">Attributes: <span>(6)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>NCO :</span></dt><dd>netCDF Operators version 5.0.1 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd><dt><span>NumFilesInSet :</span></dt><dd>1</dd><dt><span>grid_tile :</span></dt><dd>N/A</dd><dt><span>grid_type :</span></dt><dd>regular</dd><dt><span>history :</span></dt><dd>Fri May 12 10:50:21 2023: ncks -4 -L 3 ocean_static.nc compressed/ocean_static.nc</dd><dt><span>title :</span></dt><dd>NWA12_MOM6_v1.0</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<p>:::{admonition} Tip :class: tip Again, only the metadata and coordinate information are loaded into local memory, not the actual data. The gridded data values at each grid point are only downloaded from the cloud when we append <code>.load()</code> to the dataset. :::</p>
-<p>:::{admonition} Warning :class: tip In the <code>ds_static</code> dataset, you can observe the one-dimensional <code>xh, yh</code> grid. The numbers on this grid may resemble longitude and latitude values, but they do not represent actual geographical locations. For accurate longitude and latitude data, you should refer to the <code>geolon, geolat</code> variables in the list. These variables, which are dimensioned by <code>xh, yh</code>, provide the correct geographical coordinates. :::</p>
+</section>
+<section id="tip-1" class="level3">
+<h3 class="anchored" data-anchor-id="tip-1">Tip</h3>
+<p>Again, only the metadata and coordinate information are loaded into local memory, not the actual data. The gridded data values at each grid point are only downloaded from the cloud when we append <code>.load()</code> to the dataset.</p>
+</section>
+<section id="warning" class="level3">
+<h3 class="anchored" data-anchor-id="warning">Warning</h3>
+<p>In the <code>ds_static</code> dataset, you can observe the one-dimensional <code>xh, yh</code> grid. The numbers on this grid may resemble longitude and latitude values, but they do not represent actual geographical locations. For accurate longitude and latitude data, you should refer to the <code>geolon, geolat</code> variables in the list. These variables, which are dimensioned by <code>xh, yh</code>, provide the correct geographical coordinates.</p>
 <p>Now let’s take a look at the grid area distribution which give a great sense of how it is different from regular spacing grid</p>
 <div id="c431aea5" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds_static <span class="op">=</span> ds_static.set_coords([<span class="st">'geolon'</span>,<span class="st">'geolat'</span>])</span>
@@ -2648,6 +2682,7 @@ Data Variables:
        Grid Mappings:   n/a</code></pre>
 </div>
 </div>
+</section>
 </section>
 <section id="quick-view-of-the-variable-1" class="level2">
 <h2 class="anchored" data-anchor-id="quick-view-of-the-variable-1">Quick view of the variable</h2>
@@ -3271,7 +3306,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.ipynb" class="pagination-link" aria-label="R - OPeNDAP">
+      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="pagination-link" aria-label="R - OPeNDAP">
         <span class="nav-page-text">R - OPeNDAP</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

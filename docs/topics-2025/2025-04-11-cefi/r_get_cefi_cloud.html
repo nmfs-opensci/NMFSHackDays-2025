@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="NOAA CoastWatch with modifications to use earthaccess by Eli Holmes">
+<meta name="author" content="Roland Schweitzer (NOAA PSL)">
 
-<title>Extract data within a boundary – NMFS HackHours 2025</title>
+<title>R - Accessing CEFI Data in the Cloud – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" rel="next">
-<link href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" rel="prev">
+<link href="../../topics-2025/2025-03-14-Boettiger/index.html" rel="next">
+<link href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -108,7 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -163,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-14-earthdata/index.html">Python - NASA Earth Data</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html">Apply a polygon boundary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html">R - Cloud</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -298,11 +297,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../topics-2025/2025-02-14-earthdata/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python - NASA Earth Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-02-14-earthdata/0-earthdata-catalog.html" class="sidebar-item-text sidebar-link">
@@ -323,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Apply a polygon boundary</span></a>
   </div>
 </li>
@@ -567,11 +566,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../topics-2025/2025-04-11-cefi/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CEFI Data Access</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-04-11-cefi/python_get_cefi.html" class="sidebar-item-text sidebar-link">
@@ -592,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">R - Cloud</span></a>
   </div>
 </li>
@@ -656,23 +655,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#datasets-used" id="toc-datasets-used" class="nav-link" data-scroll-target="#datasets-used">Datasets used</a></li>
-  <li><a href="#import-packages-and-authenticate" id="toc-import-packages-and-authenticate" class="nav-link" data-scroll-target="#import-packages-and-authenticate">Import packages and authenticate</a></li>
-  <li><a href="#load-the-longhurst-provinces-shape-files-into-a-geopandas-dataframe" id="toc-load-the-longhurst-provinces-shape-files-into-a-geopandas-dataframe" class="nav-link" data-scroll-target="#load-the-longhurst-provinces-shape-files-into-a-geopandas-dataframe">Load the Longhurst Provinces shape files into a geopandas dataframe</a></li>
-  <li><a href="#isolate-the-gulf-stream-province" id="toc-isolate-the-gulf-stream-province" class="nav-link" data-scroll-target="#isolate-the-gulf-stream-province">Isolate the Gulf Stream Province</a></li>
-  <li><a href="#find-the-coordinates-of-the-bounding-box" id="toc-find-the-coordinates-of-the-bounding-box" class="nav-link" data-scroll-target="#find-the-coordinates-of-the-bounding-box">Find the coordinates of the bounding box</a></li>
-  <li><a href="#search-and-access-nasa-earthdata-with-the-collection-concept-id" id="toc-search-and-access-nasa-earthdata-with-the-collection-concept-id" class="nav-link" data-scroll-target="#search-and-access-nasa-earthdata-with-the-collection-concept-id">Search and access NASA Earthdata with the Collection Concept ID</a></li>
-  <li><a href="#load-the-satellite-data" id="toc-load-the-satellite-data" class="nav-link" data-scroll-target="#load-the-satellite-data">Load the satellite data</a></li>
-  <li><a href="#visualize-the-unmasked-data-on-a-map" id="toc-visualize-the-unmasked-data-on-a-map" class="nav-link" data-scroll-target="#visualize-the-unmasked-data-on-a-map">Visualize the unmasked data on a map</a></li>
-  <li><a href="#create-the-region-from-the-shape-file" id="toc-create-the-region-from-the-shape-file" class="nav-link" data-scroll-target="#create-the-region-from-the-shape-file">Create the region from the shape file</a></li>
-  <li><a href="#mask-the-satellite-data" id="toc-mask-the-satellite-data" class="nav-link" data-scroll-target="#mask-the-satellite-data">Mask the satellite data</a></li>
-  <li><a href="#visualize-the-masked-data-on-a-map" id="toc-visualize-the-masked-data-on-a-map" class="nav-link" data-scroll-target="#visualize-the-masked-data-on-a-map">Visualize the masked data on a map</a></li>
-  <li><a href="#calculate-the-mean-temperature-over-all-timesteps" id="toc-calculate-the-mean-temperature-over-all-timesteps" class="nav-link" data-scroll-target="#calculate-the-mean-temperature-over-all-timesteps">Calculate the mean temperature over all timesteps</a></li>
-  <li><a href="#calculate-the-mean-temperature-over-all-grids-lat-lon" id="toc-calculate-the-mean-temperature-over-all-grids-lat-lon" class="nav-link" data-scroll-target="#calculate-the-mean-temperature-over-all-grids-lat-lon">Calculate the mean temperature over all grids (lat, lon)</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link active" data-scroll-target="#packages-used">Packages used</a></li>
+  <li><a href="#get-some-python-tools-to-read-the-data-from-the-cloud-storage" id="toc-get-some-python-tools-to-read-the-data-from-the-cloud-storage" class="nav-link" data-scroll-target="#get-some-python-tools-to-read-the-data-from-the-cloud-storage">Get some python tools to read the data from the cloud storage</a></li>
+  <li><a href="#get-some-data-from-the-cloud" id="toc-get-some-data-from-the-cloud" class="nav-link" data-scroll-target="#get-some-data-from-the-cloud">Get some data from the cloud</a></li>
+  <li><a href="#reorganize-that-data-into-a-data.frame" id="toc-reorganize-that-data-into-a-data.frame" class="nav-link" data-scroll-target="#reorganize-that-data-into-a-data.frame">Reorganize that data into a data.frame</a></li>
+  <li><a href="#subset-the-dataset" id="toc-subset-the-dataset" class="nav-link" data-scroll-target="#subset-the-dataset">Subset the dataset</a></li>
+  <li><a href="#longitude-manipulation" id="toc-longitude-manipulation" class="nav-link" data-scroll-target="#longitude-manipulation">Longitude Manipulation</a></li>
+  <li><a href="#plot-setup" id="toc-plot-setup" class="nav-link" data-scroll-target="#plot-setup">Plot setup</a></li>
+  <li><a href="#meshdot-map" id="toc-meshdot-map" class="nav-link" data-scroll-target="#meshdot-map">Mesh/Dot Map</a></li>
+  <li><a href="#accessing-the-data-on-the-original-model-grid" id="toc-accessing-the-data-on-the-original-model-grid" class="nav-link" data-scroll-target="#accessing-the-data-on-the-original-model-grid">Accessing the data on the original model grid</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-02-14-earthdata/3-polygon.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-02-14-earthdata/3-polygon.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -696,9 +689,9 @@ function googleTranslateElementInit() {
     }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-14-earthdata/index.html">Python - NASA Earth Data</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-02-14-earthdata/3-polygon.html">Apply a polygon boundary</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html">R - Cloud</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Extract data within a boundary</h1>
+<h1 class="title">R - Accessing CEFI Data in the Cloud</h1>
 </div>
 
 
@@ -708,7 +701,7 @@ function googleTranslateElementInit() {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>NOAA CoastWatch with modifications to use earthaccess by Eli Holmes </p>
+             <p>Roland Schweitzer (NOAA PSL) </p>
           </div>
   </div>
     
@@ -721,501 +714,922 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-02-14-earthdata/3-polygon.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-02-14-earthdata/3-polygon.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-02-14-earthdata/3-polygon.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
-<blockquote class="blockquote">
-<p>📘 Learning Objectives</p>
-<ol type="1">
-<li>How to trim satellite data to specific bounding coordinates</li>
-<li>How to apply shapefiles as masks to satellite data</li>
-<li>How to compute and plot means within the shapefiles</li>
-</ol>
-</blockquote>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>This example is adapted from the <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">NOAA CoastWatch Tutorial Github repository.</a>. It shows you how to get a time series of daily SST within a region defined by a shapefile.</p>
-<section id="for-those-not-working-in-the-jupyterhub" class="level4">
-<h4 class="anchored" data-anchor-id="for-those-not-working-in-the-jupyterhub">For those not working in the JupyterHub</h4>
-<p>Create a code cell and run <code>pip install earthaccess</code>, <code>pip install regionmask</code>, <code>pip install cartopy</code></p>
-</section>
-</section>
-<section id="datasets-used" class="level2">
-<h2 class="anchored" data-anchor-id="datasets-used">Datasets used</h2>
-<p><strong>GHRSST Level 4 AVHRR_OI Global Blended Sea Surface Temperature Analysis (GDS2) from NCEI</strong><br>
-This NOAA blended SST is a moderate resolution satellite-based gap-free sea surface temperature (SST) product. We will use the daily data. https://cmr.earthdata.nasa.gov/search/concepts/C2036881712-POCLOUD.html</p>
-<p><strong>Longhurst Marine Provinces</strong><br>
-The dataset represents the division of the world oceans into provinces as defined by Longhurst (1995; 1998; 2006). This division has been based on the prevailing role of physical forcing as a regulator of phytoplankton distribution.</p>
-<p>The Longhurst Marine Provinces dataset is available online (https://www.marineregions.org/downloads.php) and within the shapes folder associated with this repository. For this exercise we will use the Gulf Stream province (ProvCode: GFST)</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="3-polygon_files/figure-html/755a35cb-ea28-42f4-b5f9-dd70053730e9-1-d6a9074b-f8bd-41f0-b714-7398031243ee.png" class="img-fluid figure-img"></p>
-<figcaption>longhurst.png</figcaption>
-</figure>
+<p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
+<p>This example requires you to have used conda or mamba to install the <a href="conda-setup">cefi-cookbook-dev environment as explained here</a>.</p>
+<p>The following notebook is a quick demostration on how to use R to access the CEFI Cloud data. This is designed for users that prefer the programing interface to be R. There are already couple of great resource related to preprocessing and visualizing data in R. Therefore, the notebook will not repeat that part of the code but focusing on how to accessing the data from a R interface. The resources is listed below &gt; - http://cran.nexr.com/web/packages/rerddap/vignettes/Using_rerddap.html (A detail introduction of rerddap package and show the visualization in many different datasets) &gt; - https://ioos.github.io/ioos_code_lab/content/code_gallery/data_access_notebooks/2017-08-01-xtractoR.html (use a different package called xtractomatic to access the ERDDAP data)</p>
+<p>On this page, we will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize xarray and fsspec for accessing the data and visualize it on an detailed map. The currently available data can be viewed on - <a href="https://noaa-oar-cefi-regional-mom6-pds.s3.amazonaws.com/index.html">AWS</a> - <a href="https://console.cloud.google.com/storage/browser/noaa-oar-cefi-regional-mom6">Google Cloud Storage</a></p>
+<p>The contents of this folder encompass hindcast simulations derived from the regional MOM6 model spanning the years 1993 to 2019.</p>
+<div class="admonition alert alert-info">
+<pre><code>&lt;p class="admonition-title" style="font-weight:bold"&gt;Launch R in Jupyterlab&lt;/p&gt;
+In addition to the standard R code demonstrated below, our current interface leverages JupyterLab to execute R code using the R kernel. To enable this functionality, we utilize the environment.yml file to create a Conda/Mamba environment. The primary objective is to install the r-irkernel package within this environment.</code></pre>
+<p>This installation of r-irkernel through Conda/Mamba ensures that the R kernel becomes available as an option when launching JupyterLab. Selecting the R kernel empowers users to utilize the JupyterLab interface for running R code effortlessly.</p>
 </div>
-</section>
-<section id="import-packages-and-authenticate" class="level2">
-<h2 class="anchored" data-anchor-id="import-packages-and-authenticate">Import packages and authenticate</h2>
-<div id="45ac5d46" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-03-15T05:05:41.334822Z&quot;,&quot;start_time&quot;:&quot;2024-03-15T05:05:39.765760Z&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> regionmask</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.feature <span class="im">as</span> cfeature</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy.mpl.ticker <span class="im">import</span> LongitudeFormatter, LatitudeFormatter</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="10df5bae-c8bf-4595-9070-de07fe5fbecb" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"HOME"</span>] <span class="op">=</span> <span class="st">"/home/jovyan"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="915537db-2314-45ae-ac43-ccaacf30115d" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># are we authenticated?</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> auth.authenticated:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ask for credentials and persist them in a .netrc file</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    auth.login(strategy<span class="op">=</span><span class="st">"interactive"</span>, persist<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="load-the-longhurst-provinces-shape-files-into-a-geopandas-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-longhurst-provinces-shape-files-into-a-geopandas-dataframe">Load the Longhurst Provinces shape files into a geopandas dataframe</h2>
-<div id="b8f4f525" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-03-15T05:06:24.591369Z&quot;,&quot;start_time&quot;:&quot;2024-03-15T05:06:24.359466Z&quot;}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#shape_path = '../resources/longhurst_v4_2010/Longhurst_world_v4_2010.shp'</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>shape_path <span class="op">=</span> os.path.join(<span class="st">'..'</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'resources'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'longhurst_v4_2010'</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'Longhurst_world_v4_2010.shp'</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                          )</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>shapefiles <span class="op">=</span> gpd.read_file(shape_path)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>shapefiles.head(<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<div>
+<section id="packages-used" class="level2">
+<h2 class="anchored" data-anchor-id="packages-used">Packages used</h2>
+<p>In this example, we are going to use the <em>reticulate</em> library with Python to read the CEFI data into an R data structure.</p>
+<p>From there you can operate on the data in R (or R Studio) as you would any other data.</p>
+<p><strong>N.B.</strong> The only library you need to read the data is the retiuclate library to access the python environment to read the data.</p>
+<p>The other libraries are used to filter the data and make a plot on a detailed base map.</p>
+<p>The last line show the python configuration that should have been set up when you loaded the conda environment to run this notebook.</p>
+<div id="07c18046-febd-4c7c-8c54-2961eb077a7d" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># reticulate::py_config()  # check python version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: ‘dplyr’
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ProvCode</th>
-<th data-quarto-table-cell-role="th">ProvDescr</th>
-<th data-quarto-table-cell-role="th">geometry</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>BPLR</td>
-<td>Polar - Boreal Polar Province (POLR)</td>
-<td>MULTIPOLYGON (((-161.18426 63.5, -161.5 63.5, ...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>ARCT</td>
-<td>Polar - Atlantic Arctic Province</td>
-<td>MULTIPOLYGON (((-21.51305 64.64409, -21.55945 ...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>SARC</td>
-<td>Polar - Atlantic Subarctic Province</td>
-<td>MULTIPOLYGON (((11.26472 63.96082, 11.09548 63...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>NADR</td>
-<td>Westerlies - N. Atlantic Drift Province (WWDR)</td>
-<td>POLYGON ((-11.5 57.5, -11.5 56.5, -11.5 55.5, ...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>GFST</td>
-<td>Westerlies - Gulf Stream Province</td>
-<td>POLYGON ((-43.5 43.5, -43.5 42.5, -43.5 41.5, ...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>NASW</td>
-<td>Westerlies - N. Atlantic Subtropical Gyral Pro...</td>
-<td>POLYGON ((-39.5 25.5, -40.5 25.5, -41.5 25.5, ...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>NATR</td>
-<td>Trades - N. Atlantic Tropical Gyral Province (...</td>
-<td>MULTIPOLYGON (((-72.34673 18.53597, -72.36877 ...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>WTRA</td>
-<td>Trades - Western Tropical Atlantic Province</td>
-<td>POLYGON ((-19.5 -6.5, -20.5 -6.5, -21.5 -6.5, ...</td>
-</tr>
-</tbody>
-</table>
+The following objects are masked from ‘package:stats’:
 
+    filter, lag
+
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+</code></pre>
 </div>
 </div>
+<div id="9c2208ba-be2f-48b0-aeda-6730eabf0f95" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for local install conda env created from the environment.yml file</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use_condaenv('cefi-cookbook-dev')</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for 2i2c jupyterhub</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">'notebook'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="isolate-the-gulf-stream-province" class="level2">
-<h2 class="anchored" data-anchor-id="isolate-the-gulf-stream-province">Isolate the Gulf Stream Province</h2>
-<p>The Gulf Stream Province can be isolated using its ProvCode (GFST)</p>
-<div id="508e8688" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ProvCode <span class="op">=</span> <span class="st">"GFST"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Locate the row with the ProvCode code</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>gulf_stream <span class="op">=</span> shapefiles.loc[shapefiles[<span class="st">"ProvCode"</span>] <span class="op">==</span> ProvCode]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>gulf_stream</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">ProvCode</th>
-<th data-quarto-table-cell-role="th">ProvDescr</th>
-<th data-quarto-table-cell-role="th">geometry</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>GFST</td>
-<td>Westerlies - Gulf Stream Province</td>
-<td>POLYGON ((-43.5 43.5, -43.5 42.5, -43.5 41.5, ...</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
+<section id="get-some-python-tools-to-read-the-data-from-the-cloud-storage" class="level2">
+<h2 class="anchored" data-anchor-id="get-some-python-tools-to-read-the-data-from-the-cloud-storage">Get some python tools to read the data from the cloud storage</h2>
+<p>fsspec and xarray are python packages that are in the conda environment we build to run this notebook. We’re going to import them into our R environment and use them to create a pandas dataframe with lat,lon,tos as the columns</p>
+<div id="1edbd6a5-19ec-4b16-aa00-6b042ccbf75d" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xr <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">'xarray'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fsspec <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">'fsspec'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="find-the-coordinates-of-the-bounding-box" class="level2">
-<h2 class="anchored" data-anchor-id="find-the-coordinates-of-the-bounding-box">Find the coordinates of the bounding box</h2>
+<section id="get-some-data-from-the-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="get-some-data-from-the-cloud">Get some data from the cloud</h2>
 <ul>
-<li>The bounding box is the smallest rectangle that will completely enclose the province.</li>
-<li>We will use the bounding box coordinates to subset the satellite data</li>
+<li>Read the data</li>
+<li>select a time slice</li>
 </ul>
-<div id="07ca5fe4" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gs_bnds <span class="op">=</span> gulf_stream.bounds</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gs_bnds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div>
+<div id="cebbba3e-b481-4f54-9fd2-5ec150e84739" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'gcs'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'gcs://noaa-oar-cefi-regional-mom6/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520/tos.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.json'</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> fs<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> dataset<span class="sc">$</span><span class="fu">sel</span>(<span class="at">time=</span><span class="st">'2012-12'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>ERROR: Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission &amp;#39;storage.objects.get&amp;#39; denied on resource (or it may not exist)., 401
+Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission &amp;#39;storage.objects.get&amp;#39; denied on resource (or it may not exist)., 401Traceback:
 
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+1. py_call_impl(callable, call_args$unnamed, call_args$named)
+2. stop(structure(list(message = "gcsfs.retry.HttpError: Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission &amp;#39;storage.objects.get&amp;#39; denied on resource (or it may not exist)., 401\nRun `reticulate::py_last_error()` for details.", 
+ .     call = py_call_impl(callable, call_args$unnamed, call_args$named)), class = c("gcsfs.retry.HttpError", 
+ . "python.builtin.Exception", "python.builtin.BaseException", "python.builtin.object", 
+ . "error", "condition"), py_object = &lt;environment&gt;))</code></pre>
+</div>
+</div>
+<p>Get the variable long_name, date of the slice and data set title for the plot below</p>
+<div id="f3670959-755d-47fd-8d31-8964672f4b87" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> subset<span class="sc">$</span>time<span class="sc">$</span>values</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> subset<span class="sc">$</span>attrs<span class="sc">$</span>title</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>long_name <span class="ot">&lt;-</span> subset<span class="sc">$</span>tos<span class="sc">$</span>attrs<span class="sc">$</span>long_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reorganize-that-data-into-a-data.frame" class="level2">
+<h2 class="anchored" data-anchor-id="reorganize-that-data-into-a-data.frame">Reorganize that data into a data.frame</h2>
+<p>We transform the gridded data into column data with lon, lat, tos as columns. <strong>Take care:</strong> We are expanding along lon first and then by lat, so we reorder the xarray so that lon varies fastest to match.</p>
+<div id="10717626-b9a2-4fe9-8e26-99f30576eaeb" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> subset<span class="sc">$</span><span class="fu">transpose</span>(<span class="st">'lon'</span>,<span class="st">'lat'</span>,<span class="st">'time'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">x =</span> subset<span class="sc">$</span>lon<span class="sc">$</span>values, <span class="at">y=</span>subset<span class="sc">$</span>lat<span class="sc">$</span>values)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(<span class="fu">matrix</span>(subset<span class="sc">$</span>tos<span class="sc">$</span>values)))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Data <span class="ot">&lt;-</span> data</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"tos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="subset-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="subset-the-dataset">Subset the dataset</h2>
+<p>We use filter to extract the points over the Gulf region.</p>
+<div id="e4941490-3503-42f3-9e7b-39778d26ae01" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df, lat<span class="sc">&gt;</span><span class="dv">17</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lat<span class="sc">&lt;</span><span class="dv">31</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lon<span class="sc">&gt;</span><span class="dv">260</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lon<span class="sc">&lt;</span><span class="dv">290</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_gulf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>A data.frame: 79072 × 3</caption>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">minx</th>
-<th data-quarto-table-cell-role="th">miny</th>
-<th data-quarto-table-cell-role="th">maxx</th>
-<th data-quarto-table-cell-role="th">maxy</th>
+<th data-quarto-table-cell-role="th" scope="col">lon</th>
+<th data-quarto-table-cell-role="th" scope="col">lat</th>
+<th data-quarto-table-cell-role="th" scope="col">tos</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl[1d]&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl[1d]&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>-73.5</td>
-<td>33.5</td>
-<td>-43.5</td>
-<td>43.5</td>
+<td>261.5577</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>261.6384</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>261.7191</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>261.7998</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>261.8804</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>261.9611</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>262.0418</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>262.1225</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>262.2031</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>262.2838</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>262.3645</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>262.4452</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>262.5258</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>262.6065</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>262.6872</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>262.7679</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>262.8485</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>262.9292</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>263.0099</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>263.0906</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>263.1713</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>263.2519</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>263.3326</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>263.4133</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>263.4940</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>263.5746</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>263.6553</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>263.7360</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>263.8167</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>263.8973</td>
+<td>17.00457</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+</tr>
+<tr class="even">
+<td>287.6160</td>
+<td>30.99516</td>
+<td>22.10050</td>
+</tr>
+<tr class="odd">
+<td>287.6966</td>
+<td>30.99516</td>
+<td>22.11896</td>
+</tr>
+<tr class="even">
+<td>287.7773</td>
+<td>30.99516</td>
+<td>22.13621</td>
+</tr>
+<tr class="odd">
+<td>287.8580</td>
+<td>30.99516</td>
+<td>22.15041</td>
+</tr>
+<tr class="even">
+<td>287.9387</td>
+<td>30.99516</td>
+<td>22.16084</td>
+</tr>
+<tr class="odd">
+<td>288.0194</td>
+<td>30.99516</td>
+<td>22.16887</td>
+</tr>
+<tr class="even">
+<td>288.1000</td>
+<td>30.99516</td>
+<td>22.17518</td>
+</tr>
+<tr class="odd">
+<td>288.1807</td>
+<td>30.99516</td>
+<td>22.18109</td>
+</tr>
+<tr class="even">
+<td>288.2614</td>
+<td>30.99516</td>
+<td>22.18618</td>
+</tr>
+<tr class="odd">
+<td>288.3421</td>
+<td>30.99516</td>
+<td>22.19002</td>
+</tr>
+<tr class="even">
+<td>288.4227</td>
+<td>30.99516</td>
+<td>22.19225</td>
+</tr>
+<tr class="odd">
+<td>288.5034</td>
+<td>30.99516</td>
+<td>22.19283</td>
+</tr>
+<tr class="even">
+<td>288.5841</td>
+<td>30.99516</td>
+<td>22.19231</td>
+</tr>
+<tr class="odd">
+<td>288.6648</td>
+<td>30.99516</td>
+<td>22.19145</td>
+</tr>
+<tr class="even">
+<td>288.7454</td>
+<td>30.99516</td>
+<td>22.19104</td>
+</tr>
+<tr class="odd">
+<td>288.8261</td>
+<td>30.99516</td>
+<td>22.19171</td>
+</tr>
+<tr class="even">
+<td>288.9068</td>
+<td>30.99516</td>
+<td>22.19394</td>
+</tr>
+<tr class="odd">
+<td>288.9875</td>
+<td>30.99516</td>
+<td>22.19798</td>
+</tr>
+<tr class="even">
+<td>289.0681</td>
+<td>30.99516</td>
+<td>22.20489</td>
+</tr>
+<tr class="odd">
+<td>289.1488</td>
+<td>30.99516</td>
+<td>22.21741</td>
+</tr>
+<tr class="even">
+<td>289.2295</td>
+<td>30.99516</td>
+<td>22.24266</td>
+</tr>
+<tr class="odd">
+<td>289.3102</td>
+<td>30.99516</td>
+<td>22.28262</td>
+</tr>
+<tr class="even">
+<td>289.3908</td>
+<td>30.99516</td>
+<td>22.31960</td>
+</tr>
+<tr class="odd">
+<td>289.4715</td>
+<td>30.99516</td>
+<td>22.33831</td>
+</tr>
+<tr class="even">
+<td>289.5522</td>
+<td>30.99516</td>
+<td>22.34284</td>
+</tr>
+<tr class="odd">
+<td>289.6329</td>
+<td>30.99516</td>
+<td>22.34084</td>
+</tr>
+<tr class="even">
+<td>289.7135</td>
+<td>30.99516</td>
+<td>22.33542</td>
+</tr>
+<tr class="odd">
+<td>289.7942</td>
+<td>30.99516</td>
+<td>22.32747</td>
+</tr>
+<tr class="even">
+<td>289.8749</td>
+<td>30.99516</td>
+<td>22.31860</td>
+</tr>
+<tr class="odd">
+<td>289.9556</td>
+<td>30.99516</td>
+<td>22.30894</td>
 </tr>
 </tbody>
 </table>
-
+</div>
+</div>
+</section>
+<section id="longitude-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="longitude-manipulation">Longitude Manipulation</h2>
+<p>The model lons are from 0 to 360, so we’re going to use this function to normalize them to -180 to 180 The map polygons are defined on -180 to 180 we need to adjust our values to see them on the map</p>
+<div id="a51f186a-810d-4768-991e-ca6c7d92716e" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>normalize_lon <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  quotient <span class="ot">&lt;-</span> <span class="fu">round</span>(x <span class="sc">/</span> <span class="fl">360.</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  remainder <span class="ot">&lt;-</span> x <span class="sc">-</span> (<span class="fl">360.</span> <span class="sc">*</span> quotient)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adjust sign if necessary to match IEEE behavior</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sign</span>(x) <span class="sc">!=</span> <span class="fu">sign</span>(<span class="fl">360.</span>) <span class="sc">&amp;&amp;</span> remainder <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    remainder <span class="ot">&lt;-</span> remainder <span class="sc">+</span> <span class="fu">sign</span>(<span class="fl">360.</span>) <span class="sc">*</span> <span class="fl">360.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(remainder)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df_gulf<span class="sc">$</span>lon <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(df_gulf<span class="sc">$</span>lon, normalize_lon))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plot-setup" class="level2">
+<h2 class="anchored" data-anchor-id="plot-setup">Plot setup</h2>
+<p>Set up a resonable plot size and limits for the plot area of the world base map</p>
+<div id="e9bf0fa5-ddb5-47ee-85be-7976335ed753" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(df_gulf<span class="sc">$</span>lat), <span class="fu">max</span>(df_gulf<span class="sc">$</span>lat) )</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(df_gulf<span class="sc">$</span>lon), <span class="fu">max</span>(df_gulf<span class="sc">$</span>lon) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="meshdot-map" class="level2">
+<h2 class="anchored" data-anchor-id="meshdot-map">Mesh/Dot Map</h2>
+<p>Plot a mesh/dot colored according to the value of tos at each lat/lon location in the Gulf.</p>
+<div id="26e56200-6563-4e55-b303-e47be943efa2" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>( <span class="st">'world'</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim )</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df_gulf, <span class="fu">aes</span>(<span class="at">color =</span> tos, <span class="at">y=</span>lat, <span class="at">x=</span>lon), <span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(long_name, <span class="st">'at'</span>, datetime, <span class="st">'of'</span>, title))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_get_cefi_cloud_files/figure-html/cell-11-output-1.png" width="600" height="600" class="figure-img"></p>
+</figure>
 </div>
 </div>
 </div>
 </section>
-<section id="search-and-access-nasa-earthdata-with-the-collection-concept-id" class="level2">
-<h2 class="anchored" data-anchor-id="search-and-access-nasa-earthdata-with-the-collection-concept-id">Search and access NASA Earthdata with the Collection Concept ID</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+<section id="accessing-the-data-on-the-original-model-grid" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-the-data-on-the-original-model-grid">Accessing the data on the original model grid</h2>
+<p>The original model grid is <a href="rmom6Grid">explained in detail</a> at the beginning of the cookbook. Understanding where the data are located on the earth requires you to merge the raw grid data file with the grid description. We’ll get both the data and the grid from the cloud storage just as we did in the example above and merge them using xarray, then we’ll convert them to a data.frame for plotting (or processing) in R.</p>
+<p><strong>N.B.</strong> we use the AWS cloud storage here. We used the Google Cloud Storage above. You can use either, but if you are computing in a cloud environment you’ll get better performance if you use the same cloud.</p>
+<p><strong>N.B.</strong> The “bucket” names are slightly different</p>
+<p><strong>N.B.</strong> Additional parameters (remote_options and target_options) are needed to let AWS know that the access does not require any credentials and could be done anonymously.</p>
+<div id="f2496ac7-f7fd-49f5-8bb2-76c6c9a1aed5" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">list</span>(<span class="at">anon =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'s3'</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/sos.nwa.full.hcast.monthly.raw.r20230520.199301-201912.json'</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_options=</span>params,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_options=</span>params</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> fs<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>fsg <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'s3'</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/ocean_static.json'</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_options=</span>params,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_options=</span>params</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> fsg<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(gm, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="slicing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="slicing-the-data">Slicing the data</h3>
+<p>Here, we get one month slice from the data set. We took June 2003 in this case.</p>
+<div id="d3a63f29-eb35-4872-8f1f-7626a31a89d7" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>slice <span class="ot">=</span> dataset<span class="sc">$</span><span class="fu">sel</span>(<span class="at">time=</span><span class="st">'2003-06'</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">=</span> slice<span class="sc">$</span>attrs<span class="sc">$</span>title</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>long_name <span class="ot">=</span> slice<span class="sc">$</span>sos<span class="sc">$</span>long_name</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">=</span> slice<span class="sc">$</span>time<span class="sc">$</span>values</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>slice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;xarray.Dataset&gt; Size: 3MB
+Dimensions:     (time: 1, nv: 2, yh: 845, xh: 775)
+Coordinates:
+  * nv          (nv) float64 16B 1.0 2.0
+  * time        (time) datetime64[ns] 8B 2003-06-16
+  * xh          (xh) float64 6kB -98.0 -97.92 -97.84 ... -36.24 -36.16 -36.08
+  * yh          (yh) float64 7kB 5.273 5.352 5.432 5.511 ... 51.9 51.91 51.93
+Data variables:
+    average_DT  (time) timedelta64[ns] 8B ...
+    average_T1  (time) datetime64[ns] 8B ...
+    average_T2  (time) datetime64[ns] 8B ...
+    sos         (time, yh, xh) float32 3MB ...
+    time_bnds   (time, nv) datetime64[ns] 16B ...
+Attributes: (12/27)
+    NCO:                    netCDF Operators version 5.0.1 (Homepage = http:/...
+    NumFilesInSet:          1
+    associated_files:       areacello: 19930101.ocean_static.nc
+    cefi_archive_version:   /archive/acr/fre/NWA/2023_04/NWA12_COBALT_2023_04...
+    cefi_aux:               N/A
+    cefi_data_doi:          10.5281/zenodo.7893386
+    ...                     ...
+    cefi_subdomain:         full
+    cefi_variable:          sos
+    external_variables:     areacello
+    grid_tile:              N/A
+    grid_type:              regular
+    title:                  NWA12_COBALT_2023_04_kpo4-coastatten-physics</code></pre>
+</div>
+</div>
+<div id="2ebc664b-8f70-4cdd-9b03-48d842501366" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> grid<span class="sc">$</span>geolon<span class="sc">$</span>values</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> grid<span class="sc">$</span>geolat<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’re using the lat and lon values from the static grid file to pair with each data value we read from the raw grid file to create a data.frame with lon,lat,sos</p>
+<div id="4093ee18-dab3-4df0-815e-4311eb81a0e6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>slice <span class="ot">&lt;-</span> slice<span class="sc">$</span><span class="fu">transpose</span>(<span class="st">'xh'</span>, <span class="st">'yh'</span>, <span class="st">'time'</span>, <span class="st">'nv'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(lon))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(lat))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(<span class="fu">matrix</span>(slice<span class="sc">$</span>sos<span class="sc">$</span>values)))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lon"</span> <span class="ot">=</span> X,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lat"</span> <span class="ot">=</span> Y,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sos"</span> <span class="ot">=</span> data</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="03c6e752-d17f-46c3-9d2d-038b8fc4abc6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(df, lat<span class="sc">&gt;</span><span class="dv">35</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lat<span class="sc">&lt;</span><span class="dv">45</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lon<span class="sc">&gt;=-</span><span class="dv">80</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lon<span class="sc">&lt;=-</span><span class="dv">60</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>sub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>A data.frame: 41164 × 3</caption>
 <thead>
 <tr class="header">
-<th>Shortname</th>
-<th>Collection Concept ID</th>
-<th>DOI</th>
+<th data-quarto-table-cell-role="th" scope="col">lon</th>
+<th data-quarto-table-cell-role="th" scope="col">lat</th>
+<th data-quarto-table-cell-role="th" scope="col">sos</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>AVHRR_OI-NCEI-L4-GLOB-v2.1</td>
-<td>C2036881712-POCLOUD</td>
-<td>10.5067/GHAAO-4BC21</td>
+<td>-80.00000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-79.92001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-79.84000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-79.76001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-79.67999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-79.60001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-79.51999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-79.44000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-79.35999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-79.28000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-79.20001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-79.12000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-79.04001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.95999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-78.88000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.79999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-78.72000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.64001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-78.56000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.48001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-78.39999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.32001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-78.23999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.16000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-78.07999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-78.00000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-77.92001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-77.84000</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-77.76001</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-77.67999</td>
+<td>35.02885</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+</tr>
+<tr class="even">
+<td>-62.32001</td>
+<td>44.98657</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-62.23999</td>
+<td>44.98657</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-62.16000</td>
+<td>44.98657</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-62.07999</td>
+<td>44.98657</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>-62.00000</td>
+<td>44.98657</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>-61.92001</td>
+<td>44.98657</td>
+<td>30.98845</td>
+</tr>
+<tr class="even">
+<td>-61.84000</td>
+<td>44.98657</td>
+<td>31.01529</td>
+</tr>
+<tr class="odd">
+<td>-61.76001</td>
+<td>44.98657</td>
+<td>31.11183</td>
+</tr>
+<tr class="even">
+<td>-61.67999</td>
+<td>44.98657</td>
+<td>31.18510</td>
+</tr>
+<tr class="odd">
+<td>-61.60001</td>
+<td>44.98657</td>
+<td>31.26443</td>
+</tr>
+<tr class="even">
+<td>-61.51999</td>
+<td>44.98657</td>
+<td>31.35068</td>
+</tr>
+<tr class="odd">
+<td>-61.44000</td>
+<td>44.98657</td>
+<td>31.43041</td>
+</tr>
+<tr class="even">
+<td>-61.35999</td>
+<td>44.98657</td>
+<td>31.50238</td>
+</tr>
+<tr class="odd">
+<td>-61.28000</td>
+<td>44.98657</td>
+<td>31.57698</td>
+</tr>
+<tr class="even">
+<td>-61.20001</td>
+<td>44.98657</td>
+<td>31.64444</td>
+</tr>
+<tr class="odd">
+<td>-61.12000</td>
+<td>44.98657</td>
+<td>31.69162</td>
+</tr>
+<tr class="even">
+<td>-61.04001</td>
+<td>44.98657</td>
+<td>31.72362</td>
+</tr>
+<tr class="odd">
+<td>-60.95999</td>
+<td>44.98657</td>
+<td>31.73899</td>
+</tr>
+<tr class="even">
+<td>-60.88000</td>
+<td>44.98657</td>
+<td>31.73177</td>
+</tr>
+<tr class="odd">
+<td>-60.79999</td>
+<td>44.98657</td>
+<td>31.70110</td>
+</tr>
+<tr class="even">
+<td>-60.72000</td>
+<td>44.98657</td>
+<td>31.64692</td>
+</tr>
+<tr class="odd">
+<td>-60.64001</td>
+<td>44.98657</td>
+<td>31.58435</td>
+</tr>
+<tr class="even">
+<td>-60.56000</td>
+<td>44.98657</td>
+<td>31.52341</td>
+</tr>
+<tr class="odd">
+<td>-60.48001</td>
+<td>44.98657</td>
+<td>31.47704</td>
+</tr>
+<tr class="even">
+<td>-60.39999</td>
+<td>44.98657</td>
+<td>31.45421</td>
+</tr>
+<tr class="odd">
+<td>-60.32001</td>
+<td>44.98657</td>
+<td>31.44486</td>
+</tr>
+<tr class="even">
+<td>-60.23999</td>
+<td>44.98657</td>
+<td>31.43628</td>
+</tr>
+<tr class="odd">
+<td>-60.16000</td>
+<td>44.98657</td>
+<td>31.42496</td>
+</tr>
+<tr class="even">
+<td>-60.07999</td>
+<td>44.98657</td>
+<td>31.41590</td>
+</tr>
+<tr class="odd">
+<td>-60.00000</td>
+<td>44.98657</td>
+<td>31.42198</td>
 </tr>
 </tbody>
 </table>
-<div id="bda466ff-8eec-43f6-8f30-ecfcac92e969" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Search Dataset Unique ID</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>collection_id <span class="op">=</span> <span class="st">'C2036881712-POCLOUD'</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    concept_id <span class="op">=</span> collection_id,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="5750beef-a053-4e4e-99fe-e4faf56c9078" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define date range and bounding box and search</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>date_range <span class="op">=</span> (<span class="st">"2020-01-16"</span>, <span class="st">"2020-3-16"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (xmin=-73.5, ymin=33.5, xmax=-43.5, ymax=43.5)</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> (gs_bnds.minx, gs_bnds.miny, gs_bnds.maxx, gs_bnds.maxy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="29cb81c1-a4b2-49c8-9866-649ff0362a77" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get results based on date range and bbox</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    concept_id <span class="op">=</span> collection_id,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    cloud_hosted <span class="op">=</span> <span class="va">True</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> date_range,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    bounding_box <span class="op">=</span> bbox,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="a597e895-8e58-47e5-9e23-c3d8d66da15a" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Examine results</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> results[<span class="dv">0</span>]</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#type(item)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#item.keys()</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>item[<span class="st">'umm'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>{'TemporalExtent': {'RangeDateTime': {'EndingDateTime': '2020-01-16T00:00:00.000Z',
-   'BeginningDateTime': '2020-01-15T00:00:00.000Z'}},
- 'MetadataSpecification': {'URL': 'https://cdn.earthdata.nasa.gov/umm/granule/v1.6.6',
-  'Name': 'UMM-G',
-  'Version': '1.6.6'},
- 'GranuleUR': '20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1',
- 'ProviderDates': [{'Type': 'Insert', 'Date': '2021-05-11T17:17:16.602Z'},
-  {'Type': 'Update', 'Date': '2021-05-11T17:17:16.603Z'}],
- 'SpatialExtent': {'HorizontalSpatialDomain': {'Geometry': {'BoundingRectangles': [{'WestBoundingCoordinate': -179.875,
-      'SouthBoundingCoordinate': -89.875,
-      'EastBoundingCoordinate': 179.875,
-      'NorthBoundingCoordinate': 89.875}]}}},
- 'DataGranule': {'ArchiveAndDistributionInformation': [{'SizeUnit': 'MB',
-    'Size': 9.72747802734375e-05,
-    'Checksum': {'Value': 'f7f272ac28fd5563da4a03bc9c74a9c2',
-     'Algorithm': 'MD5'},
-    'SizeInBytes': 102,
-    'Name': '20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc.md5'},
-   {'SizeUnit': 'MB',
-    'Size': 0.9890298843383789,
-    'Checksum': {'Value': '779e063e913ff1df721b252bbc4eb3b9',
-     'Algorithm': 'MD5'},
-    'SizeInBytes': 1037073,
-    'Name': '20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc'}],
-  'DayNightFlag': 'Unspecified',
-  'ProductionDateTime': '2020-02-11T00:00:00.000Z'},
- 'CollectionReference': {'Version': '2.1',
-  'ShortName': 'AVHRR_OI-NCEI-L4-GLOB-v2.1'},
- 'RelatedUrls': [{'URL': 's3://podaac-ops-cumulus-protected/AVHRR_OI-NCEI-L4-GLOB-v2.1/20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc',
-   'Type': 'GET DATA VIA DIRECT ACCESS',
-   'Description': 'This link provides direct download access via S3 to the granule.'},
-  {'URL': 'https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-public/AVHRR_OI-NCEI-L4-GLOB-v2.1/20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc.md5',
-   'Description': 'Download 20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc.md5',
-   'Type': 'EXTENDED METADATA'},
-  {'URL': 'https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/AVHRR_OI-NCEI-L4-GLOB-v2.1/20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc',
-   'Description': 'Download 20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1.nc',
-   'Type': 'GET DATA'},
-  {'URL': 'https://archive.podaac.earthdata.nasa.gov/s3credentials',
-   'Description': 'api endpoint to retrieve temporary credentials valid for same-region direct s3 access',
-   'Type': 'VIEW RELATED INFORMATION'},
-  {'URL': 'https://opendap.earthdata.nasa.gov/providers/POCLOUD/collections/GHRSST%20Level%204%20AVHRR_OI%20Global%20Blended%20Sea%20Surface%20Temperature%20Analysis%20(GDS2)%20from%20NCEI/granules/20200115120000-NCEI-L4_GHRSST-SSTblend-AVHRR_OI-GLOB-v02.0-fv02.1',
-   'Type': 'USE SERVICE API',
-   'Subtype': 'OPENDAP DATA',
-   'Description': 'OPeNDAP request URL'}]}</code></pre>
 </div>
 </div>
-<div id="00409d44-28d5-41ad-9e14-8283710c7ca1" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the first 30 files</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fileset <span class="op">=</span> earthaccess.<span class="bu">open</span>(results[<span class="dv">1</span>:<span class="dv">30</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"5b256b3834d24917ad20437159147ff2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
+<div id="464007b8-92b9-4f4d-a301-e35bc1e32370" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(sub<span class="sc">$</span>lat), <span class="fu">max</span>(sub<span class="sc">$</span>lat) )</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(sub<span class="sc">$</span>lon), <span class="fu">max</span>(sub<span class="sc">$</span>lon) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"4879be921706486b9dd464cd734065af","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"32386db49c0744ee9396f0a4fcc6e94e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-</div>
-</section>
-<section id="load-the-satellite-data" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-satellite-data">Load the satellite data</h2>
-<div id="58008da4-b1c3-4e63-8072-65bc1ca5520a" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data; takes awhile</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(fileset, chunks <span class="op">=</span> {})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="34d2c0a1-845e-48ab-9ee7-282e287b36c6" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get SST data </span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ds_subset <span class="op">=</span> ds[<span class="st">'analysed_sst'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="visualize-the-unmasked-data-on-a-map" class="level2">
-<h2 class="anchored" data-anchor-id="visualize-the-unmasked-data-on-a-map">Visualize the unmasked data on a map</h2>
-<p>The map shows the full extent of the bounding box</p>
-<div id="05d31d6d" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Label axes of a Plate Carree projection with a central longitude of 180:</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">211</span>, projection<span class="op">=</span>ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the lon and lat ranges to set the extent of the map</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the 120, 260 lon range will show the whole Pacific</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the 15, 55 lat range with capture the range of the data</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>ax1.set_extent([<span class="dv">260</span>, <span class="dv">350</span>, <span class="dv">15</span>, <span class="dv">55</span>], ccrs.PlateCarree())</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set the tick marks to be slightly inside the map extents</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># add feature to the map</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>ax1.add_feature(cfeature.LAND, facecolor<span class="op">=</span><span class="st">'0.6'</span>)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax1.coastlines()</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># format the lat and lon axis labels</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>lon_formatter <span class="op">=</span> LongitudeFormatter(zero_direction_label<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>lat_formatter <span class="op">=</span> LatitudeFormatter()</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>ax1.xaxis.set_major_formatter(lon_formatter)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>ax1.yaxis.set_major_formatter(lat_formatter)</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>sst_cm <span class="op">=</span> ds_subset[<span class="dv">0</span>].plot.pcolormesh(ax<span class="op">=</span>ax1, transform<span class="op">=</span>ccrs.PlateCarree(), cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Satellite Data Before Masking'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>Text(0.5, 1.0, 'Satellite Data Before Masking')</code></pre>
-</div>
+<div id="316fae84-294d-41b4-9738-1a8ac338b79c" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>( <span class="st">'world'</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim )</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> sub, <span class="fu">aes</span>(<span class="at">color =</span> sos, <span class="at">y=</span>lat, <span class="at">x=</span>lon), <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(long_name, <span class="st">'at'</span>, datetime, <span class="st">'of'</span>, title, <span class="st">'</span><span class="sc">\n</span><span class="st">Raw Grid'</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3-polygon_files/figure-html/cell-15-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="r_get_cefi_cloud_files/figure-html/cell-18-output-1.png" width="600" height="600" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="create-the-region-from-the-shape-file" class="level2">
-<h2 class="anchored" data-anchor-id="create-the-region-from-the-shape-file">Create the region from the shape file</h2>
-<p>The plot shows the shape of the region and its placement along the US East Coast.</p>
-<div id="9de68aa0" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>region <span class="op">=</span> regionmask.from_geopandas(gulf_stream)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>region.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3-polygon_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="mask-the-satellite-data" class="level2">
-<h2 class="anchored" data-anchor-id="mask-the-satellite-data">Mask the satellite data</h2>
-<div id="bb874fdd" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mask</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> region.mask(ds_subset.lon, ds_subset.lat)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply mask the the satellite data</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>masked_ds <span class="op">=</span> ds_subset.where(mask <span class="op">==</span> region.numbers[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="visualize-the-masked-data-on-a-map" class="level2">
-<h2 class="anchored" data-anchor-id="visualize-the-masked-data-on-a-map">Visualize the masked data on a map</h2>
-<p>These data have been trimmed to contain only values within the Gulf Stream Province</p>
-<div id="593c40e4" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Label axes of a Plate Carree projection with a central longitude of 180:</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">211</span>, projection<span class="op">=</span>ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the lon and lat ranges to set the extent of the map</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the 120, 260 lon range will show the whole Pacific</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the 15, 55 lat range with capture the range of the data</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>ax1.set_extent([<span class="dv">260</span>, <span class="dv">350</span>, <span class="dv">15</span>, <span class="dv">55</span>], ccrs.PlateCarree())</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add feature to the map</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>ax1.add_feature(cfeature.LAND, facecolor<span class="op">=</span><span class="st">'0.6'</span>)</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>ax1.coastlines()</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>masked_ds[<span class="dv">0</span>].plot.pcolormesh(ax<span class="op">=</span>ax1,</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                             transform<span class="op">=</span>ccrs.PlateCarree(),</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                             cmap<span class="op">=</span><span class="st">'jet'</span>)</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Satellite Data After Masking for Longhurst GFST'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3-polygon_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="calculate-the-mean-temperature-over-all-timesteps" class="level2">
-<h2 class="anchored" data-anchor-id="calculate-the-mean-temperature-over-all-timesteps">Calculate the mean temperature over all timesteps</h2>
-<div id="df2b1539-68b9-4eca-adb5-59c396658df3" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean over all time steps</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sst_mean_grid <span class="op">=</span> masked_ds.mean(dim<span class="op">=</span><span class="st">'time'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the SST mean</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>sst_mean_grid.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3-polygon_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="calculate-the-mean-temperature-over-all-grids-lat-lon" class="level2">
-<h2 class="anchored" data-anchor-id="calculate-the-mean-temperature-over-all-grids-lat-lon">Calculate the mean temperature over all grids (lat, lon)</h2>
-<div id="ff326c58-3794-45fa-819c-bf6f62143819" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean over all grids</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sst_mean_time <span class="op">=</span> masked_ds.mean(dim<span class="op">=</span>[<span class="st">'lat'</span>, <span class="st">'lon'</span>])</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the SST mean</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>)) </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.plot_date(sst_mean_time.time,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>              sst_mean_time, </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>              label<span class="op">=</span><span class="st">'gulf stream'</span>, c<span class="op">=</span><span class="st">'black'</span>, </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>              linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>) </span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Gulf Stream Province Daily Mean Temperature 2020'</span>)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'SST (degrees C)'</span>) </span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Dates'</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3-polygon_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><a href="https://cmr.earthdata.nasa.gov/search/concepts/C2036881712-POCLOUD.html">AVHRR SST Data</a></li>
-<li><a href="https://search.earthdata.nasa.gov/search">NASA Earthdata catalog</a></li>
-<li>To explore a full range of tutorials on accessing and utilizing oceanographic satellite data, visit the <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">NOAA CoastWatch Tutorial Github repository.</a>. These tutorials use ERDDAP servers but code for minulating the data cubes is the same as that use with data from NASA Earthdata.</li>
-<li>Sources for marine shape files: https://www.marineregions.org/downloads.php</li>
-</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1785,13 +2199,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../topics-2025/2025-02-14-earthdata/2-subset-and-plot.html" class="pagination-link" aria-label="Subset and plot">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Subset and plot</span>
+      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="pagination-link" aria-label="R - OPeNDAP">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R - OPeNDAP</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-02-14-earthdata/4-data-cubes.html" class="pagination-link" aria-label="Data cubes and aggregating">
-        <span class="nav-page-text">Data cubes and aggregating</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="pagination-link" aria-label="3/14 Carl Boettiger - Integrating LLMs into your data dashboards">
+        <span class="nav-page-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1803,7 +2217,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-02-14-earthdata/3-polygon.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-02-14-earthdata/3-polygon.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
