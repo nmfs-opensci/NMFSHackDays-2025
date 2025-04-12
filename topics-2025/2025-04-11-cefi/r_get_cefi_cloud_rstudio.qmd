@@ -14,23 +14,9 @@ We will explore the process of extracting a subset of model simualtion data prod
 
 The contents of this folder encompass hindcast simulations derived from the regional MOM6 model spanning the years 1993 to 2019.
 
-## Packages used
+## reticulate for running Python in R
 
 In this example, we are going to use the _reticulate_ library with Python to read the CEFI data into an R data structure. From there you can operate on the data in R (or R Studio) as you would any other data.
-
-The other libraries are used to filter the data and make a plot on a detailed base map.
-
-```{r message=FALSE}
-library(reticulate)
-library(dplyr)
-library(maps)
-library(ggplot2)
-# reticulate::py_config()  # check python version
-```
-
-## Setting up the Python packages
-
-There are 2 approaches and which one you use will depend on the environment you are using. 
 
 First make sure you have `reticulate` R package installed.
 ```{r}
@@ -41,11 +27,15 @@ If needed, install.
 install.packages("reticulate")
 ```
 
-### You installed R with conda via `r-irkernel`
+### Setting up reticulate
+
+There are 2 approaches and which one you use will depend on the environment you are using. Pick the appropriate one and run the code for that case (and only for that case). [See reticulate setup](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/reticulate_setup.html) for more details.
+
+#### You installed R with conda
 
 *This is the approach to use if you are using the "CEFI" environment.*
 
-If you are using an environment where R is installed with conda via the `r-irkernel` package, you can do the following. 
+Replace "notebook" with the name of your conda environment if it is different. 
 
 ```{r eval=FALSE}
 # reticulate has a hard time finding conda
@@ -55,31 +45,32 @@ reticulate::use_condaenv("/srv/conda/envs/notebook", required = TRUE)
 
 Note, you might run into an issue where reticulate refuses to change the Python version. This can happen if you used reticulate without conda and it stored that Python path in the cache. 1) Session > Terminate R 2) Open terminal and run `rm -rf .cache/R/reticulate`.
 
-### You installed R outside of conda
+#### You installed R normally (not using `conda install r`)
 
-*This is the approach to use if you are using the "py-rocket-geospatial" environment (default on the NMFS JupyterHub).*
+*This is the approach to use if you are using RStudio on your local computer or using the NMFS Jupyter Hub with the "py-rocket-geospatial" environment (default).*
 
-If you installed R like you normally would (not with conda), then you are liable to run into SSL issues when `reticulate` tries to open files in the cloud since `reticulate` will use a version of SSL installed with RStudio and not the one in the conda environment.
-
-**Option 1. Do not use conda**
-
-You do not need to use conda with reticulate. Use `py_require()` to create an ephemeral environment with your packages. Note there is a problem with `zarr 3.*` and opening zarr files, so you need to make sure `zarr<3` is installed.
+Use `py_require()` to create an ephemeral environment with your packages. Note there is a problem with `zarr 3.*` and opening zarr files, so you need to make sure `zarr<3` is installed.
 
 ```{r}
-py_require(c("zarr<3", "fsspec", "xarray", "gcsfs", "s3fs"))
+reticulate::py_require(c("zarr<3", "fsspec", "xarray", "gcsfs", "s3fs"))
+```
+
+## Load packages
+
+R packages
+```{r message=FALSE}
+library(reticulate)
+library(dplyr)
+library(maps)
+library(ggplot2)
+# reticulate::py_config()  # check python version
+```
+
+Python packages
+```{r}
 xr <- import('xarray')
 fsspec <- import('fsspec')
 ```
-
-**Option 3. Force RStudio to use the right SSL**
-
-Let's say you want to use your conda environment but you are getting the SSL error. You need to force RStudio to use your conda SSL when RStudio starts up. You do this by adding a line to `/etc/rstudio/rserver.conf`. This only works if you have permission to write to `/etc/rstudio` or you can use `sudo`.
-
-Before starting RStudio, open a terminal and run this. If you are in a Jupyter Hub, you will need to run this every time you start your server (your hub).
-```
-echo "rsession-ld-library-path=/srv/conda/envs/notebook/lib" >> /etc/rstudio/rserver.conf
-```
-Replace "notebook" with the name of your conda environment if it is different.
 
 ## Get some data from the cloud
 

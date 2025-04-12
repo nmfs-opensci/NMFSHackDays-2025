@@ -607,6 +607,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">R-RStudio - Cloud</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-04-11-cefi/reticulate_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R reticulate setup</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -751,8 +757,18 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="import-r-packages">Import R packages</h2>
 <p>The way to import packages to the current R environment is to use the <code>require</code> or <code>library</code> functions Both functions will import the package but with subtle different of &gt; The require() and library() functions can both be used to load packages in R, but they have one subtle difference: &gt; &gt; - require() will output a warning if a package is not installed and then continue to execute the code. &gt; - library() will output an error and stop the execution of the code.</p>
 <p>Detail explanation can be find <a href="https://www.statology.org/r-require-vs-library/#:~:text=The%20require()%20and%20library,the%20execution%20of%20the%20code.">here</a></p>
-<div id="10b698ab-92a8-4333-b0e5-85ce404fb8c7" class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
+<div id="10b698ab-92a8-4333-b0e5-85ce404fb8c7" class="cell" data-tags="[]" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"ncdf4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">library</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">ncdf4</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'library' is not defined</pre>
+</div>
+</div>
 </div>
 </section>
 <section id="help-page-for-the-package-and-related-functions" class="level2">

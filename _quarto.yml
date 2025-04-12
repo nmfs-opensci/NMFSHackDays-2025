@@ -197,6 +197,8 @@ website:
               href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html
             - text: R-RStudio - Cloud
               href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html
+            - text: R reticulate setup
+              href: topics-2025/2025-04-11-cefi/reticulate_setup.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards
