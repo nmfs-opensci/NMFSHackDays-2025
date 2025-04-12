@@ -3,7 +3,7 @@ title: Accessing CEFI Cloud data with R
 reticulate:
   python: "/srv/conda/envs/notebook/bin/python"
 ---
-{{< downloadthis r_get_cefi_cloud_rstudio.qmd dname='r_get_cefi_cloud_rstudio.qmd' >}}
+{{< downloadthis r_get_cefi_cloud_rstudio.qmd dname='r_get_cefi_cloud_rstudio' >}}
 
 The following notebook is a quick demostration on how to use R to access the CEFI Cloud data. 
 
@@ -132,7 +132,7 @@ df_gulf = filter(df, lat>17)
 df_gulf = filter(df_gulf, lat<31)
 df_gulf = filter(df_gulf, lon>260)
 df_gulf = filter(df_gulf, lon<290)
-df_gulf
+head(df_gulf)
 ```
 
 ## Longitude Manipulation 

@@ -2,7 +2,7 @@
 title: "R - Accessing CEFI Data via OPeNDAP"
 author: Chia-Wei Hsu (NOAA PSL)
 ---
-{{< downloadthis r_get_cefi_rstudio.qmd dname='r_get_cefi_rstudio.qmd' >}}
+{{< downloadthis r_get_cefi_rstudio.qmd dname='r_get_cefi_rstudio' >}}
 
 
 The following notebook is a quick demonstration on how to use R to access the OPeNDAP server data. See the [full CEFI OPeNDAP info here](https://noaa-cefi-portal.github.io/cefi-cookbook/content/data_access/access_opendap.html). This is designed for users that prefer the programing interface to be R. There are already couple of great resource related to preprocessing and visualizing data in R. Therefore, the notebook will not repeat that part of the code but focusing on how to accessing the data from a R interface. The resources is listed below 
@@ -114,7 +114,7 @@ names(df) <- c("lon", "lat", "sos")
 ```
 
 ```{r}
-df
+head(df)
 ```
 
 ### Link to data source (Raw gridded product)
@@ -192,7 +192,7 @@ df <- data.frame(
 ```
 
 ```{r}
-df
+head(df)
 ```
 
 
