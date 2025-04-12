@@ -7,7 +7,6 @@ project:
     - "!topics-2025/2025-echopype/*"
     - "!topics-2025/2025-02-21-earthdata/gdalcubes.qmd"
     - "!topics-2025/2025-02-21-earthdata/zarr.qmd"
-    - "!topics-2025/2025-04-11-cefi/*.qmd"
     - "!topics-2025/2025-PACE/*.qmd"
 
 default-image-extension: ""
@@ -190,10 +189,14 @@ website:
               href: topics-2025/2025-04-11-cefi/python_get_cefi.html
             - text: Python - Cloud
               href: topics-2025/2025-04-11-cefi/python_get_cefi_cloud.html
-            - text: R - OPeNDAP
+            - text: R-JLab - OPeNDAP
               href: topics-2025/2025-04-11-cefi/r_get_cefi.html
-            - text: R - Cloud
+            - text: R-RStudio OPeNDAP
+              href: topics-2025/2025-04-11-cefi/r_get_cefi_rstudio.html
+            - text: R-JLab - Cloud
               href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html
+            - text: R-RStudio - Cloud
+              href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards

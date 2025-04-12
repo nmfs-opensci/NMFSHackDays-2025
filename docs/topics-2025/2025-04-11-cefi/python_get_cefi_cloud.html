@@ -586,13 +586,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - OPeNDAP</span></a>
+ <span class="menu-text">R-JLab - OPeNDAP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R-RStudio OPeNDAP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - Cloud</span></a>
+ <span class="menu-text">R-JLab - Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R-RStudio - Cloud</span></a>
   </div>
 </li>
       </ul>
@@ -737,9 +749,9 @@ function googleTranslateElementInit() {
 </section>
 <section id="import-python-packages" class="level2">
 <h2 class="anchored" data-anchor-id="import-python-packages">Import python packages</h2>
-<div id="aece2081" class="cell" data-execution_count="1">
+<div id="aece2081" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cf_xarray <span class="co"># This is a wrapper for xarray that allows access to the data through standard coordinate names</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#import cf_xarray # This is a wrapper for xarray that allows access to the data through standard coordinate names</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thanks to the xarray, fsspec, zarr and kerchunk, accessing data from the cloud directly from Xarray is seamless. For detailed usage guidance, the <a href="https://docs.xarray.dev/en/stable/user-guide/io.html#cloud-storage-buckets">Xarray documentation</a> offers excellent examples and explanations.</p>
@@ -747,7 +759,7 @@ function googleTranslateElementInit() {
 <section id="access-data-regular-grid-product" class="level2">
 <h2 class="anchored" data-anchor-id="access-data-regular-grid-product">Access data (regular grid product)</h2>
 <p>From the previous page explaining <a href="opendapData">OPeNDAP interface</a>, we know that the OPeNDAP URL can be obtained from the form. In our case, we will use the browser to find the name of the object we want from the links to the cloud storage. The object names follow the same directory pattern as the OPeNDAP data on the portal.</p>
-<div id="a4440fec" class="cell" data-execution_count="6">
+<div id="a4440fec" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reference"</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    fo<span class="op">=</span><span class="st">'gcs://noaa-oar-cefi-regional-mom6/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520/tob.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.json'</span>, </span>
@@ -758,6 +770,10 @@ function googleTranslateElementInit() {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> fs.get_mapper()</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ds_tob <span class="op">=</span> xr.open_dataset(m, engine<span class="op">=</span><span class="st">'zarr'</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/srv/conda/envs/notebook/lib/python3.12/site-packages/google/auth/_default.py:76: UserWarning: Your application has authenticated using end user credentials from Google Cloud SDK without a quota project. You might receive a "quota exceeded" or "API not enabled" error. See the following page for troubleshooting: https://cloud.google.com/docs/authentication/adc-troubleshooting/user-creds. 
+  warnings.warn(_CLOUD_SDK_CREDENTIALS_WARNING)</code></pre>
+</div>
 </div>
 <section id="info" class="level3">
 <h3 class="anchored" data-anchor-id="info">Info</h3>
@@ -765,7 +781,7 @@ function googleTranslateElementInit() {
 <p><code>get_mapper</code> method returns a mapper object that can be used to access the data described by the reference JSON file.</p>
 <p>Finally, we use the <code>xr.open_dataset</code> to open the remote dataset using the zarr engine.</p>
 <div id="2aedc764" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ds_tob.cf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ds_tob.cf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>Coordinates:
              CF Axes: * X: ['lon']
@@ -798,7 +814,7 @@ Data Variables:
 </div>
 </div>
 <div id="8ec0cb6e" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ds_tob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ds_tob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1226,10 +1242,10 @@ Attributes: (12/30)
 <p>When we use <code>xr.open_dataset()</code> to load the data, we actually only load the metadata and coordinates information. This provide a great way to peek at the data’s dimension and availability on our local machine in the xarray object format. The actual gridded data values at each grid point will only be downloaded from the cloud server when we add <code>.load()</code> to the dataset or when we access the data with a visualization or analysis operation.</p>
 <p>xarray will lazy load the data from the selected subset when it’s needed, in this case when the plot is made below.</p>
 <div id="5db51e89" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset <span class="op">=</span> ds_tob.sel(time<span class="op">=</span><span class="st">'2012-12'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset <span class="op">=</span> ds_tob.sel(time<span class="op">=</span><span class="st">'2012-12'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="593d6883" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1643,7 +1659,7 @@ Attributes: (12/30)
 <h2 class="anchored" data-anchor-id="quick-view-of-the-variable">Quick view of the variable</h2>
 <p>To check if the data makes sense and fits the chosen time and region, you can use Xarray’s <code>.plot()</code> method. This way, you see a graph, making it easier to understand.</p>
 <div id="02c5e1be" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset.tob.plot(cmap<span class="op">=</span><span class="st">'inferno'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset.tob.plot(cmap<span class="op">=</span><span class="st">'inferno'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1657,9 +1673,9 @@ Attributes: (12/30)
 <h2 class="anchored" data-anchor-id="plotting-the-data-on-a-detailed-map">Plotting the data on a detailed map</h2>
 <p>In this section, we are going to use cartopy to plot the data with a detailed map backgournd.</p>
 <div id="a634abe1" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="specify-figure-setup" class="level3">
 <h3 class="anchored" data-anchor-id="specify-figure-setup">Specify figure setup</h3>
@@ -1669,11 +1685,11 @@ Attributes: (12/30)
 <li>Shows how to center the plot at 180, not applicable to this data set, but critical for others like the NE Pacific.</li>
 </ul>
 <div id="d08c46d6" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> ds_tob_subset.cf[<span class="st">'longitude'</span>].<span class="bu">min</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> ds_tob_subset.cf[<span class="st">'longitude'</span>].<span class="bu">max</span>()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> ds_tob_subset.cf[<span class="st">'latitude'</span>].<span class="bu">min</span>()</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> ds_tob_subset.cf[<span class="st">'latitude'</span>].<span class="bu">max</span>()</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>aspect <span class="op">=</span> (xmax<span class="op">-</span>xmin)<span class="op">/</span>(ymax<span class="op">-</span>ymin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> ds_tob_subset.cf[<span class="st">'longitude'</span>].<span class="bu">min</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> ds_tob_subset.cf[<span class="st">'longitude'</span>].<span class="bu">max</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> ds_tob_subset.cf[<span class="st">'latitude'</span>].<span class="bu">min</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> ds_tob_subset.cf[<span class="st">'latitude'</span>].<span class="bu">max</span>()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>aspect <span class="op">=</span> (xmax<span class="op">-</span>xmin)<span class="op">/</span>(ymax<span class="op">-</span>ymin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="add-details-to-the-map" class="level3">
@@ -1687,19 +1703,19 @@ Attributes: (12/30)
 <li>Draw the plot</li>
 </ul>
 <div id="6ffb78fb-ac6b-46c5-829e-01bfa0090470" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span><span class="op">*</span>aspect,<span class="dv">8</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>proj180 <span class="op">=</span> ccrs.PlateCarree()</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ax.set_extent([xmin, xmax, ymin, ymax], crs<span class="op">=</span>proj180)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add some features to make the map a little more polished</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax.add_feature(cartopy.feature.LAND)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax.coastlines(<span class="st">'50m'</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>gl <span class="op">=</span> ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ax.contourf(ds_tob_subset.cf[<span class="st">'longitude'</span>], ds_tob_subset.cf[<span class="st">'latitude'</span>], ds_tob_subset[<span class="st">'tob'</span>][<span class="dv">0</span>], levels<span class="op">=</span><span class="dv">255</span>, transform<span class="op">=</span>proj180, cmap<span class="op">=</span><span class="st">"inferno"</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.colorbar(ct, orientation<span class="op">=</span><span class="st">'horizontal'</span>,pad<span class="op">=</span><span class="fl">0.08</span>, aspect<span class="op">=</span><span class="dv">35</span>, fraction<span class="op">=</span><span class="fl">.06</span>, location<span class="op">=</span><span class="st">'top'</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="bu">str</span>(ds_tob_subset.attrs[<span class="st">'title'</span>]) <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">tob</span><span class="ch">\n</span><span class="st"> at t='</span> <span class="op">+</span> <span class="bu">str</span>(ds_tob_subset[<span class="st">'time'</span>].values), y<span class="op">=</span><span class="fl">1.25</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span><span class="op">*</span>aspect,<span class="dv">8</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>proj180 <span class="op">=</span> ccrs.PlateCarree()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ax.set_extent([xmin, xmax, ymin, ymax], crs<span class="op">=</span>proj180)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add some features to make the map a little more polished</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>ax.add_feature(cartopy.feature.LAND)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.coastlines(<span class="st">'50m'</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>gl <span class="op">=</span> ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ax.contourf(ds_tob_subset.cf[<span class="st">'longitude'</span>], ds_tob_subset.cf[<span class="st">'latitude'</span>], ds_tob_subset[<span class="st">'tob'</span>][<span class="dv">0</span>], levels<span class="op">=</span><span class="dv">255</span>, transform<span class="op">=</span>proj180, cmap<span class="op">=</span><span class="st">"inferno"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.colorbar(ct, orientation<span class="op">=</span><span class="st">'horizontal'</span>,pad<span class="op">=</span><span class="fl">0.08</span>, aspect<span class="op">=</span><span class="dv">35</span>, fraction<span class="op">=</span><span class="fl">.06</span>, location<span class="op">=</span><span class="st">'top'</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="bu">str</span>(ds_tob_subset.attrs[<span class="st">'title'</span>]) <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">tob</span><span class="ch">\n</span><span class="st"> at t='</span> <span class="op">+</span> <span class="bu">str</span>(ds_tob_subset[<span class="st">'time'</span>].values), y<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1719,31 +1735,31 @@ Attributes: (12/30)
 <p>To use the raw grid data, one need to get two files. 1. the variable file 2. the static file</p>
 <p>For this demonstration we will use the AWS S3 to access the data. You can use either the Google Cloud Storage copy (gcs://noaa-oar-cefi-regional-mom6) or the AWS copy (s3://noaa-oar-cefi-regional-mom6-pds) by changing the prefix and name of the bucket.</p>
 <div id="bf11b6cf" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reference"</span>, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    fo<span class="op">=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/tob.nwa.full.hcast.monthly.raw.r20230520.199301-201912.json'</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    remote_protocol<span class="op">=</span><span class="st">"s3"</span>, </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    remote_options<span class="op">=</span>{<span class="st">"anon"</span>:<span class="va">True</span>},</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    consolicated<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    skip_instance_cache<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    target_options<span class="op">=</span>{<span class="st">"anon"</span>: <span class="va">True</span>}</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>map_s <span class="op">=</span> fs.get_mapper()</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ds_tob <span class="op">=</span> xr.open_dataset(map_s, engine<span class="op">=</span><span class="st">'zarr'</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>fs_os <span class="op">=</span> fsspec.filesystem(</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reference"</span>, </span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    fo<span class="op">=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/ocean_static.json'</span>,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    remote_protocol<span class="op">=</span><span class="st">"s3"</span>, </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    remote_options<span class="op">=</span>{<span class="st">"anon"</span>:<span class="va">True</span>},</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    skip_instance_cache<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    target_options<span class="op">=</span>{<span class="st">"anon"</span>: <span class="va">True</span>}</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>map_os <span class="op">=</span> fs_os.get_mapper() </span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>ds_static <span class="op">=</span> xr.open_dataset(map_os, engine<span class="op">=</span><span class="st">'zarr'</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reference"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    fo<span class="op">=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/tob.nwa.full.hcast.monthly.raw.r20230520.199301-201912.json'</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    remote_protocol<span class="op">=</span><span class="st">"s3"</span>, </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    remote_options<span class="op">=</span>{<span class="st">"anon"</span>:<span class="va">True</span>},</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    consolicated<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    skip_instance_cache<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    target_options<span class="op">=</span>{<span class="st">"anon"</span>: <span class="va">True</span>}</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>map_s <span class="op">=</span> fs.get_mapper()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>ds_tob <span class="op">=</span> xr.open_dataset(map_s, engine<span class="op">=</span><span class="st">'zarr'</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>fs_os <span class="op">=</span> fsspec.filesystem(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reference"</span>, </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    fo<span class="op">=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/ocean_static.json'</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    remote_protocol<span class="op">=</span><span class="st">"s3"</span>, </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    remote_options<span class="op">=</span>{<span class="st">"anon"</span>:<span class="va">True</span>},</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    skip_instance_cache<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    target_options<span class="op">=</span>{<span class="st">"anon"</span>: <span class="va">True</span>}</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>map_os <span class="op">=</span> fs_os.get_mapper() </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>ds_static <span class="op">=</span> xr.open_dataset(map_os, engine<span class="op">=</span><span class="st">'zarr'</span>, consolidated<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="208ae343" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ds_tob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ds_tob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -2171,7 +2187,7 @@ Attributes: (12/27)
 </div>
 </div>
 <div id="c965c257" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ds_static</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds_static</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -2615,8 +2631,8 @@ Attributes:
 <p>In the <code>ds_static</code> dataset, you can observe the one-dimensional <code>xh, yh</code> grid. The numbers on this grid may resemble longitude and latitude values, but they do not represent actual geographical locations. For accurate longitude and latitude data, you should refer to the <code>geolon, geolat</code> variables in the list. These variables, which are dimensioned by <code>xh, yh</code>, provide the correct geographical coordinates.</p>
 <p>Now let’s take a look at the grid area distribution which give a great sense of how it is different from regular spacing grid</p>
 <div id="c431aea5" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds_static <span class="op">=</span> ds_static.set_coords([<span class="st">'geolon'</span>,<span class="st">'geolat'</span>])</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ds_static.areacello.plot(x<span class="op">=</span><span class="st">'geolon'</span>,y<span class="op">=</span><span class="st">'geolat'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ds_static <span class="op">=</span> ds_static.set_coords([<span class="st">'geolon'</span>,<span class="st">'geolat'</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ds_static.areacello.plot(x<span class="op">=</span><span class="st">'geolon'</span>,y<span class="op">=</span><span class="st">'geolat'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2626,7 +2642,7 @@ Attributes:
 </div>
 </div>
 <div id="be548f7c" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ds_static.areacello.plot(x<span class="op">=</span><span class="st">'xh'</span>,y<span class="op">=</span><span class="st">'yh'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ds_static.areacello.plot(x<span class="op">=</span><span class="st">'xh'</span>,y<span class="op">=</span><span class="st">'yh'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2637,16 +2653,16 @@ Attributes:
 </div>
 <p>We can see that the most significant differences between the two maps are located in the higher latitudes. Since the grid information is important in the raw grid, the easiest way to merge the two dataset so we can have the accurate lon lat that follows the data that we are going to work on.</p>
 <div id="f74c3138" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset <span class="op">=</span> ds_tob.sel(time<span class="op">=</span><span class="st">'2012-12'</span>).load()</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.merge([ds_tob_subset,ds_static])</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.isel(time<span class="op">=</span><span class="bu">slice</span>(<span class="dv">1</span>,<span class="va">None</span>))  <span class="co"># exclude the 1980 empty field due to merge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ds_tob_subset <span class="op">=</span> ds_tob.sel(time<span class="op">=</span><span class="st">'2012-12'</span>).load()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.merge([ds_tob_subset,ds_static])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.isel(time<span class="op">=</span><span class="bu">slice</span>(<span class="dv">1</span>,<span class="va">None</span>))  <span class="co"># exclude the 1980 empty field due to merge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>From the xarray dataset object output above, we will notice the <code>tob</code> value in <code>ds</code> is now avaible and the coordinate information in the coordinate is also included into a single Dataset object. In the line below, we’ll assign the latitude and longitude names to geolat and geolon to help the CF library identify them since the data lacks the proper attributes for this to happen automatically.</p>
 <div id="22a25866-ca8d-4278-9b89-76a85fc89ebd" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.assign_coords(latitude<span class="op">=</span>ds.geolat, longitude<span class="op">=</span>ds.geolon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> ds.assign_coords(latitude<span class="op">=</span>ds.geolat, longitude<span class="op">=</span>ds.geolon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="88ebc09a-c67c-40ad-afc6-07ef4555824d" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ds.cf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ds.cf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>Coordinates:
              CF Axes: * X: ['xh', 'xq']
@@ -2688,7 +2704,7 @@ Data Variables:
 <h2 class="anchored" data-anchor-id="quick-view-of-the-variable-1">Quick view of the variable</h2>
 <p>To check if the data makes sense and fits the chosen time and region, you can use Xarray’s <code>.plot()</code> method. This way, you see a graph instead of just numbers, making it easier to understand.</p>
 <div id="ed612db6" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ds.tob.plot(x<span class="op">=</span><span class="st">'longitude'</span>,y<span class="op">=</span><span class="st">'latitude'</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ds.tob.plot(x<span class="op">=</span><span class="st">'longitude'</span>,y<span class="op">=</span><span class="st">'latitude'</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2701,27 +2717,27 @@ Data Variables:
 <section id="make-a-detailed-plot-showing-the-underlying-grid" class="level2">
 <h2 class="anchored" data-anchor-id="make-a-detailed-plot-showing-the-underlying-grid">Make a detailed plot showing the underlying grid</h2>
 <div id="8c82da1d-74e2-431a-a91b-cc8bf1ae20f2" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>long_name <span class="op">=</span> ds.tob.attrs[<span class="st">'long_name'</span>]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> ds[<span class="st">'longitude'</span>].<span class="bu">min</span>()</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> ds[<span class="st">'longitude'</span>].<span class="bu">max</span>()</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> ds[<span class="st">'latitude'</span>].<span class="bu">min</span>()</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> ds[<span class="st">'latitude'</span>].<span class="bu">max</span>()</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>aspect <span class="op">=</span> (xmax<span class="op">-</span>xmin)<span class="op">/</span>(ymax<span class="op">-</span>ymin)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span><span class="op">*</span>aspect,<span class="dv">8</span>))</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>proj180 <span class="op">=</span> ccrs.PlateCarree()</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>ax.set_extent([xmin, xmax, ymin, ymax], crs<span class="op">=</span>proj180)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co"># add some features to make the map a little more polished</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>ax.add_feature(cartopy.feature.LAND)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ax.coastlines(<span class="st">'50m'</span>)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>gl <span class="op">=</span> ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ax.contourf(ds[<span class="st">'longitude'</span>], ds[<span class="st">'latitude'</span>], ds[<span class="st">'tob'</span>][<span class="dv">0</span>], levels<span class="op">=</span><span class="dv">255</span>, transform<span class="op">=</span>proj180, cmap<span class="op">=</span><span class="st">"inferno"</span>)</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.colorbar(ct, orientation<span class="op">=</span><span class="st">'horizontal'</span>,pad<span class="op">=</span><span class="fl">0.08</span>, aspect<span class="op">=</span><span class="dv">35</span>, fraction<span class="op">=</span><span class="fl">.06</span>, location<span class="op">=</span><span class="st">'top'</span>, cmap<span class="op">=</span><span class="st">"inferno"</span>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>ax.autoscale(<span class="va">False</span>) <span class="co"># keep the scalling info the same for the grid dots</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ax.scatter(ds[<span class="st">'longitude'</span>][::<span class="dv">15</span>,::<span class="dv">15</span>], ds[<span class="st">'latitude'</span>][::<span class="dv">15</span>,::<span class="dv">15</span>], <span class="fl">.05</span>, zorder<span class="op">=</span><span class="dv">1</span>, transform<span class="op">=</span>proj180, color<span class="op">=</span><span class="st">'grey'</span>)</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="bu">str</span>(ds.attrs[<span class="st">'title'</span>]) <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">+long_name+</span><span class="ch">\n</span><span class="st"> at t='</span> <span class="op">+</span> <span class="bu">str</span>(ds[<span class="st">'time'</span>].values)<span class="op">+</span><span class="st">'</span><span class="ch">\n</span><span class="st">with every 15th grid point overlaid'</span>, y<span class="op">=</span><span class="fl">1.25</span>)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>long_name <span class="op">=</span> ds.tob.attrs[<span class="st">'long_name'</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> ds[<span class="st">'longitude'</span>].<span class="bu">min</span>()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> ds[<span class="st">'longitude'</span>].<span class="bu">max</span>()</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> ds[<span class="st">'latitude'</span>].<span class="bu">min</span>()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> ds[<span class="st">'latitude'</span>].<span class="bu">max</span>()</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>aspect <span class="op">=</span> (xmax<span class="op">-</span>xmin)<span class="op">/</span>(ymax<span class="op">-</span>ymin)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span><span class="op">*</span>aspect,<span class="dv">8</span>))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>proj180 <span class="op">=</span> ccrs.PlateCarree()</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>proj)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>ax.set_extent([xmin, xmax, ymin, ymax], crs<span class="op">=</span>proj180)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># add some features to make the map a little more polished</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>ax.add_feature(cartopy.feature.LAND)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>ax.coastlines(<span class="st">'50m'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>gl <span class="op">=</span> ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ax.contourf(ds[<span class="st">'longitude'</span>], ds[<span class="st">'latitude'</span>], ds[<span class="st">'tob'</span>][<span class="dv">0</span>], levels<span class="op">=</span><span class="dv">255</span>, transform<span class="op">=</span>proj180, cmap<span class="op">=</span><span class="st">"inferno"</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>plt.colorbar(ct, orientation<span class="op">=</span><span class="st">'horizontal'</span>,pad<span class="op">=</span><span class="fl">0.08</span>, aspect<span class="op">=</span><span class="dv">35</span>, fraction<span class="op">=</span><span class="fl">.06</span>, location<span class="op">=</span><span class="st">'top'</span>, cmap<span class="op">=</span><span class="st">"inferno"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>ax.autoscale(<span class="va">False</span>) <span class="co"># keep the scalling info the same for the grid dots</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ax.scatter(ds[<span class="st">'longitude'</span>][::<span class="dv">15</span>,::<span class="dv">15</span>], ds[<span class="st">'latitude'</span>][::<span class="dv">15</span>,::<span class="dv">15</span>], <span class="fl">.05</span>, zorder<span class="op">=</span><span class="dv">1</span>, transform<span class="op">=</span>proj180, color<span class="op">=</span><span class="st">'grey'</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="bu">str</span>(ds.attrs[<span class="st">'title'</span>]) <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">+long_name+</span><span class="ch">\n</span><span class="st"> at t='</span> <span class="op">+</span> <span class="bu">str</span>(ds[<span class="st">'time'</span>].values)<span class="op">+</span><span class="st">'</span><span class="ch">\n</span><span class="st">with every 15th grid point overlaid'</span>, y<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3306,8 +3322,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="pagination-link" aria-label="R - OPeNDAP">
-        <span class="nav-page-text">R - OPeNDAP</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="pagination-link" aria-label="R-JLab - OPeNDAP">
+        <span class="nav-page-text">R-JLab - OPeNDAP</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

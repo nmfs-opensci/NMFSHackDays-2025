@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2025/2025-03-14-Boettiger/index.html" rel="next">
-<link href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" rel="prev">
+<link href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html" rel="next">
+<link href="../../topics-2025/2025-04-11-cefi/r_get_cefi_rstudio.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html">R - Cloud</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html">R-JLab - Cloud</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -586,13 +586,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R - OPeNDAP</span></a>
+ <span class="menu-text">R-JLab - OPeNDAP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R-RStudio OPeNDAP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">R - Cloud</span></a>
+ <span class="menu-text">R-JLab - Cloud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R-RStudio - Cloud</span></a>
   </div>
 </li>
       </ul>
@@ -655,7 +667,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#packages-used" id="toc-packages-used" class="nav-link active" data-scroll-target="#packages-used">Packages used</a></li>
+  <li><a href="#r-in-jupyter-lab" id="toc-r-in-jupyter-lab" class="nav-link active" data-scroll-target="#r-in-jupyter-lab">R in Jupyter Lab</a></li>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link" data-scroll-target="#packages-used">Packages used</a></li>
   <li><a href="#get-some-python-tools-to-read-the-data-from-the-cloud-storage" id="toc-get-some-python-tools-to-read-the-data-from-the-cloud-storage" class="nav-link" data-scroll-target="#get-some-python-tools-to-read-the-data-from-the-cloud-storage">Get some python tools to read the data from the cloud storage</a></li>
   <li><a href="#get-some-data-from-the-cloud" id="toc-get-some-data-from-the-cloud" class="nav-link" data-scroll-target="#get-some-data-from-the-cloud">Get some data from the cloud</a></li>
   <li><a href="#reorganize-that-data-into-a-data.frame" id="toc-reorganize-that-data-into-a-data.frame" class="nav-link" data-scroll-target="#reorganize-that-data-into-a-data.frame">Reorganize that data into a data.frame</a></li>
@@ -689,7 +702,7 @@ function googleTranslateElementInit() {
     }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html">R - Cloud</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/index.html">CEFI Data Access</a></li><li class="breadcrumb-item"><a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html">R-JLab - Cloud</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">R - Accessing CEFI Data in the Cloud</h1>
 </div>
@@ -715,59 +728,51 @@ function googleTranslateElementInit() {
 
 
 <p><a href="https://colab.research.google.com/github/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb"><img src="https://img.shields.io/badge/Open_in_Colab-blue?style=for-the-badge" class="img-fluid" alt="Colab Badge"></a> <a href="javascript:void(0);" onclick="openJupyterWidget('https://github.com/nmfs-opensci/nmfshackdays-2025/blob/main/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb');"> <img src="https://img.shields.io/badge/Open_in_JupyterHub-orange?style=for-the-badge" alt="JupyterHub Badge"> </a> <a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.ipynb"><img src="https://img.shields.io/badge/Download-grey?style=for-the-badge" class="img-fluid" alt="Download Badge"></a></p>
-<p>This example requires you to have used conda or mamba to install the <a href="conda-setup">cefi-cookbook-dev environment as explained here</a>.</p>
-<p>The following notebook is a quick demostration on how to use R to access the CEFI Cloud data. This is designed for users that prefer the programing interface to be R. There are already couple of great resource related to preprocessing and visualizing data in R. Therefore, the notebook will not repeat that part of the code but focusing on how to accessing the data from a R interface. The resources is listed below &gt; - http://cran.nexr.com/web/packages/rerddap/vignettes/Using_rerddap.html (A detail introduction of rerddap package and show the visualization in many different datasets) &gt; - https://ioos.github.io/ioos_code_lab/content/code_gallery/data_access_notebooks/2017-08-01-xtractoR.html (use a different package called xtractomatic to access the ERDDAP data)</p>
-<p>On this page, we will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize xarray and fsspec for accessing the data and visualize it on an detailed map. The currently available data can be viewed on - <a href="https://noaa-oar-cefi-regional-mom6-pds.s3.amazonaws.com/index.html">AWS</a> - <a href="https://console.cloud.google.com/storage/browser/noaa-oar-cefi-regional-mom6">Google Cloud Storage</a></p>
+<p>The following notebook is a quick demostration on how to use R to access the CEFI Cloud data.</p>
+<p>We will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize xarray and fsspec for accessing the data and visualize it on an detailed map. The currently available data can be viewed on</p>
+<ul>
+<li><a href="https://noaa-oar-cefi-regional-mom6-pds.s3.amazonaws.com/index.html">AWS</a></li>
+<li><a href="https://console.cloud.google.com/storage/browser/noaa-oar-cefi-regional-mom6">Google Cloud Storage</a></li>
+</ul>
 <p>The contents of this folder encompass hindcast simulations derived from the regional MOM6 model spanning the years 1993 to 2019.</p>
-<div class="admonition alert alert-info">
-<pre><code>&lt;p class="admonition-title" style="font-weight:bold"&gt;Launch R in Jupyterlab&lt;/p&gt;
-In addition to the standard R code demonstrated below, our current interface leverages JupyterLab to execute R code using the R kernel. To enable this functionality, we utilize the environment.yml file to create a Conda/Mamba environment. The primary objective is to install the r-irkernel package within this environment.</code></pre>
-<p>This installation of r-irkernel through Conda/Mamba ensures that the R kernel becomes available as an option when launching JupyterLab. Selecting the R kernel empowers users to utilize the JupyterLab interface for running R code effortlessly.</p>
-</div>
+<section id="r-in-jupyter-lab" class="level2">
+<h2 class="anchored" data-anchor-id="r-in-jupyter-lab">R in Jupyter Lab</h2>
+<p>In addition to the standard R code demonstrated below, our current interface leverages Jupyter Lab to execute R code using the R kernel. To enable this functionality, we utilize the environment.yml file to create a Conda/Mamba environment. The primary objective is to install the r-irkernel package within this environment.</p>
+<p><a href="https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/">See these instructions for setting up the CEFI environment</a> in the NMFS Jupyter Hub.</p>
+<p>This installation of r-irkernel through Conda/Mamba ensures that the R kernel becomes available as an option when launching JupyterLab. Selecting the R kernel empowers users to utilize the JupyterLab interface for running R code effortlessly. Specifically the conda environment includes:</p>
+<pre><code>  - r-irkernel
+  - r-rerddap
+  - r-ncdf4
+  - r-maps
+  - r-reticulate
+  - r-dplyr
+  - r-ggplot2</code></pre>
+</section>
 <section id="packages-used" class="level2">
 <h2 class="anchored" data-anchor-id="packages-used">Packages used</h2>
-<p>In this example, we are going to use the <em>reticulate</em> library with Python to read the CEFI data into an R data structure.</p>
-<p>From there you can operate on the data in R (or R Studio) as you would any other data.</p>
-<p><strong>N.B.</strong> The only library you need to read the data is the retiuclate library to access the python environment to read the data.</p>
+<p>In this example, we are going to use the <em>reticulate</em> library with Python to read the CEFI data into an R data structure. <strong>N.B.</strong> The only library you need to read the data is the reticulate library to access the python environment to read the data.</p>
 <p>The other libraries are used to filter the data and make a plot on a detailed base map.</p>
-<p>The last line show the python configuration that should have been set up when you loaded the conda environment to run this notebook.</p>
-<div id="07c18046-febd-4c7c-8c54-2961eb077a7d" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="1">
+<div id="07c18046-febd-4c7c-8c54-2961eb077a7d" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># reticulate::py_config()  # check python version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: ‘dplyr’
-
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union
-
-</code></pre>
-</div>
 </div>
 <div id="9c2208ba-be2f-48b0-aeda-6730eabf0f95" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for local install conda env created from the environment.yml file</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use_condaenv('cefi-cookbook-dev')</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for 2i2c jupyterhub</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">'notebook'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for local install conda env created from the environment.yml file</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use_condaenv('cefi-cookbook-dev')</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for 2i2c jupyterhubs</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">'notebook'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="get-some-python-tools-to-read-the-data-from-the-cloud-storage" class="level2">
 <h2 class="anchored" data-anchor-id="get-some-python-tools-to-read-the-data-from-the-cloud-storage">Get some python tools to read the data from the cloud storage</h2>
 <p>fsspec and xarray are python packages that are in the conda environment we build to run this notebook. We’re going to import them into our R environment and use them to create a pandas dataframe with lat,lon,tos as the columns</p>
 <div id="1edbd6a5-19ec-4b16-aa00-6b042ccbf75d" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xr <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">'xarray'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fsspec <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">'fsspec'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>xr <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">'xarray'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fsspec <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">'fsspec'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="get-some-data-from-the-cloud" class="level2">
@@ -777,13 +782,13 @@ The following objects are masked from ‘package:base’:
 <li>select a time slice</li>
 </ul>
 <div id="cebbba3e-b481-4f54-9fd2-5ec150e84739" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'gcs'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'gcs://noaa-oar-cefi-regional-mom6/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520/tos.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.json'</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> fs<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> dataset<span class="sc">$</span><span class="fu">sel</span>(<span class="at">time=</span><span class="st">'2012-12'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'gcs'</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'gcs://noaa-oar-cefi-regional-mom6/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520/tos.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.json'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> fs<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> dataset<span class="sc">$</span><span class="fu">sel</span>(<span class="at">time=</span><span class="st">'2012-12'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ERROR: Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission &amp;#39;storage.objects.get&amp;#39; denied on resource (or it may not exist)., 401
 Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission &amp;#39;storage.objects.get&amp;#39; denied on resource (or it may not exist)., 401Traceback:
@@ -797,31 +802,31 @@ Anonymous caller does not have storage.objects.get access to the Google Cloud St
 </div>
 <p>Get the variable long_name, date of the slice and data set title for the plot below</p>
 <div id="f3670959-755d-47fd-8d31-8964672f4b87" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> subset<span class="sc">$</span>time<span class="sc">$</span>values</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> subset<span class="sc">$</span>attrs<span class="sc">$</span>title</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>long_name <span class="ot">&lt;-</span> subset<span class="sc">$</span>tos<span class="sc">$</span>attrs<span class="sc">$</span>long_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> subset<span class="sc">$</span>time<span class="sc">$</span>values</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> subset<span class="sc">$</span>attrs<span class="sc">$</span>title</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>long_name <span class="ot">&lt;-</span> subset<span class="sc">$</span>tos<span class="sc">$</span>attrs<span class="sc">$</span>long_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="reorganize-that-data-into-a-data.frame" class="level2">
 <h2 class="anchored" data-anchor-id="reorganize-that-data-into-a-data.frame">Reorganize that data into a data.frame</h2>
 <p>We transform the gridded data into column data with lon, lat, tos as columns. <strong>Take care:</strong> We are expanding along lon first and then by lat, so we reorder the xarray so that lon varies fastest to match.</p>
 <div id="10717626-b9a2-4fe9-8e26-99f30576eaeb" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> subset<span class="sc">$</span><span class="fu">transpose</span>(<span class="st">'lon'</span>,<span class="st">'lat'</span>,<span class="st">'time'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">x =</span> subset<span class="sc">$</span>lon<span class="sc">$</span>values, <span class="at">y=</span>subset<span class="sc">$</span>lat<span class="sc">$</span>values)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(<span class="fu">matrix</span>(subset<span class="sc">$</span>tos<span class="sc">$</span>values)))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Data <span class="ot">&lt;-</span> data</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"tos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> subset<span class="sc">$</span><span class="fu">transpose</span>(<span class="st">'lon'</span>,<span class="st">'lat'</span>,<span class="st">'time'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">x =</span> subset<span class="sc">$</span>lon<span class="sc">$</span>values, <span class="at">y=</span>subset<span class="sc">$</span>lat<span class="sc">$</span>values)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(<span class="fu">matrix</span>(subset<span class="sc">$</span>tos<span class="sc">$</span>values)))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Data <span class="ot">&lt;-</span> data</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>, <span class="st">"tos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="subset-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="subset-the-dataset">Subset the dataset</h2>
 <p>We use filter to extract the points over the Gulf region.</p>
 <div id="e4941490-3503-42f3-9e7b-39778d26ae01" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df, lat<span class="sc">&gt;</span><span class="dv">17</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lat<span class="sc">&lt;</span><span class="dv">31</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lon<span class="sc">&gt;</span><span class="dv">260</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lon<span class="sc">&lt;</span><span class="dv">290</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_gulf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df, lat<span class="sc">&gt;</span><span class="dv">17</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lat<span class="sc">&lt;</span><span class="dv">31</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lon<span class="sc">&gt;</span><span class="dv">260</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_gulf <span class="ot">=</span> <span class="fu">filter</span>(df_gulf, lon<span class="sc">&lt;</span><span class="dv">290</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df_gulf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 79072 × 3</caption>
@@ -1152,38 +1157,38 @@ Anonymous caller does not have storage.objects.get access to the Google Cloud St
 <h2 class="anchored" data-anchor-id="longitude-manipulation">Longitude Manipulation</h2>
 <p>The model lons are from 0 to 360, so we’re going to use this function to normalize them to -180 to 180 The map polygons are defined on -180 to 180 we need to adjust our values to see them on the map</p>
 <div id="a51f186a-810d-4768-991e-ca6c7d92716e" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>normalize_lon <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  quotient <span class="ot">&lt;-</span> <span class="fu">round</span>(x <span class="sc">/</span> <span class="fl">360.</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  remainder <span class="ot">&lt;-</span> x <span class="sc">-</span> (<span class="fl">360.</span> <span class="sc">*</span> quotient)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adjust sign if necessary to match IEEE behavior</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sign</span>(x) <span class="sc">!=</span> <span class="fu">sign</span>(<span class="fl">360.</span>) <span class="sc">&amp;&amp;</span> remainder <span class="sc">!=</span> <span class="dv">0</span>) {</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    remainder <span class="ot">&lt;-</span> remainder <span class="sc">+</span> <span class="fu">sign</span>(<span class="fl">360.</span>) <span class="sc">*</span> <span class="fl">360.</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(remainder)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df_gulf<span class="sc">$</span>lon <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(df_gulf<span class="sc">$</span>lon, normalize_lon))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>normalize_lon <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  quotient <span class="ot">&lt;-</span> <span class="fu">round</span>(x <span class="sc">/</span> <span class="fl">360.</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  remainder <span class="ot">&lt;-</span> x <span class="sc">-</span> (<span class="fl">360.</span> <span class="sc">*</span> quotient)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adjust sign if necessary to match IEEE behavior</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sign</span>(x) <span class="sc">!=</span> <span class="fu">sign</span>(<span class="fl">360.</span>) <span class="sc">&amp;&amp;</span> remainder <span class="sc">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    remainder <span class="ot">&lt;-</span> remainder <span class="sc">+</span> <span class="fu">sign</span>(<span class="fl">360.</span>) <span class="sc">*</span> <span class="fl">360.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(remainder)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>df_gulf<span class="sc">$</span>lon <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(df_gulf<span class="sc">$</span>lon, normalize_lon))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plot-setup" class="level2">
 <h2 class="anchored" data-anchor-id="plot-setup">Plot setup</h2>
 <p>Set up a resonable plot size and limits for the plot area of the world base map</p>
 <div id="e9bf0fa5-ddb5-47ee-85be-7976335ed753" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(df_gulf<span class="sc">$</span>lat), <span class="fu">max</span>(df_gulf<span class="sc">$</span>lat) )</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(df_gulf<span class="sc">$</span>lon), <span class="fu">max</span>(df_gulf<span class="sc">$</span>lon) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(df_gulf<span class="sc">$</span>lat), <span class="fu">max</span>(df_gulf<span class="sc">$</span>lat) )</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(df_gulf<span class="sc">$</span>lon), <span class="fu">max</span>(df_gulf<span class="sc">$</span>lon) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="meshdot-map" class="level2">
 <h2 class="anchored" data-anchor-id="meshdot-map">Mesh/Dot Map</h2>
 <p>Plot a mesh/dot colored according to the value of tos at each lat/lon location in the Gulf.</p>
 <div id="26e56200-6563-4e55-b303-e47be943efa2" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>( <span class="st">'world'</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim )</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span> </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df_gulf, <span class="fu">aes</span>(<span class="at">color =</span> tos, <span class="at">y=</span>lat, <span class="at">x=</span>lon), <span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(long_name, <span class="st">'at'</span>, datetime, <span class="st">'of'</span>, title))</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>( <span class="st">'world'</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim )</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df_gulf, <span class="fu">aes</span>(<span class="at">color =</span> tos, <span class="at">y=</span>lat, <span class="at">x=</span>lon), <span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(long_name, <span class="st">'at'</span>, datetime, <span class="st">'of'</span>, title))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1200,34 +1205,34 @@ Anonymous caller does not have storage.objects.get access to the Google Cloud St
 <p><strong>N.B.</strong> The “bucket” names are slightly different</p>
 <p><strong>N.B.</strong> Additional parameters (remote_options and target_options) are needed to let AWS know that the access does not require any credentials and could be done anonymously.</p>
 <div id="f2496ac7-f7fd-49f5-8bb2-76c6c9a1aed5" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">list</span>(<span class="at">anon =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'s3'</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/sos.nwa.full.hcast.monthly.raw.r20230520.199301-201912.json'</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_options=</span>params,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_options=</span>params</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> fs<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>fsg <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'s3'</span>,</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/ocean_static.json'</span>,</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_options=</span>params,</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_options=</span>params</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> fsg<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(gm, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">list</span>(<span class="at">anon =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'s3'</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/sos.nwa.full.hcast.monthly.raw.r20230520.199301-201912.json'</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_options=</span>params,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_options=</span>params</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> fs<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>fsg <span class="ot">&lt;-</span> fsspec<span class="sc">$</span><span class="fu">filesystem</span>(<span class="st">'reference'</span>, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_protocol=</span><span class="st">'s3'</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fo=</span><span class="st">'s3://noaa-oar-cefi-regional-mom6-pds/northwest_atlantic/full_domain/hindcast/monthly/raw/r20230520/ocean_static.json'</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">remote_options=</span>params,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_options=</span>params</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>gm <span class="ot">&lt;-</span> fsg<span class="sc">$</span><span class="fu">get_mapper</span>()</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(m, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> xr<span class="sc">$</span><span class="fu">open_dataset</span>(gm, <span class="at">engine=</span><span class="st">'zarr'</span>, <span class="at">consolidated=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="slicing-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="slicing-the-data">Slicing the data</h3>
 <p>Here, we get one month slice from the data set. We took June 2003 in this case.</p>
 <div id="d3a63f29-eb35-4872-8f1f-7626a31a89d7" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>slice <span class="ot">=</span> dataset<span class="sc">$</span><span class="fu">sel</span>(<span class="at">time=</span><span class="st">'2003-06'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">=</span> slice<span class="sc">$</span>attrs<span class="sc">$</span>title</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>long_name <span class="ot">=</span> slice<span class="sc">$</span>sos<span class="sc">$</span>long_name</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">=</span> slice<span class="sc">$</span>time<span class="sc">$</span>values</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>slice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>slice <span class="ot">=</span> dataset<span class="sc">$</span><span class="fu">sel</span>(<span class="at">time=</span><span class="st">'2003-06'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>title <span class="ot">=</span> slice<span class="sc">$</span>attrs<span class="sc">$</span>title</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>long_name <span class="ot">=</span> slice<span class="sc">$</span>sos<span class="sc">$</span>long_name</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">=</span> slice<span class="sc">$</span>time<span class="sc">$</span>values</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>slice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;xarray.Dataset&gt; Size: 3MB
 Dimensions:     (time: 1, nv: 2, yh: 845, xh: 775)
@@ -1259,28 +1264,28 @@ Attributes: (12/27)
 </div>
 </div>
 <div id="2ebc664b-8f70-4cdd-9b03-48d842501366" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> grid<span class="sc">$</span>geolon<span class="sc">$</span>values</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> grid<span class="sc">$</span>geolat<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> grid<span class="sc">$</span>geolon<span class="sc">$</span>values</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> grid<span class="sc">$</span>geolat<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’re using the lat and lon values from the static grid file to pair with each data value we read from the raw grid file to create a data.frame with lon,lat,sos</p>
 <div id="4093ee18-dab3-4df0-815e-4311eb81a0e6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>slice <span class="ot">&lt;-</span> slice<span class="sc">$</span><span class="fu">transpose</span>(<span class="st">'xh'</span>, <span class="st">'yh'</span>, <span class="st">'time'</span>, <span class="st">'nv'</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(lon))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(lat))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(<span class="fu">matrix</span>(slice<span class="sc">$</span>sos<span class="sc">$</span>values)))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lon"</span> <span class="ot">=</span> X,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lat"</span> <span class="ot">=</span> Y,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sos"</span> <span class="ot">=</span> data</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>slice <span class="ot">&lt;-</span> slice<span class="sc">$</span><span class="fu">transpose</span>(<span class="st">'xh'</span>, <span class="st">'yh'</span>, <span class="st">'time'</span>, <span class="st">'nv'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(lon))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(lat))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">t</span>(<span class="fu">matrix</span>(slice<span class="sc">$</span>sos<span class="sc">$</span>values)))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lon"</span> <span class="ot">=</span> X,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lat"</span> <span class="ot">=</span> Y,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sos"</span> <span class="ot">=</span> data</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="03c6e752-d17f-46c3-9d2d-038b8fc4abc6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(df, lat<span class="sc">&gt;</span><span class="dv">35</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lat<span class="sc">&lt;</span><span class="dv">45</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lon<span class="sc">&gt;=-</span><span class="dv">80</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lon<span class="sc">&lt;=-</span><span class="dv">60</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>sub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(df, lat<span class="sc">&gt;</span><span class="dv">35</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lat<span class="sc">&lt;</span><span class="dv">45</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lon<span class="sc">&gt;=-</span><span class="dv">80</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">=</span> <span class="fu">filter</span>(sub, lon<span class="sc">&lt;=-</span><span class="dv">60</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>sub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>A data.frame: 41164 × 3</caption>
@@ -1607,18 +1612,18 @@ Attributes: (12/27)
 </div>
 </div>
 <div id="464007b8-92b9-4f4d-a301-e35bc1e32370" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(sub<span class="sc">$</span>lat), <span class="fu">max</span>(sub<span class="sc">$</span>lat) )</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(sub<span class="sc">$</span>lon), <span class="fu">max</span>(sub<span class="sc">$</span>lon) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">10</span>, <span class="at">repr.plot.height =</span> <span class="dv">10</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(sub<span class="sc">$</span>lat), <span class="fu">max</span>(sub<span class="sc">$</span>lat) )</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>xlim <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">min</span>(sub<span class="sc">$</span>lon), <span class="fu">max</span>(sub<span class="sc">$</span>lon) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="316fae84-294d-41b4-9738-1a8ac338b79c" class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>( <span class="st">'world'</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim )</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span> </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> sub, <span class="fu">aes</span>(<span class="at">color =</span> sos, <span class="at">y=</span>lat, <span class="at">x=</span>lon), <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(long_name, <span class="st">'at'</span>, datetime, <span class="st">'of'</span>, title, <span class="st">'</span><span class="sc">\n</span><span class="st">Raw Grid'</span>))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">map_data</span>( <span class="st">'world'</span>, <span class="at">ylim =</span> ylim, <span class="at">xlim =</span> xlim )</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_polygon</span>(<span class="at">data =</span> w, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y =</span> lat, <span class="at">group =</span> group), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>(<span class="fl">1.3</span>, <span class="at">xlim =</span> xlim, <span class="at">ylim =</span> ylim) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> sub, <span class="fu">aes</span>(<span class="at">color =</span> sos, <span class="at">y=</span>lat, <span class="at">x=</span>lon), <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(long_name, <span class="st">'at'</span>, datetime, <span class="st">'of'</span>, title, <span class="st">'</span><span class="sc">\n</span><span class="st">Raw Grid'</span>))</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2199,13 +2204,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi.html" class="pagination-link" aria-label="R - OPeNDAP">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R - OPeNDAP</span>
+      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_rstudio.html" class="pagination-link" aria-label="R-RStudio OPeNDAP">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R-RStudio OPeNDAP</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="pagination-link" aria-label="3/14 Carl Boettiger - Integrating LLMs into your data dashboards">
-        <span class="nav-page-text">3/14 Carl Boettiger - Integrating LLMs into your data dashboards</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html" class="pagination-link" aria-label="R-RStudio - Cloud">
+        <span class="nav-page-text">R-RStudio - Cloud</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

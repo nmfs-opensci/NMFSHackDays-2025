@@ -1,48 +1,26 @@
 ---
 title: Accessing CEFI Cloud data with R
-jupyter:
-  kernelspec:
-    display_name: R
-    language: R
-    name: ir
 reticulate:
   python: "/srv/conda/envs/notebook/bin/python"
 ---
+{{< downloadthis r_get_cefi_cloud_rstudio.qmd dname='r_get_cefi_cloud_rstudio.qmd' >}}
 
-This example requires you to have used conda or mamba to install the [cefi-cookbook-dev environment as explained here](conda-setup).
+The following notebook is a quick demostration on how to use R to access the CEFI Cloud data. 
 
-The following notebook is a quick demostration on how to use R to access the CEFI Cloud data. This is designed for users that prefer the programing interface to be R. There are already couple of great resource related to preprocessing and visualizing data in R. Therefore, the notebook will not repeat that part of the code but focusing on how to accessing the data from a R interface. The resources is listed below 
-> - http://cran.nexr.com/web/packages/rerddap/vignettes/Using_rerddap.html (A detail introduction of rerddap package and show the visualization in many different datasets)
-> - https://ioos.github.io/ioos_code_lab/content/code_gallery/data_access_notebooks/2017-08-01-xtractoR.html (use a different package called xtractomatic to access the ERDDAP data)
+We will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize xarray and fsspec for accessing the data and visualize it on an detailed map. The currently available data can be viewed on 
 
-
-On this page, we will explore the process of extracting a subset of model simualtion data produce from the regional MOM6 model. The model output is to support the Climate Ecosystem and Fishery Initiative. We will showcase how to utilize xarray and fsspec for accessing the data and visualize it on an detailed map. The currently available data can be viewed on 
 - [AWS](https://noaa-oar-cefi-regional-mom6-pds.s3.amazonaws.com/index.html)
 - [Google Cloud Storage](https://console.cloud.google.com/storage/browser/noaa-oar-cefi-regional-mom6)
 
 The contents of this folder encompass hindcast simulations derived from the regional MOM6 model spanning the years 1993 to 2019.
 
-<div class="admonition alert alert-info">
-    <p class="admonition-title" style="font-weight:bold">Launch R in Jupyterlab</p>
-    In addition to the standard R code demonstrated below, our current interface leverages JupyterLab to execute R code using the R kernel. To enable this functionality, we utilize the environment.yml file to create a Conda/Mamba environment. The primary objective is to install the r-irkernel package within this environment.
-
-This installation of r-irkernel through Conda/Mamba ensures that the R kernel becomes available as an option when launching JupyterLab. Selecting the R kernel empowers users to utilize the JupyterLab interface for running R code effortlessly.
-    
-</div>
-
 ## Packages used
-In this example, we are going to use the _reticulate_ library with Python to read the CEFI data into an R data structure.
 
-From there you can operate on the data in R (or R Studio) as you would any other data.
-
-**N.B.** The only library you need to read the data is the retiuclate library to access the python environment to read the data.
+In this example, we are going to use the _reticulate_ library with Python to read the CEFI data into an R data structure. From there you can operate on the data in R (or R Studio) as you would any other data.
 
 The other libraries are used to filter the data and make a plot on a detailed base map.
 
-The last line show the python configuration that should have been set up when you loaded the conda environment to run this notebook.
-
-```{r}
-#| vscode: {languageId: r}
+```{r message=FALSE}
 library(reticulate)
 library(dplyr)
 library(maps)
@@ -50,32 +28,76 @@ library(ggplot2)
 # reticulate::py_config()  # check python version
 ```
 
+## Setting up the Python packages
+
+There are 2 approaches and which one you use will depend on the environment you are using. 
+
+First make sure you have `reticulate` R package installed.
 ```{r}
-#| vscode: {languageId: r}
-options(reticulate.conda_binary = "/srv/conda/condabin/conda")
-use_condaenv("/srv/conda/envs/notebook", required = TRUE)
+print(requireNamespace("reticulate", quietly = TRUE))
+```
+If needed, install.
+```{r eval=FALSE}
+install.packages("reticulate")
 ```
 
+### You installed R with conda via `r-irkernel`
 
-## Get some python tools to read the data from the cloud storage
-fsspec and xarray are python packages that are in the conda environment we build to run this notebook.
-We're going to import them into our R environment and use them to create a pandas dataframe with lat,lon,tos as the columns
+*This is the approach to use if you are using the "CEFI" environment.*
+
+If you are using an environment where R is installed with conda via the `r-irkernel` package, you can do the following. 
+
+```{r eval=FALSE}
+# reticulate has a hard time finding conda
+options(reticulate.conda_binary = "/srv/conda/condabin/conda")
+reticulate::use_condaenv("/srv/conda/envs/notebook", required = TRUE)
+```
+
+Note, you might run into an issue where reticulate refuses to change the Python version. This can happen if you used reticulate without conda and it stored that Python path in the cache. 1) Session > Terminate R 2) Open terminal and run `rm -rf .cache/R/reticulate`.
+
+### You installed R outside of conda
+
+*This is the approach to use if you are using the "py-rocket-geospatial" environment (default on the NMFS JupyterHub).*
+
+If you installed R like you normally would (not with conda), then you are liable to run into SSL issues when `reticulate` tries to open files in the cloud since `reticulate` will use a version of SSL installed with RStudio and not the one in the conda environment.
+
+**Option 1. Do not use conda**
+
+You do not need to use conda with reticulate. Use `py_require()` to create an ephemeral environment with your packages. Note there is a problem with `zarr 3.*` and opening zarr files, so you need to make sure `zarr<3` is installed.
 
 ```{r}
-#| vscode: {languageId: r}
+py_require(c("zarr<3", "fsspec", "xarray", "gcsfs", "s3fs"))
 xr <- import('xarray')
 fsspec <- import('fsspec')
 ```
 
+**Option 3. Force RStudio to use the right SSL**
+
+Let's say you want to use your conda environment but you are getting the SSL error. You need to force RStudio to use your conda SSL when RStudio starts up. You do this by adding a line to `/etc/rstudio/rserver.conf`. This only works if you have permission to write to `/etc/rstudio` or you can use `sudo`.
+
+Before starting RStudio, open a terminal and run this. If you are in a Jupyter Hub, you will need to run this every time you start your server (your hub).
+```
+echo "rsession-ld-library-path=/srv/conda/envs/notebook/lib" >> /etc/rstudio/rserver.conf
+```
+Replace "notebook" with the name of your conda environment if it is different.
+
 ## Get some data from the cloud
+
+`fsspec` and `xarray` are the Python packages we need to get data from the cloud.
+We're going to import them into our R environment and use them to create a pandas dataframe with lat, lon, tos as the columns
+
 - Read the data
 - select a time slice
 
+
 ```{r}
-#| vscode: {languageId: r}
-fs <- fsspec$filesystem('reference', 
-    remote_protocol='gcs',
-    fo='gcs://noaa-oar-cefi-regional-mom6/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520/tos.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.json'
+fs <- fsspec$filesystem(
+  "reference",
+  remote_protocol = "gcs",
+  fo = "gcs://noaa-oar-cefi-regional-mom6/northwest_atlantic/full_domain/hindcast/monthly/regrid/r20230520/tos.nwa.full.hcast.monthly.regrid.r20230520.199301-201912.json",
+  remote_options = dict(anon = TRUE),
+  skip_instance_cache = TRUE,
+  target_options = dict(anon = TRUE)
 )
 m <- fs$get_mapper()
 dataset <- xr$open_dataset(m, engine='zarr', consolidated=FALSE)
@@ -85,7 +107,6 @@ subset <- dataset$sel(time='2012-12')
 Get the variable long_name, date of the slice and data set title for the plot below
 
 ```{r}
-#| vscode: {languageId: r}
 datetime <- subset$time$values
 title <- subset$attrs$title
 long_name <- subset$tos$attrs$long_name
@@ -96,7 +117,6 @@ We transform the gridded data into column data with lon, lat, tos as columns.
 **Take care:** We are expanding along lon first and then by lat, so we reorder the xarray so that lon varies fastest to match.
 
 ```{r}
-#| vscode: {languageId: r}
 subset <- subset$transpose('lon','lat','time')
 df <- expand.grid(x = subset$lon$values, y=subset$lat$values)
 data <- as.vector(t(matrix(subset$tos$values)))
@@ -108,7 +128,6 @@ names(df) <- c("lon", "lat", "tos")
 We use filter to extract the points over the Gulf region.
 
 ```{r}
-#| vscode: {languageId: r}
 df_gulf = filter(df, lat>17)
 df_gulf = filter(df_gulf, lat<31)
 df_gulf = filter(df_gulf, lon>260)
@@ -117,11 +136,11 @@ df_gulf
 ```
 
 ## Longitude Manipulation 
+
 The model lons are from 0 to 360, so we're going to use this function to normalize them to -180 to 180
 The map polygons are defined on -180 to 180 we need to adjust our values to see them on the map
 
 ```{r}
-#| vscode: {languageId: r}
 normalize_lon <- function(x) {
   quotient <- round(x / 360.)
   remainder <- x - (360. * quotient)
@@ -138,7 +157,6 @@ df_gulf$lon <- unlist(lapply(df_gulf$lon, normalize_lon))
 Set up a resonable plot size and limits for the plot area of the world base map
 
 ```{r}
-#| vscode: {languageId: r}
 options(repr.plot.width = 10, repr.plot.height = 10)
 ylim <- c( min(df_gulf$lat), max(df_gulf$lat) )
 xlim <- c( min(df_gulf$lon), max(df_gulf$lon) )
@@ -148,7 +166,6 @@ xlim <- c( min(df_gulf$lon), max(df_gulf$lon) )
 Plot a mesh/dot colored according to the value of tos at each lat/lon location in the Gulf.
 
 ```{r}
-#| vscode: {languageId: r}
 w <- map_data( 'world', ylim = ylim, xlim = xlim )
 p = ggplot() + 
     geom_polygon(data = w, aes(x=long, y = lat, group = group), fill = "grey", color = "black") +
@@ -169,7 +186,6 @@ We'll get both the data and the grid from the cloud storage just as we did in th
 **N.B.** Additional parameters (remote_options and target_options) are needed to let AWS know that the access does not require any credentials and could be done anonymously.
 
 ```{r}
-#| vscode: {languageId: r}
 params = list(anon = TRUE)
 fs <- fsspec$filesystem('reference', 
     remote_protocol='s3',
@@ -191,10 +207,10 @@ grid <- xr$open_dataset(gm, engine='zarr', consolidated=FALSE)
 ```
 
 ### Slicing the data
+
 Here, we get one month slice from the data set. We took June 2003 in this case.
 
 ```{r}
-#| vscode: {languageId: r}
 slice = dataset$sel(time='2003-06')
 title = slice$attrs$title
 long_name = slice$sos$long_name
@@ -203,7 +219,6 @@ slice
 ```
 
 ```{r}
-#| vscode: {languageId: r}
 lon <- grid$geolon$values
 lat <- grid$geolat$values
 ```
@@ -211,7 +226,6 @@ lat <- grid$geolat$values
 We're using the lat and lon values from the static grid file to pair with each data value we read from the raw grid file to create a data.frame with lon,lat,sos
 
 ```{r}
-#| vscode: {languageId: r}
 slice <- slice$transpose('xh', 'yh', 'time', 'nv')
 X <- as.vector(t(lon))
 Y <- as.vector(t(lat))
@@ -225,7 +239,6 @@ df <- data.frame(
 ```
 
 ```{r}
-#| vscode: {languageId: r}
 sub = filter(df, lat>35)
 sub = filter(sub, lat<45)
 sub = filter(sub, lon>=-80)
@@ -234,14 +247,12 @@ sub
 ```
 
 ```{r}
-#| vscode: {languageId: r}
 options(repr.plot.width = 10, repr.plot.height = 10)
 ylim <- c( min(sub$lat), max(sub$lat) )
 xlim <- c( min(sub$lon), max(sub$lon) )
 ```
 
 ```{r}
-#| vscode: {languageId: r}
 w <- map_data( 'world', ylim = ylim, xlim = xlim )
 p = ggplot() + 
     geom_polygon(data = w, aes(x=long, y = lat, group = group), fill = "grey", color = "black") +

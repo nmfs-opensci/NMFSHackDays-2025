@@ -1,0 +1,17 @@
+{
+  "hash": "a6ad1734ddcbf77e3d058394ed7e6bdc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"R - Accessing CEFI Data via OPeNDAP\"\nauthor: Chia-Wei Hsu (NOAA PSL)\nformat:\n  pdf:\n    documentclass: scrreprt\n    classoption: [twoside]\n  # classoption: [oneside]\n    toc: true\n    toc-depth: 3\n    lot: true\n    lof: true\n    include-in-header:\n      - text: |\n          %% load packages\n          \\usepackage{lipsum}\n          \\usepackage{geometry}\n          \\usepackage{xcolor}\n          \\usepackage{eso-pic}\n          \\usepackage{fancyhdr}\n          \\usepackage{sectsty}\n          \\usepackage{fontspec}\n          \\usepackage{titlesec}\n---\n\n\n\nThe following notebook is a quick demonstration on how to use R to access the OPeNDAP server data. See the [full CEFI OPeNDAP info here](https://noaa-cefi-portal.github.io/cefi-cookbook/content/data_access/access_opendap.html). This is designed for users that prefer the programing interface to be R. There are already couple of great resource related to preprocessing and visualizing data in R. Therefore, the notebook will not repeat that part of the code but focusing on how to accessing the data from a R interface. The resources is listed below \n\n- [Using rerddap](http://cran.nexr.com/web/packages/rerddap/vignettes/Using_rerddap.html) A detailed introduction of rerddap package and showing the visualization in many different datasets.\n- [IOOS CodeLab](https://ioos.github.io/ioos_code_lab/content/code_gallery/data_access_notebooks/2017-08-01-xtractoR.html) This uses a different package called xtractomatic to access the ERDDAP data.\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1+1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::",
+    "supporting": [
+      "test_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
