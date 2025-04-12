@@ -1,0 +1,86 @@
+---
+title: Reticulate Set-up
+author: Eli Holmes
+---
+{{< downloadthis reticulate_setup.qmd dname='reticulate_setup' >}}
+
+To use Python inside RStudio or an R kernel in Jupyter Lab, you will use the `reticulate` R package.
+
+If needed, install.
+```{r eval=FALSE}
+install.packages("reticulate")
+```
+
+```{r message=FALSE}
+library(reticulate)
+```
+
+## Setting up
+
+There are 2 approaches and which one you use will depend on how R was installed.
+
+* R installed via conda: `conda install -c r`
+* [R installed in the typical way](https://cran.r-project.org/) without conda
+
+## You installed R normally (not with conda)
+
+*This is the approach to use if you are using RStudio on your local computer or using the NMFS Jupyter Hub with the "py-rocket-geospatial" environment (default).*
+
+### `reticulate` recommends `py_require()`
+
+Use `py_require()` to create an ephemeral environment with your packages. `reticulate` will also take care of installing a minimal Python installation into this environment. It just works and is very fast. This is the only solution I found that didn't get the SSL error on the NMFS Jupyter Hub with the default image.
+
+```{r}
+py_require(c("xarray"))
+xr <- import('xarray')
+```
+
+**Why?** If you don't use Python, then you almost certainly will not use conda environments.  `reticulate` works fine without conda and if you use `py_require()` you don't even have to install Python. 
+
+Even if you have Python and conda installed, if R was installed normally (without conda), then you are liable to run into SSL issues when `reticulate` tries to open files in the cloud since `reticulate` will use a version of SSL installed with RStudio and not the one in the conda environment. 
+
+### If you want to use a virtual environment
+
+Using `py_require()` means the packages have to be installed each time you get to work. You can create a persistent environment and use that. But you will need a Python installation (and not one in a conda environment).
+
+Do this one if you don't have Python installed.
+```
+reticulate::install_python("3.10")
+```
+Now you can create a persistent environment to use.
+```
+virtualenv_create(
+    envname = "cefi",
+    python = virtualenv_starter("3.10"),
+    packages = c("zarr<3", "fsspec", "xarray", "gcsfs", "s3fs")
+    )
+```
+Then you select this environment with this before running any Python code.
+```
+reticulate::use_virtualenv("cefi")
+```
+
+### Dealing with the SSL error in RStudio in Jupyter Hubs
+
+Let's say you have Python and want to use your conda environment but you are getting the SSL error in RStudio. You might try forcing RStudio to use your conda SSL when RStudio starts up. You do this by adding a line to `/etc/rstudio/rserver.conf`. This only works if you have permission to write to `/etc/rstudio` or you can use `sudo`. What to do if you don't have permission to write to `/etc`? `py_require()`.
+
+Before starting RStudio, open a terminal and run this. If you are in a Jupyter Hub, you will need to run this every time you start your server (your hub).
+```
+echo "rsession-ld-library-path=/srv/conda/envs/notebook/lib" >> /etc/rstudio/rserver.conf
+```
+Replace "notebook" with the name of your conda environment if it is different.
+
+
+### You installed R via conda
+
+*This is the approach to use if you are using the "CEFI" environment or if you installed R only your local computer via conda with `conda install r`*
+
+If you are using an environment where R is installed with conda, you can do the following. Replace "notebook" with the name of your conda environment.
+
+```{r eval=FALSE}
+# if reticulate has a hard time finding conda
+options(reticulate.conda_binary = "/srv/conda/condabin/conda")
+reticulate::use_condaenv("/srv/conda/envs/notebook", required = TRUE)
+```
+
+Note, you might run into an issue where reticulate refuses to change the Python version. This can happen if you used reticulate without conda and it stored that Python path in the cache. 1) Session > Terminate R 2) Open terminal and run `rm -rf ~/.cache/R/reticulate`.
