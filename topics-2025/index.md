@@ -20,7 +20,7 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   Mar 28 - Working with data on OPeNDAP servers in Python & R {{< fa brands python >}} {{< fa brands r-project >}}
 -   Apr 4 - xarray + GPU integration ([Negin Sobhani](https://github.com/negin513), UCAR and [Max Jones](https://github.com/maxrjones), Development Seed) {{< fa brands python >}}
 -   Apr 11 - Accessing [CEFI data](https://psl.noaa.gov/cefi_portal/) on OPeNDAP, AWS and Google ([Chia-Wei Hsu](https://psl.noaa.gov/people/chia-wei.hsu/), NOAA PSL) {{< fa brands python >}}
--   Apr 18 - Introduction to the [Nautilus](https://nationalresearchplatform.org/nautilus/) HyperCluster for running containerized Big Data Applications) {{< fa brands python >}}
+-   Apr 18 - Creating a Cloud-Native dataset of streamflows and publishing to NODD {{< fa brands python >}}
 -   Apr 25 - Working with acoustic data in Python: [echopype](https://echopype.readthedocs.io/en/stable/) ([Wu-Jung Lee](https://www.apl.washington.edu/people/profile.php?last_name=Lee&first_name=Wu-Jung), UW APL) {{< fa brands python >}}
 -   May 2 - [Coiled](https://www.coiled.io/) demo -- parallel processing for big data pipelines (Coiled team)
 -   May 9 - [PACE](https://pace.oceansciences.org/home.htm) Hyperspectral Ocean Color Data Access and Visualization in Python ([earthaccess](https://earthaccess.readthedocs.io/en/latest/)) {{< fa brands python >}}
