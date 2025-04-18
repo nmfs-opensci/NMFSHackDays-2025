@@ -199,6 +199,11 @@ website:
               href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html
             - text: R reticulate setup
               href: topics-2025/2025-04-11-cefi/reticulate_setup.html
+        - section: "Google Cloud Storage"
+          href: topics-2025/2025-gcs/index.html
+          contents:
+            - text: Upload
+              href: topics-2025/2025-gcs/save_to_gcs.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards

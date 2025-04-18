@@ -617,13 +617,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
- <span class="menu-text">Guest Speakers</span></a>
+            <a href="../../topics-2025/2025-gcs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Google Cloud Storage</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-gcs/save_to_gcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Upload</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">Guest Speakers</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2025/2025-03-14-Boettiger/index.html" class="sidebar-item-text sidebar-link">
@@ -758,10 +775,10 @@ function googleTranslateElementInit() {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Size in TB: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes <span class="op">/</span> <span class="fl">1e12</span><span class="sc">:.2f}</span><span class="ss"> TB"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ds.sizes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Size in TB: 150.79 TB</code></pre>
+<pre><code>Size in TB: 151.58 TB</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Frozen({'time': 8311, 'latitude': 17999, 'longitude': 36000})</code></pre>
+<pre><code>Frozen({'time': 8355, 'latitude': 17999, 'longitude': 36000})</code></pre>
 </div>
 </div>
 <div id="43d28dce-25df-42db-b070-e543eae73708" class="cell" data-execution_count="11">
@@ -1213,7 +1230,7 @@ completeness, or usefulness, of this information.</dd><dt><span>naming_authority
 <section id="subset-this-data-set" class="level2">
 <h2 class="anchored" data-anchor-id="subset-this-data-set">Subset this data set</h2>
 <p>First we will select the SST variable, subset to a 2 degree box and 1 year of data. This will create a much smaller data set or 120 Mb.</p>
-<div id="171d0752-b3bb-4775-b61b-633e23a681b8" class="cell" data-scrolled="true" data-execution_count="12">
+<div id="171d0752-b3bb-4775-b61b-633e23a681b8" class="cell" data-scrolled="true" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dc <span class="op">=</span> ds[<span class="st">'analysed_sst'</span>].sel(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        latitude<span class="op">=</span><span class="bu">slice</span>(<span class="fl">33.5</span>, <span class="fl">35.5</span>), </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                        longitude<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="fl">75.5</span>, <span class="op">-</span><span class="fl">73.5</span>), </span>
@@ -1223,17 +1240,17 @@ completeness, or usefulness, of this information.</dd><dt><span>naming_authority
 <div class="cell-output cell-output-stdout">
 <pre><code>Size in GB: 0.12 GB</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>Frozen({'time': 365, 'latitude': 201, 'longitude': 201})</code></pre>
 </div>
 </div>
-<div id="4df639ff-dd46-45d9-9ad4-f4e326890fac" class="cell" data-execution_count="13">
+<div id="4df639ff-dd46-45d9-9ad4-f4e326890fac" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data into memory so the next steps are fast</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dc.load()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 1.15 s, sys: 275 ms, total: 1.43 s
-Wall time: 1min 33s</code></pre>
+<pre><code>CPU times: user 1.19 s, sys: 355 ms, total: 1.55 s
+Wall time: 1min 47s</code></pre>
 </div>
 </div>
 </section>
