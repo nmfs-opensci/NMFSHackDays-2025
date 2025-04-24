@@ -199,6 +199,11 @@ website:
               href: topics-2025/2025-04-11-cefi/r_get_cefi_cloud_rstudio.html
             - text: R reticulate setup
               href: topics-2025/2025-04-11-cefi/reticulate_setup.html
+        - section: "echopype"
+          href: topics-2025/2025-echopype/index.html
+          contents:
+            - text: echopype tour
+              href: topics-2025/2025-echopype/echopype_tour.html
         - section: "Google Cloud Storage"
           href: topics-2025/2025-gcs/index.html
           contents:
