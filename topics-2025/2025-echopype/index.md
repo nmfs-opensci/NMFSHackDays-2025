@@ -19,11 +19,15 @@ Friday April 25 11am PT/2pm ET. This Friday's HackHour topic is Getting started 
 
 ## Some details
 - [Echopype paper](https://doi.org/10.1093/icesjms/fsae133)
-- Workflow: standardize and then compute
+- Workflow
+    - standardize and then compute
     ![image](https://echopype.readthedocs.io/en/latest/_images/workflow_v2.png)
 - The `EchoData` object
+    - gridded data: deviate from the SONAR-netCDF4 version 1 convention
+    - some difference of variable names: not fully adapated to version 2 convention
     ![image](https://echopype.readthedocs.io/en/latest/_images/beam_dim_v5-01.png)
 - [Development roadmap](https://echopype.readthedocs.io/en/latest/contrib_roadmap.html)
+    - We need help!
 
 
 ## Demo notebooks
