@@ -15,7 +15,7 @@ https://github.com/NOAA-CEFI-Portal/cefi-cookbook
 * OPeNDAP - [python_get_cefi](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/python_get_cefi.html)
 * Cloud - [python_get_cefi_cloud](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/python_get_cefi_cloud.html)
 * OPeNDAP - [r_get_cefi](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/r_get_cefi.html) R in Jupyter Lab
-* Cloud - [python_get_cefi_cloud](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html) R in Jupyter Lab
+* Cloud - [r_get_cefi_cloud](https://nmfs-opensci.github.io/NMFSHackDays-2025/topics-2025/2025-04-11-cefi/r_get_cefi_cloud.html) R in Jupyter Lab
 
 ## Some useful links
 

@@ -204,6 +204,8 @@ website:
           contents:
             - text: Upload
               href: topics-2025/2025-gcs/save_to_gcs.html
+            - text: Access
+              href: topics-2025/2025-gcs/access_gcs.html
         - section: "Guest Speakers"
           contents:
             - text: 3/14 Carl Boettiger - Integrating LLMs into your data dashboards
