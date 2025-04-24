@@ -34,8 +34,8 @@ Friday April 25 11am PT/2pm ET. This Friday's HackHour topic is Getting started 
 
 The two notebooks in this the hackhour repo are copied from the [echopype-examples](https://github.com/OSOceanAcoustics/echopype-examples) repository, so they are "frozen" as of April 2025 and work with echopype v0.10.1. Go to the repo for the updated notebooks that would work with later echopype versions.
 
-* [](./getting_started.ipynb)
-* [](./OOI_eclipse.ipynb)
+* [Getting started with Echopype](./getting_started.ipynb)
+* [Watching a solar eclipse using a moored, upward-looking OOI echosounder](./OOI_eclipse.ipynb)
 
 
 ## Cloning the repo
