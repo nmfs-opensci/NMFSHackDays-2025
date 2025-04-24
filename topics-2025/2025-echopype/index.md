@@ -4,7 +4,7 @@ title: Getting started with Echopype
 
 Friday April 25 11am PT/2pm ET. This Friday's HackHour topic is Getting started with Echopype. In this session, you will get an introduction on using accessing echosounder data on the NOAA NCEI Water Column Sonar Data archive. Our guest speaker is [Wu-Jung Lee](https://uw-echospace.github.io/author/wu-jung-lee/) at the UW Applied Physics Lab.
 
-## What is Echopype?
+## What is [Echopype](https://github.com/OSOceanAcoustics/echopype)?
 - An accidental package
 - Stand on the shoulders of giants!
 - **Compositional**: designed to be used with other packages
