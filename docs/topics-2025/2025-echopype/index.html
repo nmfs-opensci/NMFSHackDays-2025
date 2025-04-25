@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>echopype with Wu-Jung Lee – NMFS HackHours 2025</title>
+<title>Getting started with Echopype – NMFS HackHours 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2025/2025-echopype/echopype_tour.html" rel="next">
+<link href="../../topics-2025/2025-echopype/getting_started.html" rel="next">
 <link href="../../topics-2025/2025-04-11-cefi/reticulate_setup.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -588,8 +588,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2025/2025-echopype/echopype_tour.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">echopype tour</span></a>
+  <a href="../../topics-2025/2025-echopype/getting_started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-echopype/OOI_eclipse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OOI eclipse</span></a>
   </div>
 </li>
       </ul>
@@ -675,10 +681,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a>
-  <ul class="collapse">
+  <li><a href="#what-is-echopype" id="toc-what-is-echopype" class="nav-link active" data-scroll-target="#what-is-echopype">What is Echopype?</a></li>
+  <li><a href="#some-details" id="toc-some-details" class="nav-link" data-scroll-target="#some-details">Some details</a></li>
+  <li><a href="#demo-notebooks" id="toc-demo-notebooks" class="nav-link" data-scroll-target="#demo-notebooks">Demo notebooks</a></li>
   <li><a href="#cloning-the-repo" id="toc-cloning-the-repo" class="nav-link" data-scroll-target="#cloning-the-repo">Cloning the repo</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/edit/main/topics-2025/2025-echopype/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NMFSHackDays-2025/blob/main/topics-2025/2025-echopype/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -706,7 +712,7 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">echopype with Wu-Jung Lee</h1>
+<h1 class="title">Getting started with Echopype</h1>
 </div>
 
 
@@ -723,13 +729,51 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p>Please choose the “echopype” image in the hub dropdown.</p>
-<section id="tutorials" class="level1">
-<h1>Tutorials</h1>
+<p>Friday April 25 11am PT/2pm ET. This Friday’s HackHour topic is Getting started with Echopype. In this session, you will get an introduction on using accessing echosounder data on the NOAA NCEI Water Column Sonar Data archive. Our guest speaker is <a href="https://uw-echospace.github.io/author/wu-jung-lee/">Wu-Jung Lee</a> at the UW Applied Physics Lab.</p>
+<section id="what-is-echopype" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-echopype">What is <a href="https://github.com/OSOceanAcoustics/echopype">Echopype</a>?</h2>
 <ul>
-<li></li>
-<li></li>
+<li>An accidental package</li>
+<li>Stand on the shoulders of giants!</li>
+<li><strong>Compositional</strong>: designed to be used with other packages</li>
+<li>Design philosophy:
+<ul>
+<li>Scalable</li>
+<li>Interoperable</li>
+<li>Accessible</li>
+<li>Reproducible</li>
+</ul></li>
+<li>Not for visual-based manual analysis</li>
+<li>The most mature package in the <a href="https://proceedings.scipy.org/articles/WXRH8633">Echostack</a>, many external users</li>
 </ul>
+</section>
+<section id="some-details" class="level2">
+<h2 class="anchored" data-anchor-id="some-details">Some details</h2>
+<ul>
+<li><a href="https://doi.org/10.1093/icesjms/fsae133">Echopype paper</a></li>
+<li>Workflow
+<ul>
+<li>standardize and then compute <img src="https://echopype.readthedocs.io/en/latest/_images/workflow_v2.png" class="img-fluid" alt="image"></li>
+</ul></li>
+<li>The <code>EchoData</code> object
+<ul>
+<li>gridded data: deviate from the SONAR-netCDF4 version 1 convention</li>
+<li>some difference of variable names: not fully adapated to version 2 convention <img src="https://echopype.readthedocs.io/en/latest/_images/beam_dim_v5-01.png" class="img-fluid" alt="image"></li>
+</ul></li>
+<li><a href="https://echopype.readthedocs.io/en/latest/contrib_roadmap.html">Development roadmap</a>
+<ul>
+<li>We need help!</li>
+</ul></li>
+</ul>
+</section>
+<section id="demo-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="demo-notebooks">Demo notebooks</h2>
+<p>The two notebooks in the hackhour repo are copied from the <a href="https://github.com/OSOceanAcoustics/echopype-examples">echopype-examples</a> repository, so they are “frozen” as of April 2025 and work with echopype v0.10.1. Go to the repo for the updated notebooks that would work with later echopype versions.</p>
+<ul>
+<li><a href="../../topics-2025/2025-echopype/getting_started.html">Getting started with Echopype</a></li>
+<li><a href="../../topics-2025/2025-echopype/OOI_eclipse.html">Watching a solar eclipse using a moored, upward-looking OOI echosounder</a></li>
+</ul>
+</section>
 <section id="cloning-the-repo" class="level2">
 <h2 class="anchored" data-anchor-id="cloning-the-repo">Cloning the repo</h2>
 <p>The echopype tutorials are in <code>topics-2025/2025-echopype</code></p>
@@ -742,7 +786,6 @@ git fetch origin
 git reset --hard origin/main</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1317,8 +1360,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../topics-2025/2025-echopype/echopype_tour.html" class="pagination-link" aria-label="echopype tour">
-        <span class="nav-page-text">echopype tour</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../topics-2025/2025-echopype/getting_started.html" class="pagination-link" aria-label="Getting started">
+        <span class="nav-page-text">Getting started</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
