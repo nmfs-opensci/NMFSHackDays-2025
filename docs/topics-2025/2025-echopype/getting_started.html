@@ -700,6 +700,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">4/11 Chia-Wei Hsu - CEFI data</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2025/2025-coiled/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5/2 Coiled Team</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -5793,7 +5799,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="lazy-load-an-echodata-object" class="level3">
-<h3 class="anchored" data-anchor-id="lazy-load-an-echodata-object">Lazy-load an <code>EchoData</code> object</h3>
+<h3 class="anchored" data-anchor-id="lazy-load-an-echodata-object">Lazy-load an EchoData object</h3>
 <p>We can load the saved zarr back using the <code>open_converted</code> function.</p>
 <p>By using <code>chunks={}</code>, we “lazy-load” all the data in this zarr file into a new <code>EchoData</code> object, <code>ed_new</code>, which can be seen as a representation or a handle of the data stored on disk.</p>
 <p>This capability is very important for distributed computing and is key to out-of-core computation, because different “workers” can directly access different parts of the same file on disk, and don’t have load the entire dataset into memory. This file is pretty small, but in the <code>OOI_eclipse.ipynb</code> notebook, you can see an example in which the zarr file is approximately 8 GB and its computation would generally overwhelm a regular laptop without distributed computing capability.</p>
@@ -6746,7 +6752,7 @@ Attributes:
 </div>
 </section>
 <section id="accessing-echodata-groups-directly-via-xarray" class="level3">
-<h3 class="anchored" data-anchor-id="accessing-echodata-groups-directly-via-xarray">Accessing <code>EchoData</code> groups directly via xarray</h3>
+<h3 class="anchored" data-anchor-id="accessing-echodata-groups-directly-via-xarray">Accessing EchoData groups directly via xarray</h3>
 <p>Note that the zarr or netCDF files on disk are actually standard files, and can be access using regular xarray functions. For example, we an access the GPS data stored in the <code>Platform</code> group directly using <code>xarray.open_dataset</code>:</p>
 <div id="cell-26" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings():</span>
