@@ -683,7 +683,7 @@
     "href": "topics-2025/index.html#schedule-links-to-content-on-left",
     "title": "HackHours 2025",
     "section": "Schedule (links to content on left)",
-    "text": "Schedule (links to content on left)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 14 - Using LLMs in R to improve data dashboards (Carl Boettiger, UC Berkeley) \nMar 21 - VirtualiZarr, Dask and Holoviz to explore NODD data (Rich Signell, Open Science Consulting) \nMar 28 - Working with data on OPeNDAP servers in Python & R  \nApr 4 - xarray + GPU integration (Negin Sobhani, UCAR and Max Jones, Development Seed) \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 18 - Creating a Cloud-Native dataset of streamflows and publishing to NODD \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data\nMay 30 - Machine-Learning with Ocean Data: gap-filling with CNNs",
+    "text": "Schedule (links to content on left)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 14 - Using LLMs in R to improve data dashboards (Carl Boettiger, UC Berkeley) \nMar 21 - VirtualiZarr, Dask and Holoviz to explore NODD data (Rich Signell, Open Science Consulting) \nMar 28 - Working with data on OPeNDAP servers in Python & R  \nApr 4 - xarray + GPU integration (Negin Sobhani, UCAR and Max Jones, Development Seed) \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 18 - Creating a Cloud-Native dataset of streamflows and publishing to NODD \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization (light penetration depths in the ocean and other light attributes) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization (phytoplankton species abundance) \nMay 22 (7am PT/10am ET) - EDMW 3-hour Workshop on working with PACE hyperspectral data Register here\nMay 30 - Machine-Learning with Ocean Data: gap-filling with CNNs",
     "crumbs": [
       "HackHour 2025 Topics"
     ]
@@ -1433,7 +1433,17 @@
     "href": "topics-2025/2025-PACE/index.html#pace-for-fisheries",
     "title": "PACE Data Access",
     "section": "PACE for Fisheries",
-    "text": "PACE for Fisheries\nApplications of PACE hyperspectral ocean color data for aquaculture and fisheries management. 2024. Ryan Vandermuelen (NOAA Fisheries)\nIntro Lecture",
+    "text": "PACE for Fisheries\nApplications of PACE hyperspectral ocean color data for aquaculture and fisheries management. 2025. Ryan Vandermeulen et al. (NOAA Fisheries)\nEDMW Workshop May 22, 2025",
+    "crumbs": [
+      "Python - PACE Data Access"
+    ]
+  },
+  {
+    "objectID": "topics-2025/2025-PACE/index.html#get-the-tutorials",
+    "href": "topics-2025/2025-PACE/index.html#get-the-tutorials",
+    "title": "PACE Data Access",
+    "section": "Get the tutorials",
+    "text": "Get the tutorials\ncd ~\ngit clone https://github.com/nmfs-opensci/EDMW-2H-tutorials-2025",
     "crumbs": [
       "Python - PACE Data Access"
     ]
@@ -1443,7 +1453,7 @@
     "href": "topics-2025/2025-PACE/index.html#tutorials",
     "title": "PACE Data Access",
     "section": "Tutorials",
-    "text": "Tutorials\n\nApparent Visible Wavelength (AVW)\nPhytoplankton absorption coefficients (APH)\nDiffuse attenuation coefficients (Kd)\nData access with OPeNDAP\nPACE/OCI Processing Levels and Viz Download",
+    "text": "Tutorials\n\nMay 9 light attenuation\nMay 16 Phytoplankton Composition",
     "crumbs": [
       "Python - PACE Data Access"
     ]
@@ -1855,7 +1865,7 @@
     "href": "index.html#schedule-links-to-content-on-left",
     "title": "HackHours 2025",
     "section": "Schedule (links to content on left)",
-    "text": "Schedule (links to content on left)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 14 - Using LLMs in R to improve data dashboards (Carl Boettiger, UC Berkeley) \nMar 21 - VirtualiZarr, Dask and Holoviz to explore NODD data (Rich Signell, Open Science Consulting) \nMar 28 - Working with data on OPeNDAP servers in Python & R  \nApr 4 - xarray + GPU integration (Negin Sobhani, UCAR and Max Jones, Development Seed) \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 18 - Creating a Cloud-Native dataset of streamflows and publishing to NODD (Google Buckets) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data\nMay 30 - Machine-Learning with Ocean Data: gap-filling with CNNs"
+    "text": "Schedule (links to content on left)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) \nMar 14 - Using LLMs in R to improve data dashboards (Carl Boettiger, UC Berkeley) \nMar 21 - VirtualiZarr, Dask and Holoviz to explore NODD data (Rich Signell, Open Science Consulting) \nMar 28 - Working with data on OPeNDAP servers in Python & R  \nApr 4 - xarray + GPU integration (Negin Sobhani, UCAR and Max Jones, Development Seed) \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 18 - Creating a Cloud-Native dataset of streamflows and publishing to NODD (Google Buckets) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization (light penetration depths in the ocean and other light attributes) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization (phytoplankton species abundance) \nMay 22 (7am PT/10am ET) - EDMW 3-hour Workshop on working with PACE hyperspectral data Register here\nMay 30 - Machine-Learning with Ocean Data: gap-filling with CNNs"
   },
   {
     "objectID": "topics-2025/2025-03-21-Signell/hackhours_demo.html",

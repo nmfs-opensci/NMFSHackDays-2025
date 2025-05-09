@@ -1,21 +1,25 @@
 ---
 title: PACE Data Access
-author: 'Ian Carroll (NASA), Anna Windle (NASA), Eli Holmes (NOAA)'
+author: 'Ryan Vandermeulen and Eli Holmes (NOAA)'
 ---
 
 ## PACE for Fisheries
 
-[Applications of PACE hyperspectral ocean color data for aquaculture and fisheries management](https://ocean-satellite-tools.github.io/fish-pace/). 2024. Ryan Vandermuelen (NOAA Fisheries)
+[Applications of PACE hyperspectral ocean color data for aquaculture and fisheries management](https://ocean-satellite-tools.github.io/fish-pace/). 2025. Ryan Vandermeulen et al. (NOAA Fisheries)
 
-[Intro Lecture](intro.html)
+[EDMW Workshop May 22, 2025](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2025/)
+
+## Get the tutorials
+
+```
+cd ~
+git clone https://github.com/nmfs-opensci/EDMW-2H-tutorials-2025
+```
 
 ## Tutorials
 
-* [Apparent Visible Wavelength (AVW)](pace-avw.html)
-* [Phytoplankton absorption coefficients (APH)](pace-aph.html)
-* [Diffuse attenuation coefficients (Kd)](pace-kd.html)
-* [Data access with OPeNDAP](pace-opendap.html)
-* [PACE/OCI Processing Levels and Viz](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci-file-structure/) [Download](https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_file_structure.ipynb)
+* May 9 [light attenuation](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2025/tutorials/python/Tutorial_4_kd.html)
+* May 16 [Phytoplankton Composition](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2025/tutorials/python/Tutorial_3_moana-erddap.html)
 
 ## References. Phytoplankton Composition
 
