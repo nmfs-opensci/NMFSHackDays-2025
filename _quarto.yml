@@ -6,7 +6,7 @@ project:
     - "!topics-2025/2025-cefi/*"
     - "!topics-2025/2025-02-21-earthdata/gdalcubes.qmd"
     - "!topics-2025/2025-02-21-earthdata/zarr.qmd"
-    - "!topics-2025/2025-PACE/*.qmd"
+    - "!topics-2025/2025-PACE/*.ipynb"
 
 default-image-extension: ""
     
@@ -168,6 +168,11 @@ website:
               href: topics-2025/2025-dask/Dask_coiled.html
         - section: "Python - PACE Data Access"
           href: topics-2025/2025-PACE/index.md
+          contents:
+            - text: May 9 Kd
+              href: https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2025/tutorials/python/Tutorial_4_kd.html
+            - text: May 16 MOANA
+              href: https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2025/tutorials/python/Tutorial_3_moana-erddap.html
         - section: "CEFI Data Access"
           href: topics-2025/2025-04-11-cefi/index.html
           contents:
