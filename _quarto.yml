@@ -167,20 +167,7 @@ website:
             - text: Coiled cluster
               href: topics-2025/2025-dask/Dask_coiled.html
         - section: "Python - PACE Data Access"
-          href: topics-2025/2025-PACE/index.html
-          contents:
-            - text: Intro Lecture
-              href: topics-2025/2025-PACE/intro.html
-            - text: AVW
-              href: topics-2025/2025-PACE/pace-avw.html
-            - text: APH
-              href: topics-2025/2025-PACE/pace-aph.html
-            - text: Kd
-              href: topics-2025/2025-PACE/pace-kd.html
-            - text: Level 2 data
-              href: topics-2025/2025-PACE/level2.html
-            - text: OPeNDAP
-              href: topics-2025/2025-PACE/pace-aph.html
+          href: topics-2025/2025-PACE/index.md
         - section: "CEFI Data Access"
           href: topics-2025/2025-04-11-cefi/index.html
           contents:
