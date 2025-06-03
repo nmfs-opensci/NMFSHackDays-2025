@@ -4,9 +4,21 @@ title: "HackHours 2025"
 
 During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes Jupyter Hub and you will not need to install anything.
 
-**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+**When:** Fridays 11am Pacific/2pm Eastern. **Register (open to all)** [Zoom registration](https://zoom.us/meeting/register/Om99ecCMSrqepyDVDJ7bBA)
 
-## Schedule (links to content on left)
+## June/July Schedule (links to content on left)
+
+-   June 6 - CNNs for gridded earth data (xarray + tensorflow): Part I
+-   June 13 - CNNs for gridded earth data (xarray + tensorflow): Part II
+-   June 20 - UNet CNNs for gap-filling gridded data
+-   June 27 - Writing R code with the help of LLMs
+-   July 4 HOLIDAY
+-   July 11 - TBD
+-   June 18 - ML cloud-classification using PACE spectral data
+-   June 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model
+  
+
+## Spring Schedule (links to content on left)
 
 -   Feb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours
 -   Feb 14 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python (Eli Holmes) {{< fa brands python >}}

@@ -2,13 +2,23 @@
 title: "HackHours 2025"
 ---
 
-During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything. [About the HackHours](https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html)
+During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything. 
 
-**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+**When:** Fridays 11am Pacific/2pm Eastern. **Register (open to all)** [Zoom registration](https://zoom.us/meeting/register/Om99ecCMSrqepyDVDJ7bBA)
 
-<a href="https://raw.githubusercontent.com/nmfs-opensci/NMFSHackDays-2025/main/topics-2025/2025-02-14-earthdata/0-earthdata-catalog.ipynb" download>Download</a>
+## June/July Schedule (links to content on left)
 
-## Schedule (links to content on left)
+-   June 6 - CNNs for gridded earth data (xarray + tensorflow): Part I
+-   June 13 - CNNs for gridded earth data (xarray + tensorflow): Part II
+-   June 20 - UNet CNNs for gap-filling gridded data
+-   June 27 - Writing R code with the help of LLMs
+-   July 4 HOLIDAY
+-   July 11 - TBD
+-   June 18 - ML cloud-classification using PACE spectral data
+-   June 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model
+  
+
+## Spring Schedule (links to content on left)
 
 -   Feb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours
 -   Feb 14 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python (Eli Holmes) {{< fa brands python >}}
@@ -26,5 +36,4 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   May 9 - [PACE](https://pace.oceansciences.org/home.htm) Hyperspectral Ocean Color Data Access and Visualization (light penetration depths in the ocean and other light attributes) {{< fa brands python >}}
 -   May 16 - [PACE](https://pace.oceansciences.org/home.htm) Hyperspectral Ocean Color Data Access and Visualization (phytoplankton species abundance) {{< fa brands python >}}
 -   May 22 (7am PT/10am ET) - EDMW 3-hour Workshop on working with PACE hyperspectral data [Register here](https://docs.google.com/forms/d/e/1FAIpQLSefZrPmx4X5NyyWA3puOmYj6t7q5F4MCAONRTC8818jydpKwg/viewform)
--   May 30 - Machine-Learning with Ocean Data: [gap-filling](https://doi.org/10.6084/m9.figshare.27936036.v1) with CNNs {{< fa brands python >}}
 
