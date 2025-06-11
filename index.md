@@ -14,8 +14,8 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   June 27 - Writing R code with the help of LLMs
 -   July 4 HOLIDAY
 -   July 11 - TBD
--   June 18 - ML cloud-classification using PACE spectral data
--   June 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model
+-   July 18 - ML cloud-classification using PACE spectral data
+-   July 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model
   
 
 ## Spring Schedule (links to content on left)

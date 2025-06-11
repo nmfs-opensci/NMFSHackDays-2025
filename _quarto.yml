@@ -31,7 +31,7 @@ website:
   repo-url: https://github.com/nmfs-opensci/NMFSHackDays-2025
   repo-actions: [edit, issue, source]
   
-  page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science (2023)
+  page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science
 
   navbar:
     background: primary
@@ -93,7 +93,12 @@ website:
               href: topics-skills/03-AWS_S3_bucket.ipynb
             - text: Learning resources
               href: topics-skills/04-learning.md
-        - text: "HackHour 2025 Topics"
+        - text: "June-July 2025 Topics"
+          href: topics-2025/index.html
+        - text: "---"
+        - section: "CNNs"
+          href: topics-2025/2025-cnn/index.html
+        - text: "Feb-May 2025 Topics"
           href: topics-2025/index.html
         - text: "---"
         - section: "Python - NASA Earth Data"
