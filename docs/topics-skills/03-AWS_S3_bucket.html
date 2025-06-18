@@ -294,8 +294,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">CNNs</span></span>
+      <div class="sidebar-item-container"> 
+            <a href="../topics-2025/2025-cnn/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CNNs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/intro_to_cnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -834,7 +847,7 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="create-the-bucket-policy">Create the bucket policy</h2>
 <p>Configure a policy for this S3 bucket that will allow the newly created user to access it.</p>
 <ol type="1">
-<li>Open the AWS S3 console (https://console.aws.amazon.com/s3/)</li>
+<li>Open the AWS S3 console <a href="https://console.aws.amazon.com/s3/" class="uri">https://console.aws.amazon.com/s3/</a></li>
 <li>From the navigation pane, choose <strong>Buckets</strong></li>
 <li>Select the new S3 bucket that you created</li>
 <li>Open the Permissions tab</li>

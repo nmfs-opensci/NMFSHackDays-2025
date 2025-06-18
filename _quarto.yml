@@ -15,6 +15,8 @@ resources:
   - topics-2025/2025-02-21-earthdata/images
   - topics-2025/2025-02-28-ERDDAP-Py/images
   - topics-2025/2025-02-14-earthdata
+  - topics-2025/2025-04-11-cefi/*.ipynb
+  - topics-2025/2025-echopype/*.ipynb
   - topics-2025/2025-02-28-ERDDAP-Py/*.ipynb
   - topics-2025/2025-PACE/2025-PACE-Intro.pdf
   - widgets/jupyterhub_link_widget.html
@@ -98,6 +100,9 @@ website:
         - text: "---"
         - section: "CNNs"
           href: topics-2025/2025-cnn/index.html
+          contents:
+            - text: Tutorials
+              href: https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/intro_to_cnn.html
         - text: "Feb-May 2025 Topics"
           href: topics-2025/index.html
         - text: "---"
