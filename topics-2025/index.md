@@ -6,17 +6,16 @@ During these stand-alone informal sessions we will get introduced to a variety o
 
 **When:** Fridays 11am Pacific/2pm Eastern. **Register (open to all)** [Zoom registration](https://zoom.us/meeting/register/Om99ecCMSrqepyDVDJ7bBA)
 
-## June/July Schedule (links to content on left)
+## June/July Schedule
 
--   June 6 - CNNs for gridded earth data (xarray + tensorflow): Part I
--   June 13 - CNNs for gridded earth data (xarray + tensorflow): Part II
--   June 20 - UNet CNNs for gap-filling gridded data
--   June 27 - Writing R code with the help of LLMs
+-   June 6 - CNNs for gridded earth data (xarray + tensorflow): [Part I](https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/CHL_prediction_CNN_Part_1.html)
+-   June 13 - CNNs for gridded earth data (xarray + tensorflow): [Part II](https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/CHL_prediction_CNN_Part_2.html)
+-   June 20 - CNNs for gridded earth data (xbatcher and Colab): [Part III](https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/CHL_prediction_CNN_Part_3.html)
+-   June 27 - Writing R code with the help of LLMs (Simon Couch, Posit)
 -   July 4 HOLIDAY
--   July 11 - TBD
--   July 18 - ML cloud-classification using PACE spectral data
--   July 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model
-  
+-   July 11 - LLMs in Shiny apps
+-   July 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)
+-   July 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)  
 
 ## Spring Schedule (links to content on left)
 

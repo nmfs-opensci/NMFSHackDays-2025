@@ -679,11 +679,11 @@
     ]
   },
   {
-    "objectID": "topics-2025/index.html#junejuly-schedule-links-to-content-on-left",
-    "href": "topics-2025/index.html#junejuly-schedule-links-to-content-on-left",
+    "objectID": "topics-2025/index.html#junejuly-schedule",
+    "href": "topics-2025/index.html#junejuly-schedule",
     "title": "HackHours 2025",
-    "section": "June/July Schedule (links to content on left)",
-    "text": "June/July Schedule (links to content on left)\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - UNet CNNs for gap-filling gridded data\nJune 27 - Writing R code with the help of LLMs\nJuly 4 HOLIDAY\nJuly 11 - TBD\nJuly 18 - ML cloud-classification using PACE spectral data\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model",
+    "section": "June/July Schedule",
+    "text": "June/July Schedule\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - CNNs for gridded earth data (xbatcher and Colab): Part III\nJune 27 - Writing R code with the help of LLMs (Simon Couch, Posit)\nJuly 4 HOLIDAY\nJuly 11 - LLMs in Shiny apps\nJuly 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)",
     "crumbs": [
       "June-July 2025 Topics"
     ]
@@ -1273,7 +1273,17 @@
     "href": "topics-2025/2025-cnn/index.html#part-i-1",
     "title": "Intro to Convolutional Neural Networks (CNNs) for prediction",
     "section": "Part I",
-    "text": "Part I\nIn part II, we will add a land mask to the model and add seasonality.\n\nAdd Land Mask\nAdd season",
+    "text": "Part I\nIn part II, we will add a land mask to the model and add seasonality.\n\nPutting data in Google Object Storage\nAdd Land Mask and Season",
+    "crumbs": [
+      "CNNs"
+    ]
+  },
+  {
+    "objectID": "topics-2025/2025-cnn/index.html#part-iii",
+    "href": "topics-2025/2025-cnn/index.html#part-iii",
+    "title": "Intro to Convolutional Neural Networks (CNNs) for prediction",
+    "section": "Part III",
+    "text": "Part III\nIn part III, we will learn about xbatcher which will allow us to work with larger than memory data. We will also work from Colab today so you get to see how that works.\n\nxbatcher and Colab: Part III",
     "crumbs": [
       "CNNs"
     ]
@@ -1502,7 +1512,7 @@
     "href": "index.html#junejuly-schedule-links-to-content-on-left",
     "title": "HackHours 2025",
     "section": "June/July Schedule (links to content on left)",
-    "text": "June/July Schedule (links to content on left)\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - UNet CNNs for gap-filling gridded data\nJune 27 - Writing R code with the help of LLMs\nJuly 4 HOLIDAY\nJuly 11 - TBD\nJuly 18 - ML cloud-classification using PACE spectral data\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model"
+    "text": "June/July Schedule (links to content on left)\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - CNNs for gridded earth data (xbatcher and Colab): Part III\nJune 27 - Writing R code with the help of LLMs (Simon Couch, Posit)\nJuly 4 HOLIDAY\nJuly 11 - LLMs in Shiny apps\nJuly 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)"
   },
   {
     "objectID": "index.html#spring-schedule-links-to-content-on-left",
