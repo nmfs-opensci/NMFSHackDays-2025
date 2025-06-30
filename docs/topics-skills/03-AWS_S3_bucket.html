@@ -881,7 +881,17 @@ function googleTranslateElementInit() {
 <h1>Configure local AWS profile</h1>
 <p>To access the bucket from a “local” computer (for example, a local computer or a JupyterHub that is running on AWS), an AWS profile must be configured with the access keys to the new S3 bucket.</p>
 <p>This can be done manually but the easiest way to do it is by using <a href="https://aws.amazon.com/cli/">AWS Command Line Interface (CLI)</a>.</p>
-<p>On the local computer: 1. Open a terminal 1. Install AWS CLI (if using the <code>conda</code> package manager, you can install like this: <code>conda install -c conda-forge awscli</code>) 1. Configure the AWS profile with the keys from above and give your profile a new profile name: - <code>aws configure --profile PROFILE_NAME</code> - Enter the access key and secret access key - Enter <code>us-west-2</code> for the region and <code>json</code> for format</p>
+<p>On the local computer:</p>
+<ol type="1">
+<li>Open a terminal</li>
+<li>Install AWS CLI (if using the <code>conda</code> package manager, you can install like this: <code>conda install -c conda-forge awscli</code>)</li>
+<li>Configure the AWS profile with the keys from above and give your profile a new profile name:
+<ul>
+<li><code>aws configure --profile PROFILE_NAME</code></li>
+<li>Enter the access key and secret access key</li>
+<li>Enter <code>us-west-2</code> for the region and <code>json</code> for format</li>
+</ul></li>
+</ol>
 <p>In the code examples below, the profile name is <code>icesat2</code>. Replace this with the profile name that you used.</p>
 </section>
 <section id="example-code" class="level1">
