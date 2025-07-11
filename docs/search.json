@@ -683,7 +683,7 @@
     "href": "topics-2025/index.html#junejuly-schedule",
     "title": "HackHours 2025",
     "section": "June/July Schedule",
-    "text": "June/July Schedule\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - CNNs for gridded earth data (xbatcher and Colab): Part III\nJune 27 - Writing R code with the help of LLMs (Simon Couch, Posit) repo with presentation\nJuly 4 HOLIDAY\nJuly 11 - LLMs in R Shiny apps (Nic Crane)\nJuly 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)\nAug 1 - LLMs in StreamLit Apps (Boris Shapkin, Alfred Wegener Institute)",
+    "text": "June/July Schedule\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - CNNs for gridded earth data (xbatcher and Colab): Part III\nJune 27 - Writing R code with the help of LLMs (Simon Couch, Posit) repo with presentation Video (NOAA only)\nJuly 4 HOLIDAY\nJuly 11 - LLMs in R Shiny apps (Nic Crane) repo with links to projects Video (NOAA only)\nJuly 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)\nAug 1 - LLMs in StreamLit Apps (Boris Shapkin, Alfred Wegener Institute)",
     "crumbs": [
       "June-July 2025 Topics"
     ]
@@ -1512,7 +1512,7 @@
     "href": "index.html#junejuly-schedule-links-to-content-on-left",
     "title": "HackHours 2025",
     "section": "June/July Schedule (links to content on left)",
-    "text": "June/July Schedule (links to content on left)\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - CNNs for gridded earth data (xbatcher and Colab): Part III\nJune 27 - Writing R code with the help of LLMs (Simon Couch, Posit) repo with presentation\nJuly 4 HOLIDAY\nJuly 11 - LLMs in R Shiny apps (Nic Crane)\nJuly 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)\nAug 1 - LLMs in StreamLit Apps (Boris Shapkin, Alfred Wegener Institute)"
+    "text": "June/July Schedule (links to content on left)\n\nJune 6 - CNNs for gridded earth data (xarray + tensorflow): Part I\nJune 13 - CNNs for gridded earth data (xarray + tensorflow): Part II\nJune 20 - CNNs for gridded earth data (xbatcher and Colab): Part III\nJune 27 - Writing R code with the help of LLMs (Simon Couch, Posit) repo with presentation Video (NOAA only)\nJuly 4 HOLIDAY\nJuly 11 - LLMs in R Shiny apps (Nic Crane) repo with links to projects Video (NOAA only)\nJuly 18 - ML cloud-classification using PACE spectral data (Sean Foley, NASA)\nJuly 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model (Michael Akridge, NOAA)\nAug 1 - LLMs in StreamLit Apps (Boris Shapkin, Alfred Wegener Institute)"
   },
   {
     "objectID": "index.html#spring-schedule-links-to-content-on-left",
