@@ -19,6 +19,7 @@ resources:
   - topics-2025/2025-echopype/*.ipynb
   - topics-2025/2025-02-28-ERDDAP-Py/*.ipynb
   - topics-2025/2025-PACE/2025-PACE-Intro.pdf
+  - topics-2025/2025-07-18-cloud-mask/*.ipynb
   - widgets/jupyterhub_link_widget.html
   - widgets/widget-popout.html
   
@@ -98,11 +99,18 @@ website:
         - text: "June-July 2025 Topics"
           href: topics-2025/index.html
         - text: "---"
-        - section: "CNNs"
+        - section: "Intro to CNNs"
           href: topics-2025/2025-cnn/index.html
           contents:
-            - text: Tutorials
+            - text: Mind the Gap
               href: https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/intro_to_cnn.html
+        - section: "CNN example: cloud masking"
+          href: topics-2025/2025-07-18-cloud-mask/index.html
+          contents:
+            - text: Intro to ML
+              href: https://docs.google.com/presentation/d/1AI_TeCet1nulDEKjs5ZdK2B6luAPG9Mwnse_KOQZLws/present?slide=id.p
+            - text: Intro to CNN
+              href: topics-2025/2025-07-18-cloud-mask/ml_cloud_mask.html
         - text: "Feb-May 2025 Topics"
           href: topics-2025/index.html
         - text: "---"
