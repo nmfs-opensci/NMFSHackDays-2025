@@ -15,7 +15,7 @@ During these stand-alone informal sessions we will get introduced to a variety o
 -   July 4 HOLIDAY
 -   July 11 - LLMs in R Shiny apps ([Nic Crane](https://www.linkedin.com/in/niccrane/)) [repo](https://github.com/thisisnic/hackhours2025) - [Video (NOAA only)](https://drive.google.com/file/d/15lW_wAg8q7TaTpDd4SfbpwqZWFADTwWI/view?usp=sharing)
 -   July 18 - ML cloud-classification using PACE spectral data ([Sean Foley](https://science.gsfc.nasa.gov/sci/bio/sean.r.foley), NASA) [info](topics-2025/2025-07-18-cloud-mask/index.html) [notebook](topics-2025/2025-07-18-cloud-mask/ml_cloud_mask.html) [Video (NOAA only)](https://drive.google.com/file/d/12IvKnxJ8i0PsRr5huqeJjEZLOhCNfpFn/view?usp=sharing)
--   July 25 - Vision CNN models for fisheries applications: a simple workflow process for fine-tuning a foundational model ([Michael Akridge](https://www.linkedin.com/in/michael-akridge/), NOAA)
+-   July 25 - Vision CNN models for fisheries applications ([Michael Akridge](https://www.linkedin.com/in/michael-akridge/), NOAA)
 -   Aug 1 - LLMs in StreamLit Apps ([Boris Shapkin](https://www.linkedin.com/in/boris-shapkin/?originalSubdomain=de), Alfred Wegener Institute)
   
 
